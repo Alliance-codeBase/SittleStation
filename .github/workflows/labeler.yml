@@ -1,0 +1,23 @@
+name: "Labeler"
+on:
+  issues:
+    types: [opened, edited, milestoned]
+  pull_request_target:
+    types: [synchronize, opened, reopened, ready_for_review]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Global labeler 
+        id: glob_labeler
+        uses: jimschubert/labeler-action@v2
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: PR labele
+        id: pr_labeler
+        uses: actions/labeler@v5

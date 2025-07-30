@@ -321,6 +321,12 @@
 
 	if(TRAIT_FAST_CUFFING in clothing_traits)
 		. += "[src] increase the speed that you handcuff others."
+	
+	// MASSMETA EDIT BEGIN (more_clothes)
+	/// alternative reskin for old sptites
+	if(uses_advanced_reskins)
+		. += "Can be reskined to another style, use <u>Reskin Clothes verb</u> on item."
+	// MASSMETA EDIT END
 
 	for(var/zone in damage_by_parts)
 		var/pct_damage_part = damage_by_parts[zone] / limb_integrity * 100

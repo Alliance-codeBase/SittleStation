@@ -2,6 +2,12 @@
 /obj/item/proc/on_click_alt_reskin(datum/source, mob/user)
 	SIGNAL_HANDLER
 
+	// MASSMETA EDIT BEGIN (more_clothes)
+	/// alternative reskin for old sptites
+	if(uses_advanced_reskins)
+		return NONE
+	// MASSMETA EDIT END
+
 	if(!user.can_perform_action(src, NEED_DEXTERITY))
 		return NONE
 

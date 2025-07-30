@@ -24,6 +24,12 @@ if [ -d ".git" ]; then
   cp -r .git/logs/* $1/.git/logs/
 fi
 
+# MASSMETA ADD BEGIN - Get all the .dmis and json configs from modular_meta
+mkdir -p \
+    $1/modular_meta
+find modular_meta/ -name \*.dmi -exec cp --parents {} $1 \;
+# MASSMETA ADD END
+
 cp tgstation.dmb tgstation.rsc $1/
 cp -r _maps/* $1/_maps/
 cp -r code/datums/greyscale/json_configs/* $1/code/datums/greyscale/json_configs/

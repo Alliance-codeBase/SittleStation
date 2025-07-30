@@ -112,7 +112,7 @@
 	req_access = list(ACCESS_SYNDICATE)
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate1
 	shuttleId = "caravansyndicate1"
-	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;caravansyndicate1_listeningpost"
+	possible_destinations = "caravansyndicate1_custom;caravansyndicate1_ambush;caravansyndicate1_listeningpost;syndie_cargo"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate1
 	name = "Syndicate Fighter Navigation Computer"
@@ -136,7 +136,7 @@
 	light_color = COLOR_SOFT_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate2
 	shuttleId = "caravansyndicate2"
-	possible_destinations = "caravansyndicate2_custom;caravansyndicate2_ambush;caravansyndicate1_listeningpost"
+	possible_destinations = "caravansyndicate2_custom;caravansyndicate2_ambush;caravansyndicate1_listeningpost;syndie_cargo"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate2
 	name = "Syndicate Fighter Navigation Computer"
@@ -160,7 +160,7 @@
 	light_color = COLOR_SOFT_RED
 	circuit = /obj/item/circuitboard/computer/caravan/syndicate3
 	shuttleId = "caravansyndicate3"
-	possible_destinations = "caravansyndicate3_custom;caravansyndicate3_ambush;caravansyndicate3_listeningpost"
+	possible_destinations = "caravansyndicate3_custom;caravansyndicate3_ambush;caravansyndicate3_listeningpost;syndie_cargo"
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/caravan/syndicate3
 	name = "Syndicate Drop Ship Navigation Computer"

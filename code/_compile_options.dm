@@ -136,7 +136,11 @@
 #endif
 
 #ifndef PRELOAD_RSC //set to:
-#define PRELOAD_RSC 1 // 0 to allow using external resources or on-demand behaviour;
+//MASSMETA EDIT BEGIN
+//#define PRELOAD_RSC 1 // 0 to allow using external resources or on-demand behaviour;
+
+#define PRELOAD_RSC 0 // we allow using external resources or on-demand behaviour
+//MASSMETA EDIT END
 #endif // 1 to use the default behaviour;
 								// 2 for preloading absolutely everything;
 

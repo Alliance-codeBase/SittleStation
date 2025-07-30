@@ -81,7 +81,9 @@ export const Crayon = (props) => {
           </LabeledList>
         </Section>
         {!!is_literate_user && (
-          <Section title="Text">
+          <Section title="Text (доступна кириллица)">
+            {' '}
+            {/* MASSMETA EDIT (ru_crayons) */}
             <LabeledList>
               <LabeledList.Item label="Current Buffer">
                 {text_buffer}

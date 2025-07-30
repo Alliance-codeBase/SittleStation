@@ -1,28 +1,41 @@
-## /tg/station codebase
+## MassMeta (/tg/station Downstream)
 
-[![Build Status](https://github.com/tgstation/tgstation/workflows/CI%20Suite/badge.svg)](https://github.com/tgstation/tgstation/actions?query=workflow%3A%22CI+Suite%22)
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Percentage of issues still open")
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Average time to resolve an issue")
-![Coverage](https://img.shields.io/badge/coverage---4%25-red.svg)
+[![Build Status](https://github.com/Lambda-13/massmeta/workflows/CI%20Suite/badge.svg)](https://github.com/Huz2e/massmeta/actions?query=workflow%3A%22CI+Suite%22)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/Lambda-13/massmeta.svg)](http://isitmaintained.com/project/Lambda-13/massmeta "Percentage of issues still open")
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Lambda-13/massmeta.svg)](http://isitmaintained.com/project/Lambda-13/massmeta "Average time to resolve an issue")
 
-[![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
+[![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png)
+[![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png)
+[![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
+[![massmetagit](.github/images/badges/massmeta-github.png)](https://youtu.be/rAaBNT-7oS4?si=YiR8JtsMs7e1VApV)
+![B.A.D.G.E.](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)
+![badGe](https://forthebadge.com/images/badges/powered-by-coffee.svg)
+![BADge](https://forthebadge.com/images/badges/approved-by-my-mom.svg)
+![badGE](https://forthebadge.com/images/badges/it-works-dont-ask-me.svg)
+![Blyatbadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)
+![Goodge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)
+![endingbadge](https://forthebadge.com/images/badges/works-on-my-machine-1.svg)
 
-| Website             | Link                                                                                                 |
-| ------------------- | ---------------------------------------------------------------------------------------------------- |
-| Website             | [https://tgstation13.org](https://tgstation13.org)                                                   |
-| Code                | [https://github.com/tgstation/tgstation](https://github.com/tgstation/tgstation)                     |
-| Wiki                | [https://tgstation13.org/wiki/Main_Page](https://tgstation13.org/wiki/Main_Page)                     |
-| Codedocs            | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/)                               |
-| /tg/station Discord | [https://tgstation13.org/phpBB/viewforum.php?f=60](https://tgstation13.org/phpBB/viewforum.php?f=60) |
-| Coderbus Discord    | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                             |
+| Website                 | Link                                                                            |
+| ----------------------- | ------------------------------------------------------------------------------- |
+| MassMeta Code           | [https://github.com/Lambda-13/massmeta](https://github.com/Lambda-13/massmeta)  |
+| Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md) |
+| Lambda Discord          | [https://discord.gg/lambda](https://discord.gg/XHRzsmG4Eq)                      |
+| /TG/ Website            | [https://www.tgstation13.org](https://www.tgstation13.org)                      |
+| /TG/ Codedocs           | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/)          |
+| /TG/ Coderbus Discord   | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                        |
 
-This is the codebase for the /tg/station flavoured fork of SpaceStation 13.
+This is MassMeta downstream fork of /tg/station SpaceStation 13.
 
-Space Station 13 is a paranoia-laden round-based roleplaying game set against the backdrop of a nonsensical, metal death trap masquerading as a space station, with charming spritework designed to represent the sci-fi setting and its dangerous undertones. Have fun, and survive!
+**Powered by Lambda 13 server**
 
-_All github inquiries (such as moderation actions) may be handled via the /tg/station discord [#coding-general](https://discord.com/channels/326822144233439242/326831214667235328). Simply ping the `@Maintainer` role, following the guide on asking questions located in the channel description, with your issue!_
+**_RUSSIAN TEXT ALERT_**
 
-## DOWNLOADING
+**Этот репозиторий основан на квасе, мммммнн Квас.**
+
+Космическая Станция 13 - это насыщенная паранойей ролевая игра, действие которой разворачивается на фоне бессмысленной металлической ловушки смерти, маскирующейся под космическую станцию, с очаровательными спрайтами, созданными для представления научно-фантастического сеттинга и его опасных оттенков. Получайте удовольствие и выживайте!
+
+## СКАЧИВАНИЕ (На английском)
 
 [Downloading](.github/guides/DOWNLOADING.md)
 
@@ -30,25 +43,23 @@ _All github inquiries (such as moderation actions) may be handled via the /tg/st
 
 [Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
 
-## Compilation
+## Компиляция
 
-**The quick way**. Find `bin/server.cmd` in this folder and double click it to automatically build and host the server on port 1337.
+**Быстрый путь**. Найдите `bin/server.cmd` в этой папке и дважды щелкните по ней, чтобы автоматически создать и разместить сервер на порту 1337.
 
-**The long way**. Find `bin/build.cmd` in this folder, and double click it to initiate the build. It consists of multiple steps and might take around 1-5 minutes to compile. If it closes, it means it has finished its job. You can then [setup the server](.github/guides/RUNNING_A_SERVER.md) normally by opening `tgstation.dmb` in DreamDaemon.
+**Долгий путь**. Найдите `bin/build.cmd` в этой папке и дважды щелкните по ней, чтобы начать сборку. Она состоит из нескольких шагов и может занять около 1-5 минут. Если она закроется, это означает, что она завершила свою работу. Затем вы можете [настроить сервер](.github/guides/RUNNING_A_SERVER.md) просто открывая `tgstation.dmb` в Dream Daemon.
 
-**Building tgstation in DreamMaker directly is deprecated and might produce errors**, such as `'tgui.bundle.js': cannot find file`.
+**Компиляция tgstation в Dream Maker устарело и может привести к ошибкам**, таким как `'tgui.bundle.js': cannot find file`.
 
-**[How to compile in VSCode and other build options](tools/build/README.md).**
+**[Компиляция в VScode и другие опции запуска (на аглийском)](tools/build/README.md).**
 
-## Getting started
+## Ты нужен НАМ
 
-For contribution guidelines refer to the [Guides for Contributors](.github/CONTRIBUTING.md).
+[Гайд по тому как принять участие в разработке (на английском)](.github/CONTRIBUTING.md)
 
-For getting started (dev env, compilation) see the HackMD document [here](https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide).
+**Если вы хотите, чтобы ваша фича попала в репозиторий на показ игрокам, то велком в `#Code-chat` в [нашем Дискорде](https://discord.gg/lambda13).**
 
-For overall design documentation see [HackMD](https://hackmd.io/@tgstation).
-
-For lore, [see Common Core](https://github.com/tgstation/common_core).
+[/tg/station HACKMD account (BLOCKED in RU)](https://hackmd.io/@tgstation) - Design documentation here
 
 ## LICENSE
 

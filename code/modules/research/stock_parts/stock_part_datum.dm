@@ -64,6 +64,11 @@ GLOBAL_LIST_INIT(stock_part_datums, generate_stock_part_datums())
 			return 5
 		if (4)
 			return 10
+		// MASSMETA EDIT BEGIN (parts_tier_5)
+		if (5)
+			return 20
+		// возможно стоит понизить уровень на всякий случай, наверное
+		// MASSMETA EDIT END
 		else
 			CRASH("Invalid level given to energy_rating: [tier]")
 

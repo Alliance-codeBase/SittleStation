@@ -77,17 +77,31 @@
 	// If we didn't have a preset one, let's make one up.
 	if(!chosen)
 		if(is_radio)
-			chosen = pick(list("Help!",
-				"Help [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
-				"[pick_list_replacements(HALLUCINATION_FILE, "people")] is [pick_list_replacements(HALLUCINATION_FILE, "accusations")]!",
-				"[pick_list_replacements(HALLUCINATION_FILE, "people")] has [pick_list_replacements(HALLUCINATION_FILE, "contraband")]!",
-				"[pick_list_replacements(HALLUCINATION_FILE, "threat")] in [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
-				"[pick("Where's [first_name(hallucinator.name)]?", "Set [first_name(hallucinator.name)] to arrest!")]",
-				"[pick("C","Ai, c","Someone c","Rec")]all the shuttle!",
-				"AI [pick("rogue", "is dead")]!!",
-				"Borgs rogue!",
+			//MASSMETA EDIT BEGIN (hallucinations_ru)
+			// chosen = pick(list("Help!",
+				// "Help [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
+				// "[pick_list_replacements(HALLUCINATION_FILE, "people")] is [pick_list_replacements(HALLUCINATION_FILE, "accusations")]!",
+				// "[pick_list_replacements(HALLUCINATION_FILE, "people")] has [pick_list_replacements(HALLUCINATION_FILE, "contraband")]!",
+				// "[pick_list_replacements(HALLUCINATION_FILE, "threat")] in [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
+				// "[pick("Where's [first_name(hallucinator.name)]?", "Set [first_name(hallucinator.name)] to arrest!")]",
+				// "[pick("C","Ai, c","Someone c","Rec")]all the shuttle!",
+				// "AI [pick("rogue", "is dead")]!!",
+				// "Borgs rogue!",
+			// ))
+
+			chosen = pick(list("Помогите!",
+				"Памагыте [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
+				"[pick_list_replacements(HALLUCINATION_FILE, "people")] [pick_list_replacements(HALLUCINATION_FILE, "accusations")]!",
+				"[pick_list_replacements(HALLUCINATION_FILE, "threat")] в [pick_list_replacements(HALLUCINATION_FILE, "location")][prob(50)?"!":"!!"]",
+				"[pick("Где [first_name(hallucinator.name)]?", "Поставьте [first_name(hallucinator.name)] на арест!")]",
+				"[pick("Выз","ИИ, з","Отз")]овите шаттл!",
+				"ИИ [pick("малф", "мертв")]!!",
+				"Борги плохие!",
 			))
+			//MASSMETA EDIT END
+
 		else
+			
 			chosen = pick(list("[pick_list_replacements(HALLUCINATION_FILE, "suspicion")]",
 				"[pick_list_replacements(HALLUCINATION_FILE, "conversation")]",
 				"[pick_list_replacements(HALLUCINATION_FILE, "greetings")][first_name(hallucinator.name)]!",
@@ -98,7 +112,11 @@
 				"[pick_list_replacements(HALLUCINATION_FILE, "aggressive")]",
 				"[pick_list_replacements(HALLUCINATION_FILE, "help")]!!",
 				"[pick_list_replacements(HALLUCINATION_FILE, "escape")]",
-				"I'm infected, [pick_list_replacements(HALLUCINATION_FILE, "infection_advice")]!",
+				//MASSMETA EDIT BEGIN (ru_traumas)
+				//"I'm infected, [pick_list_replacements(HALLUCINATION_FILE, "infection_advice")]!",
+
+				"У меня болезнь, [pick_list_replacements(HALLUCINATION_FILE, "infection_advice")]!",
+				//MASSMETA EDIT END
 			))
 
 		chosen = capitalize(chosen)

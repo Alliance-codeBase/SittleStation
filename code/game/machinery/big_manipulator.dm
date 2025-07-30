@@ -13,6 +13,7 @@
 #define MIN_DELAY_TIER_2 1.4
 #define MIN_DELAY_TIER_3 0.8
 #define MIN_DELAY_TIER_4 0.2
+#define MIN_DELAY_TIER_5 0.1 // MASSMETA EDIT (parts_tier_5)
 
 #define STATUS_BUSY "busy"
 #define STATUS_IDLE "idle"
@@ -359,12 +360,22 @@
 			power_use_lvl = 0.6
 			set_greyscale(COLOR_RED)
 			manipulator_arm?.set_greyscale(COLOR_RED)
-		if(4 to INFINITY)
+		// MASSMETA EDIT BEGIN (parts_tier_5)
+		//if(4 to INFINITY)
+
+		if(4)
+		// MASSMETA EDIT END
 			minimal_delay = interaction_delay = MIN_DELAY_TIER_4
 			power_use_lvl = 0.8
 			set_greyscale(COLOR_PURPLE)
 			manipulator_arm?.set_greyscale(COLOR_PURPLE)
-
+		// MASSMETA EDIT BEGIN (parts_tier_5)
+		if(5 to INFINITY)
+			minimal_delay = interaction_delay = MIN_DELAY_TIER_5
+			power_use_lvl = 1
+			set_greyscale(COLOR_BLUE)
+			manipulator_arm?.set_greyscale(COLOR_BLUE)
+		// MASSMETA EDIT END
 	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * power_use_lvl
 
 /// Changing take and drop turf tiles when we anchore manipulator or if manipulator not in turf.
@@ -966,3 +977,4 @@
 #undef MIN_DELAY_TIER_2
 #undef MIN_DELAY_TIER_3
 #undef MIN_DELAY_TIER_4
+#undef MIN_DELAY_TIER_5 // MASSMETA EDIT (parts_tier_5)

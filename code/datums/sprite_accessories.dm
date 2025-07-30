@@ -1721,9 +1721,13 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 
 // please make sure they're sorted alphabetically and categorized
 
+//MASSMETA EDIT BEGIN (lgbt_removal)
+/*
 /datum/sprite_accessory/socks/ace_knee
 	name = "Knee-high (Ace)"
 	icon_state = "ace_knee"
+*/
+//MASSMETA EDIT END
 
 /datum/sprite_accessory/socks/bee_knee
 	name = "Knee-high (Bee)"
@@ -1741,9 +1745,13 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Knee-High (Freedom)"
 	icon_state = "assblastusa_knee"
 
+//MASSMETA EDIT BEGIN (lgbt_removal)
+/*
 /datum/sprite_accessory/socks/rainbow_knee
 	name = "Knee-high (Rainbow)"
 	icon_state = "rainbow_knee"
+*/
+//MASSMETA EDIT END
 
 /datum/sprite_accessory/socks/striped_knee
 	name = "Knee-high (Striped)"
@@ -1753,9 +1761,13 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Knee-high (Thin)"
 	icon_state = "thin_knee"
 
+//MASSMETA EDIT BEGIN (lgbt_removal)
+/*
 /datum/sprite_accessory/socks/trans_knee
 	name = "Knee-high (Trans)"
 	icon_state = "trans_knee"
+*/
+//MASSMETA EDIT END
 
 /datum/sprite_accessory/socks/uk_knee
 	name = "Knee-High (UK)"
@@ -1825,9 +1837,13 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Stockings (Fishnet)"
 	icon_state = "fishnet_full"
 
+//MASSMETA EDIT BEGIN (lgbt_removal)
+/*
 /datum/sprite_accessory/socks/ace_thigh
 	name = "Thigh-high (Ace)"
 	icon_state = "ace_thigh"
+*/
+//MASSMETA EDIT END
 
 /datum/sprite_accessory/socks/bee_thigh
 	name = "Thigh-high (Bee)"
@@ -1845,9 +1861,13 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Thigh-high (Freedom)"
 	icon_state = "assblastusa_thigh"
 
+//MASSMETA EDIT BEGIN (lgbt_removal)
+/*
 /datum/sprite_accessory/socks/rainbow_thigh
 	name = "Thigh-high (Rainbow)"
 	icon_state = "rainbow_thigh"
+*/
+//MASSMETA EDIT END
 
 /datum/sprite_accessory/socks/striped_thigh
 	name = "Thigh-high (Striped)"
@@ -1857,9 +1877,13 @@ GLOBAL_LIST_EMPTY(blended_hair_icons_cache)
 	name = "Thigh-high (Thin)"
 	icon_state = "thin_thigh"
 
+//MASSMETA EDIT BEGIN (lgbt_removal)
+/*
 /datum/sprite_accessory/socks/trans_thigh
 	name = "Thigh-high (Trans)"
 	icon_state = "trans_thigh"
+*/
+//MASSMETA EDIT END
 
 /datum/sprite_accessory/socks/uk_thigh
 	name = "Thigh-high (UK)"

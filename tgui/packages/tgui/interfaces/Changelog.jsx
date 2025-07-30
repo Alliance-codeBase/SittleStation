@@ -42,6 +42,7 @@ const icons = {
   tweak: { icon: 'wrench', color: 'green' },
   unknown: { icon: 'info-circle', color: 'label' },
   wip: { icon: 'hammer', color: 'orange' },
+  madd: { icon: 'toolbox', color: 'green' }, //MASSMETA ADDITION (github changes)
 };
 
 export class Changelog extends Component {

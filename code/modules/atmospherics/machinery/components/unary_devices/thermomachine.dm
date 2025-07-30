@@ -85,7 +85,15 @@
 	. = ..()
 	var/calculated_bin_rating = 0
 	for(var/datum/stock_part/matter_bin/bin in component_parts)
-		calculated_bin_rating += bin.tier
+		// MASSMETA EDIT BEGIN (parts_tier_5)
+		// Добавил проверку на то что если маттербин больше 4 тира
+		// То он будет добавлять только 4 тир
+		// Костыль для работы 5 тира
+		if(bin.tier > 4)
+			calculated_bin_rating += 4
+		else
+			calculated_bin_rating += bin.tier
+		// MASSMETA EDIT END
 	heat_capacity = 5000 * ((calculated_bin_rating - 1) ** 2)
 
 	var/calculated_laser_rating = 0

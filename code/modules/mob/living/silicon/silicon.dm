@@ -286,7 +286,11 @@
 	var/list/lawcache_hackedcheck = hackedcheck.Copy()
 	var/forced_log_message = "stating laws[force ? ", forced" : ""]"
 	//"radiomod" is inserted before a hardcoded message to change if and how it is handled by an internal radio.
-	say("[radiomod] Current Active Laws:", forced = forced_log_message)
+	//MASSMETA EDIT BEGIN (ru_ai_laws)
+	//say("[radiomod] Current Active Laws:", forced = forced_log_message)
+
+	say("[radiomod] Действующие законы:", forced = forced_log_message)
+	//MASSMETA EDIT END
 	sleep(1 SECONDS)
 
 	if (lawcache_zeroth)

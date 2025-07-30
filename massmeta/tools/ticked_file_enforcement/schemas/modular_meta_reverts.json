@@ -1,0 +1,7 @@
+{
+	"file": "massmeta/modular_meta_reverts.dm",
+	"scannable_directory": "massmeta/reverts/",
+	"subdirectories": true,
+	"excluded_files": [],
+	"forbidden_includes": []
+}

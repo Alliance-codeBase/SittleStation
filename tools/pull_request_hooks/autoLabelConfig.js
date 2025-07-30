@@ -12,26 +12,30 @@ export const file_labels = {
   SQL: {
     filepaths: ["SQL"],
   },
-  "Map Edit": {
+  "Изменения карт": {
     filepaths: ["_maps"],
   },
-  Tools: {
+  Инструменты: {
     filepaths: ["tools"],
   },
-  "Config Update": {
+  "Изменение конфигов": {
     filepaths: ["config", "code/controllers/configuration/entries"],
     add_only: true,
   },
-  Sprites: {
+  Спрайты: {
     filepaths: ["icons"],
     add_only: true,
   },
-  Sound: {
+  Звуки: {
     filepaths: ["sound"],
     add_only: true,
   },
   UI: {
     filepaths: ["tgui"],
+    add_only: true,
+  },
+  "Модулярная фишка": {
+    filepaths: ["modular_meta"],
     add_only: true,
   },
 };
@@ -43,11 +47,11 @@ export const title_labels = {
   Logging: {
     keywords: ["log", "logging"],
   },
-  Removal: {
-    keywords: ["remove", "delete"],
+  Удаление: {
+    keywords: ["убираем", "удаляем"],
   },
-  Refactor: {
-    keywords: ["refactor"],
+  Рефактор: {
+    keywords: ["рефактор"],
   },
   "Unit Tests": {
     keywords: ["unit test"],
@@ -55,14 +59,22 @@ export const title_labels = {
   "April Fools": {
     keywords: ["[april fools]"],
   },
-  "Do Not Merge": {
-    keywords: ["[dnm]", "[do not merge]"],
+  "Не мержить": {
+    keywords: ["[НМ]", "[не мерджить]", "[не мержить]"],
   },
   "GBP: No Update": {
     keywords: ["[no gbp]"],
   },
-  "Test Merge Only": {
-    keywords: ["[tm only]", "[test merge only]"],
+  "Только для ТМа": {
+    keywords: [
+      "[только ТМ]",
+      "[только тест мердж]",
+      "[только тест мерж]",
+      "[ТМ]",
+    ],
+  },
+  "Соединение с Апстримом": {
+    keywords: ["[Апстрим]", "[Upstream]"],
   },
 };
 
@@ -71,53 +83,57 @@ export const title_labels = {
 // Adds labels based on keywords in the changelog
 // TODO use the existing changelog parser
 export const changelog_labels = {
-  Fix: {
-    default_text: "fixed a few things",
+  Чиним: {
+    default_text: "Починены некоторые вещи",
     keywords: ["fix", "fixes", "bugfix"],
   },
   "Quality of Life": {
-    default_text: "made something easier to use",
+    default_text: "Упростили что-то в использовании",
     keywords: ["qol"],
   },
-  Sound: {
-    default_text: "added/modified/removed audio or sound effects",
+  Звуки: {
+    default_text: "Добавлены/изменены/убраны аудио или звуковые эффекты",
     keywords: ["sound"],
   },
-  Feature: {
-    default_text: "Added new mechanics or gameplay changes",
-    alt_default_text: "Added more things",
+  Фишка: {
+    default_text: "Добавлены новые механики",
     keywords: ["add", "adds", "rscadd"],
   },
-  Removal: {
-    default_text: "Removed old things",
+  Удаление: {
+    default_text: "Убраны старые фишки",
     keywords: ["del", "dels", "rscdel"],
   },
-  Sprites: {
-    default_text: "added/modified/removed some icons or images",
+  Спрайты: {
+    default_text: "Добавлены/изменены/убраны спрайты или картинки",
     keywords: ["image"],
   },
-  "Grammar and Formatting": {
-    default_text: "fixed a few typos",
+  "Грамматика и правильность написания": {
+    default_text: "Исправлено несколько опечаток",
     keywords: ["typo", "spellcheck"],
   },
-  Balance: {
-    default_text: "rebalanced something",
+  Баланс: {
+    default_text: "Ребаланс чего-то",
     keywords: ["balance"],
   },
-  "Code Improvement": {
-    default_text: "changed some code",
+  "Улучшение кода": {
+    default_text: "Изменено немного кода",
     keywords: ["code_imp", "code"],
   },
-  Refactor: {
-    default_text: "refactored some code",
+  Рефактор: {
+    default_text: "Рефактор кода",
     keywords: ["refactor"],
   },
-  "Config Update": {
-    default_text: "changed some config setting",
+  "Изменение конфигов": {
+    default_text: "Изменено несколько настроек конфига",
     keywords: ["config"],
   },
-  Administration: {
-    default_text: "messed with admin stuff",
+  Администрация: {
+    default_text: "Возня с админскими фишками",
     keywords: ["admin"],
   },
+  "Модулярная фишка": {
+    default_text:
+      "Добавлены модулярные механики которые можно увидеть в вкладке со всеми модульными добавлениями",
+    keywords: ["madd"],
+  }, //MASSMETA ADDITION (github update)
 };

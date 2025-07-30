@@ -7,4 +7,8 @@
 ///TTS filter to activate start/stop radio clicks on speech.
 #define TTS_FILTER_RADIO "radio"
 ///TTS filter to activate a silicon effect on speech.
-#define TTS_FILTER_SILICON "silicon"
+//MASSMETA EDIT BEGIN (/n/tts)
+//#define TTS_FILTER_SILICON "silicon"
+
+#define TTS_FILTER_SILICON "robotic"
+//MASSMETA EDIT END
