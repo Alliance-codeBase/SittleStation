@@ -49,6 +49,7 @@
 		"reset_module",
 		"robocop_module",
 		"safeguard_module",
+		"ai_cyberbrain", // MASSMETA EDIT (ai_things): Добавляем ИИ мозг
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
@@ -63,6 +64,7 @@
 			"borg_ai_control",
 			"intellicard",
 			"mecha_tracking_ai_control",
+			"ai_cyberbrain", // MASSMETA EDIT (ai_things): Добавляем ИИ мозг (ну в данном случае выпиливаем)
 		)
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI))
 		research_costs[TECHWEB_POINT_TYPE_GENERIC] *= 3

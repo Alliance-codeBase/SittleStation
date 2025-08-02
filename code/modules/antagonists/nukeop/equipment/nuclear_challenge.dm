@@ -23,7 +23,13 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 		return
 
 	declaring_war = TRUE
-	var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide.", "Declare war?", list("Yes", "No"))
+	//MASSMETA EDIT BEGIN (antagonists_balance)
+	// var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide.", "Declare war?", list("Yes", "No"))
+
+	var/are_you_sure = tgui_alert(user, "Consult your team carefully before you declare war on [station_name()]. Are you sure you want to alert the enemy crew? \
+		You will get [GLOB.joined_player_list.len * 6] extra telecystals to fight with [GLOB.joined_player_list.len] NT fools. \
+		You have [DisplayTimeText(CHALLENGE_TIME_LIMIT - world.time - SSticker.round_start_time)] to decide", "Declare war?", list("Yes", "No"))
+	//MASSMETA EDIT END
 	declaring_war = FALSE
 
 	if(!check_allowed(user))
@@ -122,7 +128,11 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			continue
 		uplinks += uplink
 
-	var/tc_to_distribute = CHALLENGE_TELECRYSTALS
+	//MASSMETA EDIT BEGIN (antagonists_balance)
+	//var/tc_to_distribute = CHALLENGE_TELECRYSTALS
+
+	var/tc_to_distribute = GLOB.joined_player_list.len * 6 // 25 pop = 150 TC, 50 pop = 300 TC, 100 pop = 600 fucking TC, swim in it like a Scrooge McDuck!!!
+	//MASSMETA EDIT END
 	var/tc_per_nukie = round(tc_to_distribute / (length(orphans)+length(uplinks)))
 
 	for (var/datum/component/uplink/uplink in uplinks)

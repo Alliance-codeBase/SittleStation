@@ -47,8 +47,16 @@
 	var/static/list/speech_replacements = list(
 		new /regex("z+", "g") = "zzz",
 		new /regex("Z+", "g") = "ZZZ",
+		// MASSMETA EDIT (speech_mod)
+		new /regex("з+", "g") = "ззз",
+		new /regex("З+", "g") = "ЗЗЗ",
+		// MASSMETA EDIT
 		"s" = "z",
 		"S" = "Z",
+		// MASSMETA EDIT (speech_mod)
+		"с" = "з",
+		"С" = "З",
+		// MASSMETA EDIT
 	)
 
 

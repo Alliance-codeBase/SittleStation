@@ -376,7 +376,8 @@
 "gC" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table,
-/obj/item/organ/brain/cybernetic/ai,
+/obj/item/circuitboard/machine/copytech,
+/obj/item/circuitboard/machine/copytech_platform,
 /obj/item/cautery/advanced{
 	pixel_x = -5;
 	pixel_y = 13

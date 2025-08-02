@@ -120,3 +120,18 @@
 #define TECHWEB_NODE_TELECOMS "telecoms"
 #define TECHWEB_NODE_UNREGULATED_BLUESPACE "unregulated_bluespace"
 #define TECHWEB_NODE_XENOBIOLOGY "xenobiology"
+
+
+// Massmeta techweb nodes (in modular code)
+
+#define TECHWEB_NODE_PARTS_NONEUCLID "parts_noneuclid" // MASSMETA EDIT (parts_tier_5)
+
+// MASSMETA EDIT BEGIN (cargo_extended)
+#define TECHWEB_NODE_AUTOMINERS "automining"
+#define TECHWEB_NODE_SYNDIE_MINERS "syndie_mining"
+// MASSMETA EDIT END
+
+// MASSMETA EDIT BEGIN (additional_circuit)
+#define TECHWEB_NODE_COMP_ADVANCED_SENSORS "comp_advanced_sensors"
+#define TECHWEB_NODE_COMP_INTERACTION_COMPONENT "comp_advanced_interacts"
+// MASSMETA EDIT END

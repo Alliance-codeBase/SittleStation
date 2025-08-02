@@ -40,6 +40,12 @@ Assistant
 /datum/job/assistant/get_outfit(consistent)
 	if(consistent)
 		return /datum/outfit/job/assistant/preview
+	// MASSMETA EDIT BEGIN (meta_maps)
+	// Кастомный оутфит ассистента на карте
+	if(SSmapping.current_map.map_name == "Stroika")
+		outfit = /datum/outfit/job/assistant/assistant_stroika
+		return /datum/outfit/job/assistant/assistant_stroika
+	// MASSMETA EDIT END
 	if(!HAS_TRAIT(SSstation, STATION_TRAIT_ASSISTANT_GIMMICKS))
 		return ..()
 

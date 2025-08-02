@@ -72,6 +72,12 @@
 		playsound(M,'sound/items/weapons/pierce.ogg', rand(10,50), TRUE)
 		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(M.loc)
 		crushed_can.icon_state = icon_state
+
+		//MASSMETA EDIT BEGIN (kvass_beverage)
+		if(icon_state == "kvass")
+			crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
+		//MASSMETA EDIT END
+
 		qdel(src)
 		return TRUE
 	return ..()
@@ -84,6 +90,13 @@
 		return
 	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
 	crushed_can.icon_state = icon_state
+	//MASSMETA EDIT BEGIN (kvass_beverage)
+	if(icon_state == "kvass")
+		crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
+	//MASSMETA EDIT END
+	if(!proj.damage || proj.damage_type != BRUTE)
+		return
+
 	var/atom/throw_target = get_edge_target_turf(crushed_can, pick(GLOB.alldirs))
 	crushed_can.throw_at(throw_target, rand(1,2), 7)
 	qdel(src)
@@ -140,6 +153,12 @@
 	visible_message(span_danger("[src]'s impact with [hit_atom] causes it to rupture, spilling everywhere!"))
 	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
 	crushed_can.icon_state = icon_state
+
+	//MASSMETA EDIT BEGIN (kvass_beverage)
+	if(icon_state == "kvass")
+		crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
+	//MASSMETA EDIT END
+
 	moveToNullspace()
 	QDEL_IN(src, 1 SECONDS) // give it a second so it can still be logged for the throw impact
 

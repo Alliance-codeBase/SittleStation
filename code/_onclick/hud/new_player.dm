@@ -444,69 +444,73 @@
 	var/mob/dead/new_player/new_player = hud.mymob
 	new_player.ViewManifest()
 
-/atom/movable/screen/lobby/button/bottom/poll
-	name = "View Available Polls"
-	icon_state = "poll"
-	base_icon_state = "poll"
-	screen_loc = "TOP:-122,CENTER:-26"
+//MASSMETA EDIT BEGIN (modpack itself)
+
+// /atom/movable/screen/lobby/button/bottom/poll
+	// name = "View Available Polls"
+	// icon_state = "poll"
+	// base_icon_state = "poll"
+	// screen_loc = "TOP:-122,CENTER:-26"
 	///Whether the button should have a New Poll notification overlay
-	var/new_poll = FALSE
+	// var/new_poll = FALSE
 
-/atom/movable/screen/lobby/button/bottom/poll/SlowInit(mapload)
-	. = ..()
-	if(!usr)
-		return
-	var/mob/dead/new_player/new_player = usr
-	if(is_guest_key(new_player.key))
-		set_button_status(FALSE)
-		return
-	if(!SSdbcore.Connect())
-		set_button_status(FALSE)
-		return
-	var/isadmin = FALSE
-	if(new_player.client?.holder)
-		isadmin = TRUE
-	var/datum/db_query/query_get_new_polls = SSdbcore.NewQuery({"
-		SELECT id FROM [format_table_name("poll_question")]
-		WHERE (adminonly = 0 OR :isadmin = 1)
-		AND Now() BETWEEN starttime AND endtime
-		AND deleted = 0
-		AND id NOT IN (
-			SELECT pollid FROM [format_table_name("poll_vote")]
-			WHERE ckey = :ckey
-			AND deleted = 0
-		)
-		AND id NOT IN (
-			SELECT pollid FROM [format_table_name("poll_textreply")]
-			WHERE ckey = :ckey
-			AND deleted = 0
-		)
-	"}, list("isadmin" = isadmin, "ckey" = new_player.ckey))
-	if(!query_get_new_polls.Execute())
-		qdel(query_get_new_polls)
-		set_button_status(FALSE)
-		return
-	if(query_get_new_polls.NextRow())
-		new_poll = TRUE
-	else
-		new_poll = FALSE
-	update_appearance(UPDATE_OVERLAYS)
-	qdel(query_get_new_polls)
-	if(QDELETED(new_player))
-		set_button_status(FALSE)
-		return
+// /atom/movable/screen/lobby/button/bottom/poll/SlowInit(mapload)
+	// . = ..()
+	// if(!usr)
+		// return
+	// var/mob/dead/new_player/new_player = usr
+	// if(is_guest_key(new_player.key))
+		// set_button_status(FALSE)
+		// return
+	// if(!SSdbcore.Connect())
+		// set_button_status(FALSE)
+		// return
+	// var/isadmin = FALSE
+	// if(new_player.client?.holder)
+		// isadmin = TRUE
+	// var/datum/db_query/query_get_new_polls = SSdbcore.NewQuery({"
+		// SELECT id FROM [format_table_name("poll_question")]
+		// WHERE (adminonly = 0 OR :isadmin = 1)
+		// AND Now() BETWEEN starttime AND endtime
+		// AND deleted = 0
+		// AND id NOT IN (
+			// SELECT pollid FROM [format_table_name("poll_vote")]
+			// WHERE ckey = :ckey
+			// AND deleted = 0
+		// )
+		// AND id NOT IN (
+			// SELECT pollid FROM [format_table_name("poll_textreply")]
+			// WHERE ckey = :ckey
+			// AND deleted = 0
+		// )
+	// "}, list("isadmin" = isadmin, "ckey" = new_player.ckey))
+	// if(!query_get_new_polls.Execute())
+		// qdel(query_get_new_polls)
+		// set_button_status(FALSE)
+		// return
+	// if(query_get_new_polls.NextRow())
+		// new_poll = TRUE
+	// else
+		// new_poll = FALSE
+	// update_appearance(UPDATE_OVERLAYS)
+	// qdel(query_get_new_polls)
+	// if(QDELETED(new_player))
+		// set_button_status(FALSE)
+		// return
 
-/atom/movable/screen/lobby/button/bottom/poll/update_overlays()
-	. = ..()
-	if(new_poll)
-		. += mutable_appearance('icons/hud/lobby/poll_overlay.dmi', "new_poll")
+// /atom/movable/screen/lobby/button/bottom/poll/update_overlays()
+	// . = ..()
+	// if(new_poll)
+		// . += mutable_appearance('icons/hud/lobby/poll_overlay.dmi', "new_poll")
 
-/atom/movable/screen/lobby/button/bottom/poll/Click(location, control, params)
-	. = ..()
-	if(!.)
-		return
-	var/mob/dead/new_player/new_player = hud.mymob
-	new_player.handle_player_polling()
+// /atom/movable/screen/lobby/button/bottom/poll/Click(location, control, params)
+	// . = ..()
+	// if(!.)
+		// return
+	// var/mob/dead/new_player/new_player = hud.mymob
+	// new_player.handle_player_polling()
+
+//MASSMETA EDIT END
 
 /// A generic "sign up" button used by station traits
 /atom/movable/screen/lobby/button/sign_up

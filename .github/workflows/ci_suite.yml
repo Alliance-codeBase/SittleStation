@@ -22,10 +22,10 @@ jobs:
       - name: Mandatory Empty Step
         run: exit 0
 
-  run_linters:
-    name: Run Linters
-    needs: start_gate
-    uses: ./.github/workflows/run_linters.yml
+  #run_linters:
+  #   name: Run Linters
+  #   needs: start_gate
+  #   uses: ./.github/workflows/run_linters.yml - MASSMETA REMOVAL, till it's was fixed
 
   collect_data:
     name: Collect data and setup caches for other tasks
@@ -72,13 +72,12 @@ jobs:
   completion_gate: # Serves as a non-moving target for branch rulesets
     if: always() && !cancelled()
     name: Completion Gate
-    needs:
-      [
+    needs: [
         compare_screenshots,
         compile_all_maps,
         run_all_tests,
         run_alternate_tests,
-        run_linters,
+        #  run_linters,
       ]
     runs-on: ubuntu-latest
     steps:

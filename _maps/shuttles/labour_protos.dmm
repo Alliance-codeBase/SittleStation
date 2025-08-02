@@ -1,0 +1,189 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/labor)
+"c" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/brown/opposingcorners,
+/obj/effect/turf_decal/loading_area{
+	dir = 1
+	},
+/obj/machinery/mineral/labor_claim_console{
+	pixel_x = 28;
+	pixel_y = -31
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/labor)
+"h" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/plating/airless,
+/area/shuttle/labor)
+"i" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/labor)
+"o" = (
+/obj/machinery/mineral/stacking_unit_console{
+	pixel_x = 28;
+	pixel_y = 21
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red/end{
+	dir = 4
+	},
+/obj/machinery/computer/shuttle/labor{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/reagent_dispensers/wall/peppertank/directional/east,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/labor)
+"v" = (
+/obj/machinery/door/airlock/titanium{
+	id_tag = "prisonshuttle";
+	name = "Labor Shuttle Airlock"
+	},
+/obj/docking_port/mobile{
+	dir = 8;
+	shuttle_id = "laborcamp";
+	name = "labor camp shuttle";
+	port_direction = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/labor)
+"x" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/labor)
+"A" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Labor Shuttle Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/labor)
+"C" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating/airless,
+/area/shuttle/labor)
+"F" = (
+/obj/machinery/flasher/directional/east{
+	id = "gulagshuttleflasher";
+	pixel_x = -26;
+	pixel_y = 1
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown/opposingcorners,
+/turf/open/floor/mineral/titanium/yellow,
+/area/shuttle/labor)
+"G" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Labor Shuttle Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/access/all/security/brig,
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/labor)
+"O" = (
+/obj/machinery/button/flasher{
+	id = "gulagshuttleflasher";
+	name = "Flash Control";
+	pixel_y = -24;
+	req_access = list("security");
+	pixel_x = -24
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red/end{
+	dir = 8
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/labor)
+"W" = (
+/obj/machinery/mineral/stacking_machine/laborstacker{
+	input_dir = 2;
+	output_dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red/end{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red/end{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark_red/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/dark_red/corner,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/labor)
+"X" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/labor)
+
+(1,1,1) = {"
+x
+A
+x
+x
+a
+X
+"}
+(2,1,1) = {"
+i
+O
+G
+F
+h
+C
+"}
+(3,1,1) = {"
+i
+o
+W
+c
+h
+C
+"}
+(4,1,1) = {"
+x
+x
+x
+v
+a
+X
+"}

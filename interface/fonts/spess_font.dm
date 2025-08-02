@@ -4,7 +4,11 @@
 /// Base font
 /datum/font/spessfont
 	name = "Spess Font"
-	font_family = 'interface/fonts/SpessFont.ttf'
+	//MASSMETA EDIT BEGIN (ru_tweak_say_font)
+	//font_family = 'interface/fonts/SpessFont.ttf'
+
+	font_family = 'interface/fonts/SpessFontRus.ttf'
+	//MASSMETA EDIT END
 
 /// For icon overlays
 /// Spess Font 6pt metrics generated using Lummox's dmifontsplus (https://www.byond.com/developer/LummoxJR/DmiFontsPlus)

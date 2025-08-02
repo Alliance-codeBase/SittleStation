@@ -104,7 +104,12 @@
 
 /obj/machinery/power/port_gen/pacman/on_construction(mob/user)
 	var/obj/item/circuitboard/machine/pacman/our_board = circuit
-	if(our_board.high_production_profile)
+		// MASSMETA EDIT BEGIN (woodgen)
+	//if(our_board.high_production_profile)
+
+	// Add checking "other_type"
+	if(our_board.high_production_profile && !our_board.other_type)
+	// MASSMETA EDIT END
 		icon_state = "portgen1_0"
 		base_icon_state = "portgen1"
 		max_sheets = 20

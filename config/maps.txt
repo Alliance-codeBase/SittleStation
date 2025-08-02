@@ -17,13 +17,18 @@ endmap
 
 # Production-level maps.
 
+map birdshot
+	minplayers 30
+	votable
+endmap
+
 map deltastation
-	minplayers 50
+	minplayers 20
 	votable
 endmap
 
 map icebox
-	minplayers 25
+	minplayers 20
 	votable
 endmap
 
@@ -33,7 +38,7 @@ map catwalkstation
 endmap
 
 map metastation
-	minplayers 25
+	minplayers 5
 	#voteweight 0.5
 	votable
 	#feedbacklink https://www.youtube.com/watch?v=XG8b7WhANNA
@@ -41,18 +46,42 @@ map metastation
 endmap
 
 map tramstation
-	minplayers 35
+	minplayers 25
 	votable
 endmap
 
 map nebulastation
-	minplayers 35
+	minplayers 25
+	votable
+endmap
+
+map pubbystation
 	votable
 endmap
 
 map wawastation
 	votable
-	minplayers 40
+	minplayers 20
+endmap
+
+map protoboxstation
+	votable
+endmap
+
+map bearcat
+	maxplayers 3
+	votable
+endmap
+
+# Только через админ кнопки
+map stroika
+endmap
+
+map protosstation
+	minplayers 0
+	maxplayers 25
+	votable
+
 endmap
 
 # Debug-only maps.

@@ -51,6 +51,11 @@
 		list(
 			/datum/reagent/medicine/omnizine,
 		),
+		//MASSMETA EDIT BEGIN (parts_tier_5)
+		list(
+			/datum/reagent/medicine/adminordrazine/quantum_heal,
+		),
+		//MASSMETA EDIT END
 	)
 
 /obj/machinery/sleeper/Initialize(mapload)
@@ -354,6 +359,11 @@
 			/datum/reagent/drug/space_drugs,
 			/datum/reagent/baldium,
 		),
+		//MASSMETA EDIT BEGIN (parts_tier_5)
+		list(
+			/datum/reagent/consumable/kvass,
+		),
+		//MASSMETA EDIT END										// MASSMETA EDIT: Add tier 5
 	)
 	///Chemicals that need to have a touch or vapor reaction to be applied, not the standard chamber reaction.
 	var/spray_chems = list(

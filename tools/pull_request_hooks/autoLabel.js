@@ -17,7 +17,7 @@ function check_body_for_labels(body) {
   // if the body contains a github "fixes #1234" line, add the Fix tag
   const fix_regex = new RegExp(`(fix[des]*|resolve[sd]*)\s*#\d+`, "gmi");
   if (fix_regex.test(body)) {
-    labels_to_add.push("Fix");
+    labels_to_add.push("Чиним");
   }
 
   const keywords = keyword_to_cl_label();
@@ -145,7 +145,7 @@ export async function get_updated_label_set({ github, context }) {
   }
 
   // this is always removed on updates
-  updated_labels.delete("Test Merge Candidate");
+  updated_labels.delete("Кандидат на ТМ");
 
   // update merge conflict label
   let merge_conflict = mergeable === false;
@@ -178,9 +178,9 @@ export async function get_updated_label_set({ github, context }) {
     }
   }
   if (merge_conflict) {
-    updated_labels.add("Merge Conflict");
+    updated_labels.add("Конфликты");
   } else {
-    updated_labels.delete("Merge Conflict");
+    updated_labels.delete("Конфликты");
   }
 
   // return the labels to the action, which will apply it

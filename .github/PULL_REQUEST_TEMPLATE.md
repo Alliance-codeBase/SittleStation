@@ -1,35 +1,35 @@
-<!-- Write **BELOW** The Headers and **ABOVE** The comments else it may not be viewable. -->
-<!-- You can view Contributing.MD for a detailed description of the pull request process. -->
+<!-- Напишите **ПОД** Заголовками и **НАД** комментариями, иначе они могут быть недоступны для просмотра. -->
+<!-- Вы можете просмотреть Contributing.MD для получения подробного описания процесса отправки запроса на удаление. -->
 
-## About The Pull Request
+## О изменениях в ПРе
 
-<!-- Describe The Pull Request. Please be sure every change is documented or this can delay review and even discourage maintainers from merging your PR! -->
+<!-- Опишите PR. Пожалуйста, убедитесь, что каждое изменение задокументировано, иначе это может задержать проверку и даже отбить охоту у разработчиков добавлять ваш PR! -->
 
-## Why It's Good For The Game
+## Почему это стоит добавить в игру
 
-<!-- Argue for the merits of your changes and how they benefit the game, especially if they are controversial and/or far reaching. If you can't actually explain WHY what you are doing will improve the game, then it probably isn't good for the game in the first place. -->
+<!-- Аргументируйте плюсы ваших изменений и то, какую пользу они принесут игре, особенно если они противоречивы и/или имеют далеко идущие последствия. Если вы не можете объяснить, почему то, что вы делаете, улучшит игру, то, скорее всего, это вредно для игры в первую очередь. -->
 
-## Changelog
+## Изменения
 
-<!-- If your PR modifies aspects of the game that can be concretely observed by players or admins you should add a changelog. If your change does NOT meet this description, remove this section. Be sure to properly mark your PRs to prevent unnecessary GBP loss. You can read up on GBP and its effects on PRs in the tgstation guides for contributors. Please note that maintainers freely reserve the right to remove and add tags should they deem it appropriate. You can attempt to finagle the system all you want, but it's best to shoot for clear communication right off the bat. -->
+<!-- Если ваш PR изменяет аспекты игры, которые могут быть замечены игроками или администраторами, вам следует добавить список изменений. Если ваши изменения не соответствуют этому описанию, удалите этот раздел. Обязательно правильно отметьте свои PR, чтобы предотвратить ненужную потерю GBP. Вы можете прочитать о GBP и его влиянии на PR в руководстве для разработчиков tgstation. Пожалуйста, обратите внимание, что разработчики оставляют за собой право удалять и добавлять теги, если сочтут это целесообразным. Вы можете пытаться манипулировать системой сколько угодно, но лучше всего сразу добиться четкой связи. -->
 
-:cl:
-add: Added new mechanics or gameplay changes
-add: Added more things
-del: Removed old things
-qol: made something easier to use
-balance: rebalanced something
-fix: fixed a few things
-sound: added/modified/removed audio or sound effects
-image: added/modified/removed some icons or images
-map: added/modified/removed map content
-spellcheck: fixed a few typos
-code: changed some code
-refactor: refactored some code
-config: changed some config setting
-admin: messed with admin stuff
-server: something server ops should know
+:cl: MassMeta
+add: Добавлены новые механики
+madd: Добавлены модулярные механики которые можно увидеть в вкладке со всеми модульными добавлениями
+del: Убраны старые фишки
+qol: Упростили что-то в использовании
+balance: Ребаланс чего-то
+fix: Починены некоторые вещи
+sound: Добавлены/изменены/убраны аудио или звуковые эффекты
+image: Добавлены/изменены/убраны спрайты или картинки
+map: Добавлен/изменён/убран контент карт
+spellcheck: Исправлено несколько опечаток
+code: Изменено немного кода
+refactor: Рефактор кода
+config: Изменено несколько настроек конфига
+admin: Возня с админскими фишками
+server: Изменено что-то что нужно знать свыше, хосту
 /:cl:
 
-<!-- Both :cl:'s are required for the changelog to work! You can put your name to the right of the first :cl: if you want to overwrite your GitHub username as author ingame. -->
-<!-- You can use multiple of the same prefix (they're only used for the icon ingame) and delete the unneeded ones. Despite some of the tags, changelogs should generally represent how a player might be affected by the changes rather than a summary of the PR's contents. -->
+<!-- Для работы журнала изменений необходимы оба :cl: Вы можете указать свое имя справа от :cl: MassMeta. -->
+<!-- Вы можете использовать несколько одинаковых префиксов (они используются только для игровых значков) и удалить ненужные. Несмотря на некоторые теги, списки изменений, как правило, должны отражать то, как изменения могут повлиять на игрока, а не краткое изложение содержания PR. -->

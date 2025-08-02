@@ -1,0 +1,43 @@
+
+"GitHub":
+  - changed-files:
+      - any-glob-to-any-file: [".github/**"]
+"SQL":
+  - changed-files:
+      - any-glob-to-any-file: ["SQL/**"]
+"UI":
+  - changed-files:
+      - any-glob-to-any-file: ["tgui/**"]
+"VScode":
+  - changed-files:
+      - any-glob-to-any-file: [".vscode/**"]
+"Документация":
+  - all:
+    - changed-files:
+        - any-glob-to-any-file: ["**/*.md"]
+"Звуки":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.ogg"]
+"Изменение конфигов":
+  - changed-files:
+      - any-glob-to-any-file: ["config/**"]
+"Изменения Карт":
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.dmm"]
+"Модулярная фишка":
+  - changed-files:
+      - any-glob-to-any-file: ["modular_meta/**"]
+"Спрайты":
+  - changed-files:
+       - any-glob-to-any-file: ["**/*.dmi"]
+
+"Слияние с апстримом":
+  - all:
+      - base-branch: "master"
+      - head-branch: "merge[-_]upstream"
+"Фишка":
+  - head-branch: ["^feat", "feat"]
+"Улучшение":
+  - head-branch: ["^tweak", "tweak"]
+"Чиним":
+  - head-branch: ["^fix", "fix"]

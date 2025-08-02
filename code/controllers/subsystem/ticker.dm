@@ -297,6 +297,9 @@ SUBSYSTEM_DEF(ticker)
 
 	PostSetup()
 
+	// MASSMETA EDIT (вебхуки)
+	send2announcement_webhook("Round Start", "[GLOB.round_id ? "Round [GLOB.round_id]" : "The round has"] started.", null, "green")
+
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/PostSetup()

@@ -36,13 +36,13 @@ const cl_label_set = await get_updated_label_set({
   context: { payload: cl_pr },
 });
 assert.ok(
-  cl_label_set.includes("Merge Conflict"),
-  "Merge Conflict label should be added",
+  cl_label_set.includes("Конфликты"),
+  "Merge Conflict label should be added"
 );
-assert.ok(cl_label_set.includes("Feature"), "Feature label should be added");
+assert.ok(cl_label_set.includes("Фишка"), "Feature label should be added");
 assert.ok(
-  !cl_label_set.includes("Refactor"),
-  "Refactor label should not be added",
+  !cl_label_set.includes("Рефактор"),
+  "Refactor label should not be added"
 );
 
 const title_pr = {

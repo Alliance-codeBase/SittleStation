@@ -173,6 +173,17 @@
 	req_components = list(/datum/stock_part/capacitor = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/modular_shield_generator/gate
+	name = "Modular Shield Gate"
+	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
+	build_path = /obj/machinery/modular_shield_generator/gate
+	req_components = list(
+		/datum/stock_part/servo = 1,
+		/datum/stock_part/micro_laser = 1,
+		/datum/stock_part/capacitor = 1,
+		/obj/item/stack/sheet/plasteel = 2,
+	)
+
 /obj/item/circuitboard/machine/modular_shield_generator
 	name = "Modular Shield Generator"
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
@@ -274,18 +285,33 @@
 		/obj/item/stack/sheet/iron = 5
 	)
 	needs_anchored = FALSE
+	var/other_type = FALSE // MASSMETA EDIT (woodgen)
 	var/high_production_profile = FALSE
 
 /obj/item/circuitboard/machine/pacman/examine(mob/user)
 	. = ..()
-	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	. += span_notice("It's set to [message].")
-	. += span_notice("You can switch the mode by using a screwdriver on [src].")
+	//MASSMETA EDIT BEGIN (woodgen)
+	// var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+	// . += span_notice("It's set to [message].")
+	// . += span_notice("You can switch the mode by using a screwdriver on [src].")
+
+	if(!other_type)
+		var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+		. += span_notice("It's set to [message].")
+		. += span_notice("You can switch the mode by using a screwdriver on [src].")
+	//MASSMETA EDIT END
 
 /obj/item/circuitboard/machine/pacman/screwdriver_act(mob/living/user, obj/item/tool)
-	high_production_profile = !high_production_profile
-	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	to_chat(user, span_notice("You set the board for [message]"))
+	//MASSMETA EDIT BEGIN (woodgen)
+	// high_production_profile = !high_production_profile
+	// var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+	// to_chat(user, span_notice("You set the board for [message]"))
+
+	if(!other_type)
+		high_production_profile = !high_production_profile
+		var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+		to_chat(user, span_notice("You set the board for [message]"))
+	//MASSMETA EDIT END
 
 /obj/item/circuitboard/machine/turbine_compressor
 	name = "Turbine - Inlet Compressor"
@@ -695,6 +721,7 @@
 		/obj/machinery/vending/wardrobe/science_wardrobe = "SciDrobe",
 		/obj/machinery/vending/wardrobe/sec_wardrobe = "SecDrobe",
 		/obj/machinery/vending/wardrobe/viro_wardrobe = "ViroDrobe",
+		/obj/machinery/vending/mod_modules = "NanoMOD", // MASSMETA EDIT (mod_vend)
 	)
 
 /obj/item/circuitboard/machine/vendor/screwdriver_act(mob/living/user, obj/item/tool)

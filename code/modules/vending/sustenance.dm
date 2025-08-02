@@ -41,22 +41,41 @@
 	displayed_currency_name = " LP"
 
 /obj/machinery/vending/sustenance/interact(mob/user)
-	if(isliving(user))
-		var/mob/living/living_user = user
-		if(!(machine_stat & NOPOWER) && !istype(living_user.get_idcard(TRUE), /obj/item/card/id/advanced/prisoner))
+	if(!isliving(user))
+		return ..()
+	var/mob/living/living_user = user
+	if(!is_operational)
+	//MASSMETA EDIT BEGIN (ru_vendors)
+	//speak("No valid prisoner account found. Vending is not permitted.")
+		to_chat(user, span_warning("Не обнаружена действующая карта заключённого. Покупка не может быть произведена"))
+	//MASSMETA EDIT END
+		return
+	if(!istype(living_user.get_idcard(TRUE), /obj/item/card/id/advanced/prisoner))
+		if(!req_access)
 			speak("No valid prisoner account found. Vending is not permitted.")
+			return
+		if(!allowed(user))
+			speak("No valid permissions. Vending is not permitted.")
 			return
 	return ..()
 
 /obj/machinery/vending/sustenance/labor_camp/proceed_payment(obj/item/card/id/paying_id_card, mob/living/mob_paying, datum/data/vending_product/product_to_vend, price_to_use)
 	if(!istype(paying_id_card, /obj/item/card/id/advanced/prisoner))
-		speak("I don't take bribes! Pay with labor points!")
+		//MASSMETA EDIT BEGIN (ru_vendors)
+		//speak("I don't take bribes! Pay with labor points!")
+
+		speak("Я не беру взяток! Плати каторжными очками!")
+		//MASSMETA EDIT END
 		return FALSE
 	var/obj/item/card/id/advanced/prisoner/paying_scum_id = paying_id_card
 	if(LAZYLEN(product_to_vend.returned_products))
 		price_to_use = 0 //returned items are free
 	if(price_to_use && !(paying_scum_id.points >= price_to_use)) //not enough good prisoner points
-		speak("You do not possess enough points to purchase [product_to_vend.name].")
+		//MASSMETA EDIT BEGIN (ru_vendors)
+		//speak("You do not possess enough points to purchase [product_to_vend.name].")
+
+		speak("Недостаточно очков для покупки [product_to_vend.name].")
+		//MASSMETA EDIT END
 		flick(icon_deny, src)
 		vend_ready = TRUE
 		return FALSE

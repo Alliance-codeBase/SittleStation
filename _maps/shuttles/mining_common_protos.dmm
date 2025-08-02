@@ -1,0 +1,192 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/computer/shuttle/mining/common,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"b" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"c" = (
+/obj/structure/table,
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/item/storage/medkit/regular{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/obj/item/radio{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"d" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/mining)
+"f" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 10
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/neutral/warning{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"p" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/mining)
+"t" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/neutral/warning{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"u" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/neutral/warning{
+	dir = 4
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"A" = (
+/obj/machinery/power/shuttle_engine/propulsion,
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"D" = (
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/clothing/suit/hazardvest{
+	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
+	name = "emergency lifejacket"
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/tank/internals/emergency_oxygen{
+	pixel_x = 3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/mask/breath{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/item/clothing/head/utility/hardhat/orange{
+	name = "protective hat";
+	pixel_y = 9
+	},
+/obj/structure/closet/crate/internals,
+/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/siding/dark{
+	dir = 5
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"E" = (
+/obj/machinery/power/shuttle_engine/heater,
+/obj/effect/spawner/structure/window/reinforced/shuttle,
+/turf/open/floor/plating,
+/area/shuttle/mining)
+"H" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/effect/turf_decal/tile/neutral/opposingcorners,
+/obj/effect/turf_decal/trimline/neutral/warning{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium,
+/area/shuttle/mining)
+"I" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/obj/effect/turf_decal/siding/dark/end{
+	dir = 4
+	},
+/obj/docking_port/mobile{
+	dir = 8;
+	shuttle_id = "mining_common";
+	name = "lavaland shuttle";
+	port_direction = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+"R" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 9
+	},
+/obj/effect/turf_decal/box,
+/obj/machinery/light/directional/south,
+/obj/structure/table,
+/obj/item/storage/medkit/fire{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/storage/medkit/o2{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/mining)
+
+(1,1,1) = {"
+d
+b
+d
+d
+E
+A
+"}
+(2,1,1) = {"
+b
+a
+H
+f
+R
+p
+"}
+(3,1,1) = {"
+b
+c
+u
+t
+D
+p
+"}
+(4,1,1) = {"
+d
+b
+I
+d
+E
+A
+"}

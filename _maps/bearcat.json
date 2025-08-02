@@ -1,0 +1,80 @@
+{
+	"version": 1,
+	"map_name": "Bearcat",
+	"map_path": "map_files/bearcat",
+	"map_file": "bearcat.dmm",
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_meta",
+		"emergency": "emergency_meta"
+	},
+	"traits": [
+		{
+			"Linkage": "Cross",
+			"Gravity": true
+		},
+		{
+			"Baseturf": "/turf/open/openspace",
+			"Linkage": "Cross",
+			"Gravity": true
+
+		},
+		{
+			"Baseturf": "/turf/open/openspace",
+			"Linkage": "Cross",
+			"Gravity": true
+
+		}
+	]
+	,
+	"job_changes": {
+		"Cook": {
+			"additional_cqc_areas": ["/area/station/service/bar", "/area/station/service/hydroponics", "/area/station/maintenance/floor2/port/fore", "/area/station/commons/lounge"]
+		},
+		"Coroner": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Detective": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Psychiatrist": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Virologist": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Botanist": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Paramedic": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Lawyer": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Geneticist": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Warden": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Prisoner": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		},
+		"Psychologist": {
+			"total_positions": 0,
+			"spawn_positions": 0
+		}
+	}
+}

@@ -511,6 +511,10 @@ DRIFT_PROFILE_DELAY 150
 ## If not set, will disable urgent ahelps.
 #URGENT_ADMINHELP_WEBHOOK_URL
 
+## MASSMETA EDIT
+## Дискорд аннонсилка о разных событиях в раунде
+# ROUND_ANNOUNCE_WEBHOOK_URL
+
 ## See above, but for non-urgent ahelps
 #REGULAR_ADMINHELP_WEBHOOK_URL
 
