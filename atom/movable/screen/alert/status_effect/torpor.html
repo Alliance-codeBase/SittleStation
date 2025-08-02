@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../../../../../"><link rel="stylesheet" href="dmdoc.css"><title>/atom/movable/screen/alert/status_effect/torpor - /tg/ Station 13</title></head><body><header><a href="index.html">/tg/ Station 13</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a></header><main><h1>Torpor <aside>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/alert.html">alert</a>/<a href="atom/movable/screen/alert/status_effect.html">status_effect</a>/<a href="atom/movable/screen/alert/status_effect/torpor.html">torpor</a></aside> <a href="https://github.com/Alliance-codeBase/SittleStation/blob/f637794675dcd924401aaaf394e9a151dbe955b6/modular_meta/features/antagonists/bloodsuckers/code/bloodsucker/bloodsucker_torpor.dm#L18"><img src="git.png" width="16" height="16" title="modular_meta/features/antagonists/bloodsuckers/code/bloodsucker/bloodsucker_torpor.dm 18"></a></h1><p>Torpor is what deals with the Bloodsucker falling asleep, their healing, the effects, ect.
+This is basically what Sol is meant to do to them, but they can also trigger it manually if they wish to heal, as Burn is only healed through Torpor.
+You cannot manually exit Torpor, it is instead entered/exited by:</p>
+<p>Torpor is triggered by:</p>
+<ul>
+<li>Being in a Coffin while Sol is on, dealt with by Sol</li>
+<li>Entering a Coffin with more than 10 combined Brute/Burn damage, dealt with by /closet/crate/coffin/close() [bloodsucker_coffin.dm]</li>
+<li>Death, dealt with by /HandleDeath()
+Torpor is ended by:</li>
+<li>Having less than 10 Brute damage while OUTSIDE of your Coffin while it isnt Sol.</li>
+<li>Having less than 10 Brute &amp; Burn Combined while INSIDE of your Coffin while it isnt Sol.</li>
+<li>Sol being over, dealt with by /sunlight/process() [bloodsucker_daylight.dm]</li>
+</ul></main><footer>tgstation.dme <a href="https://github.com/Alliance-codeBase/SittleStation/tree/f637794675dcd924401aaaf394e9a151dbe955b6">f637794</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.10.0</a></footer></body></html>
