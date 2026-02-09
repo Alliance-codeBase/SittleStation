@@ -20,12 +20,10 @@
 	. = ..()
 	uses--
 	to_chat(imp_in, span_notice("As you activate your [name], you feel a sudden surge of energy!"))
-	imp_in.SetStun(0)
-	imp_in.SetKnockdown(0)
-	imp_in.adjustStaminaLoss(-200)
+	imp_in.adjust_stamina_loss(-200)
 	imp_in.reagents.add_reagent(/datum/reagent/medicine/synaptizine, 10)
 	imp_in.reagents.add_reagent(/datum/reagent/medicine/omnizine, 10)
-	imp_in.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 1, added_purity = 100) //To prevent shaking hands, as well as random item drop caused by ephedrine
+	imp_in.reagents.add_reagent(/datum/reagent/medicine/ephedrine, 0.5) //To prevent shaking hands, as well as random item drop caused by ephedrine
 	imp_in.reagents.add_reagent(/datum/reagent/medicine/epinephrine, 5)
 	imp_in.reagents.add_reagent(/datum/reagent/medicine/atropine, 3)
 	if(!uses)

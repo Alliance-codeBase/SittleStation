@@ -4,7 +4,7 @@
 	/// additional_icon_location is for downstream modularity support for finding missing sprites in additonal DMI file locations.
 	/// Make sure this location is also present in tools/deploy.sh
 	/// If you need additional paths ontop of this second one, you can add another generate_possible_icon_states_list("your/folder/path/") below the if(additional_icon_location) block in Run(), and make sure to add that path to tools/deploy.sh as well.
-	var/additional_icon_location = "modular_meta/features/heads_on_belts/icons/" //MASSMETA CHANGE (heads_on_belts) этого требуют тесты
+	var/additional_icon_location = "modular_meta/tweaks/heads_on_belts/icons/" //MASSMETA CHANGE (heads_on_belts) этого требуют тесты
 
 /datum/unit_test/worn_icons/proc/generate_possible_icon_states_list(directory_path)
 	if(!directory_path)

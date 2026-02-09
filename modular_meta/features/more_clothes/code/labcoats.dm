@@ -1,37 +1,37 @@
-/obj/item/clothing/suit/toggle/labcoat/cmo
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/suit/toggle/labcoat/cmo/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/labcoat_cmo, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/suits/labcoat.dmi',
-			RESKIN_ICON_STATE = "labcoat_cmo",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/suits/labcoat.dmi',
-			RESKIN_WORN_ICON_STATE = "labcoat_cmo",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/suits/labcoat.dmi',
-			RESKIN_ICON_STATE = "labcoat_cmo",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/labcoat.dmi',
-			RESKIN_WORN_ICON_STATE = "labcoat_cmo",
-		),
-	)
+/datum/atom_skin/labcoat_cmo
+	abstract_type = /datum/atom_skin/labcoat_cmo
 
-/obj/item/clothing/suit/toggle/labcoat/mad
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/labcoat_cmo/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/suits/labcoat.dmi'
+	new_icon_state = "labcoat_cmo"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/suits/labcoat.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/suits/labcoat.dmi',
-			RESKIN_ICON_STATE = "labgreen",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/suits/labcoat.dmi',
-			RESKIN_WORN_ICON_STATE = "labgreen",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/suits/labcoat.dmi',
-			RESKIN_ICON_STATE = "labgreen",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/suits/labcoat.dmi',
-			RESKIN_WORN_ICON_STATE = "labgreen",
-		),
-	)
+/datum/atom_skin/labcoat_cmo/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/suits/labcoat.dmi'
+	new_icon_state = "labcoat_cmo"
+	new_worn_icon = 'icons/mob/clothing/suits/labcoat.dmi'
+
+/obj/item/clothing/suit/toggle/labcoat/mad/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/labcoat_mad, infinite = FALSE)
+
+/datum/atom_skin/labcoat_mad
+	abstract_type = /datum/atom_skin/labcoat_mad
+
+/datum/atom_skin/labcoat_mad/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/suits/labcoat.dmi'
+	new_icon_state = "labgreen"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/suits/labcoat.dmi'
+
+/datum/atom_skin/labcoat_mad/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/suits/labcoat.dmi'
+	new_icon_state = "labgreen"
+	new_worn_icon = 'icons/mob/clothing/suits/labcoat.dmi'

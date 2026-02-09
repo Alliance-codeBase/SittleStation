@@ -86,7 +86,7 @@ Some memes and gags included.
 			decrease_gear()
 	var/mob/living/carbon/human/rammed = bumped
 	rammed.Paralyze(80)
-	rammed.adjustStaminaLoss(30)
+	rammed.adjust_stamina_loss(30)
 	rammed.apply_damage(rand(15,30), BRUTE)
 	if(!gopmode)
 		if(prob(5) && blood_layer_intensity < 3)

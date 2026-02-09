@@ -36,4 +36,4 @@
 		span_userdanger("The [src] penetrates you!"),
 		span_danger("You hear a CRANG!"),
 		)
-	penetrated.adjustBruteLoss(50)
+	penetrated.adjust_brute_loss(50)

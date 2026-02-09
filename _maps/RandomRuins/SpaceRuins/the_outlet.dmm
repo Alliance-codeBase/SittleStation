@@ -207,11 +207,7 @@
 /area/ruin/space/has_grav/the_outlet/researchrooms)
 "fX" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/animalhide/lizard,
-/obj/item/stack/sheet/animalhide/lizard,
-/obj/item/stack/sheet/animalhide/lizard,
-/obj/item/stack/sheet/animalhide/lizard,
-/obj/item/stack/sheet/animalhide/lizard,
+/obj/item/stack/sheet/animalhide/carbon/lizard/five,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/the_outlet/researchrooms)
 "gc" = (
@@ -534,7 +530,7 @@
 "nM" = (
 /obj/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "od" = (
 /turf/closed/wall/rust,
 /area/ruin/space/has_grav/the_outlet/storefront)
@@ -926,11 +922,11 @@
 /area/ruin/space/has_grav/the_outlet/storefront)
 "wK" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/animalhide/human,
-/obj/item/stack/sheet/animalhide/human,
-/obj/item/stack/sheet/animalhide/human,
-/obj/item/stack/sheet/animalhide/human,
-/obj/item/stack/sheet/animalhide/human,
+/obj/item/stack/sheet/animalhide/carbon/human,
+/obj/item/stack/sheet/animalhide/carbon/human,
+/obj/item/stack/sheet/animalhide/carbon/human,
+/obj/item/stack/sheet/animalhide/carbon/human,
+/obj/item/stack/sheet/animalhide/carbon/human,
 /obj/item/knife/butcher,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/the_outlet/researchrooms)
@@ -1560,7 +1556,7 @@
 "LA" = (
 /obj/item/stack/rods/two,
 /turf/template_noop,
-/area/template_noop)
+/area/space/nearstation)
 "LL" = (
 /mob/living/basic/construct/proteon/hostile,
 /obj/effect/decal/cleanable/crayon/rune2,

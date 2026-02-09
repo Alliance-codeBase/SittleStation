@@ -50,7 +50,7 @@
 	icon_state = "sustenance_labor"
 	all_products_free = FALSE
 	displayed_currency_icon = "digging"
-	displayed_currency_name = " LP"
+	displayed_currency_name = "LP"
 	allow_custom = FALSE
 
 /obj/machinery/vending/sustenance/interact(mob/user)

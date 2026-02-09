@@ -12,6 +12,7 @@
 	item_chair = null
 	has_armrest = FALSE
 	anchored = TRUE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2)
 
 // В разных цветах
 /obj/structure/chair/padded/red

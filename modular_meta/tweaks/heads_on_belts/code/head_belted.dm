@@ -1,6 +1,7 @@
 /obj/item/bodypart/head
 	slot_flags = ITEM_SLOT_BELT
 	worn_icon_state = "default_human_head"
+	worn_icon  = 'modular_meta/tweaks/heads_on_belts/icons/belt.dmi'
 
 /obj/item/bodypart/head/monkey
 	worn_icon_state = "default_monkey_head"
@@ -45,10 +46,10 @@
 	worn_icon_state = ""
 
 /obj/item/bodypart/head/golem
-	worn_icon_state = ""
+	worn_icon_state = "golem_head"
 
 /obj/item/bodypart/head/moth
-	worn_icon_state = ""
+	worn_icon_state = "moth_head"
 
 /obj/item/bodypart/head/lizard
 	worn_icon_state = ""
@@ -56,5 +57,8 @@
 /obj/item/bodypart/head/ethereal
 	worn_icon_state = ""
 
+/obj/item/bodypart/head/ethereal/lustrous
+	worn_icon_state = "lustrous_head"
+
 /obj/item/bodypart/head/plasmaman
-	worn_icon_state = ""
+	worn_icon_state = "plasmaman_head"

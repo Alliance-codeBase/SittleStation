@@ -29,6 +29,7 @@
 /datum/dynamic_ruleset/midround/bloodsucker
 	name = "Vampiric Accident"
 	config_tag = "Midround Bloodsucker"
+	midround_type = LIGHT_MIDROUND
 	preview_antag_datum = /datum/antagonist/bloodsucker
 	pref_flag = ROLE_VAMPIRICACCIDENT
 	min_pop = 5

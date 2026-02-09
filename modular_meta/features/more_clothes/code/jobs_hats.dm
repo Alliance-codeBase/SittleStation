@@ -1,110 +1,114 @@
-/obj/item/clothing/head/hats/caphat
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi',
-			RESKIN_ICON_STATE = "captain",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "captain",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
-			RESKIN_ICON_STATE = "captain",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "captain",
-		),
-	)
+/*
+/datum/atom_skin/caphat/parade
+	preview_name = ""
+	new_icon = ''
+	new_icon_state = ""
+	new_worn_icon = ''
+	new_worn_icon_state ""
+*/
 
-/obj/item/clothing/head/hats/caphat/parade
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi',
-			RESKIN_ICON_STATE = "capcap",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "capcap",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
-			RESKIN_ICON_STATE = "capcap",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "capcap",
-		),
-	)
 
-/obj/item/clothing/head/hats/hopcap
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi',
-			RESKIN_ICON_STATE = "hopcap",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "hopcap",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
-			RESKIN_ICON_STATE = "hopcap",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "hopcap",
-		),
-	)
+/obj/item/clothing/head/hats/caphat/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/caphat)
 
-/obj/item/clothing/head/hats/hos/cap
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/caphat
+	abstract_type =  /datum/atom_skin/caphat
+	change_base_icon_state = TRUE
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi',
-			RESKIN_ICON_STATE = "hoscap",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "hoscap",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
-			RESKIN_ICON_STATE = "hoscap",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "hoscap",
-		),
-	)
+/datum/atom_skin/caphat/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi'
+	new_icon_state = "captain"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi'
 
-/obj/item/clothing/head/hats/warden/police
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/caphat/default
+	preview_name = "Default"
+	new_icon = 'icons/obj/clothing/head/hats.dmi'
+	new_icon_state = "captain"
+	new_worn_icon = 'icons/mob/clothing/head/hats.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi',
-			RESKIN_ICON_STATE = "policehelm",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "policehelm",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
-			RESKIN_ICON_STATE = "policehelm",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "policehelm",
-		),
-	)
+/datum/atom_skin/caphat/parade/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi'
+	new_icon_state = "capcap"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi'
 
-/obj/item/clothing/head/hats/warden/drill
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/caphat/parade
+	preview_name = "Default"
+	new_icon = 'icons/obj/clothing/head/hats.dmi'
+	new_icon_state = "capcap"
+	new_worn_icon = 'icons/mob/clothing/head/hats.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi',
-			RESKIN_ICON_STATE = "wardendrill",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "wardendrill",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/head/hats.dmi',
-			RESKIN_ICON_STATE = "wardendrill",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/head/hats.dmi',
-			RESKIN_WORN_ICON_STATE = "wardendrill",
-		),
-	)
+
+/obj/item/clothing/head/hats/hopcap/setup_reskins()
+	. = ..()
+ 	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hopcap)
+
+/datum/atom_skin/hopcap
+	abstract_type =  /datum/atom_skin/hopcap
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hopcap/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi'
+	new_icon_state = "hopcap"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi'
+
+/datum/atom_skin/hopcap/default
+	preview_name = "Default"
+	new_icon = 'icons/obj/clothing/head/hats.dmi'
+	new_icon_state = "hopcap"
+	new_worn_icon = 'icons/mob/clothing/head/hats.dmi'
+
+/obj/item/clothing/head/hats/hos/cap/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hoscap)
+
+/datum/atom_skin/hoscap
+	abstract_type =  /datum/atom_skin/hoscap
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hoscap/old
+	preview_name = "Old Fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi'
+	new_icon_state = "hoscap"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi'
+
+/datum/atom_skin/hoscap/default
+	preview_name = "Default"
+	new_icon = 'icons/obj/clothing/head/hats.dmi'
+	new_icon_state = "hoscap"
+	new_worn_icon = 'icons/mob/clothing/head/hats.dmi'
+
+/obj/item/clothing/head/hats/warden/police/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/wardencap_police)
+
+/datum/atom_skin/wardencap_police/default
+	preview_name = "Default"
+	new_icon = 'icons/obj/clothing/head/hats.dmi'
+	new_icon_state = "policehelm"
+	new_worn_icon = 'icons/mob/clothing/head/hats.dmi'
+
+/datum/atom_skin/wardencap_police/old
+	preview_name = "Old Fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi'
+	new_icon_state = "policehelm"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi'
+
+/obj/item/clothing/head/hats/warden/drill/setup_reskins()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_drill)
+
+/datum/atom_skin/warden_drill/old
+	preview_name = "Old Fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/head/hats.dmi'
+	new_icon_state = "wardendrill"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/head/hats.dmi'
+
+/datum/atom_skin/warden_drill/default
+	preview_name = "Default"
+	new_icon = 'icons/obj/clothing/head/hats.dmi'
+	new_icon_state = "wardendrill"
+	new_worn_icon = 'icons/mob/clothing/head/hats.dmi'
+

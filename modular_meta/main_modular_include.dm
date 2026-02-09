@@ -26,7 +26,7 @@
 #include "features\uplink_items\includes.dm"
 #include "features\clown_traitor_sound\includes.dm"
 #include "features\woodgen\includes.dm"
-#include "features\not_enough_medical\includes.dm"
+//#include "features\not_enough_medical\includes.dm" -- upstream 18.01.2026. Surgery overhaul has made this code obsolete
 #include "features\more_cell_interactions\includes.dm"
 #include "features\makeshift_grenade_trap\includes.dm"
 #include "features\makeshift_tools\includes.dm"
@@ -45,8 +45,7 @@
 /* --- Reverts --- */
 
 #include "reverts\beheading\includes.dm"
-//We've decided this module has been proven unneccessary.
-//#include "reverts\buff_lasers\includes.dm"
+#include "reverts\buff_lasers\includes.dm"
 #include "reverts\bulky_extinguishers\includes.dm"
 #include "reverts\colossus\includes.dm"
 #include "reverts\glasses_protect\includes.dm"

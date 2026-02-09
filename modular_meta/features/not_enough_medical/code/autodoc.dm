@@ -1,3 +1,13 @@
+
+
+/**
+ *
+ *
+ *Оффы удалили хирургию в том виде, в котором мы её знали. Это здесь останется до тех времён, пока кто-то не решит это починить...
+ *
+ *
+ *
+ */
 GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/clamp_bleeders,

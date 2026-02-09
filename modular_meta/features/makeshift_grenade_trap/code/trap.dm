@@ -9,6 +9,7 @@
 	resistance_flags = FLAMMABLE
 	max_integrity = 25
 	integrity_failure = 0.5
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
 	var/obj/item/grenade/stretching
 	var/mob/owner
 

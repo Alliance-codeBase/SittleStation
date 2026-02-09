@@ -16,6 +16,7 @@
 	vassal_desc = "This is a persuassion rack, which allows your master to thrall crewmembers into their service.\n\
 		Aid your master in bringing their victims here and keeping them secure.\n\
 		You can secure victims to the rack by dragging their sprite onto the rack while it is secured."
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 3, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.3, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
 
 #ifdef BLOODSUCKER_TESTING
 	var/convert_progress = 1

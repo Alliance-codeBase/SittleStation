@@ -16,8 +16,8 @@
 	affected_mob.adjust_dizzy(-1 SECONDS * REM * seconds_per_tick)
 	affected_mob.adjust_drowsiness(-2 SECONDS * REM * seconds_per_tick)
 	var/need_mob_update
-	need_mob_update = affected_mob.adjustToxLoss(-0.5, updating_health = FALSE, required_biotype = affected_biotype)
-	need_mob_update += affected_mob.adjustOrganLoss(ORGAN_SLOT_LIVER, -0.5 * REM * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
+	need_mob_update = affected_mob.adjust_tox_loss(-0.5, updating_health = FALSE, required_biotype = affected_biotype)
+	need_mob_update += affected_mob.adjust_organ_loss(ORGAN_SLOT_LIVER, -0.5 * REM * seconds_per_tick, required_organ_flag = ORGAN_ORGANIC)
 	for(var/datum/reagent/toxin/R in affected_mob.reagents.reagent_list)
 		affected_mob.reagents.remove_reagent(R.type, 1.5 * REM * seconds_per_tick)
 	if(need_mob_update)

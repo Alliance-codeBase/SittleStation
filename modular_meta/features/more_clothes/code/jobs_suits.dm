@@ -17,903 +17,1013 @@
 	.=..()
 	new /obj/item/clothing/suit/captunic(src)
 
-/obj/item/clothing/under/rank/captain
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+// CAPTAIN UNIFORMS
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/captain.dmi',
-			RESKIN_ICON_STATE = "captain",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/captain.dmi',
-			RESKIN_WORN_ICON_STATE = "captain",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/captain.dmi',
-			RESKIN_ICON_STATE = "captain",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/captain.dmi',
-			RESKIN_WORN_ICON_STATE = "captain",
-		),
-	)
+/obj/item/clothing/under/rank/captain/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/captain_uniform, infinite = FALSE)
 
-/obj/item/clothing/under/rank/captain/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/captain.dmi',
-			RESKIN_ICON_STATE = "captain_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/captain.dmi',
-			RESKIN_WORN_ICON_STATE = "captain_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/captain.dmi',
-			RESKIN_ICON_STATE = "captain_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/captain.dmi',
-			RESKIN_WORN_ICON_STATE = "captain_skirt",
-		),
-	)
+/datum/atom_skin/captain_uniform/
+	abstract_type = /datum/atom_skin/captain_uniform
+	change_base_icon_state = FALSE
+	reset_missing = FALSE
 
-/obj/item/clothing/under/rank/captain/parade
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/captain.dmi',
-			RESKIN_ICON_STATE = "captain_parade",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/captain.dmi',
-			RESKIN_WORN_ICON_STATE = "captain_parade",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/captain.dmi',
-			RESKIN_ICON_STATE = "captain_parade",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/captain.dmi',
-			RESKIN_WORN_ICON_STATE = "captain_parade",
-		),
-	) 
+/datum/atom_skin/captain_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/captain.dmi'
+	new_icon_state = "captain"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/captain.dmi'
+
+/datum/atom_skin/captain_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/captain.dmi'
+	new_icon_state = "captain"
+	new_worn_icon = 'icons/mob/clothing/under/captain.dmi'
+
+/obj/item/clothing/under/rank/captain/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/captain_uniform_skirt, infinite = TRUE)
+
+/datum/atom_skin/captain_uniform_skirt
+	abstract_type = /datum/atom_skin/captain_uniform_skirt
+
+/datum/atom_skin/captain_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/captain.dmi'
+	new_icon_state = "captain_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/captain.dmi'
+
+/datum/atom_skin/captain_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/captain.dmi'
+	new_icon_state = "captain_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/captain.dmi'
+
+/obj/item/clothing/under/rank/captain/parade/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/captain_uniform_parade, infinite = FALSE)
+
+/datum/atom_skin/captain_uniform_parade
+	abstract_type = /datum/atom_skin/captain_uniform_parade
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/captain_uniform_parade/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/captain.dmi'
+	new_icon_state = "captain_parade"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/captain.dmi'
+
+/datum/atom_skin/captain_uniform_parade/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/captain.dmi'
+	new_icon_state = "captain_parade"
+	new_worn_icon = 'icons/mob/clothing/under/captain.dmi'
 
 // HOP
 
-/obj/item/clothing/under/rank/civilian/head_of_personnel
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/civilian/head_of_personnel/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hop_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/hop.dmi',
-			RESKIN_ICON_STATE = "hop",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/hop.dmi',
-			RESKIN_WORN_ICON_STATE = "hop",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/civilian.dmi',
-			RESKIN_ICON_STATE = "hop",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/civilian.dmi',
-			RESKIN_WORN_ICON_STATE = "hop",
-		),
-	)
+/datum/atom_skin/hop_uniform
+	abstract_type = /datum/atom_skin/hop_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/civilian/head_of_personnel/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/hop.dmi',
-			RESKIN_ICON_STATE = "hop_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/hop.dmi',
-			RESKIN_WORN_ICON_STATE = "hop_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/civilian.dmi',
-			RESKIN_ICON_STATE = "hop_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/civilian.dmi',
-			RESKIN_WORN_ICON_STATE = "hop_skirt",
-		),
-	)
+/datum/atom_skin/hop_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/hop.dmi'
+	new_icon_state = "hop"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/hop.dmi'
+
+/datum/atom_skin/hop_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/civilian.dmi'
+	new_icon_state = "hop"
+	new_worn_icon = 'icons/mob/clothing/under/civilian.dmi'
+
+/obj/item/clothing/under/rank/civilian/head_of_personnel/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hop_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/hop_uniform_skirt
+	abstract_type = /datum/atom_skin/hop_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hop_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/hop.dmi'
+	new_icon_state = "hop_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/hop.dmi'
+
+/datum/atom_skin/hop_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/civilian.dmi'
+	new_icon_state = "hop_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/civilian.dmi'
 
 // RD
 
-/obj/item/clothing/under/rank/rnd/research_director
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/rnd/research_director/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/rd_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi',
-			RESKIN_ICON_STATE = "director",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi',
-			RESKIN_WORN_ICON_STATE = "director",
-		),
-		"Office fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi',
-			RESKIN_ICON_STATE = "rdwhimsy",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi',
-			RESKIN_WORN_ICON_STATE = "rdwhimsy",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "director",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "director",
-		),
-	)
+/datum/atom_skin/rd_uniform
+	abstract_type = /datum/atom_skin/rd_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/rnd/research_director/doctor_hilbert
-	uses_advanced_reskins = FALSE
-	unique_reskin = null
+/datum/atom_skin/rd_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi'
+	new_icon_state = "director"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi'
 
-/obj/item/clothing/under/rank/rnd/research_director/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi',
-			RESKIN_ICON_STATE = "director_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi',
-			RESKIN_WORN_ICON_STATE = "director_skirt",
-		),
-		"Office fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi',
-			RESKIN_ICON_STATE = "rdwhimsy_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi',
-			RESKIN_WORN_ICON_STATE = "rdwhimsy_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "director_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "director_skirt",
-		),
-	)
+/datum/atom_skin/rd_uniform/office
+	preview_name = "Office fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi'
+	new_icon_state = "rdwhimsy"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi'
 
+/datum/atom_skin/rd_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "director"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
 
-/obj/item/clothing/under/rank/rnd/research_director/turtleneck
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/rnd/research_director/doctor_hilbert/setup_reskins()
+	. = ..()
+	return
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi',
-			RESKIN_ICON_STATE = "rdturtle",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi',
-			RESKIN_WORN_ICON_STATE = "rdturtle",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "rdturtle",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "rdturtle",
-		),
-	)
+/obj/item/clothing/under/rank/rnd/research_director/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/rd_uniform_skirt, infinite = FALSE)
 
-/obj/item/clothing/under/rank/rnd/research_director/turtleneck/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi',
-			RESKIN_ICON_STATE = "rdturtle_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi',
-			RESKIN_WORN_ICON_STATE = "rdturtle_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "rdturtle_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "rdturtle_skirt",
-		),
-	)
+/datum/atom_skin/rd_uniform_skirt
+	abstract_type = /datum/atom_skin/rd_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/rd_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi'
+	new_icon_state = "director_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi'
+
+/datum/atom_skin/rd_uniform_skirt/office
+	preview_name = "Office fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi'
+	new_icon_state = "rdwhimsy_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi'
+
+/datum/atom_skin/rd_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "director_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
+
+/obj/item/clothing/under/rank/rnd/research_director/turtleneck/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/rd_uniform_turtleneck, infinite = FALSE)
+
+/datum/atom_skin/rd_uniform_turtleneck
+	abstract_type = /datum/atom_skin/rd_uniform_turtleneck
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/rd_uniform_turtleneck/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi'
+	new_icon_state = "rdturtle"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi'
+
+/datum/atom_skin/rd_uniform_turtleneck/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "rdturtle"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
+
+/obj/item/clothing/under/rank/rnd/research_director/turtleneck/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/rd_uniform_turtleneck_skirt, infinite = FALSE)
+
+/datum/atom_skin/rd_uniform_turtleneck_skirt
+	abstract_type = /datum/atom_skin/rd_uniform_turtleneck_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/rd_uniform_turtleneck_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rd.dmi'
+	new_icon_state = "rdturtle_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rd.dmi'
+
+/datum/atom_skin/rd_uniform_turtleneck_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "rdturtle_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
 
 // HOS
 
-/obj/item/clothing/under/rank/security/head_of_security
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
-
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "rhos",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rhos",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "rhos",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rhos",
-		),
-	)
-
-/obj/item/clothing/under/rank/security/head_of_security/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "rhos_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rhos_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "rhos_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rhos_skirt",
-		),
-	)
-
-/obj/item/clothing/under/rank/security/head_of_security/grey
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "hos",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hos",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "hos",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hos",
-		),
-	)
-
-/obj/item/clothing/under/rank/security/head_of_security/alt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "hosalt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hosalt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "hosalt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hosalt",
-		),
-	)
-
-/obj/item/clothing/under/rank/security/head_of_security/alt/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "hosalt_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hosalt_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "hosalt_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hosalt_skirt",
-		),
-	)
-
-/obj/item/clothing/under/rank/security/head_of_security/parade
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "hos_parade_male",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hos_parade_male",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "hos_parade_male",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hos_parade_male",
-		),
-	)
-
-/obj/item/clothing/under/rank/security/head_of_security/parade/female
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "hos_parade_fem",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hos_parade_fem",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "hos_parade_fem",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hos_parade_fem",
-		),
-	)
-
-/obj/item/clothing/under/rank/security/head_of_security/formal
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "hosblueclothes",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hosblueclothes",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "hosblueclothes",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "hosblueclothes",
-		),
-	)
-
-//Due to some stuff(particularly with it having alternative sprite when alt_clicked) with reskins \
-it couldn't have been added as reskin variant to the \
-/obj/item/clothing/suit/armor/hos/hos_formal/ so, we're adding it as a separate item.
-
-/obj/item/clothing/suit/armor/hos/hos_formal/black
-	name = "\improper Head of Security's parade jacket"
-	icon = 'modular_meta/features/more_clothes/icons/items/suits/armor.dmi'
-	icon_state = "hosformal_black"
-	worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/suits/armor.dmi'
-	uses_advanced_reskins = FALSE //no-no, mister fish, no bugs today
-	unique_reskin = null //inherits reskin states from /obj/item/clothing/suit/armor/hos , \
-							although has uses_advanced_reskins set to FALSE, it still somehow \
-							creates an radial reskin menu.
-
-/obj/item/clothing/suit/armor/hos
-	uses_advanced_reskins = TRUE
-	unique_reskin = list("Trench Cloak" = list(
-		RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/suits/armor.dmi',
-		RESKIN_ICON_STATE = "trenchcloak",
-		RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/suits/armor.dmi',
-		RESKIN_WORN_ICON_STATE = "trenchcloak",
-		)
-	)
-
-//HOS_GARMENT
-
-/obj/item/storage/bag/garment/hos/PopulateContents()
+/obj/item/clothing/under/rank/security/head_of_security/setup_reskins()
 	. = ..()
-	new /obj/item/clothing/suit/armor/hos/hos_formal/black(src)
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform, infinite = FALSE)
 
+/datum/atom_skin/hos_uniform
+	abstract_type = /datum/atom_skin/hos_uniform
+	change_base_icon_state = TRUE
 
+/datum/atom_skin/hos_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "rhos"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "rhos"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/hos_uniform_skirt
+	abstract_type = /datum/atom_skin/hos_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hos_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "rhos_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "rhos_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/grey/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform_grey, infinite = FALSE)
+
+/datum/atom_skin/hos_uniform_grey
+	abstract_type = /datum/atom_skin/hos_uniform_grey
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hos_uniform_grey/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "hos"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform_grey/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "hos"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform_alt, infinite = FALSE)
+
+/datum/atom_skin/hos_uniform_alt
+	abstract_type = /datum/atom_skin/hos_uniform_alt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hos_uniform_alt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "hosalt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform_alt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "hosalt"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/alt/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform_alt_skirt, infinite = FALSE)
+
+/datum/atom_skin/hos_uniform_alt_skirt
+	abstract_type = /datum/atom_skin/hos_uniform_alt_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hos_uniform_alt_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "hosalt_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform_alt_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "hosalt_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/parade/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform_parade, infinite = FALSE)
+
+/datum/atom_skin/hos_uniform_parade
+	abstract_type = /datum/atom_skin/hos_uniform_parade
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hos_uniform_parade/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "hos_parade_male"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform_parade/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "hos_parade_male"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/parade/female/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform_parade_female, infinite = FALSE)
+
+/datum/atom_skin/hos_uniform_parade_female
+	abstract_type = /datum/atom_skin/hos_uniform_parade_female
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hos_uniform_parade_female/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "hos_parade_fem"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform_parade_female/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "hos_parade_fem"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/head_of_security/formal/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/hos_uniform_formal, infinite = FALSE)
+
+/datum/atom_skin/hos_uniform_formal
+	abstract_type = /datum/atom_skin/hos_uniform_formal
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/hos_uniform_formal/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "hosblueclothes"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/hos_uniform_formal/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "hosblueclothes"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
 
 // SUBORDINATE WORKERS
 
 // SECURITY
 
-/obj/item/clothing/under/rank/security/officer
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/security/officer/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "rsecurity",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rsecurity",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "rsecurity",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rsecurity",
-		),
-	)
+/datum/atom_skin/security_officer_uniform
+	abstract_type = /datum/atom_skin/security_officer_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/security/officer/grey
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "security",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "security",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "security",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "security",
-		),
-	)
+/datum/atom_skin/security_officer_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "rsecurity"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
 
-/obj/item/clothing/under/rank/security/officer/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "secskirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "secskirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "secskirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "secskirt",
-		),
-	)
+/datum/atom_skin/security_officer_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "rsecurity"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
 
-/obj/item/clothing/under/rank/security/officer/blueshirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "blueshift",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "blueshift",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "blueshift",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "blueshift",
-		),
-	)
+/obj/item/clothing/under/rank/security/officer/grey/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_uniform_grey, infinite = FALSE)
 
-/obj/item/clothing/under/rank/security/officer/formal
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "officerblueclothes",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "officerblueclothes",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "officerblueclothes",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "officerblueclothes",
-		),
-	)
+/datum/atom_skin/security_officer_uniform_grey
+	abstract_type = /datum/atom_skin/security_officer_uniform_grey
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/security_officer_uniform_grey/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "security"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/security_officer_uniform_grey/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "security"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/officer/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/security_officer_uniform_skirt
+	abstract_type = /datum/atom_skin/security_officer_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/security_officer_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "secskirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/security_officer_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "secskirt"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/officer/blueshirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_uniform_blueshirt, infinite = FALSE)
+
+/datum/atom_skin/security_officer_uniform_blueshirt
+	abstract_type = /datum/atom_skin/security_officer_uniform_blueshirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/security_officer_uniform_blueshirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "blueshift"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/security_officer_uniform_blueshirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "blueshift"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/officer/formal/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/security_officer_uniform_formal, infinite = FALSE)
+
+/datum/atom_skin/security_officer_uniform_formal
+	abstract_type = /datum/atom_skin/security_officer_uniform_formal
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/security_officer_uniform_formal/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "officerblueclothes"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/security_officer_uniform_formal/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "officerblueclothes"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
 
 
 // WARDEN
 
-/obj/item/clothing/under/rank/security/warden
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/security/warden/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "rwarden",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rwarden",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "rwarden",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rwarden",
-		),
-	)
+/datum/atom_skin/warden_uniform
+	abstract_type = /datum/atom_skin/warden_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/security/warden/grey
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "warden",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "warden",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "warden",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "warden",
-		),
-	)
+/datum/atom_skin/warden_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "rwarden"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
 
-/obj/item/clothing/under/rank/security/warden/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "rwarden_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rwarden_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "rwarden_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "rwarden_skirt",
-		),
-	)
+/datum/atom_skin/warden_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "rwarden"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
 
-/obj/item/clothing/under/rank/security/warden/formal
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "wardenblueclothes",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "wardenblueclothes",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "wardenblueclothes",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "wardenblueclothes",
-		),
-	)
+/obj/item/clothing/under/rank/security/warden/grey/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_uniform_grey, infinite = FALSE)
+
+/datum/atom_skin/warden_uniform_grey
+	abstract_type = /datum/atom_skin/warden_uniform_grey
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/warden_uniform_grey/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "warden"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/warden_uniform_grey/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "warden"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/warden/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/warden_uniform_skirt
+	abstract_type = /datum/atom_skin/warden_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/warden_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "rwarden_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/warden_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "rwarden_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/warden/formal/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/warden_uniform_formal, infinite = FALSE)
+
+/datum/atom_skin/warden_uniform_formal
+	abstract_type = /datum/atom_skin/warden_uniform_formal
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/warden_uniform_formal/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "wardenblueclothes"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/warden_uniform_formal/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "wardenblueclothes"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
 
 // DETECTIVE
 
-/obj/item/clothing/under/rank/security/detective
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/security/detective/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/detective_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "detective_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "detective_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "detective_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "detective_skirt",
-		),
-	)
+/datum/atom_skin/detective_uniform
+	abstract_type = /datum/atom_skin/detective_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/security/detective/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "detective",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "detective",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "detective",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "detective",
-		),
-	)
+/datum/atom_skin/detective_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "detective_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
 
-/obj/item/clothing/under/rank/security/detective/noir
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "noirdet",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "noirdet",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "noirdet",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "noirdet",
-		),
-	)
+/datum/atom_skin/detective_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "detective_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
 
+/obj/item/clothing/under/rank/security/detective/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/detective_uniform_skirt, infinite = FALSE)
 
-/obj/item/clothing/under/rank/security/detective/noir/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/security.dmi',
-			RESKIN_ICON_STATE = "noirdet_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "noirdet_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/security.dmi',
-			RESKIN_ICON_STATE = "noirdet_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/security.dmi',
-			RESKIN_WORN_ICON_STATE = "noirdet_skirt",
-		),
-	)
+/datum/atom_skin/detective_uniform_skirt
+	abstract_type = /datum/atom_skin/detective_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/detective_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "detective"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/detective_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "detective"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/detective/noir/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/detective_uniform_noir, infinite = FALSE)
+
+/datum/atom_skin/detective_uniform_noir
+	abstract_type = /datum/atom_skin/detective_uniform_noir
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/detective_uniform_noir/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "noirdet"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/detective_uniform_noir/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "noirdet"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
+
+/obj/item/clothing/under/rank/security/detective/noir/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/detective_uniform_noir_skirt, infinite = FALSE)
+
+/datum/atom_skin/detective_uniform_noir_skirt
+	abstract_type = /datum/atom_skin/detective_uniform_noir_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/detective_uniform_noir_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/security.dmi'
+	new_icon_state = "noirdet_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/security.dmi'
+
+/datum/atom_skin/detective_uniform_noir_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/security.dmi'
+	new_icon_state = "noirdet_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/security.dmi'
 
 
 // CARGO
 
-/obj/item/clothing/under/rank/cargo/qm
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/cargo/qm/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/qm_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi',
-			RESKIN_ICON_STATE = "qm",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "qm",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/cargo.dmi',
-			RESKIN_ICON_STATE = "qm",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "qm",
-		),
-	)
+/datum/atom_skin/qm_uniform
+	abstract_type = /datum/atom_skin/qm_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/cargo/qm/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi',
-			RESKIN_ICON_STATE = "qm_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "qm_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/cargo.dmi',
-			RESKIN_ICON_STATE = "qm_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "qm_skirt",
-		),
-	)
+/datum/atom_skin/qm_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi'
+	new_icon_state = "qm"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi'
 
-/obj/item/clothing/under/rank/cargo/tech
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/qm_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/cargo.dmi'
+	new_icon_state = "qm"
+	new_worn_icon = 'icons/mob/clothing/under/cargo.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi',
-			RESKIN_ICON_STATE = "cargotech",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "cargotech",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/cargo.dmi',
-			RESKIN_ICON_STATE = "cargotech",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "cargotech",
-		),
-	)
+/obj/item/clothing/under/rank/cargo/qm/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/qm_uniform_skirt, infinite = FALSE)
 
-/obj/item/clothing/under/rank/cargo/tech/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi',
-			RESKIN_ICON_STATE = "cargo_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "cargo_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/cargo.dmi',
-			RESKIN_ICON_STATE = "cargo_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/cargo.dmi',
-			RESKIN_WORN_ICON_STATE = "cargo_skirt",
-		),
-	)
+/datum/atom_skin/qm_uniform_skirt
+	abstract_type = /datum/atom_skin/qm_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/qm_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi'
+	new_icon_state = "qm_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi'
+
+/datum/atom_skin/qm_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/cargo.dmi'
+	new_icon_state = "qm_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/cargo.dmi'
+
+/obj/item/clothing/under/rank/cargo/tech/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/cargotech_uniform, infinite = FALSE)
+
+/datum/atom_skin/cargotech_uniform
+	abstract_type = /datum/atom_skin/cargotech_uniform
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/cargotech_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi'
+	new_icon_state = "cargotech"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi'
+
+/datum/atom_skin/cargotech_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/cargo.dmi'
+	new_icon_state = "cargotech"
+	new_worn_icon = 'icons/mob/clothing/under/cargo.dmi'
+
+/obj/item/clothing/under/rank/cargo/tech/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/cargotech_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/cargotech_uniform_skirt
+	abstract_type = /datum/atom_skin/cargotech_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/cargotech_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/cargo.dmi'
+	new_icon_state = "cargo_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/cargo.dmi'
+
+/datum/atom_skin/cargotech_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/cargo.dmi'
+	new_icon_state = "cargo_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/cargo.dmi'
 
 
 // MEDICAL
 
-/obj/item/clothing/under/rank/medical/doctor
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/medical/doctor/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/doctor_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "medical",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "medical",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "medical",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "medical",
-		),
-	)
+/datum/atom_skin/doctor_uniform
+	abstract_type = /datum/atom_skin/doctor_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/medical/doctor/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "medical_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "medical_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "medical_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "medical_skirt",
-		),
-	)
+/datum/atom_skin/doctor_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "medical"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
 
-/obj/item/clothing/under/rank/medical/chief_medical_officer
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/doctor_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "medical"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "cmo",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "cmo",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "cmo",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "cmo",
-		),
-	)
+/obj/item/clothing/under/rank/medical/doctor/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/doctor_uniform_skirt, infinite = FALSE)
 
-/obj/item/clothing/under/rank/medical/chief_medical_officer/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "cmo_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "cmo_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "cmo_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "cmo_skirt",
-		),
-	)
+/datum/atom_skin/doctor_uniform_skirt
+	abstract_type = /datum/atom_skin/doctor_uniform_skirt
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/medical/chief_medical_officer/scrubs
-	uses_advanced_reskins = FALSE
-	unique_reskin = null
+/datum/atom_skin/doctor_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "medical_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
 
-/obj/item/clothing/under/rank/medical/chief_medical_officer/turtleneck
-	uses_advanced_reskins = FALSE
-	unique_reskin = null
+/datum/atom_skin/doctor_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "medical_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
 
-/obj/item/clothing/under/rank/medical/virologist
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/medical/chief_medical_officer/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/cmo_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "virology",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "virology",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "virology",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "virology",
-		),
-	)
+/datum/atom_skin/cmo_uniform
+	abstract_type = /datum/atom_skin/cmo_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/medical/virologist/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "virologywhite_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "virologywhite_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "virologywhite_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "virologywhite_skirt",
-		),
-	)
+/datum/atom_skin/cmo_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "cmo"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
 
-/obj/item/clothing/under/rank/medical/chemist
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/cmo_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "cmo"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "chemistry",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "chemistry",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "chemistry",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "chemistry",
-		),
-	)
+/obj/item/clothing/under/rank/medical/chief_medical_officer/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/cmo_uniform_skirt, infinite = FALSE)
 
-/obj/item/clothing/under/rank/medical/chemist/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi',
-			RESKIN_ICON_STATE = "chemistrywhite_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "chemistrywhite_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/medical.dmi',
-			RESKIN_ICON_STATE = "chemistrywhite_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/medical.dmi',
-			RESKIN_WORN_ICON_STATE = "chemistrywhite_skirt",
-		),
-	)
+/datum/atom_skin/cmo_uniform_skirt
+	abstract_type = /datum/atom_skin/cmo_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/cmo_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "cmo_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
+
+/datum/atom_skin/cmo_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "cmo_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
+
+/obj/item/clothing/under/rank/medical/chief_medical_officer/scrubs/setup_reskins()
+	. = ..()
+	return
+
+/obj/item/clothing/under/rank/medical/chief_medical_officer/turtleneck/setup_reskins()
+	. = ..()
+	return
+
+/obj/item/clothing/under/rank/medical/virologist/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/virologist_uniform, infinite = FALSE)
+
+/datum/atom_skin/virologist_uniform
+	abstract_type = /datum/atom_skin/virologist_uniform
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/virologist_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "virology"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
+
+/datum/atom_skin/virologist_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "virology"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
+
+/obj/item/clothing/under/rank/medical/virologist/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/virologist_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/virologist_uniform_skirt
+	abstract_type = /datum/atom_skin/virologist_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/virologist_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "virologywhite_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
+
+/datum/atom_skin/virologist_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "virologywhite_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
+
+/obj/item/clothing/under/rank/medical/chemist/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/chemist_uniform, infinite = FALSE)
+
+/datum/atom_skin/chemist_uniform
+	abstract_type = /datum/atom_skin/chemist_uniform
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/chemist_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "chemistry"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
+
+/datum/atom_skin/chemist_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "chemistry"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
+
+/obj/item/clothing/under/rank/medical/chemist/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/chemist_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/chemist_uniform_skirt
+	abstract_type = /datum/atom_skin/chemist_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/chemist_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/medical.dmi'
+	new_icon_state = "chemistrywhite_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/medical.dmi'
+
+/datum/atom_skin/chemist_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/medical.dmi'
+	new_icon_state = "chemistrywhite_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/medical.dmi'
 
 
 // SCIENCE
 
-/obj/item/clothing/under/rank/rnd/scientist
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/obj/item/clothing/under/rank/rnd/scientist/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/scientist_uniform, infinite = FALSE)
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi',
-			RESKIN_ICON_STATE = "science",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "science",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "science",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "science",
-		),
-	)
+/datum/atom_skin/scientist_uniform
+	abstract_type = /datum/atom_skin/scientist_uniform
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/rnd/scientist/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi',
-			RESKIN_ICON_STATE = "science_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "science_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "science_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "science_skirt",
-		),
-	)
+/datum/atom_skin/scientist_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi'
+	new_icon_state = "science"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi'
 
-/obj/item/clothing/under/rank/rnd/roboticist
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/scientist_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "science"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi',
-			RESKIN_ICON_STATE = "robotics",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "robotics",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "robotics",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "robotics",
-		),
-	)
+/obj/item/clothing/under/rank/rnd/scientist/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/scientist_uniform_skirt, infinite = FALSE)
 
-/obj/item/clothing/under/rank/rnd/roboticist/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi',
-			RESKIN_ICON_STATE = "robotics_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "robotics_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "robotics_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "robotics_skirt",
-		),
-	)
+/datum/atom_skin/scientist_uniform_skirt
+	abstract_type = /datum/atom_skin/scientist_uniform_skirt
+	change_base_icon_state = TRUE
 
-/obj/item/clothing/under/rank/rnd/geneticist
-	uses_advanced_reskins = TRUE
-	obj_flags = INFINITE_RESKIN
+/datum/atom_skin/scientist_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi'
+	new_icon_state = "science_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi'
 
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi',
-			RESKIN_ICON_STATE = "genetics",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "genetics",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "genetics",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "genetics",
-		),
-	)
+/datum/atom_skin/scientist_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "science_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
 
-/obj/item/clothing/under/rank/rnd/geneticist/skirt
-	unique_reskin = list(
-		"Old fashioned" = list(
-			RESKIN_ICON = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi',
-			RESKIN_ICON_STATE = "genetics_skirt",
-			RESKIN_WORN_ICON = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "genetics_skirt",
-		),
-		"Original" = list(
-			RESKIN_ICON = 'icons/obj/clothing/under/rnd.dmi',
-			RESKIN_ICON_STATE = "genetics_skirt",
-			RESKIN_WORN_ICON = 'icons/mob/clothing/under/rnd.dmi',
-			RESKIN_WORN_ICON_STATE = "genetics_skirt",
-		),
-	)
+/obj/item/clothing/under/rank/rnd/roboticist/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/roboticist_uniform, infinite = FALSE)
+
+/datum/atom_skin/roboticist_uniform
+	abstract_type = /datum/atom_skin/roboticist_uniform
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/roboticist_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi'
+	new_icon_state = "robotics"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi'
+
+/datum/atom_skin/roboticist_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "robotics"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
+
+/obj/item/clothing/under/rank/rnd/roboticist/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/roboticist_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/roboticist_uniform_skirt
+	abstract_type = /datum/atom_skin/roboticist_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/roboticist_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi'
+	new_icon_state = "robotics_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi'
+
+/datum/atom_skin/roboticist_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "robotics_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
+
+/obj/item/clothing/under/rank/rnd/geneticist/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/geneticist_uniform, infinite = FALSE)
+
+/datum/atom_skin/geneticist_uniform
+	abstract_type = /datum/atom_skin/geneticist_uniform
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/geneticist_uniform/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi'
+	new_icon_state = "genetics"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi'
+
+/datum/atom_skin/geneticist_uniform/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "genetics"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
+
+/obj/item/clothing/under/rank/rnd/geneticist/skirt/setup_reskins()
+	. = ..()
+	AddComponent(/datum/component/reskinable_item, /datum/atom_skin/geneticist_uniform_skirt, infinite = FALSE)
+
+/datum/atom_skin/geneticist_uniform_skirt
+	abstract_type = /datum/atom_skin/geneticist_uniform_skirt
+	change_base_icon_state = TRUE
+
+/datum/atom_skin/geneticist_uniform_skirt/old
+	preview_name = "Old fashioned"
+	new_icon = 'modular_meta/features/more_clothes/icons/items/under/rnd.dmi'
+	new_icon_state = "genetics_skirt"
+	new_worn_icon = 'modular_meta/features/more_clothes/icons/on_mob/under/rnd.dmi'
+
+/datum/atom_skin/geneticist_uniform_skirt/default
+	preview_name = "Original"
+	new_icon = 'icons/obj/clothing/under/rnd.dmi'
+	new_icon_state = "genetics_skirt"
+	new_worn_icon = 'icons/mob/clothing/under/rnd.dmi'
+

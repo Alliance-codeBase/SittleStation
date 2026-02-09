@@ -941,6 +941,9 @@
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
+/obj/machinery/door/airlock/screwdriver_act_secondary(mob/living/user, obj/item/tool)
+	return screwdriver_act(user, tool)
+
 /obj/machinery/door/airlock/wirecutter_act(mob/living/user, obj/item/tool)
 	if(panel_open && security_level == AIRLOCK_SECURITY_PLASTEEL)
 		. = ITEM_INTERACT_SUCCESS  // everything after this shouldn't result in attackby
@@ -1682,7 +1685,7 @@
 	return FALSE
 
 /obj/machinery/door/airlock/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, list/rcd_data)
-	switch(rcd_data["[RCD_DESIGN_MODE]"])
+	switch(rcd_data[RCD_DESIGN_MODE])
 		if(RCD_DECONSTRUCT)
 			qdel(src)
 			return TRUE
@@ -1705,6 +1708,9 @@
 
 	else if(istype(note, /obj/item/photo))
 		return "photo_[frame_state]"
+
+/obj/machinery/door/airlock/IsContainedAtomAccessible(atom/contained, atom/movable/user)
+	return ..() || (contained == note)
 
 /obj/machinery/door/airlock/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -2438,6 +2444,7 @@
 	aiControlDisabled = AI_WIRE_DISABLED
 	req_access = list(ACCESS_BLOODCULT)
 	damage_deflection = 10
+	custom_materials = list(/datum/material/runedmetal = SHEET_MATERIAL_AMOUNT)
 	var/openingoverlaytype = /obj/effect/temp_visual/cult/door
 	var/friendly = FALSE
 	var/stealthy = FALSE

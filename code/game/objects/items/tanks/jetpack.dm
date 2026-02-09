@@ -189,6 +189,7 @@
 	full_speed = FALSE
 	drift_force = 3 NEWTONS //MASSMETA EDIT (fix_newtonian_movement)
 	stabilizer_force = 10 NEWTONS //MASSMETA EDIT (fix_newtonian_movement)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4.4, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 3)
 
 /obj/item/tank/jetpack/improvised/allow_thrust(num)
 	if(!ismob(loc))

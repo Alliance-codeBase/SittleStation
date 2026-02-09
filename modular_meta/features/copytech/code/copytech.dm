@@ -212,7 +212,7 @@
 			attempt_siphon()
 	if(working)
 		for(var/mob/living/L in get_turf(src))
-			L.adjustFireLoss(10*delta_time)
+			L.adjust_fire_loss(10*delta_time)
 			playsound(L, 'sound/machines/shower/shower_mid1.ogg', 90, TRUE)
 
 /obj/machinery/copytech_platform/proc/update_cable()
@@ -238,7 +238,7 @@
 		return
 	if(isliving(AM))
 		var/mob/living/L = AM
-		L.adjustFireLoss(20)
+		L.adjust_fire_loss(20)
 		L.visible_message(span_danger("<b>[L]</b> fried!"))
 		playsound(L, 'sound/machines/shower/shower_mid1.ogg', 90, TRUE)
 

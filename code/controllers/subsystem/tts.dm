@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(tts)
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
 	//MASSMETA EDIT BEGIN (/n/tts)
 	//request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-voices", "", headers, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	
+
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/speakers", "", headers, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	//MASSMETA EDIT END
 	request.begin_async()
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(tts)
 		return FALSE
 	//MASSMETA EDIT BEGIN (/n/tts)
 	//available_speakers = json_decode(response.body)
-	
+
 	var/list/temp_speakers = json_decode(response.body)?["voices"]
 	for(var/speaker in temp_speakers)
 		available_speakers.Add(speaker["speakers"][1])
@@ -296,7 +296,7 @@ SUBSYSTEM_DEF(tts)
 	//	return
 	//
 	//var/shell_scrubbed_input = tts_speech_filter(message)
-	
+
 	var/shell_scrubbed_input = message
 	//MASSMETA EDIT END
 	shell_scrubbed_input = copytext(shell_scrubbed_input, 1, 300)
@@ -314,8 +314,8 @@ SUBSYSTEM_DEF(tts)
 	//MASSMETA EDIT BEGIN (/n/tts)
 	//request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	//request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	
-	
+
+
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/?speaker=[speaker]&effect=[url_encode(special_filters)]&ext=ogg&text=[shell_scrubbed_input]", null, headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/?speaker=[speaker]&effect=[url_encode(special_filters)]&ext=ogg&text=[shell_scrubbed_input]", null, headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	//MASSMETA EDIT END
