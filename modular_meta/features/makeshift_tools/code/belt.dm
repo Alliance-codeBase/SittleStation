@@ -9,6 +9,7 @@
 	worn_icon_state = "makeshiftbelt"
 	icon_state = "makeshiftbelt"
 	w_class = WEIGHT_CLASS_BULKY
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4.65, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5)
 
 /obj/item/storage/belt/utility/makeshift/Initialize(mapload)
 	. = ..()

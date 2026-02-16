@@ -67,7 +67,7 @@
 	for(var/datum/traitor_objective/kill_pet/objective as anything in possible_duplicates)
 		possible_heads -= objective.target.title
 	if(limited_to_department_head)
-		possible_heads = possible_heads & role.department_head
+		possible_heads = possible_heads & role.supervisors
 	possible_heads -= role.title
 
 	if(!length(possible_heads))

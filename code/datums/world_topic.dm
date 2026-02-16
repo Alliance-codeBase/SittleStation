@@ -416,6 +416,9 @@
 	data["ai"] = CONFIG_GET(flag/allow_ai)
 	data["host"] = world.host ? world.host : null
 
+	data["time_left"] = SSticker.timeLeft
+	data["delay"] = SSticker.timeLeft < 0
+
 	data["round_id"] = GLOB.round_id
 
 	data["map_name"] = SSmapping.current_map?.map_name || "Loading..."
@@ -434,7 +437,10 @@
 	data["hub"] = GLOB.hub_visibility
 
 	data["security_level"] = SSsecurity_level.get_current_level_as_text()
-	data["round_duration"] = SSticker ? round((world.time-SSticker.round_start_time)/10) : 0
+	//MASSMETA EDIT ADDITION START (BOT_TOPICS) (BlackCrystalic)
+		//ORIGINAL: data["round_duration"] = SSticker ? round((world.time-SSticker.round_start_time)/10) : 0
+	data["round_duration"] = world.time/10
+	//MASSMETA EDIT ADDITION END (BOT_TOPICS) (BlackCrystalic)
 
 	//Time dilation stats.
 	data["time_dilation_current"] = SStime_track.time_dilation_current
@@ -517,11 +523,14 @@ GLOBAL_LIST_EMPTY(bot_asay_sending_que)
 			var/msg = sanitize(data["message"])
 			for(var/client/C in GLOB.clients)
 				if(C.prefs.chat_toggles & CHAT_OOC)
-					to_chat(C, "<span class='ooc'><span class='prefix'>DISCORD OOC:</span> <EM>[data["author"]]:</EM> <span class='message linkify'>[msg]</span></span>")
-
+					//MASSMETA EDIT ADDITION START (BOT_TOPICS) (BlackCrystalic)
+					to_chat(C, span_ooc("<font color='[GLOB.OOC_COLOR]'><b>[span_prefix("DISCORD OOC:")] <EM>[data["author"]]:</EM> <span class='message linkify'>[msg]</span></b></font>"))
+					//MASSMETA EDIT ADDITION END (BOT_TOPICS) (BlackCrystalic)
 	if(bot_data["admin"])
+		//MASSMETA EDIT START (BOT_TOPICS) (BlackCrystalic)
+		// ORIGINAL: to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD ADMIN:</span> <EM>[data["author"]]</EM>: <span class='message linkify'>[sanitize(data["message"])]</span></span>", confidential = TRUE)
 		for(var/list/data in bot_data["admin"])
-			to_chat(GLOB.admins, "<span class='adminsay'><span class='prefix'>DISCORD ADMIN:</span> <EM>[data["author"]]</EM>: <span class='message linkify'>[sanitize(data["message"])]</span></span>", confidential = TRUE)
+			to_chat(GLOB.admins, span_adminsay("[span_prefix("DISCORD ADMIN:")] <EM>[data["author"]]</EM>: <span class='message linkify'>[sanitize(data["message"])]</span>"))
 
 	statuscode = 200
 	response = "Events received."
@@ -538,9 +547,9 @@ GLOBAL_LIST_EMPTY(bot_asay_sending_que)
 		response = "Delay already set to same state."
 		return
 
-	SSticker.timeLeft = input["delay"] ? -1 : 300
-	message_admins(span_notice("[input["source"]] ([input["addr"]]) [SSticker.timeLeft < 0 ? "delayed the round start" : "has made the round start normally"]."))
-	to_chat(world, span_notice("The game start has been [SSticker.timeLeft < 0 ? "delayed" : "continued"]."))
+	SSticker.timeLeft = input["delay"] == 1 ? -1 : 300
+	message_admins(span_notice("[input["source"]] ([input["addr"]]) [SSticker.timeLeft == 1 ? "delayed the round start" : "has made the round start normally"]."))
+	to_chat(world, span_notice("The game start has been [SSticker.timeLeft == 1 ? "delayed" : "continued"]."))
 	if(SSticker.timeLeft < 0)
 		statuscode = 200
 		response = "Delay set."

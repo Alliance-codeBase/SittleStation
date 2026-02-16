@@ -95,6 +95,18 @@
 	"}, parameters)
 	var/pm = "[key_name(usr)] has created a [secret ? "secret " : ""][type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
 	var/header = "[key_name_admin(usr)] has created a [secret ? "secret " : ""][type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]"
+	if(!secret)
+		GLOB.bot_event_sending_que += list(list(
+			"title" = "Заметка",
+			"player_ckey" = target_ckey,
+			"admin_ckey" = admin_ckey,
+			"timestamp" = world.realtime + world.timezone HOURS,
+			"duration" = expiry,
+			"reason" = text,
+			"round" = GLOB.round_id,
+			"additional_info" = note_severity ? "**Важность:** [note_severity]" : null,
+			"color" = "#173399",
+		))
 	if(!query_create_message.warn_execute())
 		qdel(query_create_message)
 		return

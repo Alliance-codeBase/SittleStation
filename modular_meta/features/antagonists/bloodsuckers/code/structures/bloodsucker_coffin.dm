@@ -54,6 +54,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 2
 	armor_type = /datum/armor/blackcoffin
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 5, /datum/material/iron = SHEET_MATERIAL_AMOUNT)
 
 /datum/armor/blackcoffin
 	melee = 50
@@ -77,6 +78,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 2
 	armor_type = /datum/armor/securecoffin
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5.5, /datum/material/alloy/plasteel = SHEET_MATERIAL_AMOUNT * 5)
 
 /datum/armor/securecoffin
 	melee = 35
@@ -100,6 +102,7 @@
 	material_drop = /obj/item/food/meat/slab/human
 	material_drop_amount = 3
 	armor_type = /datum/armor/meatcoffin
+	custom_materials = list(/datum/material/meat = SHEET_MATERIAL_AMOUNT * 20, /datum/material/iron = SMALL_MATERIAL_AMOUNT * 1.5, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 1.5)
 
 /datum/armor/meatcoffin
 	melee = 70
@@ -123,6 +126,7 @@
 	material_drop = /obj/item/stack/sheet/iron
 	material_drop_amount = 5
 	armor_type = /datum/armor/metalcoffin
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 7)
 
 /datum/armor/metalcoffin
 	melee = 40

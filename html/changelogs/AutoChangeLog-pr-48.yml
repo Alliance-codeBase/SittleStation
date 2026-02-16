@@ -1,0 +1,9 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - rscdel: "bugs"
+  - qol: "now less bugs"
+  - balance: "bugs"
+  - bugfix: "bugs"
+  - refactor: "some bugs"
+  - server: "working"

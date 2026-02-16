@@ -51,6 +51,17 @@
 
 			log_admin_private("[key_name(usr)] has stickybanned [ckey].\nReason: [ban["message"]]")
 			message_admins(span_adminnotice("[key_name_admin(usr)] has stickybanned [ckey].\nReason: [ban["message"]]"))
+			GLOB.bot_event_sending_que += list(list(
+				"title" = "Липкий Бан",
+				"player_ckey" = ckey,
+				"admin_ckey" = usr.ckey,
+				"timestamp" = world.realtime + world.timezone HOURS,
+				"duration" = null,
+				"reason" = ban["message"],
+				"round" = GLOB.round_id,
+				"additional_info" = null,
+				"color" = "#991717",
+			))
 
 		if ("remove")
 			if (!data["ckey"])
@@ -80,6 +91,17 @@
 
 			log_admin_private("[key_name(usr)] removed [ckey]'s stickyban")
 			message_admins(span_adminnotice("[key_name_admin(usr)] removed [ckey]'s stickyban"))
+			GLOB.bot_event_sending_que += list(list(
+				"title" = "Липкий Бан",
+				"player_ckey" = ckey,
+				"admin_ckey" = usr.ckey,
+				"timestamp" = world.realtime + world.timezone HOURS,
+				"duration" = null,
+				"reason" = null,
+				"round" = GLOB.round_id,
+				"additional_info" = "**СНЯТ**",
+				"color" = "#669917",
+			))
 
 		if ("remove_alt")
 			if (!data["ckey"])

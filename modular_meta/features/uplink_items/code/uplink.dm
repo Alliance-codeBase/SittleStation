@@ -17,8 +17,8 @@
 //dangerous категория
 /datum/uplink_item/dangerous/backstab
 	name = "Backstabing Knife"
-	desc = "Looking like basicaly folding knife, but have syndicate mark. \
-			Deals x4 damage bonus if you attack enemy from back."
+	desc = "A specially designed syndicate's finest knife. \
+			Used for stealthy assasinations, will deal bonus damage upon a hit from the back!"
 	item = /obj/item/switchblade/backstab
 
 	cost = 10
@@ -44,13 +44,13 @@
 	cost = 8
 	item = /obj/item/knife/poison
 
-//Spy unique items. \
-	In pr #92481 some few cool spy items were added, since spy is a quite disliked antagonist out here, \
-	usually being either exchanged for an regular traitor or rather disabled by admins completely, we're going to add his items here. \
-	editing whole category "spy_unique" would cause some issues, due it having rocket launcher, bulldog shotgun and other quite impressive items.\
-	Genuinely, you do not want a traitor running around with an rocket launcher killing people \
+/*Spy unique items.
+	In pr #92481 some few cool spy items were added, since spy is a quite disliked antagonist out here,
+	usually being either exchanged for an regular traitor or rather disabled by admins completely, we're going to add his items here.
+	editing whole category "spy_unique" would cause some issues, due it having rocket launcher, bulldog shotgun and other quite impressive items.
+	Genuinely, you do not want a traitor running around with an rocket launcher killing people
 	So, what're we going to do, is to add all the funny items down here one by one.
-
+*/
 //stealthy category
 /datum/uplink_item/stealthy_weapons/daggerboot
 	name = "Boot Dagger"
@@ -72,6 +72,7 @@
 	desc = "A scroll teaching you the basics of the Spider Bite martial art."
 	item = /obj/item/book/granter/martial/spider_bite
 	cost = 10 // seems balanced to me.
+	cant_discount = TRUE
 
 /datum/uplink_item/dangerous/nunchaku
 	name = "Syndie Fitness Nunchuks"
@@ -79,3 +80,19 @@
 	item = /obj/item/melee/baton/nunchaku
 	cost = 12
 	uplink_item_flags = SYNDIE_ILLEGAL_TECH | SYNDIE_TRIPS_CONTRABAND
+	cant_discount = TRUE
+
+/datum/uplink_item/implants/adrenal
+	name = "Adrenal Implant"
+	desc = "An implant injected into the body, and later activated at the user's will. It will inject a chemical \
+			cocktail which removes all incapacitating effects, lets the user run faster and has a mild healing effect."
+	item = /obj/item/storage/box/syndie_kit/imp_adrenal
+	cost = 8
+	limited_stock = 1 //To prevent a progressive traitor buying more than one. One click stun removal is nice, but only when it's limited.
+	limited_discount_stock = 1
+
+/obj/item/storage/box/syndie_kit/imp_adrenal
+	name = "adrenal implant box"
+
+/obj/item/storage/box/syndie_kit/imp_adrenal/PopulateContents()
+	new /obj/item/implanter/adrenalin(src)

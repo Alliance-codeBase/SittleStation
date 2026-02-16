@@ -183,10 +183,6 @@
 /obj/machinery/sleeper/process()
 	use_energy(idle_power_usage)
 
-/obj/machinery/sleeper/nap_violation(mob/violator)
-	. = ..()
-	open_machine()
-
 /obj/machinery/sleeper/ui_data()
 	var/list/data = list()
 	data["occupied"] = !!occupant
@@ -223,10 +219,10 @@
 		data["occupant"]["health"] = mob_occupant.health
 		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
 		data["occupant"]["minHealth"] = HEALTH_THRESHOLD_DEAD
-		data["occupant"]["bruteLoss"] = mob_occupant.getBruteLoss()
-		data["occupant"]["oxyLoss"] = mob_occupant.getOxyLoss()
-		data["occupant"]["toxLoss"] = mob_occupant.getToxLoss()
-		data["occupant"]["fireLoss"] = mob_occupant.getFireLoss()
+		data["occupant"]["bruteLoss"] = mob_occupant.get_brute_loss()
+		data["occupant"]["oxyLoss"] = mob_occupant.get_oxy_loss()
+		data["occupant"]["toxLoss"] = mob_occupant.get_tox_loss()
+		data["occupant"]["fireLoss"] = mob_occupant.get_fire_loss()
 		data["occupant"]["brainLoss"] = mob_occupant.get_organ_loss(ORGAN_SLOT_BRAIN)
 		data["occupant"]["reagents"] = list()
 		if(mob_occupant.reagents && mob_occupant.reagents.reagent_list.len)
@@ -248,7 +244,6 @@
 		return
 
 	var/mob/living/mob_occupant = occupant
-	check_nap_violations()
 	switch(action)
 		if("door")
 			if(state_open)

@@ -4,15 +4,12 @@
 	desc = "A pool of stilled blood kept secure between unanchored glass and silver. Attach it to a wall to use."
 	icon = 'modular_meta/features/antagonists/icons/bloodsuckers/vamp_obj.dmi'
 	icon_state = "blood_mirror"
-	custom_materials = list(
-		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
-		/datum/material/silver = SHEET_MATERIAL_AMOUNT,
-	)
+	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 	result_path = /obj/structure/bloodsucker/mirror
 	pixel_shift = 28
 
 //Copied over from 'wall_mounted.dm' with necessary alterations
-/obj/item/wallframe/blood_mirror/attach(turf/on_wall, mob/user)
+/obj/item/wallframe/blood_mirror/try_build(atom/on_wall, mob/user)
 	if(!IS_BLOODSUCKER(user))
 		balloon_alert(user, "you don't understand its mounting mechanism!")
 		return
@@ -149,7 +146,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/bloodsucker/mirror, 28)
 
 /obj/structure/bloodsucker/mirror/Initialize(mapload)
 	. = ..()
-	find_and_hang_on_wall()
+	find_and_mount_on_atom()
 	bolt()
 
 /obj/structure/bloodsucker/mirror/broken
@@ -381,7 +378,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/bloodsucker/mirror/broken, 28)
 	//Damage
 	if((victim.maxHealth - victim.get_total_damage()) >= victim.crit_threshold)
 		var/refined_damage_amount = (victim.maxHealth - victim.get_total_damage()) * (aggressive ? 0.45 : 0.35)
-		victim.adjustBruteLoss(refined_damage_amount)
+		victim.adjust_brute_loss(refined_damage_amount)
 
 	//Break mirror
 	atom_break()

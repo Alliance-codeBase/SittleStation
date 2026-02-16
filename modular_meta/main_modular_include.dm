@@ -26,7 +26,7 @@
 #include "features\uplink_items\includes.dm"
 #include "features\clown_traitor_sound\includes.dm"
 #include "features\woodgen\includes.dm"
-#include "features\not_enough_medical\includes.dm"
+//#include "features\not_enough_medical\includes.dm" -- upstream 18.01.2026. Surgery overhaul has made this code obsolete
 #include "features\more_cell_interactions\includes.dm"
 #include "features\makeshift_grenade_trap\includes.dm"
 #include "features\makeshift_tools\includes.dm"
@@ -38,7 +38,7 @@
 #include "features\roundstart_shell\includes.dm"
 #include "features\telescience\includes.dm"
 #include "features\deathmatch\includes.dm"
-#include "features\countdown_antimov_sfx\includes.dm"
+#include "features\soundtrack_modpack\includes.dm"
 #include "features\novichok\includes.dm"
 #include "features\jukeboxes_to_bartender\includes.dm"
 #include "features\mutepeoplewithsuture\includes.dm"

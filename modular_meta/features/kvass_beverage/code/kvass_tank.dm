@@ -18,7 +18,7 @@
 	crate_name = "kvass tank crate"
 	crate_type = /obj/structure/closet/crate/large/soviet
 
-/datum/export/large/reagent_dispenser/kvass
+/datum/export/reagent_dispenser/kvass
 	unit_name = "kvasstank"
 	export_types = list(/obj/structure/reagent_dispensers/kvasstank)
 	contents_cost = CARGO_CRATE_VALUE

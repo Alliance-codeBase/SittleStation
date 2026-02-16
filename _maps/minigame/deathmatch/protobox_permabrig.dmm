@@ -539,7 +539,7 @@
 /area/deathmatch)
 "tJ" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/knife/kitchen/makeshift/makeshift,
+/obj/item/knife/kitchen/makeshift,
 /turf/open/floor/iron/dark/smooth_half{
 	dir = 1
 	},

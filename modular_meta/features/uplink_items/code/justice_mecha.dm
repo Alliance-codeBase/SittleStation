@@ -6,7 +6,7 @@
 	id = "justice_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/justice
-	materials = list(/datum/material/iron=SHEET_MATERIAL_AMOUNT*20)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
 	construction_time = 10 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_JUSTICE + RND_SUBCATEGORY_MECHFAB_CHASSIS
@@ -46,8 +46,8 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_right_arm
 	materials = list(
-		/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,
-		/datum/material/silver=SHEET_MATERIAL_AMOUNT*2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	construction_time = 10 SECONDS
 	category = list(
@@ -60,8 +60,8 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_left_leg
 	materials = list(
-		/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,
-		/datum/material/titanium=SHEET_MATERIAL_AMOUNT*2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	construction_time = 10 SECONDS
 	category = list(
@@ -74,8 +74,8 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_right_leg
 	materials = list(
-		/datum/material/iron=SHEET_MATERIAL_AMOUNT*5,
-		/datum/material/titanium=SHEET_MATERIAL_AMOUNT*2,
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
 	)
 	construction_time = 10 SECONDS
 	category = list(
@@ -88,10 +88,10 @@
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_armor
 	materials = list(
-		/datum/material/silver=SHEET_MATERIAL_AMOUNT*10,
-		/datum/material/titanium=SHEET_MATERIAL_AMOUNT*10,
-		/datum/material/plastic=SHEET_MATERIAL_AMOUNT*5,
-		/datum/material/diamond=SHEET_MATERIAL_AMOUNT*1,
+		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 10,
+		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,
+		/datum/material/diamond = SHEET_MATERIAL_AMOUNT * 1,
 	)
 	construction_time = 20 SECONDS
 	category = list(
@@ -561,7 +561,7 @@
 	if(!ishuman(target))
 		return FALSE
 	var/mob/living/carbon/human/live_or_dead = target
-	if(live_or_dead.stat < UNCONSCIOUS && live_or_dead.getStaminaLoss() < 100)
+	if(live_or_dead.stat < UNCONSCIOUS && live_or_dead.get_stamina_loss() < 100)
 		return FALSE
 	var/obj/item/bodypart/check_head = live_or_dead.get_bodypart(BODY_ZONE_HEAD)
 	if(!check_head)
@@ -628,7 +628,7 @@
 	new /obj/effect/temp_visual/mech_attack_aoe_attack(get_turf(src))
 	for(var/mob/living/something_living in range(1, get_turf(src)))
 		if(something_living.stat >= UNCONSCIOUS \
-		|| something_living.getStaminaLoss() >= 100 \
+		|| something_living.get_stamina_loss() >= 100 \
 		|| something_living == pilot)
 			continue
 		if(prob(DISMEMBER_CHANCE_LOW))
@@ -670,7 +670,7 @@
 			break
 		for(var/mob/living/something_living in line_turf.contents)
 			if(something_living.stat >= UNCONSCIOUS \
-			|| something_living.getStaminaLoss() >= 100 \
+			|| something_living.get_stamina_loss() >= 100 \
 			|| is_driver(something_living) \
 			|| is_occupant(something_living))
 				continue
@@ -969,7 +969,7 @@
 			"back_key" = TOOL_SCREWDRIVER,
 			"desc" = "The power cell is secured, and [inner_plating_amount] <b>telecrystals</b> can be added.",
 			"forward_message" = "added telecrystal",
-			"backward_message" = "unsecured power cell"
+			"backward_message" = "unsecured power cell",
 		)
 	)
 

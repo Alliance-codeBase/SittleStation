@@ -12,9 +12,9 @@
     . = ..()
     var/need_update
     if(times_fired % 3 == 0)
-        need_update += M.adjustOxyLoss(12, updating_health = TRUE)
-    need_update += M.adjustOrganLoss(ORGAN_SLOT_HEART, 3 * REM * seconds_per_tick)
-    need_update += M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3 * REM * seconds_per_tick)
+        need_update += M.adjust_oxy_loss(12, updating_health = TRUE)
+    need_update += M.adjust_organ_loss(ORGAN_SLOT_HEART, 3 * REM * seconds_per_tick)
+    need_update += M.adjust_organ_loss(ORGAN_SLOT_BRAIN, 3 * REM * seconds_per_tick)
     if(times_fired % 30 == 0 && times_fired > 0)
         if(ishuman(M) && !M.undergoing_cardiac_arrest() && M.can_heartattack())
             M.set_heartattack(TRUE)
@@ -23,7 +23,7 @@
     if(SPT_PROB(10, seconds_per_tick))
         var/paralyzed_limb = pick_paralyzed_limb()
         ADD_TRAIT(M, paralyzed_limb, type)
-        need_update += M.adjustStaminaLoss(10 * REM * seconds_per_tick, updating_stamina = FALSE)
+        need_update += M.adjust_stamina_loss(10 * REM * seconds_per_tick, updating_stamina = FALSE)
     if(need_update)
         return UPDATE_MOB_HEALTH
 

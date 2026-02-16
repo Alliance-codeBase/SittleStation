@@ -1,3 +1,13 @@
+
+
+/**
+ *
+ *
+ *Оффы удалили хирургию в том виде, в котором мы её знали. Это здесь останется до тех времён, пока кто-то не решит это починить...
+ *
+ *
+ *
+ */
 GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	/datum/surgery_step/incise,
 	/datum/surgery_step/clamp_bleeders,
@@ -518,9 +528,9 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	var/datum/wound/burn/flesh/burn_wound = surgery.operated_wound
 	if(burn_wound)
 		log_combat(autodoc, target, "excised infected flesh in", addition="COMBAT MODE: Unknown")
-		burn_wound.infestation -= infestation_removed
+		burn_wound.infection -= infestation_removed
 		burn_wound.sanitization += sanitization_added
-		if(burn_wound.infestation <= 0)
+		if(burn_wound.infection <= 0)
 			repeatable = FALSE
 	else
 		return FALSE
@@ -547,7 +557,9 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 /datum/surgery_step/fix_ears/autodoc_success(mob/living/carbon/target, target_zone, datum/surgery/surgery, obj/machinery/autodoc/autodoc)
 	var/obj/item/organ/ears/target_ears = target.get_organ_slot(ORGAN_SLOT_EARS)
 	display_pain(target, "Your head swims, but it seems like you can feel your hearing coming back!")
-	target_ears.deaf = (20) //deafness works off ticks, so this should work out to about 30-40s
+	///makes you temporarily deaf for a duration post-surgery
+	var/deaf_change = 40 SECONDS - target_ears.temporary_deafness
+	target_ears.adjust_temporary_deafness(deaf_change)
 	target_ears.set_organ_damage(0)
 	return TRUE
 

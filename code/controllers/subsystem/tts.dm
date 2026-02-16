@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(tts)
 	headers["Authorization"] = CONFIG_GET(string/tts_http_token)
 	//MASSMETA EDIT BEGIN (/n/tts)
 	//request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-voices", "", headers, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	
+
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/speakers", "", headers, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	//MASSMETA EDIT END
 	request.begin_async()
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(tts)
 		return FALSE
 	//MASSMETA EDIT BEGIN (/n/tts)
 	//available_speakers = json_decode(response.body)
-	
+
 	var/list/temp_speakers = json_decode(response.body)?["voices"]
 	for(var/speaker in temp_speakers)
 		available_speakers.Add(speaker["speakers"][1])
@@ -115,7 +115,10 @@ SUBSYSTEM_DEF(tts)
 		return
 
 	var/channel = SSsounds.random_available_channel()
-	for(var/mob/listening_mob in listeners | SSmobs.dead_players_by_zlevel[turf_source.z])//observers always hear through walls
+	for(var/atom/movable/hearer in listeners | SSmobs.dead_players_by_zlevel[turf_source.z])//observers always hear through walls
+		var/mob/listening_mob = hearer.get_listening_mob()
+		if(isnull(listening_mob))
+			continue
 		if(QDELING(listening_mob))
 			stack_trace("TTS tried to play a sound to a deleted mob.")
 			continue
@@ -125,13 +128,13 @@ SUBSYSTEM_DEF(tts)
 		if(volume_modifier == 0 || (tts_pref == TTS_SOUND_OFF))
 			continue
 
-		var/sound_volume = ((listening_mob == target)? 60 : 85) + volume_offset
+		var/sound_volume = ((hearer == target)? 60 : 85) + volume_offset
 		sound_volume = sound_volume*volume_modifier
 		var/datum/language_holder/holder = listening_mob.get_language_holder()
 		var/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
 		if(!holder.has_language(language))
 			continue
-		if(get_dist(listening_mob, turf_source) <= range)
+		if(get_dist(hearer, turf_source) <= range)
 			listening_mob.playsound_local(
 				turf_source,
 				vol = sound_volume,
@@ -293,7 +296,7 @@ SUBSYSTEM_DEF(tts)
 	//	return
 	//
 	//var/shell_scrubbed_input = tts_speech_filter(message)
-	
+
 	var/shell_scrubbed_input = message
 	//MASSMETA EDIT END
 	shell_scrubbed_input = copytext(shell_scrubbed_input, 1, 300)
@@ -311,8 +314,8 @@ SUBSYSTEM_DEF(tts)
 	//MASSMETA EDIT BEGIN (/n/tts)
 	//request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	//request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
-	
-	
+
+
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/?speaker=[speaker]&effect=[url_encode(special_filters)]&ext=ogg&text=[shell_scrubbed_input]", null, headers, file_name, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/?speaker=[speaker]&effect=[url_encode(special_filters)]&ext=ogg&text=[shell_scrubbed_input]", null, headers, file_name_blips, timeout_seconds = CONFIG_GET(number/tts_http_timeout_seconds))
 	//MASSMETA EDIT END

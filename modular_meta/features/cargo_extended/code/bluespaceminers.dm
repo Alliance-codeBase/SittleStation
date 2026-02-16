@@ -63,13 +63,13 @@
 		/datum/material/diamond = COIN_MATERIAL_AMOUNT,
 		/datum/material/bluespace = COIN_MATERIAL_AMOUNT
 	)
-	var/datum/component/remote_materials/materials
+	var/datum/remote_materials/materials
 	var/mine_rate = 1
 
 /obj/machinery/mineral/bluespace_miner/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSmachines, src)
-	materials = AddComponent(/datum/component/remote_materials, "bsm", mapload)
+	materials = new (src, "bsm", mapload)
 
 /obj/machinery/mineral/bluespace_miner/Destroy()
 	materials = null
@@ -127,7 +127,7 @@
 	if(!materials?.silo || materials?.on_hold() || panel_open || !powered() || !anchored)
 		update_icon_state()
 		return
-	var/datum/component/material_container/mat_container = materials.mat_container
+	var/datum/material_container/mat_container = materials.mat_container
 	if(!mat_container)
 		update_icon_state()
 		return
