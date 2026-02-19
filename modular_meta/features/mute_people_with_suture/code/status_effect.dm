@@ -27,12 +27,12 @@
 			to_chat(mutedone, span_userdanger("[user] has sewed your mouth shut with the [sew_thing]!"))
 			mutedone.emote("scream", forced = TRUE)
 			mutedone.apply_status_effect(/datum/status_effect/mouth_sewed_up)
-			//to_chat(mutedone, span_danger("mutedforreal"))
+
 			playsound(mutedone, heal_end_sound, 100)
 
 			log_combat(user, mutedone, "[user] has used [sew_thing] on [mutedone] to prevent them from speaking", sew_thing)
 			sew_thing.amount -= 2
-			sew_thing.update_appearance()
+			sew_thing.update_appearance() // Otherwise the "counter" overlay wouldn't change. It'll show "10" when it's actually eight or six
 		return
 
 /obj/item/stack/medical/suture/interact_with_atom_secondary(atom/interacting_with, mob/living/user, list/modifiers)
@@ -62,9 +62,7 @@
 
 /datum/status_effect/mouth_sewed_up/on_apply()
 	if(ishuman(owner))
-	//	owner.add_traits(list(TRAIT_MUTE), REF(src))
 		RegisterSignal(owner, COMSIG_MOB_SAY, PROC_REF(muzzle_talk))
-	//	RegisterSignal(owner, COMSIG_MOB_PRE_EMOTED, PROC_REF(emote_override)) // Wait, why did we ctrl+c ctrl+v this blindly? Does having your mouth sewed prevent you from moving your hands or emoting? - No.
 		RegisterSignal(owner, COMSIG_LIVING_RESIST, PROC_REF(handle_resist))
 		RegisterSignal(owner, COMSIG_ATOM_ATTACKBY, PROC_REF(someone_removing_sutures))
 	return TRUE
@@ -74,16 +72,6 @@
 		owner.remove_traits(list(TRAIT_MUTE), REF(src))
 		UnregisterSignal(owner, list(COMSIG_MOB_SAY, COMSIG_MOB_PRE_EMOTED, COMSIG_LIVING_RESIST, COMSIG_ATOM_ATTACKBY))
 	return TRUE
-
-
-/* see comment on on_apply()
-/datum/status_effect/mouth_sewed_up/proc/emote_override(mob/living/source, key, params, type_override, intentional, datum/emote/emote) //thx to whoever made muffles_speech.dm
-	SIGNAL_HANDLER
-	if(!emote.hands_use_check && (emote.emote_type & EMOTE_AUDIBLE))
-		source.audible_message("makes a [pick("strong ", "weak ", "")]noise.", audible_message_flags = EMOTE_MESSAGE|ALWAYS_SHOW_SELF_MESSAGE)
-		return COMPONENT_CANT_EMOTE
-	return NONE
-*/
 
 /datum/status_effect/mouth_sewed_up/proc/muzzle_talk(datum/source, list/speech_args)  //thx to whoever made muffles_speech.dm
 	SIGNAL_HANDLER
@@ -130,8 +118,6 @@
 				muteman.cause_wound_of_type_and_severity(WOUND_SLASH, golova, WOUND_SEVERITY_TRIVIAL, WOUND_SEVERITY_MODERATE)
 		muteman.emote("scream", forced = TRUE)
 		qdel(src) // delete status effect
-
-//TODO: Forbid felinids to use their mouth/bite attack as if restrained or as if their mouth has been covered by a mask.
 
 /datum/status_effect/mouth_sewed_up/proc/someone_removing_sutures(atom/source, obj/item/weapon, mob/living/user, list/modifiers)
 	SIGNAL_HANDLER
@@ -181,7 +167,6 @@
 /datum/status_effect/mouth_sewed_up/proc/try_remove_sutures_checks()
 	return !QDELETED(src) // code\modules\projectiles\projectile\energy\stun.dm ln. 339-340 - I dunno what it's really for, but I suppose it's there for a reason
 
-/// Override is_mouth_covered() to prevent felinid bite attacks when mouth is sewed
 /mob/living/carbon/human/is_mouth_covered(check_flags = ALL)
 	if(has_status_effect(/datum/status_effect/mouth_sewed_up))
 		return src

@@ -17,5 +17,5 @@
 	group = "Features"
 	desc = "Добавляет старую одежду \
 			Добавляет секурюрити маске защиту от перца \
-			Добавляет одежду из якудзы(Glamyrio) \"
+			Добавляет одежду из якудзы(Glamyrio)"
 	author = "Artemchik542(Dracoder) && Bruh24 && Glamyrio"
