@@ -15,8 +15,7 @@
 	id = "RESKINS"
 	name = "Рескины одежды"
 	group = "Features"
-	desc = "<s> Добавляет </s> Уже - нет. \
-	https://github.com/tgstation/tgstation/pull/93775 \
-	Не добавляет, а изменяет наши старые модульные рескины \
-	под манер новейшего рефактора от апстрима #93775"
-	author = "Artemchik542(Dracoder) && Bruh24"
+	desc = "Добавляет старую одежду \
+			Добавляет секурюрити маске защиту от перца \
+			Добавляет одежду из якудзы(Glamyrio) \"
+	author = "Artemchik542(Dracoder) && Bruh24 && Glamyrio"

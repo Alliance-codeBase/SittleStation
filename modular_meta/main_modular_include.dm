@@ -41,7 +41,7 @@
 #include "features\soundtrack_modpack\includes.dm"
 #include "features\novichok\includes.dm"
 #include "features\jukeboxes_to_bartender\includes.dm"
-#include "features\mutepeoplewithsuture\includes.dm"
+#include "features\mute_people_with_suture\includes.dm"
 
 /* --- Reverts --- */
 
