@@ -281,12 +281,9 @@
 /obj/machinery/particle_accelerator/control_box/ui_status(mob/user)
 	if(is_interactive(user))
 		return ..()
-	if(operator == user)
-		operator = null
 	return UI_CLOSE
 
 /obj/machinery/particle_accelerator/control_box/ui_interact(mob/user, datum/tgui/ui)
-	operator = user
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ParticleAccelerator", name)
