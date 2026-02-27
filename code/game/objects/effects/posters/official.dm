@@ -11,7 +11,7 @@
 
 /obj/structure/sign/poster/official/random
 	name = "Random Official Poster (ROP)"
-	random_basetype = /obj/structure/sign/poster/official
+	random_basetype = /obj/structure/sign/poster/propaganda/vibori
 	icon_state = "random_official"
 	never_random = TRUE
 

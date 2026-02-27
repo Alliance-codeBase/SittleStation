@@ -41,6 +41,7 @@
 #include "features\soundtrack_modpack\includes.dm"
 #include "features\novichok\includes.dm"
 #include "features\jukeboxes_to_bartender\includes.dm"
+#include "features\pipivspiki\includes.dm"
 
 /* --- Reverts --- */
 

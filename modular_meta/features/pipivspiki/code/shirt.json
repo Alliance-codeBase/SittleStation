@@ -1,0 +1,41 @@
+{
+	"wellworn_shirt_pro_pipi": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn_out",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "pipi_overlay",
+			"blend_mode": "overlay"
+		}
+	],
+	"wellworn_shirt_pro_piki": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn_out",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "piki_overlay",
+			"blend_mode": "overlay"
+		}
+	],
+	"wellworn_shirt_pro_melok": [
+		{
+			"type": "icon_state",
+			"icon_state": "worn_out",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "melok_overlay",
+			"blend_mode": "overlay"
+		}
+	]
+}
