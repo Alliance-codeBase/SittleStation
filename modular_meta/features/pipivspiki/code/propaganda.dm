@@ -5,7 +5,7 @@
 
 /obj/structure/sign/poster/propaganda
 	poster_item_name = "propagantistic poster"
-	poster_item_desc = "An official elections 2026 is now. Vote today!"
+	poster_item_desc = null
 	poster_item_icon_state = "rolled_legit"
 	printable = TRUE
 

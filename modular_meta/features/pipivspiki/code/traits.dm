@@ -78,7 +78,7 @@
 
 	var/vibori_stance = vibori[player_client.ckey]
 	if((vibori_stance == RANDOM_PRO && prob(33)) || vibori_stance == PRO_PIPI)
-		var/obj/item/storage/box/stickers/vibori/pro_pipi/boxie = new(spawned.loc)
+		var/obj/item/storage/box/stickers/pro_pipi/boxie = new(spawned.loc)
 		spawned.equip_to_storage(boxie, ITEM_SLOT_BACK, indirect_action = TRUE)
 		if(ishuman(spawned))
 			var/obj/item/clothing/suit/costume/wellworn_shirt/vibori/pipi/shirt = new(spawned.loc)
@@ -86,7 +86,7 @@
 				shirt.forceMove(boxie)
 		return
 	if((vibori_stance == RANDOM_PRO && prob(33)) || vibori_stance == PRO_PIKI)
-		var/obj/item/storage/box/stickers/vibori/pro_piki/boxie = new(spawned.loc)
+		var/obj/item/storage/box/stickers/pro_piki/boxie = new(spawned.loc)
 		spawned.equip_to_storage(boxie, ITEM_SLOT_BACK, indirect_action = TRUE)
 		if(!ishuman(spawned))
 			var/obj/item/clothing/suit/costume/wellworn_shirt/vibori/piki/shirt = new(spawned.loc)
@@ -94,7 +94,7 @@
 				shirt.forceMove(boxie)
 		return
 	if((vibori_stance == RANDOM_PRO && prob(33)) || vibori_stance == PRO_MELOK)
-		var/obj/item/storage/box/stickers/vibori/pro_mel/boxie = new(spawned.loc)
+		var/obj/item/storage/box/stickers/pro_mel/boxie = new(spawned.loc)
 		spawned.equip_to_storage(boxie, ITEM_SLOT_BACK, indirect_action = TRUE)
 		if(!ishuman(spawned))
 			var/obj/item/clothing/suit/costume/wellworn_shirt/vibori/melok/shirt = new(spawned.loc)
@@ -158,35 +158,56 @@
 	greyscale_colors = "#D05050"
 	post_init_icon_state = "wellworn_shirt_pro_melok"
 
-/obj/item/storage/box/stickers/vibori
-	icon = 'modular_meta/features/pipivspiki/icons/stickers.dmi'
-
-/obj/item/storage/box/stickers/vibori/pro_pipi
+/obj/item/storage/box/stickers/pro_pipi
 	name = "Pipidaster approved sticker pack"
+	icon = 'modular_meta/features/pipivspiki/icons/stickers.dmi'
 	desc = "2 YEARS ON STATION MADE YOU A FUCKING ADMIN!"
 	illustration = "label_pipi"
+	storage_type = /datum/storage/box/vibori/pro_pipi
 
 /obj/item/storage/box/stickers/pro_pipi/PopulateContents()
-	new /obj/item/sticker/vibori/pipi(src)
-	new /obj/item/sticker/vibori/pipi(src)
-	new /obj/item/sticker/vibori/pipi(src)
+	for(var/i in 1 to 4)
+		new /obj/item/sticker/vibori/pipi(src)
 
-/obj/item/storage/box/stickers/vibori/pro_piki
+/obj/item/storage/box/stickers/pro_piki
 	name = "Pikita approved sticker pack"
+	icon = 'modular_meta/features/pipivspiki/icons/stickers.dmi'
 	desc = "За силиконов и текущую власть!"
 	illustration = "label_piki"
+	storage_type = /datum/storage/box/vibori/pro_piki
 
 /obj/item/storage/box/stickers/pro_piki/PopulateContents()
-	new /obj/item/sticker/vibori/piki(src)
-	new /obj/item/sticker/vibori/piki(src)
-	new /obj/item/sticker/vibori/piki(src)
+	for(var/i in 1 to 4)
+		new /obj/item/sticker/vibori/piki(src)
 
-/obj/item/storage/box/stickers/vibori/pro_mel
+/obj/item/storage/box/stickers/pro_mel
 	name = "Melok approved sticker pack"
+	icon = 'modular_meta/features/pipivspiki/icons/stickers.dmi'
 	desc = "За новую власть и так далее!"
 	illustration = "label_mel"
+	storage_type = /datum/storage/box/vibori/pro_melok
 
 /obj/item/storage/box/stickers/pro_mel/PopulateContents()
-	new /obj/item/sticker/vibori/mel(src)
-	new /obj/item/sticker/vibori/mel(src)
-	new /obj/item/sticker/vibori/mel(src)
+	for(var/i in 1 to 4)
+		new /obj/item/sticker/vibori/mel(src)
+
+/datum/storage/box/vibori/pro_pipi/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(exception_hold_list = list(
+		/obj/item/sticker/vibori/pipi,
+		/obj/item/clothing/suit/costume/wellworn_shirt/vibori/pipi,
+	))
+
+/datum/storage/box/vibori/pro_piki/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(exception_hold_list = list(
+		/obj/item/sticker/vibori/piki,
+		/obj/item/clothing/suit/costume/wellworn_shirt/vibori/piki,
+	))
+
+/datum/storage/box/vibori/pro_melok/New(atom/parent, max_slots, max_specific_storage, max_total_storage, rustle_sound, remove_rustle_sound)
+	. = ..()
+	set_holdable(exception_hold_list = list(
+		/obj/item/sticker/vibori/mel,
+		/obj/item/clothing/suit/costume/wellworn_shirt/vibori/melok,
+	))
