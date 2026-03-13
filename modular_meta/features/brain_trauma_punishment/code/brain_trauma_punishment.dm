@@ -1357,3 +1357,9 @@ ADMIN_VERB(brain_trauma_punishments, R_BAN, "Brain Trauma Punishments", "Manage 
 
 GLOBAL_DATUM_INIT(brain_trauma_punishment_manager, /datum/brain_trauma_punishment_manager, new)
 GLOBAL_DATUM_INIT(brain_trauma_punishment_panel, /datum/brain_trauma_punishment_panel, new)
+
+#undef BRAIN_TRAUMA_PUNISH_MODE_EXACT
+#undef BRAIN_TRAUMA_PUNISH_MODE_CATEGORY
+#undef BRAIN_TRAUMA_PUNISH_MAX_REASON_LENGTH
+#undef BRAIN_TRAUMA_UNPANEL_PAGE_SIZE
+#undef BRAIN_TRAUMA_PUNISH_MAX_TRAUMA_COUNT
