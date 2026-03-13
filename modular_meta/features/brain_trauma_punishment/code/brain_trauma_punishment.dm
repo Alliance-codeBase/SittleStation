@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(brain_trauma_punishment_forbidden_traumas, list(
 		if(QDELETED(living_mob))
 			return
 
-		var/response = tgui_alert(living_mob, "You have been punished with recurring brain trauma by administrators.", "Divine Intervention!", list("Understood", "No...", "What?"), 0, TRUE, GLOB.always_state)
+		var/response = tgui_alert(living_mob, "You have been punished with recurring brain trauma by administrators.", "Divine Intervention!", list("Understood", "What?"), 0, TRUE, GLOB.always_state)
 		if(response != "What?")
 			return
 
