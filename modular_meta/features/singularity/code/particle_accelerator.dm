@@ -14,26 +14,29 @@
  PE|PE|PE
 
 */
-#define PA_CONSTRUCTION_UNSECURED  0
-#define PA_CONSTRUCTION_UNWIRED    1
-#define PA_CONSTRUCTION_PANEL_OPEN 2
-#define PA_CONSTRUCTION_COMPLETE   3
 
 /obj/structure/particle_accelerator
 	name = "Particle Accelerator"
 	desc = "Part of a Particle Accelerator."
 	icon = 'modular_meta/features/singularity/icons/particle_accelerator.dmi'
-	icon_state = "none"
+	icon_state = "power_box"
 	anchored = FALSE
 	density = TRUE
 	max_integrity = 500
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 80)
+	armor_type = /datum/armor/structure_particle_accelerator
 
 	var/obj/machinery/particle_accelerator/control_box/master = null
 	var/construction_state = PA_CONSTRUCTION_UNSECURED
 	var/reference = null
-	var/powered = 0
+	var/powered = FALSE
 	var/strength = null
+
+/datum/armor/structure_particle_accelerator
+	melee = 30
+	melee = 20
+	laser = 20
+	fire = 90
+	acid = 80
 
 /obj/structure/particle_accelerator/examine(mob/user)
 	. = ..()
@@ -54,11 +57,9 @@
 		master = null
 	return ..()
 
-/*
-/obj/structure/particle_accelerator/ComponentInitialize()
+/obj/structure/particle_accelerator/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS )
-*/
+	AddElement(/datum/element/simple_rotation)
 
 /obj/structure/particle_accelerator/set_anchored(anchorvalue)
 	. = ..()
@@ -66,77 +67,77 @@
 		return
 	construction_state = anchorvalue ? PA_CONSTRUCTION_UNWIRED : PA_CONSTRUCTION_UNSECURED
 	update_state()
-	update_icon()
+	update_appearance()
 
-/obj/structure/particle_accelerator/attackby(obj/item/W, mob/user, params)
+/obj/structure/particle_accelerator/attackby(obj/item/attacking_item, mob/user, params)
 	var/did_something = FALSE
 
 	switch(construction_state)
 		if(PA_CONSTRUCTION_UNSECURED)
-			if(W.tool_behaviour == TOOL_WRENCH && !isinspace())
-				W.play_tool_sound(src, 75)
+			if(attacking_item.tool_behaviour == TOOL_WRENCH && !isinspace())
+				attacking_item.play_tool_sound(src, 75)
 				set_anchored(TRUE)
-				user.visible_message("<span class='notice'>[user.name] secures the [name] to the floor.</span>", \
-					"<span class='notice'>You secure the external bolts.</span>")
+				user.visible_message(span_notice("[user.name] secures the [name] to the floor."), \
+					span_notice("You secure the external bolts."))
 				user.changeNext_move(CLICK_CD_MELEE)
 				return //set_anchored handles the rest of the stuff we need to do.
 		if(PA_CONSTRUCTION_UNWIRED)
-			if(W.tool_behaviour == TOOL_WRENCH)
-				W.play_tool_sound(src, 75)
+			if(attacking_item.tool_behaviour == TOOL_WRENCH)
+				attacking_item.play_tool_sound(src, 75)
 				set_anchored(FALSE)
-				user.visible_message("<span class='notice'>[user.name] detaches the [name] from the floor.</span>", \
-					"<span class='notice'>You remove the external bolts.</span>")
+				user.visible_message(span_notice("[user.name] detaches the [name] from the floor."), \
+					span_notice("You remove the external bolts."))
 				user.changeNext_move(CLICK_CD_MELEE)
 				return //set_anchored handles the rest of the stuff we need to do.
-			else if(istype(W, /obj/item/stack/cable_coil))
-				var/obj/item/stack/cable_coil/CC = W
-				if(CC.use(1))
-					user.visible_message("<span class='notice'>[user.name] adds wires to the [name].</span>", \
-						"<span class='notice'>You add some wires.</span>")
+			else if(istype(attacking_item, /obj/item/stack/cable_coil))
+				var/obj/item/stack/cable_coil/cable_coil = attacking_item
+				if(cable_coil.use(1))
+					user.visible_message(span_notice("[user.name] adds wires to the [name]."), \
+						span_notice("You add some wires."))
 					construction_state = PA_CONSTRUCTION_PANEL_OPEN
 					did_something = TRUE
 		if(PA_CONSTRUCTION_PANEL_OPEN)
-			if(W.tool_behaviour == TOOL_WIRECUTTER)//TODO:Shock user if its on?
-				user.visible_message("<span class='notice'>[user.name] removes some wires from the [name].</span>", \
-					"<span class='notice'>You remove some wires.</span>")
+			if(attacking_item.tool_behaviour == TOOL_WIRECUTTER)//TODO:Shock user if its on?
+				user.visible_message(span_notice("[user.name] removes some wires from the [name]."), \
+					span_notice("You remove some wires."))
 				construction_state = PA_CONSTRUCTION_UNWIRED
 				did_something = TRUE
-			else if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("<span class='notice'>[user.name] closes the [name]'s access panel.</span>", \
-					"<span class='notice'>You close the access panel.</span>")
+			else if(attacking_item.tool_behaviour == TOOL_SCREWDRIVER)
+				attacking_item.play_tool_sound(src, 75)
+				user.visible_message(span_notice("[user.name] closes the [name]'s access panel."), \
+					span_notice("You close the access panel."))
 				construction_state = PA_CONSTRUCTION_COMPLETE
 				did_something = TRUE
 		if(PA_CONSTRUCTION_COMPLETE)
-			if(W.tool_behaviour == TOOL_SCREWDRIVER)
-				user.visible_message("<span class='notice'>[user.name] opens the [name]'s access panel.</span>", \
-					"<span class='notice'>You open the access panel.</span>")
+			if(attacking_item.tool_behaviour == TOOL_SCREWDRIVER)
+				user.visible_message(span_notice("[user.name] opens the [name]'s access panel."), \
+					span_notice("You open the access panel."))
 				construction_state = PA_CONSTRUCTION_PANEL_OPEN
 				did_something = TRUE
 
 	if(did_something)
 		user.changeNext_move(CLICK_CD_MELEE)
 		update_state()
-		update_icon()
+		update_appearance()
 		return
 
 	return ..()
 
 
-/obj/structure/particle_accelerator/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NO_DEBRIS_AFTER_DECONSTRUCTION))
-		new /obj/item/stack/sheet/iron (loc, 5)
-	qdel(src)
+/obj/structure/particle_accelerator/atom_deconstruct(disassembled)
+	new /obj/item/stack/sheet/iron(loc, 5)
 
 /obj/structure/particle_accelerator/Move()
 	. = ..()
 	if(master && master.active)
 		master.toggle_power()
-		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_SINGULO)
+		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.", INVESTIGATE_ENGINE)
 
 
 /obj/structure/particle_accelerator/update_icon_state()
+	. = ..()
 	switch(construction_state)
-		if(PA_CONSTRUCTION_UNSECURED,PA_CONSTRUCTION_UNWIRED)
+		if(PA_CONSTRUCTION_UNSECURED, PA_CONSTRUCTION_UNWIRED)
 			icon_state="[reference]"
 		if(PA_CONSTRUCTION_PANEL_OPEN)
 			icon_state="[reference]w"
@@ -150,11 +151,11 @@
 	if(master)
 		master.update_state()
 
-/obj/structure/particle_accelerator/proc/connect_master(obj/O)
-	if(O.dir == dir)
-		master = O
-		return 1
-	return 0
+/obj/structure/particle_accelerator/proc/connect_master(obj/object)
+	if(object.dir == dir)
+		master = object
+		return TRUE
+	return FALSE
 
 ///////////
 // PARTS //

@@ -16,34 +16,21 @@
 
 	var/energy = 0
 	var/creation_type = /obj/singularity
+	var/required_energy = ENERGY_REQ_SINGULARITY_CREATION
 
-/obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WRENCH)
-		default_unfasten_wrench(user, W, 0)
+/obj/machinery/the_singularitygen/attackby(obj/item/weapon, mob/user, params)
+	if(weapon.tool_behaviour == TOOL_WRENCH)
+		default_unfasten_wrench(user, weapon, 0)
 	else
 		return ..()
 
-/obj/machinery/the_singularitygen/update_icon(updates=ALL, power)
-	. = ..()
-	if(!power)
-		return
-	if(power>150)
-		animate(src, icon_state = "[initial(icon_state)]_3", 10)
-	else if(power>100)
-		animate(src, icon_state = "[initial(icon_state)]_2", 10)
-	else if(power>50)
-		animate(src, icon_state = "[initial(icon_state)]_1", 10)
-	else
-		animate(src, icon_state = initial(icon_state), 10)
-
-/obj/machinery/the_singularitygen/process(delta_time)
-	if(energy > 0)
-		if(energy >= 200)
+/obj/machinery/the_singularitygen/process()
+	if(energy)
+		if(energy >= required_energy)
 			var/turf/T = get_turf(src)
 			SSblackbox.record_feedback("tally", "engine_started", 1, type)
 			var/obj/singularity/S = new creation_type(T, 50)
 			transfer_fingerprints_to(S)
 			qdel(src)
 		else
-			energy -= delta_time * 0.5
-			update_icon(power = energy)
+			energy--
