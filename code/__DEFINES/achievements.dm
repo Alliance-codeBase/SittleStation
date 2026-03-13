@@ -63,6 +63,9 @@
 #define MEDAL_SHARKDRAGON "Sharkdragon"
 #define MEDAL_THEORETICAL_LIMITS "All Within Theoretical Limits"
 #define MEDAL_DESENSITIZED "In Flanders Fields"
+//MASSMETA EDIT ADDITION START(TRAUMA_PUNISHMENT)
+#define MEDAL_WHAT_LOOP "What?"
+//MASSMETA EDIT ADDITION END(TRAUMA_PUNISHMENT)
 
 //Skill medal hub IDs
 #define MEDAL_LEGENDARY_MINER "Legendary Miner"

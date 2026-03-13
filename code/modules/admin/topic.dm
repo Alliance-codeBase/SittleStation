@@ -1217,6 +1217,27 @@
 					T.admin_remove_member(usr,M)
 		check_teams()
 
+	//MASSMETA EDIT ADDITTION START (TRAUMA_PUNISHMENT)
+	else if(href_list["braintrauma_newpanel"] && !GLOB.brain_trauma_punishment_panel)
+		var/player_key = href_list["braintrauma_newpanel"]
+		brain_trauma_punish_panel(player_key)
+
+	else if(href_list["braintrauma_create_delimiter"] && !GLOB.brain_trauma_punishment_panel)
+		brain_trauma_punish_parse_href(href_list)
+
+	else if((href_list["braintrauma_unpanel"] || href_list["searchbraintraumakey"] || href_list["searchbraintraumaadminkey"]) && !GLOB.brain_trauma_punishment_panel)
+		var/player_key = href_list["searchbraintraumakey"]
+		var/admin_key = href_list["searchbraintraumaadminkey"]
+		var/page = href_list["braintraumaunpage"]
+		brain_trauma_unpunish_panel(player_key, admin_key, page)
+
+	else if(href_list["braintrauma_removeid"] && !GLOB.brain_trauma_punishment_panel)
+		var/record_id = href_list["braintrauma_removeid"]
+		var/player_key = href_list["braintraumaunkey"]
+		var/admin_key = href_list["braintraumaunadminkey"]
+		var/page = href_list["braintraumaunpage"]
+		remove_brain_trauma_punishment(record_id, player_key, admin_key, page)
+	//MASSMETA EDIT ADDITTION END (TRAUMA_PUNISHMENT)
 	else if(href_list["newbankey"])
 		var/player_key = href_list["newbankey"]
 		var/player_ip = href_list["newbanip"]

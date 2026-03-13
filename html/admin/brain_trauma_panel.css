@@ -1,0 +1,47 @@
+.bt-toolbar {
+  margin-bottom: 10px;
+}
+
+.bt-left {
+  width: 230px;
+}
+
+.bt-middle {
+  width: 460px;
+  margin-left: 10px;
+}
+
+.bt-right {
+  width: 360px;
+  margin-left: 10px;
+}
+
+.bt-select {
+  width: 430px;
+  max-width: 430px;
+}
+
+.bt-reason {
+  resize: none;
+  min-height: 130px;
+  width: 350px;
+}
+
+#bt_exact_wrap,
+#bt_category_wrap {
+  margin-bottom: 6px;
+}
+
+.bt-status-ok {
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  border: 1px solid #285f2d;
+  background-color: rgba(0, 128, 0, 0.25);
+}
+
+.bt-status-error {
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  border: 1px solid #8a3030;
+  background-color: rgba(180, 0, 0, 0.25);
+}
