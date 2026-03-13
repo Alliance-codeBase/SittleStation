@@ -226,7 +226,7 @@ GLOBAL_LIST_INIT(brain_trauma_punishment_forbidden_traumas, list(
 /datum/brain_trauma_punishment_manager/proc/show_target_tgui_alert(mob/living/living_mob)
 	set waitfor = FALSE
 
-	if(!istype(living_mob))
+	if(!istype(living_mob)) // Shall not be shown, if our [living_mob], well.. isn't alive?
 		return
 
 	var/player_ckey = ckey(living_mob.ckey)
@@ -239,14 +239,14 @@ GLOBAL_LIST_INIT(brain_trauma_punishment_forbidden_traumas, list(
 	if(alerted_ckeys[player_ckey])
 		return
 
+	living_mob.playsound_local(null, pick('sound/effects/pope_entry.ogg',
+		'sound/effects/cartoon_sfx/cartoon_splat.ogg',
+		'sound/items/bikehorn.ogg',
+		'sound/effects/adminhelp.ogg'), 100, TRUE, pressure_affected = FALSE, use_reverb = FALSE)
+
 	alerted_ckeys[player_ckey] = TRUE
 	if(!prob(75))
 		tgui_alert(living_mob, "You have been punished with recurring brain trauma by administrators.", "Divine Intervention!", list("Understood"), 0, TRUE, GLOB.always_state)
-		living_mob.playsound_local(null, pick('sound/effects/pope_entry.ogg',
-			'sound/effects/cartoon_sfx/cartoon_splat.ogg',
-			'sound/effects/achievement/glockenspiel_ping.ogg',
-			'sound/items/bikehorn.ogg',
-			'sound/effects/adminhelp.ogg'), 100, TRUE, pressure_affected = FALSE, use_reverb = FALSE)
 		return
 
 
