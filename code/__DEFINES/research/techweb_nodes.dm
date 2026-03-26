@@ -116,6 +116,7 @@
 #define TECHWEB_NODE_SURGERY_ADV "surgery_adv"
 #define TECHWEB_NODE_SURGERY_EXP "surgery_exp"
 #define TECHWEB_NODE_SURGERY_TOOLS "surgery_tools"
+#define TECHWEB_NODE_SELF_SURGERY "self_surgery" // MASSMETA EDIT (selfsurgery_research): чип на самооперацию
 #define TECHWEB_NODE_SYNDICATE_BASIC "syndicate_basic"
 #define TECHWEB_NODE_TACKLE_ADVANCED "tackle_advanced"
 #define TECHWEB_NODE_TELECOMS "telecoms"
