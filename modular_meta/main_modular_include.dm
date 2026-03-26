@@ -23,6 +23,7 @@
 #include "features\oguzok_cook\includes.dm"
 #include "features\quirk_augmented\includes.dm"
 #include "features\meta_maps\includes.dme"
+#include "features\selfsurgery_research\includes.dm"
 #include "features\soviet_crate\includes.dm"
 #include "features\uplink_items\includes.dm"
 #include "features\clown_traitor_sound\includes.dm"
