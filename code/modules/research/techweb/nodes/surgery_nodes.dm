@@ -81,7 +81,22 @@
 		"laserscalpel",
 		"searingtool",
 		"mechanicalpinches",
+
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_4_POINTS)
 	discount_experiments = list(/datum/experiment/autopsy/xenomorph = TECHWEB_TIER_4_POINTS)
 	announce_channels = list(RADIO_CHANNEL_MEDICAL)
+
+// MASSMETA EDIT START (selfsurgery_research): чип на самооперацию
+/datum/techweb_node/self_surgery
+	id = TECHWEB_NODE_SELF_SURGERY
+	display_name = "Self-Surgery"
+	description = "Experimental skills of operating yourself on a skillchip. Dangerous."
+	prereq_ids = list(TECHWEB_NODE_SURGERY_TOOLS)
+	design_ids = list(
+		"self_surgery_chip",
+	)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
+	discount_experiments = list(/datum/experiment/autopsy/xenomorph = TECHWEB_TIER_5_POINTS)
+	announce_channels = list(RADIO_CHANNEL_SCIENCE)
+// MASSMETA EDIT END
