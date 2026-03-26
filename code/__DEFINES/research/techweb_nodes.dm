@@ -136,7 +136,3 @@
 #define TECHWEB_NODE_COMP_ADVANCED_SENSORS "comp_advanced_sensors"
 #define TECHWEB_NODE_COMP_INTERACTION_COMPONENT "comp_advanced_interacts"
 // MASSMETA EDIT END
-
-// MASSMETA EDIT BEGIN (selfsurgery_research)
-#define TECHWEB_NODE_SELF_SURGERY "self_surgery" 
-// MASSMETA EDIT END
