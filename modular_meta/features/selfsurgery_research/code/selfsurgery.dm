@@ -1,3 +1,5 @@
+#define TECHWEB_NODE_SELF_SURGERY "self_surgery" 
+
 /datum/design/self_surgery
 	name = "4U70-P3R4710N-2 skillchip"
 	desc = "A skillchip containing legal Nanotrasen medical training protocols, which one could use to perform surgical operations on themselves."
