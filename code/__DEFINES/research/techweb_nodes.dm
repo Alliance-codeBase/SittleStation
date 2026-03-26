@@ -116,7 +116,6 @@
 #define TECHWEB_NODE_SURGERY_ADV "surgery_adv"
 #define TECHWEB_NODE_SURGERY_EXP "surgery_exp"
 #define TECHWEB_NODE_SURGERY_TOOLS "surgery_tools"
-#define TECHWEB_NODE_SELF_SURGERY "self_surgery" // MASSMETA EDIT (selfsurgery_research): чип на самооперацию
 #define TECHWEB_NODE_SYNDICATE_BASIC "syndicate_basic"
 #define TECHWEB_NODE_TACKLE_ADVANCED "tackle_advanced"
 #define TECHWEB_NODE_TELECOMS "telecoms"
@@ -136,4 +135,8 @@
 // MASSMETA EDIT BEGIN (additional_circuit)
 #define TECHWEB_NODE_COMP_ADVANCED_SENSORS "comp_advanced_sensors"
 #define TECHWEB_NODE_COMP_INTERACTION_COMPONENT "comp_advanced_interacts"
+// MASSMETA EDIT END
+
+// MASSMETA EDIT BEGIN (selfsurgery_research)
+#define TECHWEB_NODE_SELF_SURGERY "self_surgery" 
 // MASSMETA EDIT END
