@@ -14,14 +14,15 @@
 	show_to_ghosts = TRUE
 	hud_icon = 'modular_meta/features/antagonists/icons/sinful_demon/demon_icons.dmi'
 	ui_name = "AntagInfoSinfulDemon"
-	//S/The sin a specific demon is assigned to. Defines what objectives and powers they'll receive.
+	//The sin a specific demon is assigned to. Defines what objectives and powers they'll receive.
 	var/demonsin
-	//A/The list of choosable sins for demons. One will be assigned to a demon when spawned naturally.
+	//The list of choosable sins for demons. One will be assigned to a demon when spawned naturally.
 	var/static/list/demonsins = list(SIN_GLUTTONY, SIN_GREED, SIN_WRATH, SIN_ENVY, SIN_PRIDE, SIN_SLOTH)
 	var/static/list/demon_spells = typecacheof(list(
 		/datum/action/cooldown/spell/shapeshift/demon,
 		/datum/action/cooldown/spell/shapeshift/demon/gluttony,
 		/datum/action/cooldown/spell/shapeshift/demon/wrath,
+		/datum/action/cooldown/spell/shapeshift/demon/sloth,
 		/datum/action/cooldown/spell/forcewall/gluttony,
 		/datum/action/cooldown/spell/conjure/summon_greedslots,
 		/datum/action/cooldown/spell/pointed/ignite,
@@ -33,6 +34,7 @@
 		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin,
 		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/wrath,
 		/datum/action/cooldown/spell/touch/sleepy,
+		/datum/action/cooldown/spell/timestop/sloth,
 		))
 
 	var/static/list/sinfuldemon_traits = list(
@@ -41,19 +43,19 @@
 		TRAIT_NOCRITDAMAGE,
 	)
 
-//N/Handles burning and hurting sinful demons while they're in the chapel.
+//Handles burning and hurting sinful demons while they're in the chapel.
 /datum/antagonist/sinfuldemon/proc/demon_burn() //sinful demons are even more vulnerable to the chapel than vampires, but can turn into their true form to negate this.
 	var/mob/living/L = owner.current
 	if(!L)
 		return
-	if(L.stat != DEAD) //A/demons however wont dust from the chapel so this needs to be a check to avoid spam while they're already dead
+	if(L.stat != DEAD) //demons however wont dust from the chapel so this needs to be a check to avoid spam while they're already dead
 		if(prob(50) && L.health >= 50)
 			switch(L.health)
 				if(85 to 100)
 					L.visible_message(span_warning("[L]'s skin begins to heat up and darken!"), span_danger("Your flesh begins to sear..."))
 				if(60 to 85)
 					L.visible_message(span_warning("[L]'s skin begins to melt apart!"), span_danger("Your skin is melting!"), "You hear sizzling.")
-			L.adjustFireLoss(5)
+			L.adjust_fire_loss(5)
 		else if(L.health < 60)
 			if(!L.on_fire)
 				L.visible_message(span_warning("[L] lights up in a holy blaze!"), span_danger("Your skin catches fire!"))
@@ -101,7 +103,7 @@
 	log_admin("[key_name(admin)] has demonized [key_name(new_owner)].")
 
 /datum/antagonist/sinfuldemon/antag_listing_name()
-	return ..() + "(, demon of [demonsin])" //B/ Boris Smith, demon of Wrath
+	return ..() + "(, demon of [demonsin])" //Boris Smith, demon of Wrath
 
 /datum/antagonist/sinfuldemon/greet()
 	to_chat(owner.current, span_warning("<b>You remember your link to the infernal. You are a demon of [demonsin] released from hell to spread sin amongst the living.</b>"))
@@ -117,7 +119,7 @@
 /datum/antagonist/sinfuldemon/on_gain()
 	forge_objectives()
 	owner.current.faction += "hell"
-	for(var/all_traits in sinfuldemon_traits) //M/adds demon traits
+	for(var/all_traits in sinfuldemon_traits) //adds demon traits
 		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
 	switch(demonsin)
 		if(SIN_GLUTTONY)
@@ -130,10 +132,8 @@
 			var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/jaunt = new(owner.current)
 			jaunt.Grant(owner.current)
 
-			//A/ADD_TRAIT(owner.current, TRAIT_AGEUSIA, SINFULDEMON_TRAIT) // nothing disgusts you
-			//S/ADD_TRAIT(owner.current, TRAIT_EAT_MORE, SINFULDEMON_TRAIT) // 3x hunger rate
-			//S/ADD_TRAIT(owner.current, TRAIT_BOTTOMLESS_STOMACH, SINFULDEMON_TRAIT) // nutrition is capped for infinite eating
-			//M/ADD_TRAIT(owner.current, TRAIT_VORACIOUS, SINFULDEMON_TRAIT) // eat and drink faster & eat infinite snacks
+			var/datum/movespeed_modifier/fatty/fatty = new(owner.current)
+			fatty.New(owner.current)
 
 		if(SIN_GREED)
 			var/datum/action/cooldown/spell/shapeshift/demon/demon_form = new(owner.current)
@@ -194,17 +194,17 @@
 			var/datum/action/cooldown/spell/touch/sleepy/mimir = new(owner.current)
 			mimir.Grant(owner.current)
 
-			var/datum/action/cooldown/spell/touch/torment/pain_hand = new(owner.current)
-			pain_hand.Grant(owner.current)
-
 			var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/sloth/jaunt = new(owner.current)
 			jaunt.Grant(owner.current)
+
+			var/datum/action/cooldown/spell/timestop/sloth/time_stop = new(owner.current)
+			time_stop.Grant(owner.current)
 
 	return ..()
 
 /datum/antagonist/sinfuldemon/on_removal()
 	owner.current.faction -= "hell"
-	for(var/all_status_traits in owner.current._status_traits) //ETA/removes demon traits
+	for(var/all_status_traits in owner.current._status_traits) //removes demon traits
 		REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
 	for(var/datum/action/cooldown/spell in owner.current.actions)
 		QDEL_NULL(spell)
@@ -243,8 +243,8 @@
 #undef SIN_WRATH
 
 /datum/antagonist/sinfuldemon/get_preview_icon()
-	var/icon/sinfuldemon_icon = icon('modular_meta/features/antagonists/icons/sinful_demon/passport_photo.dmi', "sinfuldemon")
+	var/datum/universal_icon/sinfuldemon_icon = uni_icon('modular_meta/features/antagonists/icons/sinful_demon/passport_photo.dmi', "sinfuldemon")
 
-	sinfuldemon_icon.Scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
+	sinfuldemon_icon.scale(ANTAGONIST_PREVIEW_ICON_SIZE, ANTAGONIST_PREVIEW_ICON_SIZE)
 
 	return sinfuldemon_icon

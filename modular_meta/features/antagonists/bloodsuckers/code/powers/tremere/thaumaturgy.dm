@@ -17,9 +17,9 @@
 	power_explanation = "Thaumaturgy:\n\
 		Gives you a one shot blood bolt spell, firing it at a person deals 20 burn damage"
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
-	bloodcost = 20
+	bloodcost = 40
 	constant_bloodcost = 0
-	cooldown_time = 6 SECONDS
+	cooldown_time = 12 SECONDS
 	prefire_message = "Click where you wish to fire."
 	///Blood shield given while this Power is active.
 	var/datum/weakref/blood_shield
@@ -35,8 +35,8 @@
 		You will also have the ability to fire a blood beam, ending the power.\n\
 		If the blood beam hits a person, it will deal 20 burn damage."
 	prefire_message = "Click where you wish to fire (using your power removes blood shield)."
-	bloodcost = 40
-	cooldown_time = 4 SECONDS
+	bloodcost = 50
+	cooldown_time = 8 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/three
 	name = "Level 3: Thaumaturgy"
@@ -48,8 +48,8 @@
 		The blood shield has a 75% block chance, but costs 15 blood per hit to maintain.\n\
 		You will also have the ability to fire a blood beam, ending the power.\n\
 		If the blood beam hits a person, it will deal 20 burn damage. If it hits a locker or door, it will break it open."
-	bloodcost = 50
-	cooldown_time = 6 SECONDS
+	bloodcost = 60
+	cooldown_time = 12 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/advanced
 	name = "Level 4: Blood Strike"
@@ -66,8 +66,8 @@
 	active_background_icon_state = "tremere_power_gold_on"
 	base_background_icon_state = "tremere_power_gold_off"
 	prefire_message = "Click where you wish to fire (using your power removes blood shield)."
-	bloodcost = 60
-	cooldown_time = 6 SECONDS
+	bloodcost = 70
+	cooldown_time = 12 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/advanced/two
 	name = "Level 5: Blood Strike"
@@ -81,7 +81,7 @@
 		If the blood beam hits a person, it will deal 40 burn damage and steal blood to feed yourself, though at a net-negative.\n\
 		If it hits a locker or door, it will break it open."
 	bloodcost = 80
-	cooldown_time = 8 SECONDS
+	cooldown_time = 16 SECONDS
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/thaumaturgy/ActivatePower(trigger_flags)
 	. = ..()

@@ -1,0 +1,2289 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/turf/template_noop,
+/area/template_noop)
+"aN" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"bV" = (
+/mob/living/basic/creature,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"bY" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"cc" = (
+/obj/item/trash/boritos,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"cs" = (
+/obj/item/toy/cattoy,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"cB" = (
+/obj/effect/decal/remains/human,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"dD" = (
+/turf/open/lava/smooth,
+/area/deathmatch)
+"dF" = (
+/obj/structure/table/wood,
+/obj/item/pen/fountain,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"dH" = (
+/obj/item/food/meat/bacon,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"dZ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"eu" = (
+/obj/structure/table/wood,
+/obj/item/pen,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"eA" = (
+/obj/item/clothing/under/costume/gondola,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"fN" = (
+/obj/item/stack/sheet/mineral/plasma,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"gf" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/carpet/green,
+/area/deathmatch)
+"iH" = (
+/obj/item/book/granter/action/spell/blind,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"jk" = (
+/obj/item/paper/crumpled/fluff,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"jl" = (
+/obj/item/storage/dice,
+/obj/item/paper,
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"jn" = (
+/obj/effect/decal/cleanable/grand_remains,
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"jQ" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"jY" = (
+/obj/item/trash/chips,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"kA" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/gun/magic/wand/door,
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/green,
+/area/deathmatch)
+"kD" = (
+/obj/structure/table/wood/fancy/cyan,
+/obj/item/book/granter/chuunibyou,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"kT" = (
+/obj/structure/bookcase/random/adult,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/deathmatch)
+"lw" = (
+/mob/living/basic/pet/dog/corgi,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"lE" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/gun/magic/wand/polymorph,
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/blue,
+/area/deathmatch)
+"lH" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/machinery/light/warm/dim/directional/west,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"lW" = (
+/turf/open/floor/carpet/green,
+/area/deathmatch)
+"mz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"mI" = (
+/turf/open/chasm/true,
+/area/deathmatch)
+"na" = (
+/obj/machinery/light/warm/directional/south,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"nk" = (
+/obj/item/trash/sosjerky,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"on" = (
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/blood/old,
+/mob/living/basic/axolotl{
+	name = "the harbringer of doom";
+	health = 1000000000;
+	melee_damage_upper = 2500
+	},
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"os" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/gun/magic/wand/fireball,
+/obj/machinery/light/floor,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"oF" = (
+/turf/open/floor/carpet/cyan,
+/area/deathmatch)
+"oM" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"pc" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/barricade/wooden,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"pt" = (
+/obj/structure/barricade/wooden,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"pN" = (
+/obj/effect/decal/cleanable/grand_remains,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"qh" = (
+/obj/item/flashlight/flare/candle/infinite{
+	light_on = 1
+	},
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"qT" = (
+/obj/structure/lattice/catwalk/mining,
+/turf/open/chasm/true,
+/area/deathmatch)
+"qU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"re" = (
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"rm" = (
+/obj/machinery/light/warm/dim/directional/east,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"sB" = (
+/obj/structure/mineral_door/wood{
+	opacity = 0
+	},
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"sE" = (
+/turf/open/floor/grass,
+/area/deathmatch)
+"tv" = (
+/obj/machinery/light/warm/directional/south,
+/obj/structure/table/wood,
+/obj/item/storage/dice,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"tB" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/candle/infinite{
+	light_on = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"tQ" = (
+/obj/effect/spawner/structure/window/reinforced/indestructible,
+/turf/open/indestructible/plating,
+/area/deathmatch)
+"tX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"ug" = (
+/obj/effect/spawner/random/trash/graffiti,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"ux" = (
+/obj/item/trash/ready_donk,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"vh" = (
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"vK" = (
+/obj/machinery/light/warm/directional/north,
+/obj/structure/table/wood,
+/obj/item/flashlight/flare/candle/infinite{
+	light_on = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"wb" = (
+/obj/structure/table/wood,
+/obj/item/dice/d4,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"wE" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"yg" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/carpet/blue,
+/area/deathmatch)
+"yk" = (
+/obj/structure/table/wood,
+/obj/item/storage/dice,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"yA" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/grass,
+/area/deathmatch)
+"yX" = (
+/obj/item/pen,
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"zC" = (
+/turf/closed/indestructible/reinforced{
+	opacity = 0
+	},
+/area/deathmatch)
+"zE" = (
+/obj/structure/mineral_door/wood{
+	opacity = 0
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"Ag" = (
+/obj/item/toy/reality_pierce,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Ax" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/carpet/green,
+/area/deathmatch)
+"AE" = (
+/obj/item/gun/magic/wand/death,
+/obj/structure/table/wood/fancy/red,
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/indestructible/necropolis/air,
+/area/deathmatch)
+"AH" = (
+/obj/effect/decal/remains/plasma,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"AW" = (
+/turf/open/floor/carpet,
+/area/deathmatch)
+"Bp" = (
+/obj/item/trash/popcorn,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Bu" = (
+/obj/item/clothing/mask/gondola,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"BP" = (
+/obj/item/trash/candy,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Ca" = (
+/obj/item/staff/broom,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Cj" = (
+/obj/structure/mystery_box/wands,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Cr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"CA" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"CD" = (
+/obj/item/flashlight/flare/candle/infinite{
+	light_on = 1
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"Do" = (
+/obj/item/trash/chips,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"DE" = (
+/obj/item/clothing/suit/chaplainsuit/whiterobe,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Ew" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"EK" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/carpet/blue,
+/area/deathmatch)
+"EV" = (
+/obj/structure/table/wood,
+/obj/item/pen/fountain,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Fe" = (
+/turf/open/floor/carpet/blue,
+/area/deathmatch)
+"FO" = (
+/mob/living/basic/pet/dog/corgi/puppy/slime,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Gs" = (
+/obj/structure/sacrificealtar,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"Gu" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"GQ" = (
+/obj/structure/table/wood,
+/obj/item/dice/fourdd6,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Hs" = (
+/mob/living/basic/pet/dog/corgi/puppy/void,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Hy" = (
+/obj/item/chair/wood,
+/obj/machinery/light/warm/dim/directional/east,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Is" = (
+/obj/machinery/door/airlock/cult{
+	opacity = 0
+	},
+/turf/open/floor/cult,
+/area/deathmatch)
+"IF" = (
+/obj/effect/decal/remains/robot,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"IV" = (
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Ji" = (
+/obj/structure/chair/wood,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Js" = (
+/mob/living/basic/pet/dog/corgi/puppy,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Ky" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/obj/structure/mirror/magic{
+	pixel_y = -28
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"La" = (
+/obj/item/book/granter/action/spell/knock,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"Ma" = (
+/mob/living/basic/alien/maid,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Mf" = (
+/obj/machinery/light/warm/dim/directional/west,
+/obj/structure/table/wood,
+/obj/item/pen,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Mw" = (
+/obj/effect/light_emitter/fake_outdoors,
+/turf/open/floor/grass,
+/area/deathmatch)
+"Ne" = (
+/obj/item/dice/d4,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Nq" = (
+/obj/item/dice/d4,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"NW" = (
+/obj/structure/bed,
+/obj/item/bedsheet/wiz,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"Ol" = (
+/obj/item/stack/sheet/mineral/plasma,
+/obj/machinery/light/floor,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Om" = (
+/obj/structure/table/wood,
+/obj/item/gun/magic/wand/nothing,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"PC" = (
+/obj/item/trash/boritos/red,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"PG" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/carpet/cyan,
+/area/deathmatch)
+"PW" = (
+/obj/item/toy/reality_pierce,
+/obj/item/toy/braintoy,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Qy" = (
+/mob/living/basic/pet/gondola,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"QC" = (
+/obj/structure/dresser,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"QR" = (
+/obj/effect/decal/cleanable/grand_remains,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Su" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/book/granter/chuunibyou,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"Sv" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Sw" = (
+/obj/item/trash/chips,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Sx" = (
+/obj/structure/table/wood,
+/obj/item/paper,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"SG" = (
+/mob/living/basic/alien/drone,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"SJ" = (
+/obj/structure/lattice/catwalk/mining,
+/turf/open/lava/smooth,
+/area/deathmatch)
+"ST" = (
+/obj/item/toy/beach_ball,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Tm" = (
+/obj/machinery/light/warm/directional/north,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"Tr" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/grass,
+/area/deathmatch)
+"TB" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/highfrequencyblade/wizard,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"TN" = (
+/obj/structure/bookcase/random/adult,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/deathmatch)
+"Ub" = (
+/obj/item/mjollnir,
+/obj/structure/table/wood/fancy/blue,
+/turf/open/indestructible/stone,
+/area/deathmatch)
+"UG" = (
+/obj/item/staff/broom,
+/obj/effect/mapping_helpers/broken_floor,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"UV" = (
+/obj/item/toy/plush/narplush,
+/obj/machinery/light/floor,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Vx" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/obj/structure/mirror/magic{
+	pixel_y = 28
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"VV" = (
+/obj/structure/bed,
+/obj/item/bedsheet/wiz,
+/obj/structure/mirror/magic{
+	pixel_y = -28
+	},
+/turf/open/floor/carpet,
+/area/deathmatch)
+"VZ" = (
+/obj/item/toy/reality_pierce,
+/obj/machinery/light/floor,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Wf" = (
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"WO" = (
+/obj/structure/table/wood/fancy/cyan,
+/obj/item/gun/magic/wand/resurrection,
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/cyan,
+/area/deathmatch)
+"Yp" = (
+/mob/living/basic/pet/dog/corgi/exoticcorgi,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"Yu" = (
+/obj/machinery/light/floor,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"ZH" = (
+/obj/item/toy/basketball,
+/turf/open/floor/grass/fairy,
+/area/deathmatch)
+"ZK" = (
+/obj/item/trash/boritos/red,
+/turf/open/indestructible/hotelwood,
+/area/deathmatch)
+"ZO" = (
+/obj/structure/bookcase/random/adult,
+/turf/open/floor/carpet/cyan,
+/area/deathmatch)
+
+(1,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+zC
+zC
+zC
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(2,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+dD
+dD
+dD
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(3,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+dD
+Ub
+dD
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(4,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+dD
+SJ
+dD
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(5,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+zC
+zC
+re
+zC
+zC
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(6,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+cB
+ug
+ug
+ug
+cB
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(7,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+re
+Gs
+cB
+Gs
+re
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(8,1,1) = {"
+ab
+ab
+ab
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+pt
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+ab
+ab
+ab
+"}
+(9,1,1) = {"
+ab
+ab
+ab
+zC
+Ol
+vh
+Ma
+vh
+fN
+Yu
+zC
+re
+re
+Nq
+kD
+re
+ux
+dF
+PC
+re
+Nq
+re
+zC
+VZ
+vh
+cs
+bV
+DE
+VZ
+zC
+ab
+ab
+ab
+"}
+(10,1,1) = {"
+ab
+ab
+ab
+zC
+vh
+PW
+vh
+SG
+vh
+Ag
+zC
+nk
+zC
+zC
+pt
+zC
+zC
+zC
+pt
+zC
+zC
+re
+zC
+ZH
+vh
+bV
+vh
+cs
+vh
+zC
+ab
+ab
+ab
+"}
+(11,1,1) = {"
+ab
+ab
+ab
+zC
+SG
+vh
+zC
+tQ
+tQ
+tQ
+zC
+bY
+zC
+yg
+Fe
+Fe
+zC
+oF
+oF
+ZO
+zC
+bY
+zC
+tQ
+tQ
+tQ
+zC
+Ag
+bV
+zC
+ab
+ab
+ab
+"}
+(12,1,1) = {"
+ab
+ab
+ab
+zC
+vh
+Ma
+tQ
+BP
+Sv
+Wf
+Ca
+cc
+zC
+yg
+EK
+Fe
+zC
+oF
+PG
+ZO
+zC
+aN
+aN
+Gu
+aN
+aN
+tQ
+dH
+vh
+zC
+ab
+ab
+ab
+"}
+(13,1,1) = {"
+ab
+ab
+ab
+zC
+fN
+vh
+tQ
+Wf
+Sx
+yk
+IV
+Wf
+zC
+lE
+EK
+Fe
+zC
+oF
+PG
+WO
+zC
+aN
+aN
+pN
+aN
+aN
+tQ
+vh
+bV
+zC
+ab
+ab
+ab
+"}
+(14,1,1) = {"
+ab
+ab
+ab
+zC
+Yu
+Ag
+tQ
+Wf
+wb
+eu
+jn
+Wf
+zC
+yg
+EK
+Fe
+zC
+oF
+PG
+ZO
+zC
+Sw
+aN
+on
+aN
+aN
+tQ
+Ag
+Yu
+zC
+ab
+ab
+ab
+"}
+(15,1,1) = {"
+ab
+ab
+zC
+zC
+zC
+zC
+zC
+Wf
+Wf
+Wf
+rm
+Wf
+zC
+yg
+Fe
+Fe
+zC
+oF
+oF
+ZO
+zC
+UG
+Hy
+aN
+aN
+aN
+zC
+zC
+zC
+zC
+zC
+ab
+ab
+"}
+(16,1,1) = {"
+ab
+ab
+zC
+QC
+Ky
+zC
+zC
+qU
+zC
+zC
+zC
+zC
+zC
+zC
+Is
+zC
+zC
+zC
+Is
+zC
+zC
+zC
+zC
+zC
+zC
+pc
+zC
+zC
+Vx
+QC
+zC
+ab
+ab
+"}
+(17,1,1) = {"
+ab
+ab
+zC
+NW
+CD
+zE
+Wf
+Wf
+yk
+Sv
+Wf
+bY
+zC
+Tr
+Wf
+Ew
+Cj
+Ew
+Wf
+Tr
+zC
+bY
+Wf
+Sv
+Om
+Wf
+Wf
+sB
+CD
+NW
+zC
+ab
+ab
+"}
+(18,1,1) = {"
+ab
+ab
+zC
+zC
+zC
+zC
+Tm
+Ji
+wb
+tB
+Wf
+bY
+zC
+TN
+dZ
+iH
+dZ
+mz
+dZ
+TN
+zC
+bY
+Wf
+jl
+tB
+Wf
+na
+zC
+zC
+zC
+zC
+ab
+ab
+"}
+(19,1,1) = {"
+ab
+ab
+zC
+NW
+CD
+zE
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+CA
+sE
+sE
+sE
+Mw
+sE
+sE
+sE
+CA
+Wf
+QR
+Ne
+Wf
+Wf
+Wf
+sB
+CD
+NW
+zC
+ab
+ab
+"}
+(20,1,1) = {"
+ab
+ab
+zC
+QC
+Ky
+zC
+Wf
+QR
+Wf
+jQ
+IV
+IV
+zC
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+zC
+Cj
+Wf
+Wf
+Wf
+Wf
+Wf
+zC
+Vx
+QC
+zC
+ab
+ab
+"}
+(21,1,1) = {"
+zC
+zC
+zC
+zC
+zC
+zC
+Wf
+Wf
+Wf
+zC
+zC
+zC
+zC
+sE
+sE
+yA
+sE
+sE
+sE
+sE
+zC
+zC
+zC
+zC
+Bp
+Wf
+Wf
+zC
+zC
+zC
+zC
+zC
+zC
+"}
+(22,1,1) = {"
+zC
+NW
+CD
+zE
+Wf
+Wf
+Wf
+Wf
+Wf
+zE
+CD
+NW
+zC
+sE
+mI
+mI
+qT
+mI
+mI
+yA
+zC
+wE
+CD
+sB
+Wf
+Wf
+Wf
+Wf
+Wf
+sB
+CD
+NW
+zC
+"}
+(23,1,1) = {"
+zC
+QC
+Ky
+zC
+IV
+Sv
+Wf
+Wf
+bY
+zC
+Vx
+QC
+zC
+sE
+mI
+mI
+qT
+mI
+mI
+sE
+zC
+QC
+VV
+zC
+bY
+Wf
+Wf
+Wf
+Sv
+zC
+Vx
+QC
+zC
+"}
+(24,1,1) = {"
+zC
+zC
+zC
+zC
+vK
+Wf
+Wf
+cc
+bY
+zC
+zC
+zC
+zC
+yA
+qT
+qT
+AE
+qT
+qT
+sE
+zC
+zC
+zC
+zC
+bY
+Wf
+QR
+tB
+tv
+zC
+zC
+zC
+zC
+"}
+(25,1,1) = {"
+zC
+QC
+Ky
+zC
+EV
+Ji
+Wf
+Ca
+bY
+zC
+Vx
+QC
+zC
+sE
+mI
+mI
+qT
+mI
+mI
+sE
+zC
+QC
+VV
+zC
+bY
+Wf
+Wf
+Ji
+jQ
+zC
+Vx
+QC
+zC
+"}
+(26,1,1) = {"
+zC
+NW
+CD
+zE
+Wf
+Wf
+Wf
+Wf
+Wf
+zE
+CD
+NW
+zC
+sE
+mI
+mI
+qT
+mI
+mI
+sE
+zC
+wE
+CD
+sB
+Wf
+Wf
+Wf
+Wf
+Wf
+sB
+CD
+NW
+zC
+"}
+(27,1,1) = {"
+zC
+zC
+zC
+zC
+zC
+zC
+Wf
+Wf
+Wf
+zC
+zC
+zC
+zC
+sE
+sE
+yA
+sE
+sE
+yA
+sE
+zC
+zC
+zC
+zC
+Wf
+Wf
+Wf
+zC
+zC
+zC
+zC
+zC
+zC
+"}
+(28,1,1) = {"
+ab
+ab
+zC
+QC
+Ky
+zC
+Wf
+Wf
+Wf
+Wf
+Wf
+Cj
+zC
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+zC
+IV
+IV
+Sv
+Wf
+Wf
+Wf
+zC
+Vx
+QC
+zC
+ab
+ab
+"}
+(29,1,1) = {"
+ab
+ab
+zC
+NW
+CD
+zE
+Wf
+QR
+Wf
+Wf
+Wf
+Wf
+CA
+sE
+sE
+sE
+Mw
+sE
+sE
+sE
+CA
+Wf
+Ne
+Wf
+Wf
+QR
+Wf
+sB
+CD
+NW
+zC
+ab
+ab
+"}
+(30,1,1) = {"
+ab
+ab
+zC
+zC
+zC
+zC
+Tm
+Wf
+Wf
+qh
+Wf
+bY
+zC
+kT
+Cr
+tX
+Cr
+La
+Cr
+kT
+zC
+bY
+Wf
+qh
+yX
+Wf
+na
+zC
+zC
+zC
+zC
+ab
+ab
+"}
+(31,1,1) = {"
+ab
+ab
+zC
+NW
+CD
+zE
+Wf
+Wf
+Wf
+wb
+ZK
+bY
+zC
+Tr
+Wf
+Ew
+Cj
+Ew
+Wf
+Tr
+zC
+bY
+Ji
+yk
+IV
+Wf
+Wf
+sB
+CD
+NW
+zC
+ab
+ab
+"}
+(32,1,1) = {"
+ab
+ab
+zC
+QC
+Ky
+zC
+zC
+qU
+zC
+zC
+zC
+zC
+zC
+zC
+Is
+zC
+zC
+zC
+Is
+zC
+zC
+zC
+zC
+zC
+zC
+qU
+zC
+zC
+Vx
+QC
+zC
+ab
+ab
+"}
+(33,1,1) = {"
+ab
+ab
+zC
+zC
+zC
+zC
+zC
+Wf
+Wf
+Sv
+Mf
+GQ
+zC
+Ax
+lW
+lW
+zC
+AH
+AW
+Ew
+zC
+Wf
+lH
+Wf
+Wf
+Wf
+zC
+zC
+zC
+zC
+zC
+ab
+ab
+"}
+(34,1,1) = {"
+ab
+ab
+ab
+zC
+Yu
+vh
+tQ
+Do
+Wf
+Wf
+wb
+yk
+zC
+Ax
+gf
+lW
+zC
+AW
+oM
+Ew
+zC
+Ca
+EV
+yk
+Wf
+Wf
+tQ
+Ag
+Yu
+zC
+ab
+ab
+ab
+"}
+(35,1,1) = {"
+ab
+ab
+ab
+zC
+Ag
+vh
+tQ
+Wf
+QR
+Wf
+Ca
+jQ
+zC
+kA
+gf
+lW
+zC
+AW
+oM
+os
+zC
+Wf
+Sx
+wb
+QR
+Wf
+tQ
+vh
+vh
+zC
+ab
+ab
+ab
+"}
+(36,1,1) = {"
+ab
+ab
+ab
+zC
+lw
+FO
+tQ
+Wf
+Wf
+Wf
+Wf
+Wf
+zC
+Ax
+gf
+lW
+zC
+AW
+oM
+Ew
+zC
+Wf
+ZK
+jQ
+Wf
+Wf
+tQ
+Qy
+vh
+zC
+ab
+ab
+ab
+"}
+(37,1,1) = {"
+ab
+ab
+ab
+zC
+Hs
+vh
+zC
+tQ
+tQ
+tQ
+zC
+bY
+zC
+Ax
+lW
+lW
+zC
+AW
+AW
+Ew
+zC
+bY
+zC
+tQ
+tQ
+tQ
+zC
+vh
+vh
+zC
+ab
+ab
+ab
+"}
+(38,1,1) = {"
+ab
+ab
+ab
+zC
+vh
+Ag
+Js
+vh
+vh
+vh
+zC
+re
+zC
+zC
+pt
+zC
+zC
+zC
+pt
+zC
+zC
+re
+pt
+eA
+Bu
+vh
+ST
+Ag
+Qy
+zC
+ab
+ab
+ab
+"}
+(39,1,1) = {"
+ab
+ab
+ab
+zC
+UV
+Yp
+vh
+vh
+lw
+VZ
+zC
+re
+re
+Nq
+jY
+re
+jk
+re
+Su
+PC
+Nq
+re
+zC
+VZ
+Qy
+vh
+vh
+vh
+UV
+zC
+ab
+ab
+ab
+"}
+(40,1,1) = {"
+ab
+ab
+ab
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+pt
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+zC
+ab
+ab
+ab
+"}
+(41,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+IF
+Gs
+re
+Gs
+re
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(42,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+re
+ug
+ug
+ug
+IF
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(43,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+zC
+zC
+re
+zC
+zC
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(44,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+dD
+SJ
+dD
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(45,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+dD
+TB
+dD
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(46,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+dD
+dD
+dD
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(47,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+zC
+zC
+zC
+zC
+zC
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}

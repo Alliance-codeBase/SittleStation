@@ -23,20 +23,30 @@
 	var/mod_menu_open = FALSE
 	/// artificial time padding when we start loading to give lighting a breather (admin starts will set this to 0)
 	var/start_time = 8 SECONDS
+	// MASSMETA EDIT ADDITION START (metacoins)
+	/// Metacoin entry fee for each player slot in this lobby.
+	var/entry_fee = 0
+	/// Current metacoin bank for winner payout.
+	var/prize_pool = 0
+	/// ckey => paid metacoins for this lobby.
+	var/list/fees_paid = list()
+	//MASSMETA EDIT ADDITION END (metacoins)
 
-/datum/deathmatch_lobby/New(mob/player)
+/datum/deathmatch_lobby/New(mob/player, initial_fee = 0)
 	. = ..()
 	if (!player)
 		stack_trace("Attempted to create a deathmatch lobby without a host.")
 		return qdel(src)
 	host = player.ckey
+	entry_fee = max(round(text2num("[initial_fee]") || 0), 0)
 	map = GLOB.deathmatch_game.maps[pick(GLOB.deathmatch_game.maps)]
 	log_game("[host] created a deathmatch lobby.")
 	if (map.allowed_loadouts)
 		loadouts = map.allowed_loadouts
 	else
 		loadouts = GLOB.deathmatch_game.loadouts
-	add_player(player, loadouts[1], TRUE)
+	if(!add_player(player, loadouts[1], TRUE))
+		return qdel(src)
 	ui_interact(player)
 	addtimer(CALLBACK(src, PROC_REF(lobby_afk_probably)), 5 MINUTES) // being generous here
 
@@ -55,6 +65,9 @@
 	location = null
 	loadouts = null
 	modifiers = null
+	// MASSMETA EDIT ADDITION START (metacoins)
+	fees_paid = null
+	// MASSMETA EDIT ADDITION END (metacoins)
 
 /datum/deathmatch_lobby/proc/start_game()
 	if (playing)
@@ -145,7 +158,6 @@
 		new_player.AddComponent( \
 			/datum/component/temporary_body, \
 			old_mind = observer.mind, \
-			old_body = observer.mind.current, \
 		)
 	new_player.equipOutfit(loadout) // Loadout
 	new_player.PossessByPlayer(ckey)
@@ -180,11 +192,19 @@
 	if (!location)
 		CRASH("Reservation of deathmatch game [host] deleted during game.")
 	var/mob/winner
+	// MASSMETA EDIT ADDITION START (metacoins)
+	var/winner_ckey
+	// MASSMETA EDIT ADDITION END (metacoins)
 	if(players.len)
-		var/list/winner_info = players[pick(players)]
+		// MASSMETA EDIT CHANGE START (metacoins)
+		winner_ckey = pick(players)
+		var/list/winner_info = players[winner_ckey]
 		if(!isnull(winner_info["mob"]))
 			winner = winner_info["mob"] //only one should remain anyway but incase of a draw
 
+	if(prize_pool > 0)
+		pay_pool(winner_ckey, winner)
+		//MASSMETA EDIT CHANGE START (metacoins)
 	announce(span_reallybig("THE GAME HAS ENDED.<BR>THE WINNER IS: [winner ? winner.real_name : "no one"]."))
 
 	for(var/ckey in players)
@@ -246,14 +266,22 @@
 /datum/deathmatch_lobby/proc/add_player(mob/mob, loadout, host = FALSE)
 	if (observers[mob.ckey])
 		CRASH("Tried to add [mob.ckey] as a player while being an observer.")
+	//MASSMETA EDIT ADDITION START (metacoins)
+	if(!pay_fee(mob))
+		return FALSE
 	players[mob.ckey] = list("mob" = mob, "host" = host, "ready" = FALSE, "loadout" = loadout)
-
+	return TRUE
+	//MASSMETA EDIT ADDITION END (metacoins)
 /datum/deathmatch_lobby/proc/remove_ckey_from_play(ckey)
 	var/is_likely_player = (ckey in players)
 	var/list/main_list = is_likely_player ? players : observers
 	var/list/info = main_list[ckey]
 	if(is_likely_player && islist(info))
 		ready_count -= info["ready"]
+		//MASSMETA EDIT ADDITION START (metacoins)
+		if(playing != DEATHMATCH_PLAYING)
+			refund_fee(ckey, "Left lobby before start") // you don't wanna pay a fee, then lose your hard-earned coins
+		// MASSMETA EDIT ADDITION END (metacoins)
 	main_list -= ckey
 
 /datum/deathmatch_lobby/proc/announce(message)
@@ -296,7 +324,13 @@
 		if (players.len >= map.max_players)
 			add_observer(player)
 		else
-			add_player(player, loadouts[1])
+			// MASSMETA EDIT CHANGE START (metacoins)
+			/* ORIGINAL: add_player(player, loadouts[1])
+			*/
+			if(!add_player(player, loadouts[1]))
+				ui_interact(player)
+				return
+			// MASSMETA EDIT CHANGE END (metacoins)
 	ui_interact(player)
 
 /datum/deathmatch_lobby/proc/spectate(mob/player)
@@ -391,6 +425,10 @@
 	data["modifiers"] = has_auth ? get_modifier_list(is_host, mod_menu_open) : list()
 	data["observers"] = get_observer_list()
 	data["players"] = get_player_list()
+	// //MASSMETA EDIT ADDITION START (metacoins)
+	data["entry_fee"] = entry_fee
+	data["prize_pool"] = prize_pool
+	// //MASSMETA EDIT ADDITION END (metacoins)
 	data["playing"] = playing
 	data["self"] = user.ckey
 
@@ -455,7 +493,12 @@
 				return TRUE
 			else if (observers[usr.ckey] && players.len < map.max_players)
 				remove_ckey_from_play(usr.ckey)
-				add_player(usr, loadouts[1], host == usr.ckey)
+				// MASSMETA EDIT CHANGE START (metacoins)
+				// original: add_player(usr, loadouts[1], host == usr.ckey)
+				if(!add_player(usr, loadouts[1], host == usr.ckey))
+					add_observer(usr, host == usr.ckey)
+					return FALSE
+				// MASSMETA EDIT CHANGE END (metacoins)
 				return TRUE
 
 		if ("ready")
@@ -491,7 +534,12 @@
 						add_observer(umob, host == uckey)
 					else if (observers[uckey] && players.len < map.max_players)
 						remove_ckey_from_play(uckey)
-						add_player(umob, loadouts[1], host == uckey)
+						// MASSMETA EDIT CHANGE START (metacoins)
+						// original: add_player(umob, loadouts[1], host == uckey)
+						if(!add_player(umob, loadouts[1], host == uckey))
+							add_observer(umob, host == uckey)
+							return FALSE
+						// MASSMETA EDIT CHANGE END (metacoins)
 					return TRUE
 				if ("change_map")
 					if (!(params["map"] in GLOB.deathmatch_game.maps))
@@ -533,6 +581,92 @@
 					start_game()
 
 	return FALSE
+
+/// Tries to charge the player for current entry fee before adding them to players list.
+/datum/deathmatch_lobby/proc/pay_fee(mob/player)
+	if(!player?.ckey)
+		return FALSE
+
+	var/already_paid = text2num(fees_paid[player.ckey]) || 0
+	if(entry_fee <= already_paid)
+		return TRUE
+
+	var/to_pay = entry_fee - already_paid
+	var/datum/metacoin_shop_controller/shop = get_metacoin_shop_controller()
+	if(!shop)
+		to_chat(player, span_warning("Metacoin subsystem is unavailable."))
+		return FALSE
+
+	var/list/take_result = shop.take_metacoins(player.ckey, to_pay)
+	if(!take_result["ok"])
+		switch(take_result["error"])
+			if("not_enough")
+				to_chat(player, span_warning("Not enough metacoins for entry fee ([entry_fee])."))
+			if("db_unavailable", "db_failed")
+				to_chat(player, span_warning("Metacoin database is unavailable."))
+			else
+				to_chat(player, span_warning("Failed to pay lobby entry fee."))
+		return FALSE
+
+	fees_paid[player.ckey] = already_paid + to_pay
+	prize_pool += to_pay
+	to_chat(player, span_boldnicegreen("Entry fee paid: [to_pay] metacoins."))
+	return TRUE
+// MASSMETA EDIT ADDITION START (metacoins)
+/// Returns paid fee to the player while lobby is not in active match state.
+/datum/deathmatch_lobby/proc/refund_fee(target_ckey, reason)
+	if(!target_ckey)
+		return FALSE
+
+	var/paid_amount = text2num(fees_paid[target_ckey]) || 0
+	if(paid_amount <= 0)
+		fees_paid -= target_ckey
+		return TRUE
+
+	var/datum/metacoin_shop_controller/shop = get_metacoin_shop_controller()
+	if(!shop || !shop.add_metacoins(target_ckey, paid_amount))
+		log_game("Deathmatch lobby [host] failed to refund [paid_amount] metacoins to [target_ckey].")
+		return FALSE
+
+	prize_pool = max(prize_pool - paid_amount, 0)
+	fees_paid -= target_ckey
+
+	var/mob/player_mob = get_mob_by_ckey(target_ckey)
+	if(player_mob)
+		to_chat(player_mob, span_notice("Entry fee refunded: [paid_amount] metacoins. [reason]"))
+	return TRUE
+
+/// Pays prize pool to winner. If payout fails, tries to refund everyone.
+/datum/deathmatch_lobby/proc/pay_pool(winner_ckey, mob/winner)
+	if(prize_pool <= 0)
+		return
+
+	var/payout_amount = prize_pool
+	var/list/paid_snapshot = fees_paid?.Copy() || list()
+	var/datum/metacoin_shop_controller/shop = get_metacoin_shop_controller()
+
+	if(winner_ckey && shop?.add_metacoins(winner_ckey, payout_amount))
+		announce(span_boldnicegreen("[winner ? winner.real_name : winner_ckey] received [payout_amount] metacoins from the prize pool."))
+		if(winner)
+			to_chat(winner, span_boldnicegreen("You won [payout_amount] metacoins from this deathmatch prize pool."))
+		log_game("Deathmatch lobby [host] paid [payout_amount] metacoins to [winner_ckey].")
+		prize_pool = 0
+		fees_paid = list()
+		return
+
+	var/payout_target = winner_ckey || "no winner"
+	log_game("Deathmatch lobby [host] failed to pay prize pool [payout_amount] to [payout_target], trying refunds.")
+	if(shop)
+		for(var/paid_ckey in paid_snapshot)
+			var/paid_amount = text2num(paid_snapshot[paid_ckey]) || 0
+			if(paid_amount <= 0)
+				continue
+			shop.add_metacoins(paid_ckey, paid_amount)
+
+	announce(span_warning("Prize payout failed, entry fees were refunded when possible."))
+	prize_pool = 0
+	fees_paid = list()
+	// //MASSMETA EDIT ADDITION END (metacoins)
 
 /// Selects the passed modifier.
 /datum/deathmatch_lobby/proc/select_modifier(datum/deathmatch_modifier/modifier)

@@ -871,9 +871,9 @@
 
 	if(borgo.mind)
 		borgo.mind.grab_ghost()
-		playsound(loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
+		playsound(loc, check_holidays(APRIL_FOOLS) ? 'modular_meta/features/april_fools_day/borgs/sound/windows-xp-logon-moddif.ogg' : 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE) // Massmeta EDIT - april_fools_day, original: playsound(loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
 	else
-		playsound(loc, 'sound/machines/ping.ogg', 75, TRUE)
+		playsound(loc, check_holidays(APRIL_FOOLS) ? 'modular_meta/features/april_fools_day/borgs/sound/windows-xp-hardware-insert.ogg' : 'sound/machines/ping.ogg', 75, TRUE) // Massmeta EDIT - april_fools_day, original: playsound(loc, 'sound/machines/ping.ogg', 75, TRUE)
 
 	borgo.revive()
 	borgo.logevent("WARN -- System recovered from unexpected shutdown.")

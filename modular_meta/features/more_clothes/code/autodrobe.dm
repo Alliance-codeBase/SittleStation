@@ -11,3 +11,7 @@
 	/obj/item/clothing/suit/costume/mm/brawler_blazer = 1,
 	/obj/item/clothing/shoes/laceup/mm_lgray = 1,
 	)
+
+	GLOB.autodrobe_contraband_items += list(
+	/obj/item/clothing/head/costume/celebrant_headband = 2,
+	)

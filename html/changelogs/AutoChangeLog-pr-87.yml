@@ -1,0 +1,4 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - bugfix: "т2 кол теперь делается из т1 кола и железных палок а не просто палок"

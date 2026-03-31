@@ -20,7 +20,7 @@
 		When activated you will be hidden in a Cloak of Darkness.\n\
 		Click any area up to 2 tiles away to teleport there, ending the power."
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
-	bloodcost = 5
+	bloodcost = 10
 	constant_bloodcost = 2
 	cooldown_time = 12 SECONDS
 	target_range = 2

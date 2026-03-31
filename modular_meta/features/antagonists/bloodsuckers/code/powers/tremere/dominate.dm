@@ -23,7 +23,7 @@
 	bloodcost = 15
 	constant_bloodcost = 2
 	cooldown_time = 50 SECONDS
-	target_range = 6
+	target_range = 4
 	prefire_message = "Select a target."
 
 /datum/action/cooldown/bloodsucker/targeted/tremere/dominate/two

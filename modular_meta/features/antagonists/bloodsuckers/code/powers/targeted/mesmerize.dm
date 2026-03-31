@@ -2,9 +2,9 @@
  *	MEZMERIZE
  *	 Locks a target in place for a certain amount of time.
  *
- * 	Level 2: Additionally mutes
- * 	Level 3: Can be used through face protection
- * 	Level 5: Doesn't need to be facing you anymore
+ * 	Level 3: Additionally mutes
+ * 	Level 5: Can be used through face protection
+ * 	Level 7: Doesn't need to be facing you anymore
  */
 
 /datum/action/cooldown/bloodsucker/targeted/mesmerize
@@ -16,16 +16,16 @@
 		You cannot wear anything covering your face, and both parties must be facing eachother. This does not work if anyone involved is blind, obviously. \n\
 		If your target is already mesmerized or a Monster Hunter then the power will fail.\n\
 		Once mesmerized, the target will be unable to move for a certain amount of time, scaling with level.\n\
-		At level 2, your target will additionally be muted.\n\
-		At level 3, you will be able to use the power through items covering your face.\n\
-		At level 5, you will be able to mesmerize regardless of your target's direction.\n\
+		At level 3, your target will additionally be muted.\n\
+		At level 5, you will be able to use the power through items covering your face.\n\
+		At level 7, you will be able to mesmerize regardless of your target's direction.\n\
 		Higher levels will increase the time of the victim's paralysis."
 	power_flags = NONE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_INCAPACITATED|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
 	cooldown_time = 20 SECONDS
-	target_range = 8
+	target_range = 3
 	power_activates_immediately = FALSE
 	prefire_message = "Whom will you subvert to your will?"
 	///Our mesmerized target - Prevents several mesmerizes.
@@ -40,7 +40,7 @@
 		to_chat(user, span_warning("You have no eyes with which to mesmerize."))
 		return FALSE
 	// Check: Eyes covered?
-	if(istype(user) && (user.is_eyes_covered() && level_current < 3) || !isturf(user.loc))
+	if(istype(user) && (user.is_eyes_covered() && level_current < 7) || !isturf(user.loc))
 		user.balloon_alert(user, "your eyes are concealed from sight.")
 		return FALSE
 	return TRUE
@@ -81,7 +81,7 @@
 		owner.balloon_alert(owner, "you must be facing [current_target].")
 		return FALSE
 	// Target facing me? (On the floor, they're facing everyone)
-	if(((current_target.mobility_flags & MOBILITY_STAND) && !is_source_facing_target(current_target, owner) && level_current < 5))
+	if(((current_target.mobility_flags & MOBILITY_STAND) && !is_source_facing_target(current_target, owner) && level_current < 7))
 		owner.balloon_alert(owner, "[current_target] must be facing you.")
 		return FALSE
 
@@ -108,13 +108,13 @@
 	if(!do_after(user, 4 SECONDS, mesmerized_target, NONE, TRUE, hidden = TRUE, extra_checks = CALLBACK(src, PROC_REF(ContinueActive), user, mesmerized_target)))
 		return
 
-	var/power_time = max((9 SECONDS + level_current * 0.75 SECONDS), 15 SECONDS)
+	var/power_time = max((5 SECONDS + level_current * 0.75 SECONDS), 15 SECONDS)
 	if(HAS_TRAIT_FROM(mesmerized_target, TRAIT_MUTE, BLOODSUCKER_TRAIT))
 		owner.balloon_alert(owner, "[mesmerized_target] is already in a hypnotic gaze.")
 		return
 	if(iscarbon(mesmerized_target))
 		owner.balloon_alert(owner, "successfully mesmerized [mesmerized_target].")
-		if(level_current >= 2)
+		if(level_current >= 3)
 			ADD_TRAIT(mesmerized_target, TRAIT_MUTE, BLOODSUCKER_TRAIT)
 		mesmerized_target.Immobilize(power_time)
 		mesmerized_target.adjust_silence(power_time)

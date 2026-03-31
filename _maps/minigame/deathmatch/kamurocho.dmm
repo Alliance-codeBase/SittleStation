@@ -1,0 +1,1473 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aP" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"bw" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"bD" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"cH" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 4
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"fv" = (
+/obj/structure/emergency_shield/cult{
+	name = "barrier";
+	max_integrity = 9999999
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"fF" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "theharmbaton";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/riveted{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"iF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"iI" = (
+/turf/closed/indestructible/fakedoor{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"ky" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"lz" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"lK" = (
+/obj/structure/stairs_frame{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -6
+	},
+/obj/structure/fence{
+	pixel_x = -18;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"lT" = (
+/obj/structure/stairs_frame{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
+	},
+/obj/structure/fence{
+	dir = 8;
+	pixel_x = 0;
+	pixel_y = 31
+	},
+/obj/structure/fence/end{
+	dir = 1;
+	pixel_x = -18;
+	pixel_y = -25
+	},
+/turf/open/indestructible/stone,
+/area/deathmatch/fullbright)
+"mo" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "the-red-mons";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/opshuttle{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"mD" = (
+/obj/structure/fence/corner{
+	dir = 9;
+	pixel_x = -18;
+	pixel_y = 31
+	},
+/obj/structure/fence{
+	dir = 8;
+	pixel_x = 8;
+	pixel_y = 31
+	},
+/obj/structure/fence{
+	pixel_x = -18;
+	pixel_y = 1
+	},
+/turf/open/indestructible/stone,
+/area/deathmatch/fullbright)
+"mK" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "wrong-turn";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/syndicate{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"nM" = (
+/turf/closed/indestructible/opshuttle{
+	opacity = 0;
+	dir = 4
+	},
+/area/deathmatch/fullbright)
+"nT" = (
+/obj/structure/billboard{
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho_big.dmi';
+	icon_state = "ugly_shi";
+	pixel_x = -10;
+	pixel_y = 14;
+	density = 0
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"nX" = (
+/obj/effect/turf_decal/siding/thinplating_new/corner,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"rr" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "alohasnackbar";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/syndicate{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"rK" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "rock-bottom";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/iron,
+/area/deathmatch/fullbright)
+"sb" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 1
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"sw" = (
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/effect/landmark/deathmatch_player_spawn,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"sM" = (
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/effect/spawner/random/cheburek_one_precent{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"tk" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "neon-flamingo";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/riveted{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"uw" = (
+/obj/structure/stairs_frame{
+	dir = 1
+	},
+/obj/structure/fence{
+	pixel_x = -18;
+	pixel_y = 1
+	},
+/obj/structure/fence/end{
+	pixel_x = -18;
+	pixel_y = 0
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"uE" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "thegreytide";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/syndicate{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"vy" = (
+/obj/structure/stairs_frame{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -3
+	},
+/obj/structure/fence{
+	pixel_x = -18;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"wg" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 4
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"xg" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"xK" = (
+/obj/effect/turf_decal/siding/thinplating_new,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"xS" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "cold-ones";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/syndicate{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"zf" = (
+/turf/closed/indestructible/opshuttle{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"zO" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 5
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"zX" = (
+/turf/closed/indestructible/syndicate{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"AH" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"AS" = (
+/turf/closed/indestructible/opsglass,
+/area/deathmatch/fullbright)
+"AT" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"AV" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "thealenath";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/syndicate{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"Bu" = (
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"BE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/emergency_shield/cult{
+	name = "barrier";
+	max_integrity = 9999999
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"BN" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 1
+	},
+/obj/structure/emergency_shield/cult{
+	name = "barrier";
+	max_integrity = 9999999
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"BV" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "emergencyrumparty";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/opshuttle{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"Da" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"Dn" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 6
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"Ef" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"Eh" = (
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"Ft" = (
+/obj/effect/turf_decal/siding/thinplating_new/corner{
+	dir = 8
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"FT" = (
+/obj/effect/turf_decal/siding/thinplating_new,
+/obj/structure/emergency_shield/cult{
+	name = "barrier";
+	max_integrity = 9999999
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"IS" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"JK" = (
+/obj/structure/stairs_frame{
+	pixel_x = 0;
+	pixel_y = 7
+	},
+/obj/structure/stairs_frame,
+/obj/structure/fence/end{
+	pixel_x = -18;
+	pixel_y = 0
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"LE" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/emergency_shield/cult{
+	name = "barrier";
+	max_integrity = 9999999
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"LN" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 1
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"NB" = (
+/turf/closed/indestructible/iron,
+/area/deathmatch/fullbright)
+"Oi" = (
+/obj/vehicle/sealed/car/cheburek{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 1
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"OX" = (
+/obj/effect/decal/cleanable/garbage,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"Pd" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"PL" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/emergency_shield/cult{
+	name = "barrier";
+	max_integrity = 9999999
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"SH" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "the-assembly-line";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/opshuttle{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"TN" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "combocafe";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/riveted{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"Uh" = (
+/obj/effect/turf_decal/trimline/white/corner{
+	dir = 4
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"UF" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "doctors-orders";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/riveted{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"UW" = (
+/obj/structure/stairs_frame{
+	pixel_x = 0;
+	pixel_y = 7
+	},
+/obj/structure/stairs_frame,
+/obj/structure/fence{
+	pixel_x = -18;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"VR" = (
+/obj/item/lead_pipe,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"Wl" = (
+/obj/structure/fluff/fokoff_sign{
+	name = "Bar Sign wannabe";
+	icon_state = "robustacafe";
+	desc = null;
+	icon = 'icons/obj/machines/barsigns.dmi'
+	},
+/turf/closed/indestructible/syndicate{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"WF" = (
+/obj/effect/turf_decal/siding/thinplating_new{
+	dir = 4
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"XL" = (
+/obj/machinery/vending/snack/green,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"XS" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"Yf" = (
+/obj/structure/stairs_frame{
+	pixel_x = 0;
+	pixel_y = 7
+	},
+/obj/structure/stairs_frame,
+/obj/structure/fence{
+	pixel_x = -18;
+	pixel_y = 1
+	},
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+"Yn" = (
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"YD" = (
+/obj/effect/turf_decal/trimline/white/line{
+	dir = 9
+	},
+/turf/open/indestructible{
+	icon_state = "type1";
+	icon = 'modular_meta/features/deathmatch/icons/kamurocho.dmi'
+	},
+/area/deathmatch/fullbright)
+"YI" = (
+/turf/closed/indestructible/riveted{
+	opacity = 0
+	},
+/area/deathmatch/fullbright)
+"ZQ" = (
+/obj/machinery/vending/snack/blue,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/rockyground,
+/area/deathmatch/fullbright)
+
+(1,1,1) = {"
+nM
+nM
+nM
+nM
+nM
+nM
+nM
+nM
+nM
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+iF
+iF
+Eh
+sb
+Yn
+"}
+(2,1,1) = {"
+Bu
+Bu
+OX
+iF
+iF
+Bu
+Bu
+iF
+VR
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+fF
+YI
+iF
+Bu
+xK
+sb
+Yn
+"}
+(3,1,1) = {"
+iF
+Bu
+Bu
+Bu
+Bu
+AH
+Bu
+iF
+ZQ
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+Bu
+Bu
+Eh
+Oi
+Yn
+"}
+(4,1,1) = {"
+iF
+ky
+iF
+iF
+Bu
+Bu
+Bu
+Ef
+XL
+YI
+YI
+YI
+YI
+YI
+zX
+zX
+zX
+zX
+zX
+zX
+zX
+Bu
+Bu
+xK
+sb
+Yn
+"}
+(5,1,1) = {"
+Bu
+mD
+UW
+Yf
+JK
+Bu
+Bu
+AH
+Bu
+YI
+YI
+YI
+YI
+YI
+zX
+zX
+zX
+zX
+zX
+zX
+AS
+iF
+Bu
+Eh
+sb
+Yn
+"}
+(6,1,1) = {"
+Bu
+lT
+lK
+vy
+uw
+Bu
+Bu
+Bu
+Bu
+YI
+YI
+YI
+YI
+YI
+zX
+zX
+zX
+zX
+zX
+zX
+iI
+iF
+Bu
+Eh
+sb
+Yn
+"}
+(7,1,1) = {"
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+iF
+YI
+YI
+YI
+YI
+YI
+zX
+zX
+zX
+zX
+zX
+zX
+AS
+iF
+Bu
+xK
+sb
+Yn
+"}
+(8,1,1) = {"
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+iF
+YI
+YI
+YI
+YI
+YI
+zX
+zX
+zX
+zX
+uE
+zX
+zX
+Bu
+Bu
+xK
+sb
+Yn
+"}
+(9,1,1) = {"
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+Bu
+YI
+YI
+YI
+YI
+YI
+zX
+zX
+mK
+zX
+zX
+Wl
+AS
+BE
+BE
+FT
+BN
+fv
+"}
+(10,1,1) = {"
+NB
+NB
+NB
+NB
+rK
+NB
+NB
+NB
+Bu
+YI
+YI
+YI
+YI
+YI
+zX
+zX
+zX
+zX
+rr
+zX
+AS
+iF
+Bu
+Eh
+sb
+Yn
+"}
+(11,1,1) = {"
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+Bu
+YI
+YI
+YI
+tk
+YI
+zX
+zX
+zX
+zX
+zX
+zX
+zX
+XS
+nX
+lz
+sb
+Yn
+"}
+(12,1,1) = {"
+NB
+NB
+iI
+NB
+NB
+AS
+AS
+NB
+Bu
+YI
+AS
+iI
+YI
+YI
+zX
+iI
+zX
+AS
+AS
+zX
+zX
+WF
+Dn
+YD
+LN
+Yn
+"}
+(13,1,1) = {"
+Da
+Da
+xg
+Da
+LE
+Da
+xg
+xg
+xg
+xg
+Da
+Da
+Da
+xg
+xg
+xg
+xg
+Da
+Da
+xg
+xg
+xg
+cH
+LN
+Yn
+Yn
+"}
+(14,1,1) = {"
+Yn
+Yn
+Yn
+Yn
+fv
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+aP
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+nT
+cH
+Yn
+Yn
+Yn
+"}
+(15,1,1) = {"
+Yn
+Yn
+Yn
+Yn
+fv
+Yn
+aP
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+bw
+Yn
+Yn
+Yn
+"}
+(16,1,1) = {"
+Yn
+Yn
+Yn
+Yn
+fv
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+Yn
+aP
+Yn
+Yn
+Yn
+Yn
+Yn
+bD
+Yn
+Yn
+Yn
+"}
+(17,1,1) = {"
+Pd
+Pd
+Pd
+wg
+PL
+Pd
+Pd
+wg
+Pd
+Pd
+Pd
+Pd
+wg
+wg
+Pd
+Pd
+Pd
+wg
+wg
+Pd
+Pd
+wg
+cH
+Uh
+Yn
+Yn
+"}
+(18,1,1) = {"
+YI
+AS
+AS
+YI
+YI
+zf
+zf
+AS
+AS
+iI
+AS
+AS
+zf
+zf
+zX
+AS
+AS
+zX
+AS
+AS
+zX
+IS
+AT
+zO
+Uh
+Yn
+"}
+(19,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+BV
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+mo
+zX
+zX
+zX
+zX
+zX
+zX
+AS
+Bu
+Ft
+AT
+sb
+Yn
+"}
+(20,1,1) = {"
+YI
+YI
+TN
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+SH
+zf
+zf
+zf
+zX
+zX
+zX
+xS
+zX
+zX
+AS
+Bu
+Bu
+xK
+sb
+Yn
+"}
+(21,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zX
+zX
+zX
+zX
+zX
+zX
+zX
+iF
+AH
+xK
+sb
+Yn
+"}
+(22,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zX
+zX
+zX
+zX
+zX
+AV
+AS
+iF
+Bu
+sM
+sb
+Yn
+"}
+(23,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zX
+zX
+zX
+zX
+zX
+zX
+AS
+Bu
+Bu
+Eh
+sb
+Yn
+"}
+(24,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zX
+zX
+zX
+zX
+zX
+zX
+zX
+Bu
+iF
+Eh
+sb
+Yn
+"}
+(25,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+Bu
+Bu
+sw
+sb
+Yn
+"}
+(26,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+YI
+YI
+YI
+YI
+YI
+YI
+iI
+iF
+Bu
+xK
+sb
+Yn
+"}
+(27,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+BE
+BE
+FT
+BN
+fv
+"}
+(28,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+YI
+YI
+YI
+YI
+YI
+UF
+YI
+Bu
+Bu
+Eh
+sb
+Yn
+"}
+(29,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+iF
+Bu
+Eh
+sb
+Yn
+"}
+(30,1,1) = {"
+YI
+YI
+YI
+YI
+YI
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+YI
+YI
+YI
+YI
+YI
+YI
+YI
+iF
+iF
+xK
+sb
+Yn
+"}

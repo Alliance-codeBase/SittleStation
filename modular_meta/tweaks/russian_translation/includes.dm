@@ -1,6 +1,7 @@
 #include "ru_ai_laws\code\laws_antagonistic.dm"
 #include "ru_ai_laws\code\laws_neutral.dm"
 #include "ru_ai_laws\code\laws_station_sided.dm"
+#include "ru_ai_laws\code\pai_laws.dm"
 #include "ru_ai_laws\code\supplied.dm"
 #include "ru_ai_laws\code\zeroth.dm"
 #include "ru_crayons\code\crayon.dm"

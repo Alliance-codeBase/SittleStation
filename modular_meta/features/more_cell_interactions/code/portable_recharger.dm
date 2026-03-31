@@ -82,21 +82,19 @@
 
 		return TRUE
 
-/obj/machinery/recharger/portable_recharger/Destroy()
-	QDEL_NULL(portable_recharger)
-	end_processing()
-	return ..()
-
 //складывание
-/obj/machinery/recharger/portable_recharger/mouse_drop_dragged(atom/over_object, src_location, over_location)
-	if(over_object == usr) // Я ОЧЕНЬ СИЛЬНО НАДЕЮСЬ ЧТО ГОСТЫ НЕ СМОГУТ ЗАКРЫВАТЬ ЧОМОДАН
+/obj/machinery/recharger/portable_recharger/mouse_drop_dragged(atom/over_object, mob/user, src_location, over_location)
+	if(!isliving(user))
+		to_chat(user, span_warning("You can't do that!"))
+		return
+	if(over_object == user) // они не будут, если уметь кодить
 		if(charging)
-			usr.visible_message(self_message = "<span class='notice'>It is necessary to remove the [charging] before folding the [src.name].</span>")
+			user.visible_message(self_message = "<span class='notice'>It is necessary to remove the [charging] before folding the [src.name].</span>")
 			return
-		usr.visible_message("<span class='notice'>[usr] begins to fold the [src] into a compact case.</span>", "<span class='notice'>We put the [src] into a compact case.</span>")
-		if(do_after(usr, 5, target = usr))
+		user.visible_message("<span class='notice'>[user] begins to fold the [src] into a compact case.</span>", "<span class='notice'>We put the [src] into a compact case.</span>")
+		if(do_after(user, 5, target = user))
 			end_processing()
-			usr.put_in_hands(portable_recharger)
+			user.put_in_hands(portable_recharger)
 			moveToNullspace()
 			closed = TRUE
 
@@ -164,8 +162,8 @@
 	. = ..()
 
 /obj/item/case_portable_recharger/Destroy()
-	if(!QDELETED(link))
-		QDEL_NULL(link)
+	QDEL_NULL(link)
+	incell = null
 	return ..()
 
 //Раскладывание
@@ -178,7 +176,6 @@
 		link.forceMove(get_turf(src))
 		link.closed = FALSE
 		user.transferItemToLoc(src, link, TRUE)
-		atom_storage.close_all()
 
 /obj/item/case_portable_recharger/attackby(obj/item/W, mob/living/user, params)
 	. = ..()

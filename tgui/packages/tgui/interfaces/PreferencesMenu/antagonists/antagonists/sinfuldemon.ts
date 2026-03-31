@@ -1,4 +1,4 @@
-import { Antagonist, Category } from '../base';
+import { type Antagonist, Category } from '../base';
 
 export const DEMONOFSIN_MECHANICAL_DESCRIPTION = `
       Fulfill an objective based on the sin your demon represents.

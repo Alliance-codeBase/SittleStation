@@ -123,12 +123,30 @@
 			continue
 		target = C
 		oldtarget_name = C.name
-		speak("Level [threatlevel] infraction alert!")
-		playsound(src, pick(
-			'sound/mobs/non-humanoids/beepsky/criminal.ogg',
-			'sound/mobs/non-humanoids/beepsky/justice.ogg',
-			'sound/mobs/non-humanoids/beepsky/freeze.ogg',
-		), 50, FALSE)
+		// Massmeta REMOVAL START - april_fools_day
+		// speak("Level [threatlevel] infraction alert!")
+		// playsound(src, pick(
+		// 	'sound/mobs/non-humanoids/beepsky/criminal.ogg',
+		// 	'sound/mobs/non-humanoids/beepsky/justice.ogg',
+		// 	'sound/mobs/non-humanoids/beepsky/freeze.ogg',
+		// ), 50, FALSE)
+		// Massmeta REMOVAL END
+		// Massmeta ADDITION BEGIN
+		if(check_holidays(APRIL_FOOLS))
+			speak("Угроза [threatlevel]-го уровня!")
+			playsound(src, pick(
+				'modular_meta/features/april_fools_day/beepsky/sounds/gad.ogg',
+				'modular_meta/features/april_fools_day/beepsky/sounds/trahnu.ogg',
+				'modular_meta/features/april_fools_day/beepsky/sounds/dog_shit.ogg',
+			), 100, FALSE)
+		else
+			speak("Level [threatlevel] infraction alert!")
+			playsound(src, pick(
+				'sound/mobs/non-humanoids/beepsky/criminal.ogg',
+				'sound/mobs/non-humanoids/beepsky/justice.ogg',
+				'sound/mobs/non-humanoids/beepsky/freeze.ogg',
+			), 50, FALSE)
+		// Massmeta ADDITION END
 		playsound(src,'sound/items/weapons/saberon.ogg',50,TRUE,-1)
 		visible_message(span_warning("[src] ignites his energy swords!"))
 		icon_state = "grievous-c"

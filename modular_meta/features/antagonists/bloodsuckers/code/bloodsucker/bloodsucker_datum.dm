@@ -91,13 +91,11 @@
 	var/static/list/bloodsucker_traits = list(
 		TRAIT_NOBREATH,
 		TRAIT_SLEEPIMMUNE,
-		TRAIT_NOCRITDAMAGE,
 		TRAIT_RESISTCOLD,
 		TRAIT_RADIMMUNE,
 		TRAIT_GENELESS,
 		TRAIT_STABLEHEART,
 		TRAIT_NOSOFTCRIT,
-		TRAIT_NOHARDCRIT,
 		TRAIT_AGEUSIA,
 		TRAIT_COLDBLOODED,
 		TRAIT_VIRUSIMMUNE,
@@ -186,9 +184,6 @@
 ///The signals registered with the sol subsystem here are reregistered on mind transfer.
 /datum/antagonist/bloodsucker/on_gain()
 	RegisterSignal(SSsunlight, COMSIG_SOL_RANKUP_BLOODSUCKERS, PROC_REF(sol_rank_up))
-	RegisterSignal(SSsunlight, COMSIG_SOL_NEAR_START, PROC_REF(sol_near_start))
-	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end))
-	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol))
 	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning))
 
 	if(IS_FAVORITE_VASSAL(owner.current)) // Vassals shouldnt be getting the same benefits as Bloodsuckers.
@@ -211,7 +206,7 @@
 
 /// Called by the remove_antag_datum() and remove_all_antag_datums() mind procs for the antag datum to handle its own removal and deletion.
 /datum/antagonist/bloodsucker/on_removal()
-	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK, COMSIG_SOL_WARNING_GIVEN))
+	UnregisterSignal(SSsunlight, list(COMSIG_SOL_RANKUP_BLOODSUCKERS, COMSIG_SOL_NEAR_START, COMSIG_SOL_END, COMSIG_SOL_RISE_TICK))
 	clear_powers_and_stats()
 	check_cancel_sunlight() //check if sunlight should end
 	return ..()
@@ -271,10 +266,6 @@
 	//Sol-related signals are removed when 'FinalDeath()' is called,
 	//so we'll reregister them here.
 	RegisterSignal(SSsunlight, COMSIG_SOL_RANKUP_BLOODSUCKERS, PROC_REF(sol_rank_up), TRUE)
-	RegisterSignal(SSsunlight, COMSIG_SOL_NEAR_START, PROC_REF(sol_near_start), TRUE)
-	RegisterSignal(SSsunlight, COMSIG_SOL_END, PROC_REF(on_sol_end), TRUE)
-	RegisterSignal(SSsunlight, COMSIG_SOL_RISE_TICK, PROC_REF(handle_sol), TRUE)
-	RegisterSignal(SSsunlight, COMSIG_SOL_WARNING_GIVEN, PROC_REF(give_warning), TRUE)
 
 /datum/antagonist/bloodsucker/greet()
 	. = ..()
@@ -305,10 +296,17 @@
 
 /datum/antagonist/bloodsucker/get_preview_icon()
 
-	var/icon/final_icon = render_preview_outfit(/datum/outfit/bloodsucker_outfit)
-	final_icon.Blend(icon('icons/effects/blood.dmi', "uniformblood"), ICON_OVERLAY)
+	var/datum/universal_icon/final_icon = render_preview_outfit(/datum/outfit/bloodsucker_outfit)
+	var/datum/universal_icon/final_blood_icon = uni_icon('icons/effects/blood.dmi', "uniformblood")
+	final_blood_icon.blend_color(BLOOD_COLOR_RED, ICON_MULTIPLY)
+	final_icon.blend_icon(final_blood_icon, ICON_OVERLAY)
 
 	return finish_preview_icon(final_icon)
+
+/datum/antagonist/bloodsucker/ui_data(mob/user)
+	var/list/data = ..()
+	data["total_blood_drank"] = total_blood_drank
+	return data
 
 /datum/antagonist/bloodsucker/ui_static_data(mob/user)
 	var/list/data = list()

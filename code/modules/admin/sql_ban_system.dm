@@ -625,17 +625,6 @@
 	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][is_server_ban ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]."
 	log_admin_private("[kn] [msg][is_server_ban ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][is_server_ban ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
-	GLOB.bot_event_sending_que += list(list(
-		"title" = "Бан",
-		"player_ckey" = player_ckey,
-		"admin_ckey" = admin_ckey,
-		"timestamp" = world.realtime + world.timezone HOURS,
-		"duration" = duration > 1 ?  world.realtime + world.timezone HOURS + duration : null,
-		"reason" = reason,
-		"round" = GLOB.round_id,
-		"additional_info" = is_server_ban ? null : "**Роли:** [roles_to_ban.Join(", ")]",
-		"color" = "#991717",
-	))
 	if(applies_to_admins)
 		send2adminchat("BAN ALERT","[kn] [msg]")
 	if(player_ckey)
@@ -650,6 +639,10 @@
 
 	if(is_server_ban && linked_ahelp_ticket)
 		linked_ahelp_ticket.Resolve()
+
+	//MASSMETA ADDITION EDIT START (bot_topic)
+	send_ban_created_to_bot(player_ckey, player_key, admin_ckey, usr.client.key, reason, duration, interval, roles_to_ban, applies_to_admins)
+	//MASSMETA ADDITION EDIT END (bot_topic)
 
 /datum/admins/proc/unban_panel(player_key, admin_key, player_ip, player_cid, page = 0)
 	if(!check_rights(R_BAN))
@@ -828,17 +821,6 @@
 	qdel(query_unban)
 	log_admin_private("[kn] has unbanned [target] from [role].")
 	message_admins("[kna] has unbanned [target] from [role].")
-	GLOB.bot_event_sending_que += list(list(
-		"title" = "Бан",
-		"player_ckey" = target,
-		"admin_ckey" = usr.client.ckey,
-		"timestamp" = world.realtime + world.timezone HOURS,
-		"duration" = null,
-		"reason" = null,
-		"round" = GLOB.round_id,
-		"additional_info" = "[role ? null : "**Роль:** [role]\n "]**СНЯТ**",
-		"color" = "#669917",
-	))
 	var/client/C = GLOB.directory[player_key]
 	if(C)
 		build_ban_cache(C)
@@ -847,6 +829,12 @@
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
 			to_chat(i, span_boldannounce("[usr.client.key] has removed a ban from [role] for your IP or CID."), confidential = TRUE)
+
+	// Send unban event to Discord bot
+	//MASSMETA ADDITION EDIT START (bot_topic)
+	send_ban_unbanned_to_bot(ckey(player_key), player_key, usr.client.ckey, usr.client.key, role, null)
+	//MASSMETA ADDITION EDIT END (bot_topic)
+
 	unban_panel(player_key, admin_key, player_ip, player_cid, page)
 
 /// Sometimes an admin did not intend to unban a player. This proc undoes an unbanning operation by setting the unbanned_ keys in the DB back to null.
@@ -888,6 +876,13 @@
 	var/banned_player_message = span_boldannounce("[usr.client.key] has re-activated a removed ban from [role] for your key.")
 	var/banned_other_message = span_boldannounce("[usr.client.key] has re-activated a removed ban from [role] for your IP or CID.")
 	var/kick_banned_players = (role == "Server")
+
+
+	// MASSMETA EDIT ADDITION START (bot_topic)
+	// Send reban event to Discord bot
+	send_ban_rebanned_to_bot(ckey(player_key), player_key, usr.client.ckey, usr.client.key, role, null)
+	// MASSMETA EDIT ADDITION END(bot_topic)
+
 
 	notify_all_banned_players(ckey(player_key), player_ip, player_cid, banned_player_message, banned_other_message, kick_banned_players, applies_to_admins)
 	unban_panel(player_key, admin_key, player_ip, player_cid, page)
@@ -993,17 +988,6 @@
 	var/kna = key_name_admin(usr)
 	log_admin_private("[kn] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].") //if a ban doesn't have a key it must have an ip and/or a cid to have reached this point normally
 	message_admins("[kna] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
-	GLOB.bot_event_sending_que += list(list(
-		"title" = "Бан",
-		"player_ckey" = player_ckey,
-		"admin_ckey" = usr.client.key,
-		"timestamp" = world.realtime + world.timezone HOURS,
-		"duration" = duration > 1 ?  world.realtime + world.timezone HOURS + duration : null,
-		"reason" = reason,
-		"round" = GLOB.round_id,
-		"additional_info" = "**ИЗМЕНЕН**",
-		"color" = "#991717",
-	))
 	if(changes["Applies to admins"])
 		send2adminchat("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
 
@@ -1013,6 +997,10 @@
 	var/kick_banned_players = (is_server_ban && (changes["Key"] || changes["IP"] || changes["CID"]))
 
 	notify_all_banned_players(player_ckey, player_ip, player_cid, player_edit_message, other_edit_message, kick_banned_players, applies_to_admins)
+
+	//MASSMETA ADDITION EDIT START (bot_topic)
+	send_ban_edited_to_bot(player_ckey, player_key, usr.client.ckey, usr.client.key, reason, duration, interval, null, changes)
+	//MASSMETA ADDITION EDIT END (bot_topic)
 
 	unban_panel(player_key, null, null, null, page)
 

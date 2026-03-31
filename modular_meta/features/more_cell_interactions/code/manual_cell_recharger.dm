@@ -2,7 +2,9 @@
 	name = "manual battery charger"
 	desc = "Charges cell by converting mechanical energy into electrical energy. Just activate it in-hand and the cell will be charged by the your force."
 	icon = 'modular_meta/features/more_cell_interactions/icons/manual_cell_recharger.dmi'
-	icon_state= "handheldcharger_black_empty"
+	worn_icon = null //blame sanecmen
+	icon_state = "handheldcharger_black_empty"
+	worn_icon_state = null
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT

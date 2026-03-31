@@ -1,0 +1,5 @@
+author: "MassMeta Bruh24"
+delete-after: True
+changes:
+  - code_imp: "Дезматч за метакоины"
+  - server: "Таблица Players, поле metacoins"

@@ -36,7 +36,7 @@
 	victim.adjust_hallucinations(20 SECONDS)
 	victim.Immobilize(3 SECONDS)
 	victim.Stun(1 SECONDS)
-	victim.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
+	victim.adjust_organ_loss(ORGAN_SLOT_BRAIN, 10)
 	victim.visible_message(span_danger("[victim] cringes in pain as they hold their head for a second!"))
 	victim.emote("scream")
 	to_chat(victim, span_warning("You feel an explosion of pain erupt in your mind!"))

@@ -276,7 +276,6 @@ GLOBAL_VAR(restart_counter)
 		world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
 #endif
 
-/* bot backdoor
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC //redirect to server tools if necessary
 
@@ -297,86 +296,6 @@ GLOBAL_VAR(restart_counter)
 
 	handler = new handler()
 	return handler.TryRun(input)
-*/
-//REPLACED
-/world/Topic(T, addr, master, key)
-	TGS_TOPIC	//redirect to server tools if necessary
-
-	var/static/list/req_ip_ids = list()
-	var/list/response = list()
-
-	if(length(T) > CONFIG_GET(number/topic_max_size))
-		response["statuscode"] = 413
-		response["response"] = "Payload too large"
-		return json_encode(response)
-
-	var/logging = CONFIG_GET(flag/log_world_topic)
-	var/topic_decoded = rustg_url_decode(T)
-	if(!rustg_json_is_valid(topic_decoded))
-		if(logging)
-			log_topic("(NON-JSON) \"[topic_decoded]\", from:[addr], master:[master], key:[key]")
-		// Fallback check for spacestation13.com requests
-		if(topic_decoded == "status")
-			return list2params(list("players" = length(GLOB.clients)))
-		response["statuscode"] = 400
-		response["response"] = "Bad Request - Invalid JSON format"
-		return json_encode(response)
-
-	var/list/params = json_decode(topic_decoded)
-	params["addr"] = addr
-	var/query = params["query"]
-	var/auth = trim(params["auth"])
-	var/source = params["source"]
-
-	if(logging)
-		var/list/censored_params = params.Copy()
-		censored_params["auth"] = "***[copytext(params["auth"], -4)]"
-		log_topic("\"[json_encode(censored_params)]\", from:[addr], master:[master], auth:[censored_params["auth"]], key:[key], source:[source]")
-
-	var/req_id = params["req_id"]
-	response["req_id"] = req_id
-	if(!req_ip_ids[addr])
-		req_ip_ids[addr] = list()
-	if(req_ip_ids[addr][req_id])
-		response["statuscode"] = 202
-		response["response"] = "Bad Request - Already handled"
-		return json_encode(response)
-
-	req_ip_ids[addr] += req_id
-
-	if(!source)
-		response["statuscode"] = 400
-		response["response"] = "Bad Request - No source specified"
-		return json_encode(response)
-
-	if(!query)
-		response["statuscode"] = 400
-		response["response"] = "Bad Request - No endpoint specified"
-		return json_encode(response)
-
-	if(!LAZYACCESS(GLOB.topic_tokens["[auth]"], "[query]"))
-		response["statuscode"] = 401
-		response["response"] = "Unauthorized - Bad auth"
-		return json_encode(response)
-
-	var/datum/world_topic/command = GLOB.topic_commands["[query]"]
-	if(!command)
-		response["statuscode"] = 501
-		response["response"] = "Not Implemented"
-		return json_encode(response)
-
-	if(command.CheckParams(params))
-		response["statuscode"] = command.statuscode
-		response["response"] = command.response
-		response["data"] = command.data
-		return json_encode(response)
-	else
-		command.Run(params)
-		response["statuscode"] = command.statuscode
-		response["response"] = command.response
-		response["data"] = command.data
-		return json_encode(response)
-//YOUR MOM
 
 /world/proc/AnnouncePR(announcement, list/payload)
 	var/static/list/PRcounts = list() //PR id -> number of times announced this round
@@ -573,8 +492,8 @@ GLOBAL_VAR(restart_counter)
 	LISTASSERTLEN(global_area.turfs_by_zlevel, map_load_z_cutoff, list())
 	for (var/zlevel in 1 to map_load_z_cutoff)
 		var/list/to_add = block(
-			1, old_maxy + 1, 1,
-			maxx, maxy, map_load_z_cutoff
+			1, old_maxy + 1, zlevel,
+			maxx, maxy, zlevel
 		)
 		global_area.turfs_by_zlevel[zlevel] += to_add
 

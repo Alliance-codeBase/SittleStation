@@ -7,4 +7,4 @@
 	name = "Deathmatch Expansion"
 	group = "Features"
 	desc = "Больше карт, больше снаряжения, больше веселья"
-	author = "Quinal"
+	author = "Quinal, Glamyr"
