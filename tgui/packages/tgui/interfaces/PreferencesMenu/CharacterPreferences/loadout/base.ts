@@ -39,6 +39,10 @@ export type LoadoutItem = {
   buttons: LoadoutButton[];
   reskins: ReskinOption[] | null;
   information: LoadoutTooltip[];
+  //MASSMETA ADDITION
+  restricted_roles: string[] | null;
+  blacklisted_roles: string[] | null;
+  //MASSMETA ADDITION END
 };
 
 // Category of items in the loadout

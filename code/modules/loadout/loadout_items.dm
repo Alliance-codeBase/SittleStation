@@ -351,6 +351,19 @@ GLOBAL_LIST_INIT(all_loadout_categories, init_loadout_categories())
 	if(required_holiday)
 		displayed_text[FA_ICON_CALENDAR_CHECK] = "Only available: [required_holiday]"
 
+	//MASSMETA ADDITION: Role restricted loadouts
+	if(restricted_roles && restricted_roles.len)
+		var/roles_text = ""
+
+		for(var/role in restricted_roles)
+			if(roles_text != "")
+				roles_text += ", "
+			roles_text += role
+
+		displayed_text[FA_ICON_LOCK] = "Only equipable for [roles_text]"
+
+	//MASSMETA ADDITION END
+
 	return displayed_text
 
 /**
