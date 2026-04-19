@@ -55,6 +55,14 @@
 /datum/uplink_item/stealthy_tools/blackout
 	progression_minimum = 0 MINUTES
 
+// Add CQC for traitors. By RaMbUt878. Testmerger if you can.
+/datum/uplink_item/stealthy_weapons/cqc
+	name = "CQC Manual"
+	desc = "A manual that instructs you in the ways of CQC, or Close Quarters Combat. Allows you to master unarmed combat techniques."
+	item = /obj/item/book/granter/martial/cqc
+	cost = 13
+	purchasable_from = ~(UPLINK_ALL_SYNDIE_OPS|UPLINK_SPY)
+
 // population restricts
 // to restrict his grace and allow for deswords, as well as martial arts to be bought from the uplink on lowpop shifts.
 
