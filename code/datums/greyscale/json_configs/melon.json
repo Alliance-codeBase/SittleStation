@@ -1,0 +1,10 @@
+{
+	"pidorskiyi_arbuz": [
+		{
+			"type": "icon_state",
+			"icon_state": "pidorskiyi_arbuz",
+			"blend_mode": "overlay",
+			"color_ids": [1]
+		}
+	]
+}

@@ -49,6 +49,7 @@
 #include "features\bot_topic\includes.dm"
 #include "features\metacoins\includes.dm"
 #include "features\spaceman_races\includes.dm"
+#include "features\bangclaw\includes.dm"
 
 /* --- Reverts --- */
 
