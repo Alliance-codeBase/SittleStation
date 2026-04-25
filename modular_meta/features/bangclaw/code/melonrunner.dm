@@ -1,3 +1,8 @@
+#define COLOR_MELON_BLUE "#3399ff"
+#define COLOR_MELON_YELLOW "#fbdf56"
+#define COLOR_MELON_ORANGE "#ffa64d"
+#define COLOR_MELON_RED "#ff4d4d"
+
 /mob/living/basic/melon
 	name = "green melon runner"
 	icon = 'modular_meta/features/bangclaw/icons/melons.dmi'
@@ -21,10 +26,10 @@
 	json_config = 'code/datums/greyscale/json_configs/melon.json'
 
 GLOBAL_LIST_INIT(melon_runner_colors, list(
-	"Blue" = "#3399ff",
-	"Yellow" = "#fbdf56",
-	"Orange" = "#ffa64d",
-	"Red" = "#ff4d4d",
+	COLOR_MELON_BLUE = 1,
+	COLOR_MELON_YELLOW = 1,
+	COLOR_MELON_ORANGE = 1,
+	COLOR_MELON_RED = 1,
 ))
 
 /mob/living/basic/melon/colored
@@ -68,3 +73,8 @@ GLOBAL_LIST_INIT(melon_runner_colors, list(
 /mob/living/basic/melon/colored/red/apply_colour()
 	. = ..()
 	set_greyscale(colors = list("Red"))
+
+#undef COLOR_MELON_BLUE
+#undef COLOR_MELON_YELLOW
+#undef COLOR_MELON_ORANGE
+#undef COLOR_MELON_RED
