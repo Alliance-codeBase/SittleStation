@@ -1,0 +1,4 @@
+author: "MassMeta: glamyr"
+delete-after: True
+changes:
+  - code_imp: "Меньше ошибок с рантаймами"

@@ -367,7 +367,7 @@
 	hardsuit_helmet_type = /obj/item/clothing/head/helmet/space/hardsuit/combatmedic
 	armor_type = /datum/armor/hardsuit_combatmedic
 	allowed = list(/obj/item/gun, /obj/item/melee/baton, /obj/item/circular_saw, /obj/item/tank/internals, /obj/item/storage/box/pillbottles,\
-	/obj/item/storage/medkit, /obj/item/stack/medical/gauze, /obj/item/stack/medical/suture, /obj/item/stack/medical/mesh, /obj/item/storage/bag/chemistry)
+	/obj/item/storage/medkit, /obj/item/stack/medical/wrap/gauze, /obj/item/stack/medical/suture, /obj/item/stack/medical/mesh, /obj/item/storage/bag/chemistry)
 	slowdown = 0.5
 
 /////////////////////////////////// SYNDI /////////////////////////////////////////////
@@ -882,12 +882,12 @@
 /obj/item/clothing/head/helmet/space/hardsuit/carp/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if (slot == ITEM_SLOT_HEAD)
-		user.faction |= "carp"
+		user.add_faction("carp")
 
 /obj/item/clothing/head/helmet/space/hardsuit/carp/dropped(mob/living/carbon/human/user)
 	..()
 	if (user.head == src)
-		user.faction -= "carp"
+		user.remove_faction("carp")
 
 /obj/item/clothing/suit/space/hardsuit/carp/old
 	name = "battered carp space suit"

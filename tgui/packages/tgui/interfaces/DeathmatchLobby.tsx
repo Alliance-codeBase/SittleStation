@@ -46,6 +46,9 @@ type Map = {
 type Data = {
   active_mods: string;
   admin: BooleanLike;
+  // MASSMETA EDIT ADDITION START (metacoins)
+  entry_fee: number;
+  // MASSMETA EDIT ADDITION END (metacoins)
   host: BooleanLike;
   loadoutdesc: string;
   loadouts: string[];
@@ -56,6 +59,9 @@ type Data = {
   observers: Player[];
   players: Player[];
   playing: BooleanLike;
+  //MASSMETA EDIT ADDITION START (metacoins)
+  prize_pool: number;
+  // MASSMETA EDIT ADDITION END (metacoins)
   self: string;
 };
 
@@ -282,13 +288,31 @@ function PlayerColumn(props) {
 
 function HostControls(props) {
   const { act, data } = useBackend<Data>();
-  const { active_mods = [], admin, host, loadoutdesc, playing } = data;
-
+  /* MASSMETA EDIT ADDITION START (metacoins) */
+  const {
+    active_mods = [],
+    admin,
+    entry_fee,
+    host,
+    loadoutdesc,
+    playing,
+    prize_pool,
+  } = data;
+  /* MASSMETA EDIT ADDITION END (metacoins) */
   const fullAccess = !!host || !!admin;
 
   return (
     <Section fill scrollable>
       <MapInfo />
+      <Divider />
+      <LabeledList>
+        {/* MASSMETA EDIT ADDITION START (metacoins) */}
+        <LabeledList.Item label="Entry Fee">{entry_fee || 0}</LabeledList.Item>
+        <LabeledList.Item label="Prize Pool">
+          {/* MASSMETA EDIT ADDITION END (metacoins) */}
+          {prize_pool || 0}
+        </LabeledList.Item>
+      </LabeledList>
       <Divider />
       <Box textAlign="center" color="average">
         {active_mods}

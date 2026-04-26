@@ -16,14 +16,14 @@
 ![Goodge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)
 ![endingbadge](https://forthebadge.com/images/badges/works-on-my-machine-1.svg)
 
-| Website                 | Link                                                                                                     |
-| ----------------------- | -------------------------------------------------------------------------------------------------------- |
-| MassMeta Code           | [https://github.com/Alliance-codeBase/SittleStation](https://github.com/Alliance-codeBase/SittleStation) |
-| Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md)                          |
-| Our Discord             | [https://discord.gg/lambda](https://discord.gg/XHRzsmG4Eq)                                               |
-| /TG/ Website            | [https://www.tgstation13.org](https://www.tgstation13.org)                                               |
-| /TG/ Codedocs           | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/)                                   |
-| /TG/ Coderbus Discord   | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                                 |
+| Website                 | Link                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------ |
+| MassMeta Code           | [https://github.com/Alliance-codeBase/PostMeta/](https://github.com/Alliance-codeBase/PostMeta/) |
+| Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md)                  |
+| Our Discord             | [https://discord.gg/qxWZWft7BC](https://discord.gg/qxWZWft7BC)                                   |
+| /TG/ Website            | [https://www.tgstation13.org](https://www.tgstation13.org)                                       |
+| /TG/ Codedocs           | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/)                           |
+| /TG/ Coderbus Discord   | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                         |
 
 This is MassMeta downstream fork of /tg/station SpaceStation 13.
 
@@ -57,7 +57,7 @@ This is MassMeta downstream fork of /tg/station SpaceStation 13.
 
 [Гайд по тому как принять участие в разработке (на английском)](.github/CONTRIBUTING.md)
 
-**Если вы хотите, чтобы ваша фича попала в репозиторий на показ игрокам, то велком в `#Code-chat` в [нашем Дискорде](https://discord.gg/lambda13).**
+**Если вы хотите, чтобы ваша фича попала в репозиторий на показ игрокам, то велком в `#Code-chat` в [нашем Дискорде](https://discord.gg/qxWZWft7BC).**
 
 [/tg/station HACKMD account (BLOCKED in RU)](https://hackmd.io/@tgstation) - Design documentation here
 

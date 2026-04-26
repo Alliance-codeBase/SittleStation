@@ -1,16 +1,17 @@
 /datum/action/cooldown/spell/conjure/summon_mirror
 	name = "Summon Mirror"
 	desc = "Summon forth a temporary mirror of sin that will allow you and others to change anything they want about themselves."
-	button_icon = 'icons/mob/actions/actions_minor_antag.dmi'
+	button_icon = 'modular_meta/features/antagonists/icons/actions_minor_antag.dmi'
 	button_icon_state = "magic_mirror"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
 
 	invocation = "Aren't I so amazing?"
 	invocation_type = INVOCATION_WHISPER
-	spell_requirements = NONE
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
-	cooldown_time = 30 SECONDS
+	cooldown_time = 60 SECONDS
 	summon_lifespan = 1 MINUTES
 	summon_radius = 0
 	summon_type = list(/obj/structure/mirror/magic/lesser)
@@ -28,7 +29,7 @@
 	invocation_type = INVOCATION_WHISPER
 
 	cooldown_time = 12 SECONDS
-	spell_requirements = NONE
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 	hand_path = /obj/item/melee/touch_attack/mend
 
@@ -44,8 +45,8 @@
 		..()
 		return TRUE
 	playsound(caster, 'sound/effects/magic/demon_attack1.ogg', 75, TRUE)
-	victim.adjustBruteLoss(-20)
-	victim.adjustFireLoss(-20)
+	victim.adjust_brute_loss(-20)
+	victim.adjust_fire_loss(-20)
 	victim.visible_message(span_bold("[victim] appears to flash colors of red, before seemingly appearing healthier!"))
 	to_chat(victim, span_warning("You feel a sinister feeling of recovery."))
 	return TRUE

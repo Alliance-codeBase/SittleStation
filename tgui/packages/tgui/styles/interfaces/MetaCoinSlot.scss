@@ -1,0 +1,288 @@
+.MetaCoinSlot {
+  --slot-tile-size: 64px;
+  --slot-banner-a: #f48c26;
+  --slot-banner-b: #e6427a;
+  --slot-banner-c: #23a5d8;
+  --slot-banner-d: #30bf78;
+  --slot-reel-top: #f2f6fb;
+  --slot-reel-mid: #c7ced8;
+  --slot-reel-low: #8f97a4;
+}
+
+.MetaCoinSlot__Banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 76px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 6px 14px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(
+    -45deg,
+    var(--slot-banner-a),
+    var(--slot-banner-b),
+    var(--slot-banner-c),
+    var(--slot-banner-d)
+  );
+  background-size: 320% 320%;
+  animation: MetaCoinSlot__BannerGradient 9s ease infinite;
+}
+
+.MetaCoinSlot__Banner--winning {
+  animation:
+    MetaCoinSlot__BannerGradient 9s ease infinite,
+    MetaCoinSlot__BannerFlash 0.45s steps(2, end) infinite;
+}
+
+.MetaCoinSlot__Banner--jackpot {
+  animation:
+    MetaCoinSlot__BannerGradient 9s ease infinite,
+    MetaCoinSlot__JackpotFlash 0.35s steps(2, end) infinite;
+}
+
+.MetaCoinSlot__BannerTitle {
+  font-family: 'Trebuchet MS', 'Franklin Gothic Medium', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-shadow:
+    0 0 10px rgba(0, 0, 0, 0.65),
+    1px 1px 0 rgba(0, 0, 0, 0.75);
+}
+
+.MetaCoinSlot__BannerText {
+  margin-top: 0.2rem;
+  font-family: 'Lucida Sans Unicode', 'Trebuchet MS', sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.MetaCoinSlot__Reels {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.MetaCoinSlot__Reel {
+  position: relative;
+  flex: 1;
+  height: calc(var(--slot-tile-size) * 3);
+  overflow: hidden;
+  border-radius: 0.3rem;
+  border: 1px solid rgba(30, 33, 37, 0.9);
+  background: linear-gradient(
+    to bottom,
+    var(--slot-reel-top) 0%,
+    var(--slot-reel-mid) 35%,
+    var(--slot-reel-low) 100%
+  );
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.45);
+}
+
+.MetaCoinSlot__Reel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.18),
+    rgba(255, 255, 255, 0.12),
+    rgba(0, 0, 0, 0.22)
+  );
+  pointer-events: none;
+}
+
+.MetaCoinSlot__Reel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--slot-tile-size) - 2px);
+  bottom: calc(var(--slot-tile-size) - 2px);
+  border-top: 2px solid rgba(0, 0, 0, 0.9);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.9);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 8px rgba(255, 232, 150, 0.45);
+  pointer-events: none;
+}
+
+.MetaCoinSlot__Reel:nth-child(1) .MetaCoinSlot__IconStrip {
+  animation-delay: 0s;
+  animation-duration: 2.8s;
+}
+
+.MetaCoinSlot__Reel:nth-child(2) .MetaCoinSlot__IconStrip {
+  animation-delay: 0.1s;
+  animation-duration: 3s;
+}
+
+.MetaCoinSlot__Reel:nth-child(3) .MetaCoinSlot__IconStrip {
+  animation-delay: 0.2s;
+  animation-duration: 3.2s;
+}
+
+.MetaCoinSlot__Reel:nth-child(4) .MetaCoinSlot__IconStrip {
+  animation-delay: 0.3s;
+  animation-duration: 3.4s;
+}
+
+.MetaCoinSlot__Reel:nth-child(5) .MetaCoinSlot__IconStrip {
+  animation-delay: 0.4s;
+  animation-duration: 3.6s;
+}
+
+.MetaCoinSlot__IconStrip {
+  transform: translateY(calc(-1 * var(--slot-tile-size) * 27));
+  text-align: center;
+  will-change: transform;
+}
+
+.MetaCoinSlot__IconStrip--spinning {
+  transform: translateY(0);
+  animation-name: MetaCoinSlot__SpinStrip;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(1, 1.24, 0.88, 0.96);
+}
+
+.MetaCoinSlot__Symbol {
+  height: var(--slot-tile-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.02) 65%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.MetaCoinSlot__SymbolIcon {
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.22));
+}
+
+.MetaCoinSlot__ResultBadge {
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(17, 20, 28, 0.55);
+}
+
+.MetaCoinSlot__ResultBadge--flashy {
+  animation: MetaCoinSlot__ResultPulse 0.9s ease-in-out infinite;
+}
+
+.MetaCoinSlot__ResultBadge--jackpot {
+  animation: MetaCoinSlot__JackpotPulse 0.55s ease-in-out infinite;
+}
+
+.MetaCoinSlot__QuickBets {
+  margin-top: 0.45rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.3rem;
+}
+
+.MetaCoinSlot__QuickBet {
+  width: 100%;
+  text-align: center;
+}
+
+@keyframes MetaCoinSlot__BannerGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes MetaCoinSlot__BannerFlash {
+  0% {
+    color: #fff6b0;
+  }
+  100% {
+    color: #ffffff;
+  }
+}
+
+@keyframes MetaCoinSlot__JackpotFlash {
+  0% {
+    color: #ffe787;
+    filter: saturate(1.1);
+  }
+  100% {
+    color: #ffffff;
+    filter: saturate(1.55);
+  }
+}
+
+@keyframes MetaCoinSlot__SpinStrip {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-1 * var(--slot-tile-size) * 27));
+  }
+}
+
+@keyframes MetaCoinSlot__ResultPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 230, 90, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(255, 230, 90, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 230, 90, 0.2);
+  }
+}
+
+@keyframes MetaCoinSlot__JackpotPulse {
+  0% {
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 10px rgba(255, 234, 108, 0.8),
+      0 0 20px rgba(255, 132, 0, 0.55);
+    transform: scale(1.015);
+  }
+  100% {
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .MetaCoinSlot {
+    --slot-tile-size: 56px;
+  }
+
+  .MetaCoinSlot__BannerTitle {
+    font-size: 1.35rem;
+  }
+
+  .MetaCoinSlot__BannerText {
+    font-size: 0.82rem;
+  }
+
+  .MetaCoinSlot__QuickBets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

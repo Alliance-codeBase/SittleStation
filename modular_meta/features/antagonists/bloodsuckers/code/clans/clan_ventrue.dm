@@ -11,8 +11,14 @@
 	clan_objective = /datum/objective/ventrue_clan_objective
 	join_icon_state = "ventrue"
 	join_description = "Lose the ability to drink from the mindless; become unable to gain more than three powers, \
-		instead raise a vassal into a Bloodsucker."
+		instead raise a vassal into a Bloodsucker. Gain recipe of persuation rack."
 	blood_drink_type = BLOODSUCKER_DRINK_SNOBBY
+
+/datum/bloodsucker_clan/ventrue/New(datum/antagonist/bloodsucker/owner_datum)
+	. = ..()
+	if(!(/datum/crafting_recipe/vassalrack in bloodsuckerdatum.owner?.learned_recipes))
+		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
+	return TRUE
 
 /datum/bloodsucker_clan/ventrue/spend_rank(datum/antagonist/bloodsucker/source, mob/living/carbon/target, cost_rank = TRUE, blood_cost)
 	if(!target)
@@ -65,7 +71,7 @@
 			target.add_traits(list(TRAIT_COLDBLOODED, TRAIT_NOBREATH, TRAIT_AGEUSIA), BLOODSUCKER_TRAIT)
 			to_chat(target, span_notice("Your blood begins to feel cold, and as a mote of ash lands upon your tongue, you stop breathing..."))
 		if(3)
-			target.add_traits(list(TRAIT_NOCRITDAMAGE, TRAIT_NOSOFTCRIT), BLOODSUCKER_TRAIT)
+			target.add_traits(list(TRAIT_NOSOFTCRIT), BLOODSUCKER_TRAIT)
 			to_chat(target, span_notice("You feel your master's blood improve your endurance, you will not fall that easily."))
 		if(4)
 			target.add_traits(list(TRAIT_SLEEPIMMUNE, TRAIT_VIRUSIMMUNE), BLOODSUCKER_TRAIT)
@@ -74,7 +80,7 @@
 				var/mob/living/carbon/human/human_target = target
 				human_target.skin_tone = "albino"
 		if(5)
-			target.add_traits(list(TRAIT_NOHARDCRIT, TRAIT_HARDLY_WOUNDED), BLOODSUCKER_TRAIT)
+			target.add_traits(list(TRAIT_HARDLY_WOUNDED), BLOODSUCKER_TRAIT)
 			to_chat(target, span_notice("Your blood stills, you feel like you'd be able to withstand cuts and stabbings."))
 		if(6 to INFINITY)
 			if(!vassal_bloodsuker_datum)

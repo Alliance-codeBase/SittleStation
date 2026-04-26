@@ -103,9 +103,7 @@
 	/// Callback to see if we can thrust the user.
 	var/thrust_callback
 	/// How much force this module can apply per tick
-	var/drift_force = 8 NEWTONS //MASSMETA EDIT (fix_newtonian_movement)
-	/// How much force this module's stabilizier can put out
-	var/stabilizer_force = 25 NEWTONS //MASSMETA EDIT (fix_newtonian_movement)
+	var/drift_force = 1.5 NEWTONS
 
 /obj/item/mod/module/jetpack/Initialize(mapload)
 	. = ..()
@@ -129,7 +127,6 @@
 		/datum/component/jetpack, \
 		src.stabilize, \
 		drift_force, \
-		stabilizer_force, \
 		COMSIG_MODULE_TRIGGERED, \
 		COMSIG_MODULE_DEACTIVATED, \
 		MOD_ABORT_USE, \
@@ -176,8 +173,7 @@
 	icon_state = "jetpack_advanced"
 	overlay_state_inactive = "module_jetpackadv"
 	overlay_state_active = "module_jetpackadv_on"
-	drift_force = 8 NEWTONS //MASSMETA EDIT (fix_newtonian_movement)
-	stabilizer_force = 25 NEWTONS //MASSMETA EDIT (fix_newtonian_movement)
+	drift_force = 2 NEWTONS
 
 /// Cooldown to use if we didn't actually launch a jump jet
 #define FAILED_ACTIVATION_COOLDOWN 3 SECONDS
@@ -822,7 +818,7 @@
 	. = ..()
 
 	if(!length(accepted_mats))
-		accepted_mats = SSmaterials.materials_by_category[MAT_CATEGORY_SILO]
+		accepted_mats = SSmaterials.get_materials_by_flag(MATERIAL_SILO_STORED)
 
 	container = new ( \
 		src, \

@@ -54,9 +54,17 @@
 		return
 	helmet_on = FALSE
 	if(ishuman(helmet.loc))
+		if(!user && ishuman(helmet.loc))
+			user = helmet.loc
+		if(!user && ishuman(loc))
+			user = loc
+		if(!user)
+			helmet.forceMove(src)
+			return
 		if(helmet.on)
 			helmet.attack_self(user)
-		user.transferItemToLoc(helmet, src, TRUE)
+		if(!user.transferItemToLoc(helmet, src, TRUE))
+			helmet.forceMove(src)
 		user.update_worn_oversuit()
 		to_chat(user, span_notice("The helmet on the hardsuit disengages."))
 		playsound(src.loc, 'sound/vehicles/mecha/mechmove03.ogg', 50, TRUE)
@@ -122,11 +130,11 @@
 /obj/item/clothing/suit/space/hardsuit/equipped(mob/user, slot)
 	..()
 	if(helmet && slot != ITEM_SLOT_OCLOTHING)
-		RemoveHelmet()
+		RemoveHelmet(user)
 
 /obj/item/clothing/suit/space/hardsuit/dropped(mob/user)
 	..()
-	RemoveHelmet()
+	RemoveHelmet(user)
 
 /obj/item/clothing/suit/space/hardsuit/item_action_slot_check(slot)
 	if(slot == ITEM_SLOT_OCLOTHING) //we only give the mob the ability to toggle the helmet if he's wearing the hardsuit.

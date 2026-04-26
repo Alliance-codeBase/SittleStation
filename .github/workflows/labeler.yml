@@ -1,4 +1,4 @@
-name: "Labeler"
+name: "Labeling: PostMeta"
 on:
   issues:
     types: [opened, edited, milestoned]
@@ -6,18 +6,18 @@ on:
     types: [synchronize, opened, reopened, ready_for_review]
 
 jobs:
-  labeler:
+  labeling_tool:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
     steps:
-      - name: Global labeler 
+      - name: Global labeler
         id: glob_labeler
         uses: jimschubert/labeler-action@v2
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: PR labele
+      - name: PR labeling tool
         id: pr_labeler
         uses: actions/labeler@v5

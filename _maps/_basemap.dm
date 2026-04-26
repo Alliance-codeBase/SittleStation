@@ -27,8 +27,6 @@
 		// MASSMETA EDIT BEGIN - Compiling our modular maps too!
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
-		#include "map_files\ProtoBoxStation\ProtoBoxStation.dmm"
-		#include "map_files\protosstation\protos.dmm"
 		#include "map_files\bearcat\bearcat.dmm"
 		// MASSMETA EDIT END
 

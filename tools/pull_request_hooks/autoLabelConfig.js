@@ -7,38 +7,34 @@
 // the label will not be removed
 export const file_labels = {
   GitHub: {
-    filepaths: [".github/"],
+    filepaths: ['.github/'],
   },
   SQL: {
-    filepaths: ["SQL/"],
+    filepaths: ['SQL/'],
   },
-  "Изменения карт": {
-    filepaths: ["_maps/"],
-    file_extensions: [".dmm"],
+  'Map Edit': {
+    filepaths: ['_maps/'],
+    file_extensions: ['.dmm'],
   },
-  Инструменты: {
-    filepaths: ["tools/"],
+  Tools: {
+    filepaths: ['tools/'],
   },
-  "Изменение конфигов": {
-    filepaths: ["config/", "code/controllers/configuration/entries/"],
+  'Config Update': {
+    filepaths: ['config/', 'code/controllers/configuration/entries/'],
     add_only: true,
   },
-  Спрайты: {
-    filepaths: ["icons/"],
-    file_extensions: [".dmi"],
+  Sprites: {
+    filepaths: ['icons/'],
+    file_extensions: ['.dmi'],
     add_only: true,
   },
-  Звуки: {
-    filepaths: ["sound/"],
-    file_extensions: [".ogg"],
+  Sound: {
+    filepaths: ['sound/'],
+    file_extensions: ['.ogg'],
     add_only: true,
   },
   UI: {
-    filepaths: ["tgui/"],
-    add_only: true,
-  },
-  "Модулярная фишка": {
-    filepaths: ["modular_meta"],
+    filepaths: ['tgui/'],
     add_only: true,
   },
 };
@@ -48,36 +44,28 @@ export const file_labels = {
 // Add a label based on keywords in the title
 export const title_labels = {
   Logging: {
-    keywords: ["log", "logging"],
+    keywords: ['log', 'logging'],
   },
-  Удаление: {
-    keywords: ["убираем", "удаляем"],
+  Removal: {
+    keywords: ['remove', 'delete'],
   },
-  Рефактор: {
-    keywords: ["рефактор"],
+  Refactor: {
+    keywords: ['refactor'],
   },
-  "Unit Tests": {
-    keywords: ["unit test"],
+  'Unit Tests': {
+    keywords: ['unit test'],
   },
-  "April Fools": {
-    keywords: ["[april fools]"],
+  'April Fools': {
+    keywords: ['[april fools]'],
   },
-  "Не мержить": {
-    keywords: ["[НМ]", "[не мерджить]", "[не мержить]"],
+  'Do Not Merge': {
+    keywords: ['[dnm]', '[do not merge]'],
   },
-  "GBP: No Update": {
-    keywords: ["[no gbp]"],
+  'GBP: No Update': {
+    keywords: ['[no gbp]'],
   },
-  "Только для ТМа": {
-    keywords: [
-      "[только ТМ]",
-      "[только тест мердж]",
-      "[только тест мерж]",
-      "[ТМ]",
-    ],
-  },
-  "Соединение с Апстримом": {
-    keywords: ["[Апстрим]", "[Upstream]"],
+  'Test Merge Only': {
+    keywords: ['[tm only]', '[test merge only]'],
   },
 };
 
@@ -86,57 +74,53 @@ export const title_labels = {
 // Adds labels based on keywords in the changelog
 // TODO use the existing changelog parser
 export const changelog_labels = {
-  Чиним: {
-    default_text: "Починены некоторые вещи",
-    keywords: ["fix", "fixes", "bugfix"],
+  Fix: {
+    default_text: 'fixed a few things',
+    keywords: ['fix', 'fixes', 'bugfix'],
   },
-  "Quality of Life": {
-    default_text: "Упростили что-то в использовании",
-    keywords: ["qol"],
+  'Quality of Life': {
+    default_text: 'made something easier to use',
+    keywords: ['qol'],
   },
-  Звуки: {
-    default_text: "Добавлены/изменены/убраны аудио или звуковые эффекты",
-    keywords: ["sound"],
+  Sound: {
+    default_text: 'added/modified/removed audio or sound effects',
+    keywords: ['sound'],
   },
-  Фишка: {
-    default_text: "Добавлены новые механики",
-    keywords: ["add", "adds", "rscadd"],
+  Feature: {
+    default_text: 'Added new mechanics or gameplay changes',
+    alt_default_text: 'Added more things',
+    keywords: ['add', 'adds', 'rscadd'],
   },
-  Удаление: {
-    default_text: "Убраны старые фишки",
-    keywords: ["del", "dels", "rscdel"],
+  Removal: {
+    default_text: 'Removed old things',
+    keywords: ['del', 'dels', 'rscdel'],
   },
-  Спрайты: {
-    default_text: "Добавлены/изменены/убраны спрайты или картинки",
-    keywords: ["image"],
+  Sprites: {
+    default_text: 'added/modified/removed some icons or images',
+    keywords: ['image'],
   },
-  "Грамматика и правильность написания": {
-    default_text: "Исправлено несколько опечаток",
-    keywords: ["typo", "spellcheck"],
+  'Grammar and Formatting': {
+    default_text: 'fixed a few typos',
+    keywords: ['typo', 'spellcheck'],
   },
-  Баланс: {
-    default_text: "Ребаланс чего-то",
-    keywords: ["balance"],
+  Balance: {
+    default_text: 'rebalanced something',
+    keywords: ['balance'],
   },
-  "Улучшение кода": {
-    default_text: "Изменено немного кода",
-    keywords: ["code_imp", "code"],
+  'Code Improvement': {
+    default_text: 'changed some code',
+    keywords: ['code_imp', 'code'],
   },
-  Рефактор: {
-    default_text: "Рефактор кода",
-    keywords: ["refactor"],
+  Refactor: {
+    default_text: 'refactored some code',
+    keywords: ['refactor'],
   },
-  "Изменение конфигов": {
-    default_text: "Изменено несколько настроек конфига",
-    keywords: ["config"],
+  'Config Update': {
+    default_text: 'changed some config setting',
+    keywords: ['config'],
   },
-  Администрация: {
-    default_text: "Возня с админскими фишками",
-    keywords: ["admin"],
+  Administration: {
+    default_text: 'messed with admin stuff',
+    keywords: ['admin'],
   },
-  "Модулярная фишка": {
-    default_text:
-      "Добавлены модулярные механики которые можно увидеть в вкладке со всеми модульными добавлениями",
-    keywords: ["madd"],
-  }, //MASSMETA ADDITION (github update)
 };

@@ -390,3 +390,14 @@ Some memes and gags included.
 		add_overlay(image(icon, "car_blinkers", LYING_MOB_LAYER))
 		blinkers_on = TRUE
 		addtimer(CALLBACK(src, PROC_REF(endless_tik)), 0.3 SECONDS)
+
+/////////////////////////////////
+//////////Miscellaneous//////////
+/////////////////////////////////
+
+/obj/effect/spawner/random/cheburek_one_precent
+	name = "cheburek car one precent"
+	icon_state = "loot"
+	spawn_random_offset = FALSE
+	spawn_loot_chance = 1
+	loot = list(/obj/vehicle/sealed/car/cheburek)

@@ -10,8 +10,8 @@
 	pref_flag = ROLE_BLOODSUCKER
 	jobban_flag = ROLE_TRAITOR
 	preview_antag_datum = /datum/antagonist/bloodsucker
-	min_pop = 5
-	weight = 10
+	min_pop = 15
+	weight = 3
 	max_antag_cap = list("denominator" = 24)
 	blacklisted_roles = list(
 		JOB_CURATOR,
@@ -32,8 +32,8 @@
 	midround_type = LIGHT_MIDROUND
 	preview_antag_datum = /datum/antagonist/bloodsucker
 	pref_flag = ROLE_VAMPIRICACCIDENT
-	min_pop = 5
-	weight = 15
+	min_pop = 15
+	weight = 3
 	max_antag_cap = list("denominator" = 24)
 	blacklisted_roles = list(
 		JOB_CURATOR,
@@ -53,8 +53,8 @@
 	config_tag = "Latejoin Bloodsucker"
 	preview_antag_datum = /datum/antagonist/bloodsucker
 	pref_flag = ROLE_BLOODSUCKERBREAKOUT
-	min_pop = 5
-	weight = 15
+	min_pop = 15
+	weight = 3
 	blacklisted_roles = list(
 		JOB_CURATOR,
 	)

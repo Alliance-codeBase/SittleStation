@@ -1,0 +1,6 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - rscadd: "modpack spaceman_races"
+  - bugfix: "Зализывание ран фелинидов передаёт вирусы раненному, а не помогающему фелиниду"
+  - refactor: "Можно зализывать раны самому себе будучи фелинидом."

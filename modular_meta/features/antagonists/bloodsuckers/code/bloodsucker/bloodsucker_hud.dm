@@ -24,7 +24,7 @@
 	screen_loc = UI_VAMPRANK_DISPLAY
 
 /atom/movable/screen/bloodsucker/sunlight_counter
-	name = "Solar Flare Timer"
+	name = "Time Cycle"
 	icon_state = "sunlight"
 	screen_loc = UI_SUNLIGHT_DISPLAY
 #ifdef BLOODSUCKER_TESTING

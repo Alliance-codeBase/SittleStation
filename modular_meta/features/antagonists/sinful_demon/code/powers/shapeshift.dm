@@ -7,8 +7,9 @@
 	button_icon_state = "daemontransform"
 	background_icon_state = "bg_demon"
 	overlay_icon_state = "bg_demon_border"
+	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED //blockin hands cuz deez shitty pants demon bouta run from bloody cuffs
 
 	invocation = "COWER, MORTALS!!"
 
-	possible_shapes = list(/mob/living/simple_animal/lesserdemon)
-	spell_requirements = NONE
+	possible_shapes = list(/mob/living/basic/lesserdemon)
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC

@@ -5,14 +5,14 @@
 	power_explanation = "Brawn:\n\
 		Click a person to bash into them. Use while restrained or grabbed to break restraints or knock your grabber down. Only one of these can be done per use.\n\
 		Punching a cyborg will heavily EMP them in addition to dealing damage.\n\
-		At level 3, this ability will break closets open. Additionally you may both break restraints and knock a grabber down in the same use.\n\
-		At level 4, this ability wlil bash airlocks open as long as they aren't bolted.\n\
+		At level 5, this ability will break closets open. Additionally you may both break restraints and knock a grabber down in the same use.\n\
+		This ability also wlil bash airlocks open as long as they aren't bolted.\n\
 		Higher levels will increase this ability's damage and knockdown."
 	power_flags = BP_AM_TOGGLE
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY|BP_CANT_USE_WHILE_UNCONSCIOUS
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
-	bloodcost = 8
-	cooldown_time = 9 SECONDS
+	bloodcost = 16
+	cooldown_time = 10 SECONDS
 	target_range = 1
 	power_activates_immediately = TRUE
 	prefire_message = "Select a target."
@@ -150,7 +150,7 @@
 			target.emp_act(EMP_HEAVY)
 
 	// Target Type: Locker
-	else if(istype(target_atom, /obj/structure/closet) && (level_current >= 3 || brujah))
+	else if(istype(target_atom, /obj/structure/closet) && (level_current >= 5 || brujah))
 		var/obj/structure/closet/target_closet = target_atom
 		user.balloon_alert(user, "you prepare to bash [target_closet] open...")
 		if(!do_after(user, 2.5 SECONDS, target_closet))
@@ -161,7 +161,7 @@
 		playsound(get_turf(user), 'sound/effects/grillehit.ogg', 80, TRUE, -1)
 
 	// Target Type: Door
-	else if(istype(target_atom, /obj/machinery/door) && (brujah ? level_current >= 2 : level_current >= 4))
+	else if(istype(target_atom, /obj/machinery/door) && (brujah ? level_current >= 3 : level_current >= 5))
 		var/obj/machinery/door/airlock/target_airlock = target_atom
 		playsound(get_turf(user), 'sound/machines/airlock/airlock_alien_prying.ogg', 40, TRUE, -1)
 		owner.balloon_alert(owner, "you prepare to tear open [target_airlock]...")
@@ -184,7 +184,7 @@
 
 			user.do_attack_animation(target_airlock, ATTACK_EFFECT_SMASH)
 			playsound(get_turf(target_airlock), 'sound/effects/bang.ogg', 30, 1, -1)
-			if(brujah && level_current >= 3 && target_airlock.locked)
+			if(brujah && level_current >= 5 && target_airlock.locked)
 				target_airlock.unbolt()
 			target_airlock.open(2) // open(2) is like a crowbar or jaws of life.
 

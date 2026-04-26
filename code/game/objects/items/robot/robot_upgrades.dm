@@ -513,13 +513,11 @@
 	items_to_add = list(/obj/item/shockpaddles/cyborg)
 
 /obj/item/borg/upgrade/defib/action(mob/living/silicon/robot/borg, mob/living/user = usr)
-	. = ..()
-	if(!.)
-		return .
 	var/obj/item/borg/upgrade/defib/backpack/defib_pack = locate() in borg //If a full defib unit was used to upgrade prior, we can just pop it out now and replace
 	if(defib_pack)
 		defib_pack.deactivate(borg, user)
 		to_chat(user, span_notice("The defibrillator pops out of the chassis as the compact upgrade installs."))
+	. = ..()
 
 ///A version of the above that also acts as a holder of an actual defibrillator item used in place of the upgrade chip.
 /obj/item/borg/upgrade/defib/backpack
@@ -871,9 +869,9 @@
 
 	if(borgo.mind)
 		borgo.mind.grab_ghost()
-		playsound(loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
+		playsound(loc, check_holidays(APRIL_FOOLS) ? 'modular_meta/features/april_fools_day/borgs/sound/windows-xp-logon-moddif.ogg' : 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE) // Massmeta EDIT - april_fools_day, original: playsound(loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
 	else
-		playsound(loc, 'sound/machines/ping.ogg', 75, TRUE)
+		playsound(loc, check_holidays(APRIL_FOOLS) ? 'modular_meta/features/april_fools_day/borgs/sound/windows-xp-hardware-insert.ogg' : 'sound/machines/ping.ogg', 75, TRUE) // Massmeta EDIT - april_fools_day, original: playsound(loc, 'sound/machines/ping.ogg', 75, TRUE)
 
 	borgo.revive()
 	borgo.logevent("WARN -- System recovered from unexpected shutdown.")

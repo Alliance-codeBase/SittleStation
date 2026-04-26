@@ -4,7 +4,7 @@
 SUBSYSTEM_DEF(modpacks)
 	name = "Modpacks"
 	init_order = INIT_ORDER_MODPACKS
-	flags = SS_NO_FIRE
+	ss_flags = SS_NO_FIRE
 	var/list/loaded_modpacks = list()
 
 /datum/controller/subsystem/modpacks/Initialize()
@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(modpacks)
 /client/verb/modpacks_list()
 	set name = "Modpacks List"
 	set category = "OOC"
-	
+
 	if(!GLOB.modpacks_tgui)
 		GLOB.modpacks_tgui = new /datum/modpack()
 

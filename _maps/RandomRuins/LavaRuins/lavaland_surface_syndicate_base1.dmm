@@ -4191,7 +4191,7 @@
 "Ue" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/effect/spawner/random/structure/musician/piano/random_piano,
+/obj/machinery/computer/slot_machine/syndicate,
 /turf/open/floor/iron/dark,
 /area/ruin/syndicate_lava_base/bar)
 "Um" = (

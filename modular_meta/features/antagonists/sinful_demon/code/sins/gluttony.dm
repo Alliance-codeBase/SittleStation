@@ -10,7 +10,7 @@
 	invocation_type = INVOCATION_SHOUT
 
 	wall_type = /obj/effect/gluttony/timed
-	spell_requirements = NONE
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 /datum/action/cooldown/spell/shapeshift/demon/gluttony //emergency get out of jail card, but better. It also eats agents 220.
 	name = "Gluttony Demon Form"
@@ -18,16 +18,16 @@
 		and you will slowly lose life while in this form, while also being especially weak to holy influences. \
 		Be aware low health transfers between forms. If gravely wounded, attack live mortals to siphon life energy from them! \
 		Your unique form as a demon of gluttony also allows you to eat corpses to heal yourself."
-	possible_shapes = list(/mob/living/simple_animal/lesserdemon/gluttony)
+	possible_shapes = list(/mob/living/basic/lesserdemon/gluttony)
 
-/mob/living/simple_animal/lesserdemon/gluttony //capable of devouring corpses for health
+/mob/living/basic/lesserdemon/gluttony //capable of devouring corpses for health
 	name = "gluttonous demon"
 	real_name = "gluttonous demon"
 	icon_state = "lesserdaemon_gluttony"
 	icon_living = "lesserdaemon_gluttony"
 	speed = 1.25
 
-/mob/living/simple_animal/lesserdemon/gluttony/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
+/mob/living/basic/lesserdemon/gluttony/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
 	if(!isliving(attack_target))
 		return ..()
 	var/mob/living/living_target = attack_target
@@ -38,13 +38,13 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/lesserdemon/gluttony/proc/devour(mob/living/L)
+/mob/living/basic/lesserdemon/gluttony/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
 	visible_message(
 		span_danger("[src] devours [L]!"),
 		span_userdanger("You feast on [L], restoring your health!"))
-	adjustBruteLoss(-50)
+	adjust_brute_loss(-50)
 	L.gib()
 	return TRUE
 
@@ -56,3 +56,7 @@
 	. = ..()
 	if(timeleft)
 		QDEL_IN(src, timeleft)
+
+/datum/movespeed_modifier/fatty //fat prevent user to walking fast or even fly and swim
+	multiplicative_slowdown = 4
+	movetypes = ALL

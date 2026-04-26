@@ -76,9 +76,11 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		return
 
 	mob.log_talk(raw_msg, LOG_OOC)
-	//MASSMETA EDIT ADDITION START (BOT_TOPICS) (BlackCrystalic)
-	GLOB.bot_ooc_sending_que += list(list("author" = holder?.fakekey ? holder.fakekey : key, "message" = msg))
-	//MASSMETA EDIT ADDITION END (BOT_TOPICS) (BlackCrystalic)
+
+	// massmeta edit addition start(bot_topic)
+	add_ooc_to_queue(src, raw_msg)
+	// massmeta edit addition end(bot_topic)
+
 	var/keyname = key
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)

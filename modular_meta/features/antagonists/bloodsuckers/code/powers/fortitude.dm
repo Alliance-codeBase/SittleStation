@@ -6,14 +6,14 @@
 		Activating Fortitude will provide pierce, stun and dismember immunity.\n\
 		You will additionally gain resistance to brute and stamina damge, scaling with level.\n\
 		While using Fortitude, attempting to run will crush you.\n\
-		At level 4, you gain complete stun immunity.\n\
+		At level 8, you gain complete stun immunity.\n\
 		Higher levels will increase brute and stamina resistance."
 	power_flags = BP_AM_TOGGLE|BP_AM_COSTLESS_UNCONSCIOUS
 	check_flags = BP_CANT_USE_IN_TORPOR|BP_CANT_USE_IN_FRENZY
 	purchase_flags = BLOODSUCKER_CAN_BUY|VASSAL_CAN_BUY
 	bloodcost = 30
-	cooldown_time = 8 SECONDS
-	constant_bloodcost = 0.2
+	cooldown_time = 10 SECONDS
+	constant_bloodcost = 3
 	var/was_running
 	var/fortitude_resist // So we can raise and lower your brute resist based on what your level_current WAS.
 
@@ -23,7 +23,7 @@
 	to_chat(owner, span_notice("Your flesh, skin, and muscles become as steel."))
 	// Traits & Effects
 	owner.add_traits(list(TRAIT_PIERCEIMMUNE, TRAIT_NODISMEMBER, TRAIT_PUSHIMMUNE), BLOODSUCKER_TRAIT)
-	if(level_current >= 4)
+	if(level_current >= 8)
 		ADD_TRAIT(owner, TRAIT_STUNIMMUNE, BLOODSUCKER_TRAIT) // They'll get stun resistance + this, who cares.
 	var/mob/living/carbon/human/bloodsucker_user = owner
 	if(IS_BLOODSUCKER(owner) || IS_VASSAL(owner))

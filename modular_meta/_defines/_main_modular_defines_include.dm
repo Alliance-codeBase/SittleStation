@@ -7,3 +7,4 @@
 #include "re_hooch_heals_assistants.dm"
 #include "justice_mecha.dm"
 #include "particle_accelerator.dm"
+#include "techweb_nodes.dm"

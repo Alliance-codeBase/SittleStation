@@ -83,8 +83,8 @@
 		return FALSE
 	// You are in a Coffin, so instead we'll check TOTAL damage, here.
 	if(istype(user.loc, /obj/structure/closet/crate/coffin))
-		if(total_damage <= 10)
+		if(total_damage <= 20)
 			owner.current.remove_status_effect(/datum/status_effect/torpor)
 	else
-		if(total_brute <= 10)
+		if(total_brute <= 20)
 			owner.current.remove_status_effect(/datum/status_effect/torpor)
