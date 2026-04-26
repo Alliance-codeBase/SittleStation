@@ -19,6 +19,7 @@
 #include "features\gainable_mythril\includes.dm"
 #include "features\more_clothes\includes.dm"
 #include "features\hardsuits\includes.dm"
+#include "features\hookahs\includes.dm"
 #include "features\kvass_beverage\includes.dm"
 #include "features\kumiss_beverage\includes.dm"
 #include "features\oguzok_cook\includes.dm"
@@ -50,6 +51,7 @@
 #include "features\metacoins\includes.dm"
 #include "features\spaceman_races\includes.dm"
 #include "features\bangclaw\includes.dm"
+#include "features\meta_redesign\includes.dm"
 
 /* --- Reverts --- */
 

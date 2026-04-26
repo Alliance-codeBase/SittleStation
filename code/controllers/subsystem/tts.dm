@@ -444,3 +444,17 @@ SUBSYSTEM_DEF(tts)
 		return request.is_complete() && request_blips.is_complete()
 
 #undef SHIFT_DATA_ARRAY
+
+
+// MASSMETA ADD BEGIN
+/// Helper to get a random TTS voice for a vendor
+/datum/controller/subsystem/tts/proc/radnom_vendor_voice()
+	if(!tts_enabled)
+		return null
+
+	for (var/voice in available_speakers)
+		if (findtext(voice, "Vendor"))
+			return voice
+	CRASH("Cant find voice for vendor! At least one voice must me for vendors")
+	return pick(available_speakers)
+// MASSMETA ADD END

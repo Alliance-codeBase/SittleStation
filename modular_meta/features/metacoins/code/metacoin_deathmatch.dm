@@ -3,12 +3,12 @@
 	if(!player?.ckey)
 		return FALSE
 
-	var/already_paid = text2num(fees_paid[player.ckey]) || 0
+	var/already_paid = fees_paid[player.ckey] || 0
 	if(entry_fee <= already_paid)
 		return TRUE
 
 	var/to_pay = entry_fee - already_paid
-	var/datum/metacoin_shop_controller/shop = get_metacoin_shop_controller()
+	var/datum/metacoin_shop_controller/shop = get_metacoin_controller()
 	if(!shop)
 		to_chat(player, span_warning("Metacoin subsystem is unavailable."))
 		return FALSE
@@ -34,12 +34,12 @@
 	if(!target_ckey)
 		return FALSE
 
-	var/paid_amount = text2num(fees_paid[target_ckey]) || 0
+	var/paid_amount = fees_paid[target_ckey] || 0
 	if(paid_amount <= 0)
 		fees_paid -= target_ckey
 		return TRUE
 
-	var/datum/metacoin_shop_controller/shop = get_metacoin_shop_controller()
+	var/datum/metacoin_shop_controller/shop = get_metacoin_controller()
 	if(!shop || !shop.add_metacoins(target_ckey, paid_amount))
 		log_game("Deathmatch lobby [host] failed to refund [paid_amount] metacoins to [target_ckey].")
 		return FALSE
@@ -59,7 +59,7 @@
 
 	var/payout_amount = prize_pool
 	var/list/paid_snapshot = fees_paid?.Copy() || list()
-	var/datum/metacoin_shop_controller/shop = get_metacoin_shop_controller()
+	var/datum/metacoin_shop_controller/shop = get_metacoin_controller()
 
 	if(winner_ckey && shop?.add_metacoins(winner_ckey, payout_amount))
 		announce(span_boldnicegreen("[winner ? winner.real_name : winner_ckey] received [payout_amount] metacoins from the prize pool."))
@@ -74,7 +74,7 @@
 	log_game("Deathmatch lobby [host] failed to pay prize pool [payout_amount] to [payout_target], trying refunds.")
 	if(shop)
 		for(var/paid_ckey in paid_snapshot)
-			var/paid_amount = text2num(paid_snapshot[paid_ckey]) || 0
+			var/paid_amount = paid_snapshot[paid_ckey] || 0
 			if(paid_amount <= 0)
 				continue
 			shop.add_metacoins(paid_ckey, paid_amount)

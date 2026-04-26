@@ -26081,13 +26081,6 @@
 /area/station/maintenance/disposal/incinerator)
 "gqZ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "brig-entrance"
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Brig"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -26095,6 +26088,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/turnstile/brig{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "gri" = (
@@ -43337,13 +43333,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "kEp" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "brig-entrance"
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Brig"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -43351,10 +43340,13 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/scanner_gate/preset_guns,
 /obj/machinery/flasher/directional/south{
 	id = "brigflashdoor"
 	},
+/obj/machinery/turnstile/brig{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "kEw" = (

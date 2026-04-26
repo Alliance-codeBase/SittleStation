@@ -23,6 +23,7 @@ TODO:
 - tgui\packages\tgui\interfaces\MetaCoins.tsx
 - tgui\packages\tgui\interfaces\MetaCoinShop.tsx
 - tgui\packages\tgui\interfaces\MetaCoinSlot.tsx
+- tgui\packages\tgui\styles\interfaces\MetaCoinSlot.scss
 
 ### Credits:
 

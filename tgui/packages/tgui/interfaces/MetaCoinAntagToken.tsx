@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Icon,
-  NoticeBox,
-  Section,
-  Stack,
-} from 'tgui-core/components';
+import { Box, Button, Icon, NoticeBox, Section } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
@@ -75,7 +68,7 @@ export const MetaCoinAntagToken = () => {
     isPregame && !hasPurchasedToken && slotsLeft > 0 && balance >= price;
 
   return (
-    <Window title="Metacoin Antag Token" width={920} height={640}>
+    <Window title="Metacoin Antag Token" width={1160} height={640}>
       <Window.Content scrollable>
         {!isPregame && (
           <NoticeBox danger>
@@ -112,34 +105,76 @@ export const MetaCoinAntagToken = () => {
         )}
 
         <Section title="Choose your guaranteed antagonist role">
-          <Stack>
+          <Box
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+              gap: '0.5rem',
+              alignItems: 'stretch',
+            }}
+          >
             {roles.map((role) => {
               const fallbackName = role.fallbackIcon || 'question-circle';
               const fallbackNode = <Icon name={fallbackName} size={4} />;
               const roleDisabled = !canBuyToken || !role.available;
               const unavailableReasonText =
                 role.unavailableReason || 'Role is unavailable right now.';
+              const statusText = role.available
+                ? null
+                : role.unavailableCode === 'min_pop'
+                  ? `Not enough population (${Number(role.minPopCurrent ?? 0)}/${Number(role.minPopRequired ?? 0)}).`
+                  : unavailableReasonText;
+              const statusColor = role.available ? 'label' : 'bad';
               const iconBorderColor = roleDisabled
                 ? 'var(--color-red)'
                 : 'var(--color-green)';
 
               return (
-                <Stack.Item key={role.id} grow basis={0}>
-                  <Section
-                    title={role.name}
-                    buttons={
-                      <Button
-                        icon="check"
-                        disabled={roleDisabled}
-                        onClick={() =>
-                          act('buy_antag_token_role', {
-                            roleId: role.id,
-                          })
-                        }
-                      >
-                        Choose
-                      </Button>
-                    }
+                <Box
+                  key={role.id}
+                  style={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    backgroundColor: 'var(--section-background)',
+                    border: '1px solid var(--section-separator-color)',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <Box
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '0.5rem',
+                      borderBottom:
+                        'var(--section-separator-thickness) solid var(--section-separator-color)',
+                      gap: '0.5rem',
+                    }}
+                  >
+                    <Box bold>{role.name}</Box>
+                    <Button
+                      icon="check"
+                      compact
+                      disabled={roleDisabled}
+                      onClick={() =>
+                        act('buy_antag_token_role', {
+                          roleId: role.id,
+                        })
+                      }
+                    >
+                      Choose
+                    </Button>
+                  </Box>
+
+                  <Box
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      flexGrow: 1,
+                      padding: '0.75rem 0.5rem',
+                      boxSizing: 'border-box',
+                    }}
                   >
                     <Box
                       mb={1}
@@ -196,24 +231,24 @@ export const MetaCoinAntagToken = () => {
                       )}
                     </Box>
 
-                    <Box>{role.desc}</Box>
+                    <Box style={{ flexGrow: 1 }}>{role.desc}</Box>
 
-                    {!role.available && role.unavailableCode === 'min_pop' && (
-                      <Box mt={1} color="bad">
-                        {`Not enough population (${Number(role.minPopCurrent ?? 0)}/${Number(role.minPopRequired ?? 0)}).`}
-                      </Box>
-                    )}
-
-                    {!role.available && role.unavailableCode !== 'min_pop' && (
-                      <Box mt={1} color="bad">
-                        {unavailableReasonText}
-                      </Box>
-                    )}
-                  </Section>
-                </Stack.Item>
+                    <Box
+                      style={{
+                        minHeight: '2.4em',
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                      }}
+                    >
+                      {!!statusText && (
+                        <Box color={statusColor}>{statusText}</Box>
+                      )}
+                    </Box>
+                  </Box>
+                </Box>
               );
             })}
-          </Stack>
+          </Box>
         </Section>
       </Window.Content>
     </Window>
