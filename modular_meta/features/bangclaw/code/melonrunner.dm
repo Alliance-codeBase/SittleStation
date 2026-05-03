@@ -50,3 +50,11 @@
 /mob/living/basic/melon/colored/red
 	name = "red melon runner"
 	color = "#ff4d4d"
+
+/mob/living/basic/melon/colored/pink
+	name = "pink melon runner"
+	color = "#ff61d0"
+
+/mob/living/basic/melon/colored/purple
+	name = "purple melon runner"
+	color = "#c752e4"

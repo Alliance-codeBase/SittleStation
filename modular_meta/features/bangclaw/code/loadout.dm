@@ -22,3 +22,13 @@
 	name = "Bangclaw Civilian (Red)"
 	uniform = /obj/item/clothing/under/color/red
 	shoes = /obj/item/clothing/shoes/sneakers/black
+
+/datum/outfit/pink_civ
+	name = "Bangclaw Civilian (Pink)"
+	uniform = /obj/item/clothing/under/color/pink
+	shoes = /obj/item/clothing/shoes/sneakers/black
+
+/datum/outfit/purple_civ
+	name = "Bangclaw Civilian (Purple)"
+	uniform = /obj/item/clothing/under/color/lightpurple
+	shoes = /obj/item/clothing/shoes/sneakers/black
