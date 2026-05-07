@@ -1,4 +1,4 @@
-## Module ID: SIMPLEVOTES
+## Module ID: SOUNDS
 
 ### Defines:
 
