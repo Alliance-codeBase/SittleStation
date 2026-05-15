@@ -1,10 +1,14 @@
 import { Fragment, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { CharacterPreview } from 'tgui/interfaces/common/CharacterPreview';
+import { removeAllSkiplines } from 'tgui/interfaces/TextInputModal'; //MASSMETA ADDITION
 import {
   Box,
   Button,
+  Dimmer, //MASSMETA ADDITION
   Divider,
+  Dropdown, //MASSMETA ADDITION
+  Flex, //MASSMETA ADDITION
   Icon,
   Input,
   NoticeBox,
@@ -13,6 +17,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 
+import type { PreferencesMenuData } from '../../types'; //MASSMETA ADDITION
 import { useServerPrefs } from '../../useServerPrefs';
 import type {
   LoadoutCategory,
@@ -35,6 +40,22 @@ export function LoadoutPage(props) {
     null,
   );
 
+  //MASSMETA ADDITION
+  const [managingPreset, _setManagingPreset] = useState<string | null>(null);
+  const { act, data } = useBackend<PreferencesMenuData>();
+  const [input, setInput] = useState('');
+  const setManagingPreset = (value) => {
+    _setManagingPreset(value);
+    setInput('');
+  };
+  const onType = (value: string) => {
+    if (value === input) {
+      return;
+    }
+    setInput(removeAllSkiplines(value));
+  };
+  //MASSMETA ADDITION END
+
   if (!serverData) {
     return <NoticeBox>Loading...</NoticeBox>;
   }
@@ -42,6 +63,79 @@ export function LoadoutPage(props) {
   return (
     <Stack vertical fill>
       <Stack.Item>
+        {/*MASSMETA ADDITION*/}
+        {!!managingPreset && (
+          <Dimmer style={{ zIndex: '100' }}>
+            <Stack
+              vertical
+              width="400px"
+              backgroundColor="#101010"
+              style={{
+                borderRadius: '2px',
+                position: 'relative',
+                display: 'inline-block',
+                padding: '5px',
+              }}
+            >
+              <Stack.Item height="20px" width="100%">
+                <Flex>
+                  <Flex.Item fontSize="1.3rem">
+                    {managingPreset} Loadout Preset
+                  </Flex.Item>
+                  {managingPreset === 'Add' && (
+                    <Flex.Item ml="6px" mt="4px">
+                      (
+                      {
+                        data.character_preferences.misc.loadout_lists.loadouts
+                          .length
+                      }{' '}
+                      of 12 total)
+                    </Flex.Item>
+                  )}
+                  <Flex.Item ml="auto">
+                    <Button
+                      icon="times"
+                      color="red"
+                      onClick={() => {
+                        setManagingPreset(null);
+                      }}
+                    />
+                  </Flex.Item>
+                </Flex>
+              </Stack.Item>
+              <Stack.Item width="100%" height="20px">
+                <Input
+                  placeholder="Maximum of 24 characters long"
+                  width="100%"
+                  maxLength={24}
+                  onChange={(value) => onType(value)}
+                  onEnter={() => {
+                    act(`${managingPreset.toLowerCase()}_loadout_preset`, {
+                      name: input,
+                    });
+                    setManagingPreset(null);
+                  }}
+                  onEscape={() => setManagingPreset(null)}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Stack justify="center">
+                  <Button
+                    onClick={() => {
+                      act(`${managingPreset.toLowerCase()}_loadout_preset`, {
+                        name: input,
+                      });
+                      setManagingPreset(null);
+                    }}
+                  >
+                    Done
+                  </Button>
+                </Stack>
+              </Stack.Item>
+            </Stack>
+          </Dimmer>
+        )}
+        {/*MASSMETA ADDITION END*/}
         {!!modifyItemDimmer && (
           <LoadoutModifyDimmer
             modifyItemDimmer={modifyItemDimmer}
@@ -90,6 +184,7 @@ export function LoadoutPage(props) {
           currentSearch={searchLoadout}
           modifyItemDimmer={modifyItemDimmer}
           setModifyItemDimmer={setModifyItemDimmer}
+          setManagingPreset={setManagingPreset} //MASSMETA ADDITION
         />
       </Stack.Item>
     </Stack>
@@ -102,6 +197,7 @@ type LoadoutTabsProps = {
   currentSearch: string;
   modifyItemDimmer: LoadoutItem | null;
   setModifyItemDimmer: (dimmer: LoadoutItem | null) => void;
+  setManagingPreset: (string) => void; //MASSMETA ADDITION
 };
 
 function LoadoutTabs(props: LoadoutTabsProps) {
@@ -111,19 +207,89 @@ function LoadoutTabs(props: LoadoutTabsProps) {
     currentSearch,
     modifyItemDimmer,
     setModifyItemDimmer,
+    setManagingPreset, //MASSMETA ADDITION
   } = props;
   const activeCategory = loadout_tabs.find((curTab) => {
     return curTab.name === currentTab;
   });
   const searching = currentSearch.length > 1;
 
+  const { act, data } = useBackend<PreferencesMenuData>(); //MASSMETA ADDITION
   return (
     <Stack fill>
       <Stack.Item align="center" width="250px" height="100%">
         <Stack vertical fill>
-          <Stack.Item height="60%">
+          <Stack.Item
+            height="50%" //MASSMETA EDIT ORIGINAL: 60%
+          >
             <LoadoutPreviewSection />
           </Stack.Item>
+          {/*MASSMETA ADDITION*/}
+          <Stack.Item>
+            <Section>
+              <Stack vertical>
+                <Stack.Item>
+                  <Stack>
+                    <Stack.Item>
+                      <Dropdown
+                        width="209px"
+                        options={
+                          data.character_preferences.misc.loadout_lists.loadouts
+                        }
+                        selected={data.character_preferences.misc.loadout_index}
+                        onSelected={(value) =>
+                          act('set_loadout_preset', { name: value })
+                        }
+                      />
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        icon="pen"
+                        onClick={() => setManagingPreset('Rename')}
+                        disabled={
+                          data.character_preferences.misc.loadout_index ===
+                          'Default'
+                        }
+                      />
+                    </Stack.Item>
+                  </Stack>
+                </Stack.Item>
+                <Stack.Item>
+                  <Stack>
+                    <Stack.Item>
+                      <Button
+                        onClick={() => setManagingPreset('Add')}
+                        icon="plus"
+                        color="good"
+                      >
+                        Add New Loadout
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item ml={12.5}>
+                      <Button.Confirm
+                        icon="trash"
+                        color="red"
+                        align="center"
+                        confirmContent="✓"
+                        disabled={
+                          data.character_preferences.misc.loadout_index ===
+                          'Default'
+                        }
+                        tooltip={
+                          data.character_preferences.misc.loadout_index ===
+                          'Default'
+                            ? "Can't delete the default loadout entry."
+                            : 'Delete the current loadout entry.'
+                        }
+                        onClick={() => act('remove_loadout_preset')}
+                      />
+                    </Stack.Item>
+                  </Stack>
+                </Stack.Item>
+              </Stack>
+            </Section>
+          </Stack.Item>
+          {/*MASSMETA ADDITION END*/}
           <Stack.Item grow>
             <LoadoutSelectedSection
               all_tabs={loadout_tabs}
@@ -243,7 +409,7 @@ type LoadoutSelectedSectionProps = {
 
 function LoadoutSelectedSection(props: LoadoutSelectedSectionProps) {
   const { act, data } = useBackend<LoadoutManagerData>();
-  const { loadout_list } = data.character_preferences.misc;
+  const loadout_list = data.character_preferences.misc.loadout_lists.loadout; //MASSMETA EDIT ORIGINAL: { loadout_list } = data.character_preferences.misc;
   const { all_tabs, modifyItemDimmer, setModifyItemDimmer } = props;
 
   return (
@@ -304,6 +470,19 @@ function LoadoutPreviewSection() {
         <Stack.Divider />
         <Stack.Item align="center">
           <Stack>
+            {/*MASSMETA ADDITION*/}
+            <Stack.Item>
+              <Dropdown
+                selected={data.preview_selection}
+                options={data.preview_options}
+                onSelected={(value) =>
+                  act('update_preview', {
+                    updated_preview: value,
+                  })
+                }
+              />
+            </Stack.Item>
+            {/*MASSMETA ADDITION END*/}
             <Stack.Item>
               <Button
                 icon="chevron-left"

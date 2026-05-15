@@ -1,3 +1,6 @@
+#include "code\loadout_preference.dm"
+#include "code\loadout_menu.dm"
+#include "code\loadout_helpers.dm"
 #include "code\loadout_items.dm"
 #include "code\client\loadout_override_preference.dm"
 #include "code\items\accessories.dm"

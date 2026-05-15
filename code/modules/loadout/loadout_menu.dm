@@ -28,10 +28,12 @@
 		select_item(interacted_item)
 	return TRUE
 
+/* MASSMETA REMOVAL
 /datum/preference_middleware/loadout/proc/action_clear_all(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
 	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], null)
 	return TRUE
+*/
 
 /datum/preference_middleware/loadout/proc/action_toggle_job_outfit(list/params, mob/user)
 	PRIVATE_PROC(TRUE)
@@ -72,13 +74,13 @@
 			return
 
 	LAZYSET(loadout, selected_item.item_path, list())
-	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	save_current_loadout(loadout) //MASSMETA EDIT ORIGINAL: preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 
 /// Deselect [deselected_item].
 /datum/preference_middleware/loadout/proc/deselect_item(datum/loadout_item/deselected_item)
-	var/list/loadout = preferences.read_preference(/datum/preference/loadout)
+	var/list/loadout = get_current_loadout() //MASSMETA EDIT ORIGINAL: var/list/loadout = manager.preferences.read_preference(/datum/preference/loadout)
 	LAZYREMOVE(loadout, deselected_item.item_path)
-	preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
+	save_current_loadout(loadout) //MASSMETA EDIT ORIGINAL: preferences.update_preference(GLOB.preference_entries[/datum/preference/loadout], loadout)
 
 /datum/preference_middleware/loadout/proc/register_greyscale_menu(datum/greyscale_modify_menu/open_menu)
 	src.menu = open_menu

@@ -159,8 +159,10 @@ export type CharacterPreferencesData = {
     gender: Gender;
     joblessrole: JoblessRole;
     species: string;
+    loadout_lists: LoadoutList; //MASSMETA ADDITION
     loadout_list: LoadoutList;
     job_clothes: BooleanLike;
+    loadout_index: string; //MASSMETA ADDITION
   };
 
   randomization: Record<string, RandomSetting>;

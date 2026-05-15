@@ -52,7 +52,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 //This only really meant to avoid annoying frequent players
 //if your savefile is 3 months out of date, then 'tough shit'.
 
-/datum/preferences/proc/update_preferences(current_version, datum/json_savefile/S)
+/datum/preferences/proc/update_preferences(current_version, datum/json_savefile/S, list/save_data) //MASSMETA EDIT ORIGINAL: /datum/preferences/proc/update_preferences(current_version, datum/json_savefile/S)
+	//MASSMETA ADDITION
+	if(current_version < 12)
+		write_preference(GLOB.preference_entries[/datum/preference/loadout], list("Default" = save_data["loadout_list"]))
+	//MASSMETA ADDITION END
+
 	if(current_version < 34)
 		write_preference(/datum/preference/toggle/auto_fit_viewport, TRUE)
 
