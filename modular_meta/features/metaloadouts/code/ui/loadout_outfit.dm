@@ -70,7 +70,7 @@
 	var/list/new_contents = isnull(briefcase) ? get_all_gear() : briefcase.contents
 
 	for(var/datum/loadout_item/item as anything in loadout_datums)
-		if(item.restricted_roles && equipping_job && !(equipping_job.title in item.restricted_roles))
+		if(!item.can_be_applied_to(src, preference_source, equipping_job))
 			continue
 
 		var/obj/item/equipped = locate(item.item_path) in new_contents
@@ -84,9 +84,9 @@
 
 		item.on_equip_item(
 			equipped_item = equipped,
-			preference_source = preference_source,
-			preference_list = loadout_list,
+			item_details = loadout_list,
 			equipper = src,
+			outfit = equipped_outfit,
 			visuals_only = visuals_only,
 		)
 
