@@ -195,8 +195,20 @@ do { \
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
 	var/on = (TRAIT_VOICE_MATCHES_ID in clothing_traits)
 	if(on)
+		voice_override = null
 		detach_clothing_traits(TRAIT_VOICE_MATCHES_ID)
 	else
+		if(SStts.tts_enabled)
+			// MASSMETA EDIT START (ntts && /tg/tts) ORIGINAL: var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", SStts.available_speakers)
+			var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", SStts.player_voice_choices())
+			// MASSMETA EDIT END (ntts && /tg/tts)
+			if(isnull(voice_choice))
+				to_chat(user, span_warning("No choice selected, audible voice changing disabled."))
+				voice_override = null
+				return
+			voice_override = voice_choice
+		else
+			voice_override = null
 		attach_clothing_traits(TRAIT_VOICE_MATCHES_ID)
 	on = !on
 	to_chat(user, span_notice("The voice changer is now [on ? "on" : "off"]!"))

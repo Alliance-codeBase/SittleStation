@@ -13,6 +13,9 @@
 
 ///Вещи для определённых ролей трейторов
 
+/datum/uplink_item/role_restricted/clowncar
+	population_minimum = 30
+
 ///Обычные предметы в аплинках трейторов
 //dangerous категория
 /datum/uplink_item/dangerous/backstab

@@ -20,7 +20,7 @@
 	crate_name = "ammo crate"
 
 /datum/supply_pack/security/tonfa
-	name = "Poilice Tonfa Crate"
+	name = "Police Tonfa Crate"
 	desc = "Arm the Civil Protection Forces with three police tonfa."
 	cost = CARGO_CRATE_VALUE * 3
 	access_view = ACCESS_SECURITY

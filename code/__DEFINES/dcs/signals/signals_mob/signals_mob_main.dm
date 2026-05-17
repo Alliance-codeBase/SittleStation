@@ -120,7 +120,7 @@
 #define COMSIG_MOB_ATTACK_ALIEN "mob_attack_alien"
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
-///from base of /mob/verb/examinate(): (atom/target, list/examine_strings)
+///from base of /mob/verb/examinate(): (atom/target, list/examine_strings, list/examine_overrides)
 #define COMSIG_MOB_EXAMINING "mob_examining"
 ///from base of /mob/verb/examinate(): (atom/target)
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
@@ -284,3 +284,9 @@
 
 /// from /mob/eye/camera/remote/assign_user(): (mob/living/new_user, mob/living/old_user)
 #define COMSIG_REMOTE_CAMERA_ASSIGN_USER "remote_camera_assign_user"
+
+///sent to TTS sounds when the volume preference is changed and applied
+#define COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED "tts_volume_preference_applied"
+
+///sent to radio TTS sounds when the volume preference is changed and applied
+#define COMSIG_MOB_TTS_RADIO_VOLUME_PREFERENCE_APPLIED "tts_radio_volume_preference_applied"

@@ -483,6 +483,16 @@ export function MainPage(props: MainPageProps) {
   const nonContextualPreferences = {
     ...data.character_preferences.non_contextual,
   };
+  // MASSMETA EDIT START (ntts && /tg/tts)
+  // Those aren't needed anymore. voice pitch, blip are now acessible in dedicated panel
+  for (const preference of [
+    'tts_voice_pitch',
+    'tts_blip_base',
+    'tts_blip_number',
+  ]) {
+    delete nonContextualPreferences[preference];
+  }
+  // MASSMETA EDIT END (ntts && /tg/tts)
 
   if (randomBodyEnabled) {
     nonContextualPreferences.random_species =

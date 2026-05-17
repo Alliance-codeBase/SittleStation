@@ -67,7 +67,7 @@
 	map_name = "nuthouse"
 	key = "nuthouse"
 
-datum/lazy_template/deathmatch/furiousmages
+/datum/lazy_template/deathmatch/furiousmages
 	name = "Wizard Proving Grounds"
 	desc = "An arcane battlefield to determine the most powerful wizard."
 	max_players = 16

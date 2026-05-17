@@ -215,7 +215,7 @@
 	if(SStts.tts_enabled)
 		var/static/vendor_voice_by_type = list()
 		if(!vendor_voice_by_type[type])
-			vendor_voice_by_type[type] = SStts.radnom_vendor_voice() // //MASSMETA ADD START (vendor one voice) Original: vendor_voice_by_type[type] = pick(SStts.available_speakers)
+			vendor_voice_by_type[type] = SStts.random_vendor_voice() // //MASSMETA ADD START (vendor one voice) Original: vendor_voice_by_type[type] = pick(SStts.available_speakers)
 
 		voice = vendor_voice_by_type[type]
 

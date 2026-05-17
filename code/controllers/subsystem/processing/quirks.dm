@@ -34,6 +34,7 @@ GLOBAL_LIST_INIT_TYPED(quirk_blacklist, /list/datum/quirk, list(
 	list(/datum/quirk/augmented, /datum/quirk/body_purist),
 	//MASSMETA EDIT END
 	list(/datum/quirk/empath, /datum/quirk/evil),
+	list(/datum/quirk/keen_nose, /datum/quirk/item_quirk/anosmia),
 ))
 
 GLOBAL_LIST_INIT(quirk_string_blacklist, generate_quirk_string_blacklist())

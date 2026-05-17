@@ -76,13 +76,13 @@
 
 // CLOSE_TO_NOTHING
 
+// You genuinely don't want to award much for every "robot" served in kitchen. Five points is okay, in my opinion.
+
+/datum/award/score/bartender_tourist_score
+
+/datum/award/score/chef_tourist_score
+
 // ONE_POINT
-
-/datum/award/score/drake_score
-	reward = METACOIN_AWARD_ONE_POINT
-
-/datum/award/score/hierophant_score
-	reward = METACOIN_AWARD_ONE_POINT
 
 /datum/award/score/maintenance_pill
 	reward = METACOIN_AWARD_ONE_POINT
@@ -101,24 +101,29 @@
 /datum/award/score/wendigo_score
 	reward = METACOIN_AWARD_SMALL
 
-/datum/award/score/colussus_score
-	reward = METACOIN_AWARD_SMALL
-
-/datum/award/score/thething_score
-	reward = METACOIN_AWARD_SMALL
-
-/datum/award/score/bartender_tourist_score
-	reward = METACOIN_AWARD_SMALL
-
-/datum/award/score/chef_tourist_score
-	reward = METACOIN_AWARD_SMALL
-
 /datum/award/score/hardcore_random
 	reward = METACOIN_AWARD_SMALL
 
 /datum/award/score/style_score
+	reward = METACOIN_AWARD_NONE
+
+/datum/award/score/drake_score
+	reward = METACOIN_AWARD_SMALL
+
+/datum/award/score/hierophant_score
 	reward = METACOIN_AWARD_SMALL
 
 // METACOIN_AWARD_MED
+
+/datum/award/score/bubblegum_score
+	reward = METACOIN_AWARD_MED
+
+/datum/award/score/colussus_score
+	reward = METACOIN_AWARD_MED
+
+// METACOIN_AWARD_BIG
+/datum/award/score/thething_score
+	reward = METACOIN_AWARD_BIG //overall rare boss, why not?
+
 /datum/award/score/legion_score
-	reward = METACOIN_AWARD_MED // this one is hard to kill y'know?
+	reward = METACOIN_AWARD_BIG // this one is hard to kill y'know?

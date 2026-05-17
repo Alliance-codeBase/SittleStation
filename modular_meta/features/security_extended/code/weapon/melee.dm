@@ -1,10 +1,3 @@
-/obj/item/melee/tonfa/proc/check_martial_counter(mob/living/carbon/human/target, mob/living/carbon/human/user)
-	if(target.check_block())
-		target.visible_message(span_danger("[target.name] blocks [src] and twists [user]'s arm behind [user.p_their()] back!"),
-					span_userdanger("You block the attack!"))
-		user.Stun(15)
-		return TRUE
-
 //tonfa
 /obj/item/melee/tonfa
 	name = "police tonfa"
@@ -16,21 +9,24 @@
 	worn_icon_state = "classic_baton"
 	lefthand_file = 'modular_meta/features/security_extended/icons/inhands/lefthand.dmi'
 	righthand_file = 'modular_meta/features/security_extended/icons/inhands/righthand.dmi'
-	force = 12
+	force = 11
+	wound_bonus = -25
 	throwforce = 7
 	slot_flags = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_HUGE
+	w_class = WEIGHT_CLASS_BULKY
 	hitsound = 'sound/effects/woodhit.ogg'
 	custom_price = PAYCHECK_COMMAND
-	armour_penetration = -15
-	/// Damage dealt while on help intent
-	var/non_harm_force = 3
+	/// How much armor does our tonfa ignore? This operates as armour penetration, but only applies to the stun attack.
+	var/stun_armour_penetration = 15
 	/// Stamina damage dealt
 	var/stamina_force = 25
 
-/obj/item/melee/tonfa/attack(mob/living/target, mob/living/user)
+/obj/item/melee/tonfa/attack(mob/living/target, mob/living/user, mob/living/martial_artist)
 	var/target_zone = user.zone_selected == target
 	var/armour_level = target.getarmor(target_zone)
+	var/shove_dir = get_dir(user.loc, target.loc)
+	var/turf/target_shove_turf = get_step(target.loc, shove_dir)
+	var/mob/living/carbon/human/target_collateral_human = locate(/mob/living/carbon) in target_shove_turf.contents
 
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
@@ -53,18 +49,45 @@
 			user.do_attack_animation(target) // The attacker cuddles the Cyborg, awww. No damage here.
 			return
 	if (!user.combat_mode)
-		force = non_harm_force
-	else
+		force = 0
+		playsound(loc, 'modular_meta/features/security_extended/sound/light_woodhit.ogg', 25, TRUE, -1)
+		if(prob(6)) //isn't that a dnd rng
+			force = 3
+			to_chat(user, span_danger("Unfortunately, you hit [target] too hard, and hurt them."))
+			if(user.zone_selected == BODY_ZONE_HEAD)
+				target.Knockdown(0.5 SECONDS)
+				force = rand(5, 7)
+				to_chat(user, span_danger("You knocked [target] by tonfa right onto his head."))
+				if(prob(66))
+					target.emote("scream")
+					if(prob(10))
+						target.adjust_organ_loss(ORGAN_SLOT_BRAIN, BRAIN_DAMAGE_MILD - 1, BRAIN_DAMAGE_ASYNC_BLINKING - 1)
+						if(prob(66))
+							target.emote("cry")
+						if(prob(6))
+							target.emote("deathgasp")
+	if(user.combat_mode)
 		force = initial(force)
+		if(user.zone_selected == BODY_ZONE_HEAD && prob(8))
+			target.Knockdown(0.5 SECONDS)
+			force = rand(13, 16)
+			to_chat(user, span_danger("You knocked [target] by tonfa right onto his head."))
+			if(prob(70))
+				target.emote("scream")
+			if(prob(6))
+				target.emote("cry")
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
+		var/list/adjectives = list("expretly", "professionally", "skillfully", "masterfully")
+		var/list/nouns = list("attack", "hit", "bash", "swing")
 		if (H.check_block(src, 0, "[user]'s [name]", MELEE_ATTACK))
 			return
-		if(check_martial_counter(H, user))
+		if(target.check_block(martial_artist))
+			target.visible_message(span_danger("[target.name] blocks [src] and [pick(adjectives)] twists [user]'s arm behind [user.p_their()] back!"),
+				span_userdanger("You block the [user]'s [src] [pick(nouns)] by [pick(adjectives)] twisting [user.p_their()] hand behind [user.p_their()] back!"))
+			user.Stun(7)
 			log_combat(user, target, "attempted to attack", src, "(blocked by martial arts)")
 			return
-
-		target.visible_message("[user] strikes [target] in the [parse_zone(target_zone)].", "You strike [target] in the [parse_zone(target_zone)].")
 		log_combat(user, target, "attacked", src)
 
 		// If the target has a lot of stamina loss, knock them down
@@ -72,9 +95,6 @@
 			var/effectiveness = CLAMP01((target.get_stamina_loss() - 22) / 50)
 			log_combat(user, target, "knocked-down", src, "(additional effect)")
 			// Move the target back upon knockdown, to give them some time to recover
-			var/shove_dir = get_dir(user.loc, target.loc)
-			var/turf/target_shove_turf = get_step(target.loc, shove_dir)
-			var/mob/living/carbon/human/target_collateral_human = locate(/mob/living/carbon) in target_shove_turf.contents
 			if (target_collateral_human && target_shove_turf != get_turf(user))
 				target.Knockdown(max(0.5 SECONDS, effectiveness * 4 SECONDS * (100-armour_level)/100))
 				target_collateral_human.Knockdown(0.5 SECONDS)

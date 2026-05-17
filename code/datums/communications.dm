@@ -40,14 +40,17 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 	if(!can_announce(user, is_silicon))
 		return FALSE
 	if(is_silicon)
-		minor_announce(html_decode(input),"[user.name] announces:", players = players)
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		minor_announce(html_decode(input), "[user.name] announces:", players = players, tts_source = user, tts_effect = "captain")
+		// MASSMETA EDIT END (ntts && /tg/tts)
 		COOLDOWN_START(src, silicon_message_cooldown, COMMUNICATION_COOLDOWN_AI)
 	else
 		var/list/message_data = user.treat_message(input)
 		if(syndicate)
-			priority_announce(html_decode(message_data["message"]), null, 'modular_meta/tweaks/sounds/sound/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, players = players, color_override = "red") //MASSMETA EDIT ORIGINAL: priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, players = players, color_override = "red")
+			priority_announce(html_decode(message_data["message"]), null, 'modular_meta/tweaks/sounds/sound/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, players = players, color_override = "red", tts_source = user, tts_effect = "syndicate") //MASSMETA EDIT ORIGINAL: priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce_syndi.ogg', ANNOUNCEMENT_TYPE_SYNDICATE, has_important_message = TRUE, players = players, color_override = "red")
 		else
-			priority_announce(html_decode(message_data["message"]), null, 'modular_meta/tweaks/sounds/sound/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players) //MASSMETA EDIT ORIGINAL: priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players)
+			priority_announce(html_decode(message_data["message"]), null, 'modular_meta/tweaks/sounds/sound/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players, tts_source = user, tts_effect = "captain") //MASSMETA EDIT ORIGINAL: priority_announce(html_decode(message_data["message"]), null, 'sound/announcer/announcement/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, has_important_message = TRUE, players = players)
+    else
 		COOLDOWN_START(src, nonsilicon_message_cooldown, COMMUNICATION_COOLDOWN)
 	user.log_talk(input, LOG_SAY, tag="priority announcement")
 	message_admins("[ADMIN_LOOKUPFLW(user)] has made a priority announcement.")
@@ -120,7 +123,7 @@ GLOBAL_DATUM_INIT(communications_controller, /datum/communciations_controller, n
 
 		for(var/datum/command_footnote/footnote as anything in command_report_footnotes)
 			footnote_pile += "[footnote.message]<BR>"
-			footnote_pile += "<i>[footnote.signature]</i><BR>"
+			footnote_pile += "~ <i>[footnote.signature]</i><BR>"
 			footnote_pile += "<BR>"
 
 		. += "<hr><h4>Additional Notes: </h4>" + footnote_pile
