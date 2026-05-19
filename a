@@ -1,0 +1,542 @@
+[33mcommit c7fd8bc44ac2aa23a3fd07e2071245cc9a7185fa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Skerd <artemdmmv19@gmail.com>
+Date:   Tue May 19 22:10:03 2026 +0300
+
+    Огузок
+
+[33mcommit 12d80370e37967a9b012b3c0f52443888cbe8481[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 01967416396 528118fd3de
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun May 17 17:53:01 2026 +0300
+
+    Merge pull request #102 from Alliance-codeBase/pr-95369
+    
+    TTS 3.0, - (aka new tts backend from Iamgoofball)
+
+[33mcommit 01967416396cc10c5bbe0d1cafed5ea211e05b3f[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Sat May 16 00:56:59 2026 +0300
+
+    relatively pathed type defined here
+
+[33mcommit 528118fd3de7d0438657bd9098107b77b2f24ed4[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Fri May 15 19:22:28 2026 +0300
+
+    config
+    
+    somehow excluded those lines while i was reviewing my own code
+
+[33mcommit 9549c02b60caa13e3f2b35ad01a678191336469e[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Fri May 15 19:18:40 2026 +0300
+
+    "Что не исправить, то не поправить."
+    
+    adds ui, voice categories, modularizes code, tts-voice for announcements, tts for admin-command reports and .etc
+
+[33mcommit 45812fb1ee8e8ef80e94803a36f88b8e744301f2[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Thu May 14 02:20:00 2026 +0000
+
+    Automatic changelog for PR #116 [ci skip]
+
+[33mcommit e8009e4141987154170f470de0457fec9e0e749b[m
+Merge: 992ca4cdbf1 a4a56f937f0
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Thu May 14 05:19:42 2026 +0300
+
+    Merge pull request #116 from qqq213/KilloGramOfUpdates
+    
+    Kilo: QM Power Fix
+
+[33mcommit 992ca4cdbf1395d20d3848ac685e79bbe83b2d69[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Thu May 14 02:19:02 2026 +0000
+
+    Automatic changelog for PR #117 [ci skip]
+
+[33mcommit 015334bfa3aa000b53fe3b8d5c57be99bd1252fb[m
+Merge: 6f97c5f8eed fce6bbe5195
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Thu May 14 05:18:44 2026 +0300
+
+    Merge pull request #117 from Glamyrio/tonfa_redo
+    
+    Tonfa redo
+
+[33mcommit edf1caed36b3299ef3ea80d013e7ddd95c1624c9[m
+Merge: 8e25f151336 438e6bd31d1
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun May 10 21:52:07 2026 +0300
+
+    Merge branch 'pr-95369' of https://github.com/Alliance-codeBase/PostMeta into TTS-3.0
+
+[33mcommit 8e25f151336f43de3fcf5f733b8de29b2fe5f4eb[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun May 10 21:46:45 2026 +0300
+
+    typo
+
+[33mcommit 438e6bd31d168a08de1e3aa35a3c4bbb750835a6[m
+Merge: a9b953f4b31 6f97c5f8eed
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sat May 9 16:18:53 2026 +0300
+
+    Merge branch 'master' into pr-95369
+
+[33mcommit a9b953f4b31c5126f61be87a915c4344dc523279[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sat May 9 00:14:11 2026 +0300
+
+    modular
+    
+    too much non-modular code :)
+
+[33mcommit b2937c1cd491eb24b7690aedb6fcb58c81063d61[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Fri May 8 23:14:20 2026 +0300
+
+    categories
+    
+    doing some backend stuff for new speakers page in char setup
+
+[33mcommit 570738e2865564d594c0e8e3d8eca5a37f873ac3[m
+Merge: 29e1b9fd895 1736e3d2127
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Fri May 8 22:30:36 2026 +0300
+
+    update
+    
+    pls give us LoRa 🙏 🙏 🙏
+
+[33mcommit fce6bbe519558fc7c79d40fd6fb2e346f158f802[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Fri May 8 15:28:56 2026 +0300
+
+    malaya tokmachka
+
+[33mcommit e0fa373e690ae2777a04fe930daf2b7fed3047bf[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Thu May 7 23:15:53 2026 +0300
+
+    fix typo
+
+[33mcommit f754cfb3599a9f583a5cc11654403720b5497a08[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Thu May 7 01:52:37 2026 +0300
+
+    our brains are shrinking
+
+[33mcommit 6e18e398449215130e8804dca31475392210b7ff[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Thu May 7 01:24:32 2026 +0300
+
+    hype
+
+[33mcommit a4a56f937f00320dd2eff0b5aaaae09022f621b0[m
+Author: NotMrCode <tol_lol1@mail.ru>
+Date:   Tue May 5 19:19:35 2026 +0500
+
+    Map-Kilo-[QM Power Fix]
+
+[33mcommit 6f97c5f8eedccca9ac9dcc6ae30e04d6b41cb51f[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Fri May 1 16:10:06 2026 +0300
+
+    добавлена 1 недостающая декаль у парамеда в офисе
+
+[33mcommit e561b79dba5b350285f0370ed6c3896fa8cede1b[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Thu Apr 30 16:15:34 2026 +0000
+
+    Automatic changelog for PR #115 [ci skip]
+
+[33mcommit 2f8ab251324793e5406ed6525688d700cbbaa8e3[m
+Merge: c9a112bc687 e93c21f54b5
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Thu Apr 30 19:15:07 2026 +0300
+
+    Merge pull request #115 from Glamyrio/clownpidor
+    
+    Clowncar pop-restricted
+
+[33mcommit e93c21f54b5b190df7020ccc5699f8bcd16490ed[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Thu Apr 30 19:13:11 2026 +0300
+
+    clowncar
+
+[33mcommit 1736e3d2127007a10fc927a5c17171691ee121a0[m
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Wed Apr 29 14:19:14 2026 -0700
+
+    Update code/controllers/subsystem/tts.dm
+    
+    Co-authored-by: Aleksej Komarov <stylemistake@gmail.com>
+
+[33mcommit c9a112bc6877afedf7754ec83a02e7b228d2904a[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Mon Apr 27 03:38:11 2026 +0000
+
+    Automatic changelog for PR #113 [ci skip]
+
+[33mcommit e37694cd91d62895bab2ae845c1656bf4642a462[m
+Merge: 46ab162c614 43bbc757053
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Mon Apr 27 06:37:52 2026 +0300
+
+    Merge pull request #113 from Alliance-codeBase/metacoins
+    
+    fix skillchip
+
+[33mcommit 43bbc757053163e6d43a8e6d340285a95bdc64e9[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Mon Apr 27 06:34:54 2026 +0300
+
+    я серьёзно думал что параметр force активирует скиллчип 💀
+
+[33mcommit 46ab162c614bd67b128febb805ea010768631420[m
+Merge: 46bc0b125cc f070f4c10ef
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 14:38:38 2026 +0300
+
+    Merge pull request #111 from Glamyrio/lights_and_shadows
+    
+    recolored occlusion
+
+[33mcommit 46bc0b125cc614e0614c0f5a66834752a89dd57d[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Sun Apr 26 11:13:46 2026 +0000
+
+    Automatic changelog for PR #101 [ci skip]
+
+[33mcommit fe015cb0dd2f1282c7e7534b8a44120edcc42621[m
+Merge: 4cafdea9a55 bfc0683feff
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 14:13:26 2026 +0300
+
+    Merge pull request #101 from Alliance-codeBase/metacoins
+    
+    Metacoins 1.7
+
+[33mcommit bfc0683feffe0fbf970e94a0f557b18720475f8c[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 14:10:59 2026 +0300
+
+    desc && name  (☕™)
+
+[33mcommit b704dd710cba5a4bfc7cdefc58308c717eab54f0[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 14:02:57 2026 +0300
+
+    surgery chip && "other" now works properly
+
+[33mcommit c1e9dd8217cebb03d497aeff77175c5c39fd8f63[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 13:01:38 2026 +0300
+
+    that's just not true
+
+[33mcommit 3946d158312681384f650a9450fd74d816623643[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 09:57:31 2026 +0300
+
+    comment out that useless shit
+    
+    gotta clarify 'bout that you can gamble as a ghost :)
+    also makes proc names actually readable
+
+[33mcommit ae8613816f5c4806c6b7a17cdabd19f01a0b777a[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 09:38:10 2026 +0300
+
+    logs && award_entries() things
+
+[33mcommit 038398e9d471354f66baf585ef787d73298bca41[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 26 09:01:10 2026 +0300
+
+    govnocoders™
+    
+    бля, ещё раз ты будешь сука копировать не читая ебало снесу ублюдок
+
+[33mcommit 58690dfdc03ee86dff38c669de0875aa1b0e6b8c[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Fri Apr 24 11:32:08 2026 +0300
+
+    WIP
+
+[33mcommit 4d867b4b34914493e05c22b792e6acb3cfe4f342[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Fri Apr 24 05:59:49 2026 +0300
+
+    to explore the space you must move with the light!
+    
+    a seclite, to be exact :)
+
+[33mcommit fadb520659dd25c638c5718af37c4fa5634083e2[m
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Wed Apr 22 08:35:07 2026 -0700
+
+    Adds an admin button for setting someone's voice in VV.
+
+[33mcommit f070f4c10efb1c2a3c2101cdd66455028f7e82f9[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Tue Apr 21 21:03:02 2026 +0300
+
+    more opaque
+
+[33mcommit e5e74edb0fea108abc67f13b767ac8403a17e0af[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Tue Apr 21 20:20:54 2026 +0300
+
+    plane master
+
+[33mcommit 3b7713380e8bada8cd815ef090cf768c3781d144[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Tue Apr 21 20:01:52 2026 +0300
+
+    initial
+
+[33mcommit 4cafdea9a55b854feb7309d28f0cbe6b004e5ec6[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Mon Apr 20 20:05:55 2026 +0000
+
+    Automatic changelog for PR #109 [ci skip]
+
+[33mcommit 3402752d5bf291eca243215f35a130cd71402335[m
+Merge: 8984eb2633d 45f57634a1b
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Mon Apr 20 23:05:35 2026 +0300
+
+    Merge pull request #109 from Glamyrio/upd_our_maps
+    
+    Kilo revamp
+
+[33mcommit 45f57634a1bb0f7eafe37fdfc14845d82a0252c1[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Mon Apr 20 23:05:11 2026 +0300
+
+    keycard auth
+
+[33mcommit 8984eb2633d6de7a116b014afaf2192182be1d08[m
+Merge: 15d86797a2c 6fb545d31b8
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Mon Apr 20 22:43:15 2026 +0300
+
+    Merge pull request #110 from Glamyrio/tonfafix
+    
+    tonfa fixed
+
+[33mcommit 6fb545d31b8a4d8b16c30b8ef02615b02f36afad[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Mon Apr 20 22:38:37 2026 +0300
+
+    f
+
+[33mcommit 77f7b1068467a20a867d64d47f92ae45c925c8c1[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Mon Apr 20 09:02:27 2026 +0300
+
+    молодой человек, вы чего
+
+[33mcommit 79c9729f060f5be951219ffc2856276e5636102f[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Mon Apr 20 09:00:47 2026 +0300
+
+    adds space explo kit
+
+[33mcommit 15d86797a2c925884a70fd9c50f0ca7f8c4696a3[m
+Merge: e37b0605489 418a538e3a2
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Mon Apr 20 03:00:01 2026 +0300
+
+    Merge pull request #107 from Glamyrio/kalik
+    
+    [bounty] hookahs
+
+[33mcommit 4615f4a091e502b410cec21d9f83032d70829040[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Sun Apr 19 17:27:33 2026 +0300
+
+    kilol
+
+[33mcommit 418a538e3a249043b5f7deedee5b37676f77918b[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Sun Apr 19 16:52:37 2026 +0300
+
+    update preview
+
+[33mcommit d06a3562ff4ee1f95b4922da819f31f8ee58a333[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Sun Apr 19 15:22:50 2026 +0300
+
+    hookah
+
+[33mcommit 29e1b9fd895de0cbbdce9222c6a384db68b48b9b[m
+Merge: 4141f9f3118 e37b0605489
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 19 13:23:13 2026 +0300
+
+    Merge branch 'master' into pr-95369
+
+[33mcommit e37b0605489d8c567f28cde2c5f4405a5dd35787[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Sun Apr 19 10:19:32 2026 +0000
+
+    Automatic changelog for PR #106 [ci skip]
+
+[33mcommit 12f4cfde18f1aa6a98a504d87ae3bbf66992548e[m
+Merge: 3311f5a3869 ffa3c68f495
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sun Apr 19 13:19:13 2026 +0300
+
+    Merge pull request #106 from Artemchik542/vendors-one-voice
+    
+    vendors one voice
+
+[33mcommit ffa3c68f4956968abf6145ef87ebd2700bbac490[m
+Author: Artemchik542 <borodinov542@yandex.ru>
+Date:   Sun Apr 19 17:14:40 2026 +0700
+
+    done
+
+[33mcommit 1eb2fae09eb85a905ece8da7a863a1762af9c64e[m
+Merge: bfb2d1bc970 e6a2984aa04
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Sat Apr 18 19:10:32 2026 -0700
+
+    Merge branch 'hail_to_kushnirenko' of https://github.com/Iamgoofball/-tg-station into hail_to_kushnirenko
+
+[33mcommit bfb2d1bc970b0cc5943970634af887d135722121[m
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Sat Apr 18 19:10:22 2026 -0700
+
+    Voice Changer now lets you change your actual TTS voice
+
+[33mcommit e6a9dfd64cf03055104b7a7b83c0fc69e5814e9c[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sat Apr 18 20:06:13 2026 +0300
+
+    последний понедельник фармишь
+
+[33mcommit 4141f9f311837bb7b8eea8bfba98d1a9a5c63138[m
+Merge: 574544f43af dc7835d2527
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sat Apr 18 03:48:11 2026 +0300
+
+    russian regex && stuff
+    
+    we gonna leave some n/tts valtos stuff just in case if we would need to swap onto our main tts provider when needed (i hope that never really actually happens)
+
+[33mcommit 574544f43af9f2b1e1bec2dde92bbd42dd51110b[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sat Apr 18 01:23:48 2026 +0300
+
+    123
+    
+    Timeout is set to 25, due to low end gpu on my backend 🤫
+
+[33mcommit 3311f5a386965f11d9d657441b94f0481dfd9a19[m
+Merge: 0c03d2ba258 769b87da4c8
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sat Apr 18 00:51:50 2026 +0300
+
+    Merge pull request #105 from Glamyrio/security_extended
+    
+    fix
+
+[33mcommit 769b87da4c823bce2026e0e7eb1e2f054c4c89e7[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Sat Apr 18 00:49:37 2026 +0300
+
+    fix
+
+[33mcommit 0c03d2ba25899bef0d73de4af59826a862281e31[m
+Author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+Date:   Fri Apr 17 21:35:29 2026 +0000
+
+    Automatic changelog for PR #104 [ci skip]
+
+[33mcommit 9297568b5af43eaeea5581d458dc64710239b27a[m
+Merge: a3812c37d66 5607dbbb53b
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Sat Apr 18 00:35:09 2026 +0300
+
+    Merge pull request #104 from Glamyrio/security_extended
+    
+    Security Extended: turnstile, tonfa, slrifle in cargo
+
+[33mcommit 5607dbbb53b83b431369a798a8161f33d763e68a[m
+Author: Glamyrio <glamyrio@mail.ru>
+Date:   Sat Apr 18 00:21:00 2026 +0300
+
+    seccing
+
+[33mcommit e6a2984aa0423a78cba7fe526fc2392570bf754c[m
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Thu Apr 16 15:42:29 2026 -0700
+
+    Update code/controllers/subsystem/tts.dm
+    
+    Co-authored-by: Lucy <lucy@absolucy.moe>
+
+[33mcommit dc7835d25275a18051cd01af2535a04d30b2966b[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Thu Apr 16 11:25:23 2026 +0300
+
+    ЭТО ТОЖЕ ОКЕЙ?
+
+[33mcommit 75765e1d07a8c5c96230e352aaca5b4910c47591[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Thu Apr 16 11:24:45 2026 +0300
+
+    HELLO VALTOS, IT'S TTSensky, we need 5 BILLION API REQUESTS TO BOMB STATION
+
+[33mcommit 742c268f664efd208ce57477cefe591c16c15e4e[m
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Wed Apr 15 09:56:44 2026 -0700
+
+    Fixes TTS for cyborgs on the radio
+
+[33mcommit 418f05c119e76f09155699987abfa9e9c29e1187[m
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Tue Apr 14 20:53:09 2026 -0700
+
+    Adds ion storm support to TTS
+
+[33mcommit 2f5b921cb45f9303c16ce5f6c6c109f0c743e469[m
+Merge: 9cd06d42549 a3812c37d66
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Wed Apr 15 06:50:02 2026 +0300
+
+    Merge branch 'master' into pr-95369
+
+[33mcommit 9cd06d42549f6f5b746701a2fa112f246f4e441a[m
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Tue Apr 14 18:54:23 2026 -0700
+
+    TTS radio volume slider
+
+[33mcommit 726cb542d591c776c085199bc744e04046ea9cc7[m
+Author: Bruh-24 <aliris-4321@mail.ru>
+Date:   Tue Apr 14 23:43:55 2026 +0300
+
+    UI .scss
+
+[33mcommit 90eb5253dce9e1fb0cf450ee70a3e317a0ea0541[m
+Merge: 7f4b636efed b17233a5255
+Author: Iamgoofball <iamgoofball@gmail.com>
+Date:   Tue Apr 14 08:38:57 2026 -0700
+
+    Merge branch 'master' of https://github.com/tgstation/tgstation into hail_to_kushnirenko
+    
+    # Conflicts:
+    #       code/__DEFINES/say.dm
+
+[33mcommit b17233a5255a2c5f3042a043a63ac28e9dee97ec[m
+Author: tgstation-ci[bot] <179393467+tgstation-ci[bot]@users.noreply.github.com>
+Date:   Tue Apr 14 06:00:23 2026 +0000
+
+    Automatic changelog compile [ci skip]
