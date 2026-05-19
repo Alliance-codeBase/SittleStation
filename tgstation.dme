@@ -4349,6 +4349,7 @@
 #include "code\modules\clothing\under\jobs\Plasmaman\engineering.dm"
 #include "code\modules\clothing\under\jobs\Plasmaman\medsci.dm"
 #include "code\modules\clothing\under\jobs\Plasmaman\security.dm"
+#include "code\modules\combat\combat_music.dm"
 #include "code\modules\deathmatch\deathmatch_controller.dm"
 #include "code\modules\deathmatch\deathmatch_loadouts.dm"
 #include "code\modules\deathmatch\deathmatch_lobby.dm"
