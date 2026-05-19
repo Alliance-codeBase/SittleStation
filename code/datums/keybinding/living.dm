@@ -103,11 +103,10 @@
 	var/mob/living/user_mob = user.mob
 
 	user_mob.set_combat_mode(!user_mob.combat_mode, FALSE)
-
 	if(user_mob.combat_mode)
-		user_mob.start_combat_music()
+		user_mob.start_combat_music(user_mob.client)
 	else
-		user_mob.stop_combat_music()
+		user_mob.stop_combat_music(user_mob.client)
 
 /datum/keybinding/living/enable_combat_mode
 	hotkey_keys = list("4")

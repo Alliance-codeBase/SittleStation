@@ -4,7 +4,7 @@
 	var/combat_music_track
 	var/combat_music_playing = FALSE
 
-#define COMBAT_MUSIC_CHANNEL 7
+#define COMBAT_MUSIC_CHANNEL 1009
 
 /proc/get_combat_track(mob/living/M)
 
@@ -21,21 +21,15 @@
 
 	return 'sound/music/combat/default.ogg'
 
-/mob/living/proc/start_combat_music()
+/mob/living/proc/start_combat_music(client/C)
 
 	if(!client)
 		return
-
-	var/client/C = client
 
 	if(C.combat_music_playing)
 		return
 
 	spawn(15)
-
-		if(!combat_mode)
-			return
-
 		var/reset_time = 1800
 
 		if(world.time > C.combat_music_last_use + reset_time)
@@ -45,8 +39,6 @@
 
 		C.combat_music_track = get_combat_track(src)
 
-		var/offset = max(0, world.time - C.combat_music_started)
-
 		C.combat_music_playing = TRUE
 
 		C << sound(
@@ -54,16 +46,13 @@
 			repeat = 1,
 			wait = 0,
 			volume = 70,
-			channel = COMBAT_MUSIC_CHANNEL,
-			offset = offset
+			channel = COMBAT_MUSIC_CHANNEL
 		)
 
-/mob/living/proc/stop_combat_music()
+/mob/living/proc/stop_combat_music(client/C)
 
 	if(!client)
 		return
-
-	var/client/C = client
 
 	C.combat_music_last_use = world.time
 	C.combat_music_playing = FALSE
