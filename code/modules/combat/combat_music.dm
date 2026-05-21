@@ -29,7 +29,7 @@
 	if(C.combat_music_playing)
 		return
 
-	spawn(15)
+	spawn(1.5 SECONDS)
 		var/reset_time = 1800
 
 		if(world.time > C.combat_music_last_use + reset_time)
