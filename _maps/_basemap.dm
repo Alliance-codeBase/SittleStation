@@ -28,6 +28,7 @@
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		#include "map_files\bearcat\bearcat.dmm"
+		#include "map_files\SerpentStation\SerpentStation.dmm"
 		// MASSMETA EDIT END
 
 	#endif

@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"map_name": "SerpentStation",
+	"map_path": "map_files/SerpentStation",
+	"map_file": "SerpentStation.dmm",
+	"exclude_from_ci": true,
+	"shuttles": {
+		"cargo": "cargo_box",
+		"ferry": "ferry_fancy",
+		"whiteship": "whiteship_meta",
+		"emergency": "emergency_meta"
+	},
+	"job_changes": {
+		"Cook": {
+			"additional_cqc_areas": [
+				"/area/station/service/bar",
+				"/area/station/hallway/secondary/service"
+			]
+		}
+	}
+}

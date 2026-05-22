@@ -88,6 +88,11 @@ map protosstation
 
 endmap
 
+map serpentstation
+	minplayers 20
+	votable
+endmap
+
 # Debug-only maps.
 
 map gateway_test
