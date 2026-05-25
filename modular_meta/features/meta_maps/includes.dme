@@ -1,4 +1,5 @@
 #include "code\protos\shuttles.dm"
-
+#include "code\signs\code\signs.dm"
 #include "code\stroika\areas.dm"
 #include "code\stroika\stroika_assistants.dm"
+#include "code\templates\arrival.dm"
