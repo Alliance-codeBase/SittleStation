@@ -6373,6 +6373,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
+/mob/living/basic/bot/secbot/beepsky/officer,
 /turf/open/floor/iron,
 /area/station/hallway/primary/fore)
 "ayO" = (
@@ -6635,12 +6636,6 @@
 /area/station/maintenance/solars/port)
 "azY" = (
 /obj/structure/plasticflaps,
-/turf/open/floor/plating,
-/area/station/maintenance/department/security/brig)
-"azZ" = (
-/mob/living/simple_animal/bot/secbot/beepsky{
-	name = "Officer Beepsky"
-	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/security/brig)
 "aAa" = (
@@ -36938,6 +36933,7 @@
 "kba" = (
 /obj/structure/cable/layer3,
 /obj/machinery/holopad/secure,
+/mob/living/basic/bot/secbot/pingsky,
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/interior)
 "kbi" = (
@@ -40165,10 +40161,9 @@
 /turf/open/floor/iron/dark,
 /area/station/service/chapel/dock)
 "mKU" = (
-/obj/structure/cable/layer3,
-/mob/living/simple_animal/bot/secbot/pingsky,
+/mob/living/basic/bot/secbot/beepsky/armsky,
 /turf/open/floor/iron/dark,
-/area/station/ai/satellite/interior)
+/area/station/security/armory)
 "mLc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -50129,7 +50124,6 @@
 /area/station/medical/morgue)
 "ulV" = (
 /obj/effect/landmark/event_spawn,
-/mob/living/simple_animal/bot/secbot/beepsky/armsky,
 /turf/open/floor/iron/dark,
 /area/station/security/armory)
 "umd" = (
@@ -72116,7 +72110,7 @@ nPA
 uQl
 rMJ
 aiu
-azZ
+ajD
 aiu
 ayA
 cRA
@@ -78781,7 +78775,7 @@ abI
 ahL
 pWo
 akM
-akM
+mKU
 wEc
 ajh
 ajR
@@ -84568,7 +84562,7 @@ cdm
 agR
 nBC
 iBJ
-mKU
+rkm
 hQz
 kba
 jCr
