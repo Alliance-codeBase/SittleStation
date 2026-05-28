@@ -68,7 +68,7 @@ map wawastation
 	minplayers 20
 endmap
 
-map protoboxstation
+map theiastation
 	votable
 endmap
 
@@ -79,13 +79,6 @@ endmap
 
 # Только через админ кнопки
 map stroika
-endmap
-
-map protosstation
-	minplayers 0
-	maxplayers 25
-	votable
-
 endmap
 
 # Debug-only maps.
