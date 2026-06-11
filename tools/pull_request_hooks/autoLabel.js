@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /** biome-ignore-all lint/suspicious/useIterableCallbackReturn: не знаю что тут писать даже */
+=======
+>>>>>>> upstream/master
 import * as autoLabelConfig from './autoLabelConfig.js';
 
 /**
@@ -179,6 +182,7 @@ async function check_diff_files_for_labels(github, context) {
  */
 export async function get_updated_label_set({ github, context }) {
   const { pull_request } = context.payload;
+<<<<<<< HEAD
   const {
     body = '',
     diff_url,
@@ -186,22 +190,33 @@ export async function get_updated_label_set({ github, context }) {
     mergeable,
     title = '',
   } = pull_request;
+=======
+  const { body = '', diff_url, mergeable, title = '' } = pull_request;
+>>>>>>> upstream/master
 
-  const updated_labels = new Set(labels.map((l) => l.name));
+  const updated_labels = new Set();
 
   // Always check file diffs
   if (diff_url) {
     const { labels_to_add, labels_to_remove } =
       await check_diff_files_for_labels(github, context);
-    labels_to_add.forEach((label) => updated_labels.add(label));
-    labels_to_remove.forEach((label) => updated_labels.delete(label));
+    labels_to_add.forEach((label) => {
+      updated_labels.add(label);
+    });
+    labels_to_remove.forEach((label) => {
+      updated_labels.delete(label);
+    });
   }
 
   // Always check body/title (otherwise we can lose the changelog labels)
   if (title)
-    check_title_for_labels(title).forEach((label) => updated_labels.add(label));
+    check_title_for_labels(title).forEach((label) => {
+      updated_labels.add(label);
+    });
   if (body)
-    check_body_for_labels(body).forEach((label) => updated_labels.add(label));
+    check_body_for_labels(body).forEach((label) => {
+      updated_labels.add(label);
+    });
 
   // Keep track of labels that were manually added/removed by maintainers in the events.
   // And make sure they -stay- added/removed.
@@ -229,6 +244,12 @@ export async function get_updated_label_set({ github, context }) {
     }
   } catch (error) {
     console.error('Error fetching paginated events:', error);
+<<<<<<< HEAD
+=======
+    for (const label of pull_request.labels) {
+      updated_labels.add(label.name);
+    }
+>>>>>>> upstream/master
   }
 
   // Always remove Test Merge Candidate
