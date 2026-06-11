@@ -38,7 +38,11 @@
 		"water_balloon",
 		"ticket_machine",
 		"radio_entertainment",
+<<<<<<< HEAD
 		"manual_cell_recharger", // MASSMETA EDIT (more_cell_interactions)
+=======
+		"rdd",
+>>>>>>> upstream/master
 		"photocopier",
 	)
 
