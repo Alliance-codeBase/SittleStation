@@ -250,7 +250,7 @@
 		our_sound.x = new_x
 		our_sound.z = new_z
 	var/original_volume = our_sound.volume
-	var/calculated_volume = original_volume - CALCULATE_SOUND_VOLUME(original_volume, get_dist(sound_turf, listener_turf), sound_range, falloff_distance, falloff_exponent)
+	var/calculated_volume = original_volume - CALCULATE_SOUND_VOLUME_RATIO(original_volume, get_dist(sound_turf, listener_turf), sound_range, falloff_distance, falloff_exponent)
 	if(pressure_affected)
 		//Atmosphere affects sound
 		var/pressure_factor = 1
@@ -268,7 +268,7 @@
 			pressure_factor = max(pressure_factor, 0.15) //touching the source of the sound
 
 		calculated_volume *= pressure_factor
-	if(calculated_volume < SOUND_AUDIBLE_VOLUME_MIN || get_dist(sound_turf, listener_turf) > sound_range)
+	if(calculated_volume < 3 || get_dist(sound_turf, listener_turf) > sound_range)
 		our_sound.volume = 0
 	else
 		our_sound.volume = calculated_volume
