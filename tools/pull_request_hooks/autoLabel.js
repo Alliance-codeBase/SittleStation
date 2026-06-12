@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-/** biome-ignore-all lint/suspicious/useIterableCallbackReturn: не знаю что тут писать даже */
-=======
->>>>>>> upstream/master
 import * as autoLabelConfig from './autoLabelConfig.js';
 
 /**
@@ -182,17 +178,7 @@ async function check_diff_files_for_labels(github, context) {
  */
 export async function get_updated_label_set({ github, context }) {
   const { pull_request } = context.payload;
-<<<<<<< HEAD
-  const {
-    body = '',
-    diff_url,
-    labels = [],
-    mergeable,
-    title = '',
-  } = pull_request;
-=======
   const { body = '', diff_url, mergeable, title = '' } = pull_request;
->>>>>>> upstream/master
 
   const updated_labels = new Set();
 
@@ -244,12 +230,9 @@ export async function get_updated_label_set({ github, context }) {
     }
   } catch (error) {
     console.error('Error fetching paginated events:', error);
-<<<<<<< HEAD
-=======
     for (const label of pull_request.labels) {
       updated_labels.add(label.name);
     }
->>>>>>> upstream/master
   }
 
   // Always remove Test Merge Candidate

@@ -561,9 +561,11 @@
 
 // please make sure they're sorted alphabetically and categorized
 
+/* MASSMETA REMOVAL (lgbt_removal)
 /datum/sprite_accessory/clothing/socks/ace_knee
 	name = "Knee-high (Ace)"
 	icon_state = "ace_knee"
+*/
 
 /datum/sprite_accessory/clothing/socks/bee_knee
 	name = "Knee-high (Bee)"
@@ -581,9 +583,11 @@
 	name = "Knee-High (Freedom)"
 	icon_state = "assblastusa_knee"
 
+/* MASSMETA REMOVAL (lgbt_removal)
 /datum/sprite_accessory/clothing/socks/rainbow_knee
 	name = "Knee-high (Rainbow)"
 	icon_state = "rainbow_knee"
+*/
 
 /datum/sprite_accessory/clothing/socks/striped_knee
 	name = "Knee-high (Striped)"
@@ -593,9 +597,11 @@
 	name = "Knee-high (Thin)"
 	icon_state = "thin_knee"
 
+/* MASSMETA REMOVAL (lgbt_removal)
 /datum/sprite_accessory/clothing/socks/trans_knee
 	name = "Knee-high (Trans)"
 	icon_state = "trans_knee"
+*/
 
 /datum/sprite_accessory/clothing/socks/uk_knee
 	name = "Knee-High (UK)"
@@ -665,9 +671,11 @@
 	name = "Stockings (Fishnet)"
 	icon_state = "fishnet_full"
 
+/* MASSMETA REMOVAL (lgbt_removal)
 /datum/sprite_accessory/clothing/socks/ace_thigh
 	name = "Thigh-high (Ace)"
 	icon_state = "ace_thigh"
+*/
 
 /datum/sprite_accessory/clothing/socks/bee_thigh
 	name = "Thigh-high (Bee)"
@@ -685,9 +693,11 @@
 	name = "Thigh-high (Freedom)"
 	icon_state = "assblastusa_thigh"
 
+/* MASSMETA REMOVAL (lgbt_removal)
 /datum/sprite_accessory/clothing/socks/rainbow_thigh
 	name = "Thigh-high (Rainbow)"
 	icon_state = "rainbow_thigh"
+*/
 
 /datum/sprite_accessory/clothing/socks/striped_thigh
 	name = "Thigh-high (Striped)"
@@ -697,9 +707,11 @@
 	name = "Thigh-high (Thin)"
 	icon_state = "thin_thigh"
 
+/* MASSMETA REMOVAL (lgbt_removal)
 /datum/sprite_accessory/clothing/socks/trans_thigh
 	name = "Thigh-high (Trans)"
 	icon_state = "trans_thigh"
+*/
 
 /datum/sprite_accessory/clothing/socks/uk_thigh
 	name = "Thigh-high (UK)"
