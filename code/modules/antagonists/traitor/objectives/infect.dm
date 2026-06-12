@@ -160,15 +160,21 @@
 	//Was the injector used on someone yet?
 	var/used = FALSE
 
-/obj/item/reagent_containers/hypospray/medipen/manifoldinjector/attack(mob/living/affected_mob, mob/living/carbon/human/user)
+/obj/item/reagent_containers/hypospray/medipen/manifoldinjector/interact_with_atom(mob/living/affected_mob, mob/living/user)
 	if(used)
-		return ..()
-	to_chat(affected_mob, span_warning("You feel someone try to inject you with something."))
-	balloon_alert(user, "injecting...")
-	log_combat(user, affected_mob, "attempted to inject", src)
+		return
+
+	if(!affected_mob.can_inject(user, user.zone_selected))
+		balloon_alert(user, "no exposed skin!")
+		return
+
 	if(!do_after(user, 1.5 SECONDS, hidden = TRUE))
 		balloon_alert(user, "interrupted!")
 		return
+
+	to_chat(affected_mob, span_warning("You feel someone try to inject you with something."))
+	balloon_alert(user, "injecting...")
+	log_combat(user, affected_mob, "attempted to inject", src)
 	var/datum/disease/chronic_illness/hms = new /datum/disease/chronic_illness()
 	affected_mob.ForceContractDisease(hms)
 	used = TRUE
