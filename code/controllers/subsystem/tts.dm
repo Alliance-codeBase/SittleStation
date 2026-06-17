@@ -798,7 +798,6 @@ SUBSYSTEM_DEF(tts)
 		// MASSMETA EDIT END (ntts && /tg/tts)
 	else
 		var/datum/http_response/response = request.into_response()
-		var/datum/http_response/response_radio = request_radio.into_response()
 		// MASSMETA EDIT START (ntts && /tg/tts)
 		var/datum/http_response/response_blips = request_blips.into_response()
 		var/datum/http_response/response_radio = request_radio.into_response()

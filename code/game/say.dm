@@ -151,16 +151,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!hearing_movable)//theoretically this should use as anything because it shouldnt be able to get nulls but there are reports that it does.
 			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
 			continue
-<<<<<<< HEAD
-		if(hearing_movable.Hear(src, message_language, message, null, null, null, spans, message_mods, range))
-			listened += hearing_movable
-
-	if(voice)
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice, filter.Join(","), listened, message_range = range, pitch = pitch, blip_base = blip_base, blip_number = blip_number, identifier = identifier)
-=======
 		if(hearing_movable.Hear(src, message_language, message, null, null, null, spans, message_mods, range) & HEAR_HEARD)
 			listened += hearing_movable
->>>>>>> upstream/master
 
 	do_tts_message(tts_message_to_use, message_language, message_mods, tts_filter, listened)
 /atom/movable/proc/compose_message(atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, list/spans, list/message_mods = list(), visible_name = FALSE)

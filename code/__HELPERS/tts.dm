@@ -5,11 +5,9 @@
 
 /proc/tts_gibberish_speech_filter(text)
 	// Only allow alphanumeric characters and whitespace
-<<<<<<< HEAD
+	// MASSMETA EDIT
 	var/static/regex/bad_chars_regex = regex("\[^а-яА-ЯёЁa-zA-Z0-9 ,?.!'&-]", "g")
-=======
-	var/static/regex/bad_chars_regex = regex("\[^a-zA-Z0-9 ,?.!'&-]", "g")
->>>>>>> upstream/master
+	// MASSMETA EDIT
 	return bad_chars_regex.Replace(text, "#")
 
 /proc/tts_filter_encode(text, speaker, pitch, blips = FALSE)
