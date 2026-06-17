@@ -9,7 +9,10 @@
 	var/atom/parent
 	var/sound/our_sound
 	var/sound_path
+<<<<<<< HEAD
 	var/list/mob/starting_listeners
+=======
+>>>>>>> upstream/master
 	var/can_add_new_listeners = TRUE
 	var/list/mob/listeners = list()
 	var/volume = 50
@@ -51,18 +54,29 @@
 	z_cutoff = ceil(worldviewsize[2] / 2)
 	for(var/listener in current_listeners)
 		if(!ismob(listener))
+<<<<<<< HEAD
 			current_listeners -= current_listeners
 			continue
 		register_listener(listener)
 	starting_listeners = current_listeners
+=======
+			stack_trace("[listener] found in current listeners list and is NOT A MOB!!!!!1! report this on github thx")
+			current_listeners -= listener
+			continue
+		register_listener(listener)
+>>>>>>> upstream/master
 
 	RegisterSignal(parent, COMSIG_ENTER_AREA, PROC_REF(on_enter_area))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
 	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(parent_delete))
+<<<<<<< HEAD
 	deletion_timer = addtimer(CALLBACK(src, PROC_REF(delete_self)), sound_length, TIMER_STOPPABLE | TIMER_DELETE_ME)
 
 /datum/threed_sound/proc/delete_self()
 	qdel(src)
+=======
+	deletion_timer = addtimer(CALLBACK(src, PROC_REF(selfdelete)), sound_length, TIMER_STOPPABLE | TIMER_DELETE_ME)
+>>>>>>> upstream/master
 
 /datum/threed_sound/Destroy()
 	unlisten_all()
@@ -73,7 +87,11 @@
 
 /datum/threed_sound/proc/parent_delete(datum/source)
 	SIGNAL_HANDLER
+<<<<<<< HEAD
 	qdel(src)
+=======
+	selfdelete()
+>>>>>>> upstream/master
 
 /**
  * Sets the sound's range to a new value. This can be a number or a view size string "XxY".
@@ -250,7 +268,13 @@
 		our_sound.x = new_x
 		our_sound.z = new_z
 	var/original_volume = our_sound.volume
+<<<<<<< HEAD
 	var/calculated_volume = original_volume - CALCULATE_SOUND_VOLUME_RATIO(original_volume, get_dist(sound_turf, listener_turf), sound_range, falloff_distance, falloff_exponent)
+=======
+	var/distance = get_dist_euclidean(sound_turf, listener_turf)
+	var/dist_ratio = CALCULATE_SOUND_VOLUME_RATIO(original_volume, distance, sound_range, falloff_distance, falloff_exponent)
+	var/calculated_volume = original_volume - (dist_ratio * (original_volume - 5))
+>>>>>>> upstream/master
 	if(pressure_affected)
 		//Atmosphere affects sound
 		var/pressure_factor = 1
@@ -268,7 +292,11 @@
 			pressure_factor = max(pressure_factor, 0.15) //touching the source of the sound
 
 		calculated_volume *= pressure_factor
+<<<<<<< HEAD
 	if(calculated_volume < 3 || get_dist(sound_turf, listener_turf) > sound_range)
+=======
+	if(calculated_volume < 5 || get_dist(sound_turf, listener_turf) > sound_range)
+>>>>>>> upstream/master
 		our_sound.volume = 0
 	else
 		our_sound.volume = calculated_volume
@@ -285,6 +313,7 @@
 
 #undef MUTE_DEAF
 #undef MUTE_RANGE
+<<<<<<< HEAD
 
 /obj/item/threed_sound_test
 	name = "fuck"
@@ -353,3 +382,5 @@
 			/datum/preference/numeric/volume/sound_tts_volume,
 			COMSIG_MOB_TTS_VOLUME_PREFERENCE_APPLIED
 		)
+=======
+>>>>>>> upstream/master

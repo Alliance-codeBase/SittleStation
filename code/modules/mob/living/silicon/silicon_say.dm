@@ -87,6 +87,7 @@
 /mob/living/silicon/radio(message, list/message_mods = list(), list/spans, language)
 	. = ..()
 	if(.)
+<<<<<<< HEAD
 		var/list/filter = list()
 		var/list/special_filter = list()
 		if(length(voice_filter) > 0)
@@ -103,16 +104,27 @@
 				filter += voice_filter
 			if(SStts.tts_enabled && voice && !message_mods[MODE_CUSTOM_SAY_ERASE_INPUT] && !HAS_TRAIT(src, TRAIT_SIGN_LANG) && !HAS_TRAIT(src, TRAIT_UNKNOWN_VOICE))
 				INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), list(), message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER])
+=======
+		do_tts_message(message, language, message_mods, list(), list())
+		return
+	if(message_mods[MODE_HEADSET])
+		if(radio)
+			radio.talk_into(src, message, null, spans, language, message_mods)
+			do_tts_message(message, language, message_mods, list(), list())
+>>>>>>> upstream/master
 		return NOPASS
 	else if(message_mods[RADIO_EXTENSION] in GLOB.default_radio_channels)
 		if(radio)
 			radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+<<<<<<< HEAD
 			var/list/filter = list()
 			var/list/special_filter = list()
 			if(length(voice_filter) > 0)
 				filter += voice_filter
 			if(SStts.tts_enabled && voice && !message_mods[MODE_CUSTOM_SAY_ERASE_INPUT] && !HAS_TRAIT(src, TRAIT_SIGN_LANG) && !HAS_TRAIT(src, TRAIT_UNKNOWN_VOICE))
 				INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(message), language, get_tts_voice(filter, special_filter), filter.Join(","), list(), message_range = 7, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER])
+=======
+			do_tts_message(message, language, message_mods, list(), list())
+>>>>>>> upstream/master
 			return NOPASS
-
 	return FALSE

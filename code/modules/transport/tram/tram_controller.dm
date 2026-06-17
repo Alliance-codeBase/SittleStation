@@ -378,6 +378,7 @@
 	)
 	var/list/hearers = playsound(idle_platform, jingle, 50, FALSE, 0, extrarange= 10, ignore_walls = TRUE)
 	new /datum/threed_sound(
+<<<<<<< HEAD
 		idle_platform,
 		jingle,
 		hearers,
@@ -391,6 +392,22 @@
 		SOUND_FALLOFF_EXPONENT,
 		5
 	)
+=======
+		new_parent = idle_platform,
+		new_sound = jingle,
+		current_listeners = hearers,
+		can_add_new_listeners = FALSE,
+		volume = 60,
+		sound_range = SOUND_RANGE + 7,
+		sound_length = 12 SECONDS,
+		channel = our_channel,
+		preference_volume = null,
+		preference_signal = null,
+		falloff_exponent = SOUND_FALLOFF_EXPONENT,
+		falloff_distance = 5
+	)
+
+>>>>>>> upstream/master
 	tram_registration.distance_travelled += (travel_trip_length - travel_remaining)
 	travel_trip_length = 0
 	current_speed = 0

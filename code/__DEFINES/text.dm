@@ -99,12 +99,15 @@
 #define ARCADE_FILE "arcade.json"
 /// File location for boomer meme catchphrases
 #define BOOMER_FILE "boomer.json"
+<<<<<<< HEAD
 /// File location for locations on the station
 //MASSMETA EDIT (ru_traitor_words)
 //#define LOCATIONS_FILE "locations.json"
 
 #define LOCATIONS_FILE "massmeta/locations_ru.json"
 //MASSMETA EDIT
+=======
+>>>>>>> upstream/master
 /// File location for wanted posters messages
 #define WANTED_FILE "wanted_message.json"
 /// File location for really dumb suggestions memes

@@ -30,7 +30,22 @@ SUBSYSTEM_DEF(traitor)
 	var/newjoin_progression_coeff = 1
 	/// The current progression that all traitors should be at in the round
 	var/current_global_progression = 0
+<<<<<<< HEAD
 	/// The amount of deviance from the current global progression before you start getting 2x the current scaling or no scaling at all
+=======
+	/// The current uplink handlers being managed
+	var/list/datum/uplink_handler/uplink_handlers = list()
+	/// The current scaling per minute of progression.
+	var/current_progression_scaling = 1 MINUTES
+	/// List of code words for traitors
+	var/syndicate_code_phrase
+	/// List of code responses for traitors
+	var/syndicate_code_response
+	/// Regex of code words for traitors
+	var/regex/syndicate_code_phrase_regex
+	/// Regex of code responses for traitors
+	var/regex/syndicate_code_response_regex
+>>>>>>> upstream/master
 
 	//MASSMETA ADDDITION START (re_traitorsecondary)
 
@@ -58,6 +73,7 @@ SUBSYSTEM_DEF(traitor)
 	//  MASSMETA EDIT END (re_traitor_secondary)
 	for(var/theft_item in subtypesof(/datum/objective_item/steal))
 		new theft_item
+<<<<<<< HEAD
 	//MASSMETA ADDITION START (re_traitor_secondary)
 	if(fexists(configuration_path))
 		var/list/data = json_decode(file2text(file(configuration_path)))
@@ -67,6 +83,13 @@ SUBSYSTEM_DEF(traitor)
 				log_world("[configuration_path] has an invalid type ([typepath]) that doesn't exist in the codebase! Please correct or remove [typepath]")
 			configuration_data[actual_typepath] = data[typepath]
 	//MASSMETA ADDITION END (re_traitor_secondary)
+=======
+
+	syndicate_code_phrase = generate_code_phrase(return_list = TRUE)
+	syndicate_code_phrase_regex = new("([jointext(syndicate_code_phrase, "|")])", "ig")
+	syndicate_code_response = generate_code_phrase(return_list = TRUE)
+	syndicate_code_response_regex = new("([jointext(syndicate_code_response, "|")])", "ig")
+>>>>>>> upstream/master
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/traitor/fire(resumed)
