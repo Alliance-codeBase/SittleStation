@@ -601,7 +601,7 @@ SUBSYSTEM_DEF(tts)
 	var/datum/http_request/request_radio = new()
 	var/datum/http_request/request_blips_radio = new()
 	// MASSMETA EDIT END (ntts && /tg/tts)
-	var/datum/http_request/request_radio_gibberish
+	var/datum/http_request/request_radio_gibberish = new()
 	var/file_name = "tmp/tts/[identifier].ogg"
 	var/file_name_blips = "tmp/tts/[identifier]_blips.ogg"
 	var/file_name_radio = "tmp/tts/[identifier]_radio.ogg"
