@@ -18,13 +18,20 @@
 
 ///Обычные предметы в аплинках трейторов
 //dangerous категория
+/datum/uplink_item/dangerous/lrifle
+	name = "Compact Laser Rifle"
+	desc = "Rechargeable energy gun, that developed by 'Cybersun'. \
+			Comes in briefcase with 2 magazines, you can fold this, but lose accuracy."
+	item = /obj/item/storage/toolbox/guncase/traitor/lrifle
+	cost = 12
+	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
+
 /datum/uplink_item/dangerous/backstab
 	name = "Backstabing Knife"
 	desc = "A specially designed syndicate's finest knife. \
 			Used for stealthy assasinations, will deal bonus damage upon a hit from the back!"
 	item = /obj/item/switchblade/backstab
-
-	cost = 10
+	cost = 8
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
 //device tools категория

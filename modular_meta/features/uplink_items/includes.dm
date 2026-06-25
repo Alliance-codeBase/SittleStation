@@ -5,6 +5,9 @@
 #include "code\bundle\crate.dm"
 #include "code\bundle\bundles.dm"
 #include "code\clothing\engset.dm"
+#include "code\weaponry\ammo_types.dm"
+#include "code\weaponry\guncase.dm"
+#include "code\weaponry\lrifle.dm"
 #include "code\justice_mecha.dm"
 #include "code\adrenals.dm"
 
