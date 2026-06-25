@@ -12164,15 +12164,7 @@
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "aXx" = (
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	location = "QM #1"
-	},
 /obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #1";
-	suffix = "#1"
-	},
 /turf/open/floor/catwalk_floor/iron,
 /area/station/cargo/storage)
 "aXy" = (
@@ -12428,11 +12420,12 @@
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "aYx" = (
+/obj/effect/turf_decal/bot,
+/mob/living/basic/bot/mulebot,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #2"
+	location = "QM #1"
 	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/catwalk_floor/iron,
 /area/station/cargo/storage)
 "aYB" = (
@@ -12659,14 +12652,11 @@
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "aZq" = (
+/obj/effect/turf_decal/bot,
+/mob/living/basic/bot/mulebot,
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #3"
-	},
-/obj/effect/turf_decal/bot,
-/mob/living/simple_animal/bot/mulebot{
-	home_destination = "QM #2";
-	suffix = "#2"
+	location = "QM #2"
 	},
 /turf/open/floor/catwalk_floor/iron,
 /area/station/cargo/storage)
@@ -12879,10 +12869,6 @@
 /turf/open/floor/iron,
 /area/station/cargo/sorting)
 "baA" = (
-/obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	location = "QM #4"
-	},
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment{
 	dir = 4
