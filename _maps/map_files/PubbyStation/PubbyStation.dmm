@@ -25482,6 +25482,7 @@
 /area/station/medical/virology)
 "cit" = (
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/air_sensor/engine_chamber,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/engine)
 "ciy" = (
@@ -25519,6 +25520,7 @@
 	name = "Supermatter Chamber";
 	req_one_access = list("engineering","atmospherics")
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/engine)
 "ciJ" = (
@@ -36618,6 +36620,7 @@
 	name = "Supermatter Chamber";
 	req_one_access = list("engineering","atmospherics")
 	},
+/obj/effect/mapping_helpers/airlock/access/all/engineering/general,
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/engine)
 "jOk" = (
