@@ -3950,8 +3950,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/moonoutpost19/arrivals/shed)
-<<<<<<< HEAD
-=======
 "Bd" = (
 /obj/effect/turf_decal/tile/dark/opposingcorners{
 	dir = 1
@@ -3973,7 +3971,6 @@
 /obj/machinery/duct,
 /turf/open/floor/iron,
 /area/awaymission/moonoutpost19/arrivals)
->>>>>>> upstream/master
 "Bg" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w{
 	dir = 4
@@ -7075,8 +7072,6 @@
 	},
 /turf/open/floor/iron,
 /area/awaymission/moonoutpost19/arrivals)
-<<<<<<< HEAD
-=======
 "Ym" = (
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "line";
@@ -7084,7 +7079,6 @@
 	},
 /turf/open/misc/asteroid/moon,
 /area/awaymission/moonoutpost19/main)
->>>>>>> upstream/master
 "Yt" = (
 /obj/structure/chair/stool/directional/south,
 /obj/effect/turf_decal/tile/bar,

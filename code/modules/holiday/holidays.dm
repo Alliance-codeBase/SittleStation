@@ -86,39 +86,8 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 	return FALSE
 
-<<<<<<< HEAD
-/// Procs to return holiday themed colors for recoloring atoms
-/datum/holiday/proc/get_holiday_colors(atom/thing_to_color, pattern = holiday_pattern)
-	if(!holiday_colors)
-		return
-	switch(pattern)
-		if(PATTERN_DEFAULT)
-			return holiday_colors[(thing_to_color.y % holiday_colors.len) + 1]
-		if(PATTERN_VERTICAL_STRIPE)
-			return holiday_colors[(thing_to_color.x % holiday_colors.len) + 1]
-
-/proc/request_holiday_colors(atom/thing_to_color, pattern)
-	switch(pattern)
-		if(PATTERN_RANDOM)
-			return "#[random_short_color()]"
-		//MASSMETA EDIT REMOVAL BEGIN (lgbt_removal)
-		/*
-		if(PATTERN_RAINBOW)
-			var/datum/holiday/pride_week/rainbow_datum = new()
-			return rainbow_datum.get_holiday_colors(thing_to_color, PATTERN_DEFAULT)
-		*/
-		//MASSMETA EDIT REMOVAL END
-	if(!length(GLOB.holidays))
-		return
-	for(var/holiday_key in GLOB.holidays)
-		var/datum/holiday/holiday_real = GLOB.holidays[holiday_key]
-		if(!holiday_real.holiday_colors)
-			continue
-		return holiday_real.get_holiday_colors(thing_to_color, pattern || holiday_real.holiday_pattern)
-=======
 /datum/holiday/proc/get_holiday_colors(atom/thing_to_color, pattern)
 	return get_decoration_color_from_pattern(thing_to_color, pattern || holiday_pattern, holiday_colors)
->>>>>>> upstream/master
 
 // The actual holidays
 
@@ -494,9 +463,12 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/pride_week/New()
 	. = ..()
+	return // MASSMETA EDIT
+	/* MASSMETA REMOVAL (lgbt_removal)
 	if(prob(30))
 		return
 	holiday_colors = pick(LESBIAN_FLAG_COLORS, GAY_MAN_FLAG_COLORS, TRANS_FLAG_COLORS, BI_FLAG_COLORS, ACE_FLAG_COLORS, PAN_FLAG_COLORS)
+	*/
 
 // JULY
 
