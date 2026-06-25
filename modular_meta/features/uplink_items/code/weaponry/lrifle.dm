@@ -50,4 +50,4 @@
 /obj/item/gun/ballistic/automatic/laser/station/syndicate/compact/guncase
 	folded = TRUE
 	spread = 30
-	spawn_magazine_type = /obj/item/ammo_box/magazine/recharge/syndi
+	spawn_magazine_type = /obj/item/ammo_box/magazine/recharge/station/syndi
