@@ -22,7 +22,7 @@
 	name = "Compact Laser Rifle"
 	desc = "Rechargeable energy gun, that developed by 'Cybersun'. \
 			Comes in briefcase with 2 magazines, you can fold this, but lose accuracy."
-	item = /obj/item/storage/toolbox/guncase/traitor/lrifle
+	item = /obj/item/storage/toolbox/guncase/lrifle
 	cost = 12
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
