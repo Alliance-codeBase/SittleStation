@@ -34,6 +34,15 @@
 	cost = 8
 	purchasable_from = ~UPLINK_ALL_SYNDIE_OPS
 
+//ammo
+
+/datum/uplink_item/ammo/powerpack
+	name = "Power Pack"
+	desc = "A single power pack that can be inserted in Laser Rifle and also can be recharged."
+	item = /obj/item/ammo_box/magazine/recharge/station/syndi
+	cost = 4
+	purchasable_from = ~(UPLINK_ALL_SYNDIE_OPS | UPLINK_SPY)
+
 //device tools категория
 /datum/uplink_item/device_tools/ultdoorjack
 	name = "Syndicate Ultimate authentication override card"
