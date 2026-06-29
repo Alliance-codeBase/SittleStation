@@ -25,11 +25,12 @@ type Data = {
   volume: number;
   track_selected: string | null;
   songs: Song[];
+  internet_sound_enabled: boolean; //MASSMETA ADDITION
 };
 
 export const Jukebox = () => {
   const { act, data } = useBackend<Data>();
-  const { active, looping, track_selected, volume, songs } = data;
+  const { active, looping, track_selected, volume, songs, internet_sound_enabled } = data;
 
   const songs_sorted: Song[] = sortBy(songs, [(song: Song) => song.name]);
   const song_selected: Song | undefined = songs.find(
@@ -37,7 +38,8 @@ export const Jukebox = () => {
   );
 
   return (
-    <Window width={370} height={313}>
+    <Window width={370} height={380} //MASSMETA EDIT ORIGINAL: Window width={370} height={313}
+    >
       <Window.Content>
         <Section
           title="Song Player"
@@ -144,6 +146,19 @@ export const Jukebox = () => {
             </LabeledControls.Item>
           </LabeledControls>
         </Section>
+        {//MASSMETA ADDITION
+        }
+        <Section title="Internet Song Player">
+          <Button
+            fluid
+            icon="globe"
+            disabled={!internet_sound_enabled}
+            content={internet_sound_enabled ? "Play Internet Song" : "Disabled by Host"}
+            onClick={() => act('request_internet_track')}
+          />
+        </Section>
+        {//MASSMETA ADDITION END
+        }
       </Window.Content>
     </Window>
   );

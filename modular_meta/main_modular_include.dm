@@ -53,6 +53,7 @@
 #include "features\ntts-nd-tg-tts\includes.dm"
 #include "features\meta_redesign\includes.dm"
 #include "features\holidays\includes.dm"
+#include "features\jukeboxes_music\code\music.dm"
 
 /* --- Reverts --- */
 
