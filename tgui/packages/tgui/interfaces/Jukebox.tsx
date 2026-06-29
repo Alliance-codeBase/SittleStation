@@ -15,8 +15,10 @@ import { Window } from '../layouts';
 
 type Song = {
   name: string;
-  length: number;
+  length: number | string; //MASSMETA EDIT ORIGINAL: length: number;
   beat: number;
+  is_custom?: boolean; //MASSMETA ADDITION
+  url?: string; //MASSMETA ADDITION
 };
 
 type Data = {
@@ -79,8 +81,8 @@ export const Jukebox = () => {
               {song_selected?.length || 'No Track Selected'}
             </LabeledList.Item>
             <LabeledList.Item label="Track Beat">
-              {song_selected?.beat || 'No Track Selected'}
-              {song_selected?.beat === 1 ? ' beat' : ' beats'}
+              {song_selected?.is_custom ? 'N/A' : (song_selected?.beat || 'No Track Selected')}
+              {!song_selected?.is_custom && song_selected?.beat ? (song_selected.beat === 1 ? ' beat' : ' beats') : ''}
             </LabeledList.Item>
           </LabeledList>
         </Section>
