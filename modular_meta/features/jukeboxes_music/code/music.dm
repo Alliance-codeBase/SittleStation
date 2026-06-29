@@ -1,6 +1,7 @@
 /obj/machinery/jukebox
 	var/list/custom_songs = list()
 	var/internet_track_selected = null
+	var/internet_playing = FALSE
 
 /obj/machinery/jukebox/ui_data(mob/user)
 	var/list/data = ..()
@@ -8,6 +9,8 @@
 
 	if(internet_track_selected)
 		data["track_selected"] = internet_track_selected
+		if(internet_playing)
+			data["active"] = TRUE
 
 	var/list/all_songs = data["songs"]
 	if(!all_songs)
@@ -27,53 +30,70 @@
 	return data
 
 /obj/machinery/jukebox/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	switch(action)
-		if("select_track")
-			var/track_name = params["track"]
+	if(action == "select_track")
+		var/track_name = params["track"]
 
-			if(custom_songs[track_name])
-				internet_track_selected = track_name
+		if(custom_songs[track_name])
+			internet_track_selected = track_name
+			internet_playing = TRUE
 
-				if(hascall(src, "turn_off"))
-					call(src, "turn_off")()
-				else if(hascall(src, "stop_playing"))
-					call(src, "stop_playing")()
-				else
-					..("toggle", params, ui, state)
+			var/mob/user = ui.user
+			if(user)
+				var/sound/mute_sound = sound(null)
+				mute_sound.channel = CHANNEL_JUKEBOX
+				SEND_SOUND(user, mute_sound)
 
-				var/mob/user = ui.user
-				var/request_url = custom_songs[track_name]
+			if(hascall(src, "turn_off"))
+				call(src, "turn_off")()
+			else if(hascall(src, "stop_playing"))
+				call(src, "stop_playing")()
 
+			var/request_url = custom_songs[track_name]
+			if(user && user.client)
+				to_chat(user, span_info("Playing internet stream: [track_name]..."), confidential = TRUE)
+				GLOB.requests.music_request(user.client, request_url, null)
+
+			update_static_data_for_all_viewers()
+			return TRUE
+		else
+			internet_track_selected = null
+			internet_playing = FALSE
+
+	if(action == "toggle")
+		if(internet_track_selected)
+			internet_playing = !internet_playing
+			var/mob/user = ui.user
+
+			if(!internet_playing)
+				if(user)
+					var/sound/mute_sound = sound(null)
+					mute_sound.channel = CHANNEL_JUKEBOX
+					SEND_SOUND(user, mute_sound)
+			else
+				var/request_url = custom_songs[internet_track_selected]
 				if(user && user.client)
-					to_chat(user, span_info("Playing internet stream: [track_name]..."), confidential = TRUE)
 					GLOB.requests.music_request(user.client, request_url, null)
 
-				update_static_data_for_all_viewers()
-				return TRUE
-			else
-				internet_track_selected = null
-
-		if("request_internet_track")
-			var/mob/user = ui.user
-			if(!user || !user.client)
-				return TRUE
-
-			if(!CONFIG_GET(flag/request_internet_sound))
-				to_chat(user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
-				return TRUE
-
-			if(user.client.prefs.muted & MUTE_INTERNET_REQUEST)
-				to_chat(user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
-				return TRUE
-
-			INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), user)
+			update_static_data_for_all_viewers()
 			return TRUE
 
+	if(action == "request_internet_track")
+		var/mob/user = ui.user
+		if(!user || !user.client)
+			return TRUE
+
+		if(!CONFIG_GET(flag/request_internet_sound))
+			to_chat(user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
+			return TRUE
+
+		if(user.client.prefs.muted & MUTE_INTERNET_REQUEST)
+			to_chat(user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
+			return TRUE
+
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), user)
+		return TRUE
+
 	if(..())
-		var/track_name = params["track"]
-		if(action == "select_track" && !custom_songs[track_name])
-			internet_track_selected = null
-			update_static_data_for_all_viewers()
 		return TRUE
 
 	return FALSE
@@ -100,6 +120,12 @@
 	var/display_name = "🌐 | [track_title]"
 	custom_songs[display_name] = request_url
 	internet_track_selected = display_name
+	internet_playing = TRUE
+
+	if(user)
+		var/sound/mute_sound = sound(null)
+		mute_sound.channel = CHANNEL_JUKEBOX
+		SEND_SOUND(user, mute_sound)
 
 	if(hascall(src, "turn_off"))
 		call(src, "turn_off")()
