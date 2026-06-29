@@ -2,6 +2,11 @@
 	var/list/custom_songs = list()
 	var/internet_track_selected = null
 	var/internet_playing = FALSE
+	var/current_stream_path = ""
+
+/obj/machinery/jukebox/Destroy()
+	stop_internet_stream()
+	return ..()
 
 /obj/machinery/jukebox/ui_data(mob/user)
 	var/list/data = ..()
@@ -9,8 +14,7 @@
 
 	if(internet_track_selected)
 		data["track_selected"] = internet_track_selected
-		if(internet_playing)
-			data["active"] = TRUE
+		data["active"] = internet_playing ? TRUE : FALSE
 
 	var/list/all_songs = data["songs"]
 	if(!all_songs)
@@ -35,46 +39,39 @@
 
 		if(custom_songs[track_name])
 			internet_track_selected = track_name
-			internet_playing = TRUE
-
-			var/mob/user = ui.user
-			if(user)
-				var/sound/mute_sound = sound(null)
-				mute_sound.channel = CHANNEL_JUKEBOX
-				SEND_SOUND(user, mute_sound)
+			if(internet_playing)
+				stop_internet_stream(ui.user)
 
 			if(hascall(src, "turn_off"))
 				call(src, "turn_off")()
 			else if(hascall(src, "stop_playing"))
 				call(src, "stop_playing")()
 
-			var/request_url = custom_songs[track_name]
-			if(user && user.client)
-				to_chat(user, span_info("Playing internet stream: [track_name]..."), confidential = TRUE)
-				GLOB.requests.music_request(user.client, request_url, null)
-
 			update_static_data_for_all_viewers()
 			return TRUE
 		else
 			internet_track_selected = null
-			internet_playing = FALSE
+			if(internet_playing)
+				stop_internet_stream(ui.user)
 
 	if(action == "toggle")
 		if(internet_track_selected)
-			internet_playing = !internet_playing
 			var/mob/user = ui.user
+			if(!user)
+				return TRUE
 
-			if(!internet_playing)
-				if(user)
-					var/sound/mute_sound = sound(null)
-					mute_sound.channel = CHANNEL_JUKEBOX
-					SEND_SOUND(user, mute_sound)
+			if(internet_playing)
+				stop_internet_stream(user)
 			else
-				var/request_url = custom_songs[internet_track_selected]
-				if(user && user.client)
-					GLOB.requests.music_request(user.client, request_url, null)
+				if(hascall(src, "turn_off"))
+					call(src, "turn_off")()
+				else if(hascall(src, "stop_playing"))
+					call(src, "stop_playing")()
 
-			update_static_data_for_all_viewers()
+				internet_playing = TRUE
+				update_static_data_for_all_viewers()
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, start_internet_stream), user)
+
 			return TRUE
 
 	if(action == "request_internet_track")
@@ -120,25 +117,15 @@
 	var/display_name = "🌐 | [track_title]"
 	custom_songs[display_name] = request_url
 	internet_track_selected = display_name
-	internet_playing = TRUE
 
-	if(user)
-		var/sound/mute_sound = sound(null)
-		mute_sound.channel = CHANNEL_JUKEBOX
-		SEND_SOUND(user, mute_sound)
-
-	if(hascall(src, "turn_off"))
-		call(src, "turn_off")()
-	else if(hascall(src, "stop_playing"))
-		call(src, "stop_playing")()
+	if(internet_playing)
+		stop_internet_stream(user)
 
 	log_internet_request("[user.key]/([user.name]) successfully loaded via Jukebox: [request_url]")
 	to_chat(user, span_info("Added '[display_name]' to the track list."), confidential = TRUE)
 
-	GLOB.requests.music_request(user.client, request_url, null)
-
 	var/list/admin_message = list()
-	admin_message += ("[ADMIN_FULLMONTY(user)] [ADMIN_SC(user)] has played the following internet track via Jukebox:<br>")
+	admin_message += ("[ADMIN_FULLMONTY(user)] [ADMIN_SC(user)] has added the following internet track via Jukebox:<br>")
 	admin_message += ("<b>[display_name]</b><br>[span_linkify(request_url)]")
 
 	for(var/client/admin_client in GLOB.admins)
@@ -146,4 +133,63 @@
 			to_chat(admin_client, fieldset_block("Jukebox music", jointext(admin_message, ""), "boxed_message"), type = MESSAGE_TYPE_PRAYER, confidential = TRUE)
 
 	SSblackbox.record_feedback("tally", "music_request", 1, "Music Direct Play")
+	update_static_data_for_all_viewers()
+
+/obj/machinery/jukebox/proc/start_internet_stream(mob/user)
+	var/request_url = custom_songs[internet_track_selected]
+	if(!request_url)
+		internet_playing = FALSE
+		update_static_data_for_all_viewers()
+		return
+
+	to_chat(user, span_notice("Downloading and processing audio."))
+
+	var/safe_url = replacetext(request_url, "\"", "")
+	safe_url = replacetext(safe_url, ";", "")
+	safe_url = replacetext(safe_url, "&", "")
+
+	var/stream_id = rand(1111, 9999)
+	var/output_template = "data/music_cache/yt_[stream_id]"
+	current_stream_path = "[output_template].ogg"
+
+	fdel(current_stream_path)
+
+	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\""
+
+	shell(shell_command)
+
+	var/check_attempts = 0
+	while(!fexists(current_stream_path) && check_attempts < 40)
+		sleep(5)
+		check_attempts++
+
+	if(!fexists(current_stream_path) || !internet_playing)
+		to_chat(user, span_danger("Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation."))
+		internet_playing = FALSE
+		if(current_stream_path)
+			fdel(current_stream_path)
+			current_stream_path = ""
+		update_static_data_for_all_viewers()
+		return
+
+	var/sound/internet_sound = sound(file(current_stream_path))
+	internet_sound.wait = 0
+	internet_sound.repeat = 0
+	internet_sound.channel = CHANNEL_JUKEBOX
+	internet_sound.volume = 30
+
+	SEND_SOUND(user, internet_sound)
+	to_chat(user, span_info("Now playing stream: [internet_track_selected]."))
+
+/obj/machinery/jukebox/proc/stop_internet_stream(mob/user)
+	internet_playing = FALSE
+	if(user)
+		var/sound/mute_sound = sound(null)
+		mute_sound.channel = CHANNEL_JUKEBOX
+		SEND_SOUND(user, mute_sound)
+
+	if(current_stream_path)
+		fdel(current_stream_path)
+		current_stream_path = ""
+
 	update_static_data_for_all_viewers()
