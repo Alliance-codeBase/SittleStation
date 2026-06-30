@@ -122,7 +122,7 @@
 		stop_internet_stream(user)
 
 	log_internet_request("[user.key]/([user.name]) successfully loaded via Jukebox: [request_url]")
-	to_chat(user, span_info("Added '[display_name]' to the track list."), confidential = TRUE)
+	say("Added [track_title] to the track list.")
 
 	var/list/admin_message = list()
 	admin_message += ("[ADMIN_FULLMONTY(user)] [ADMIN_SC(user)] has added the following internet track via Jukebox:<br>")
