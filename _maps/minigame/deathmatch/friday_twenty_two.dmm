@@ -264,11 +264,11 @@
 /turf/open/misc/grass,
 /area/deathmatch)
 "tb" = (
-/obj/effect/decal/cleanable/crayon/x{
+/obj/effect/decal/cleanable/dirt{
 	icon_state = "wizard_rune_fail";
 	icon = 'icons/effects/96x96.dmi';
-	name = "rune";
-	color = "AF1212"
+	color = "AF1212";
+	name = "rune"
 	},
 /turf/open/misc/dirt/station,
 /area/deathmatch)
