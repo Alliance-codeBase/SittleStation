@@ -38,7 +38,7 @@ async function main() {
   const bot = new MWBot();
 
   await bot.loginGetEditToken({
-    apiUrl: 'https://wiki.pmeta.space/api.php',
+    apiUrl: 'https://wiki.massmeta.ru/api.php',
     username: USERNAME,
     password: PASSWORD,
   });
