@@ -142,7 +142,7 @@
 		update_static_data_for_all_viewers()
 		return
 
-	to_chat(user, span_notice("Downloading and processing audio."))
+	say("Processing audio..")
 
 	var/safe_url = replacetext(request_url, "\"", "")
 	safe_url = replacetext(safe_url, ";", "")
