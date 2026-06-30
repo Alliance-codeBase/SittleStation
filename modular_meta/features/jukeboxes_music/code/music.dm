@@ -179,7 +179,7 @@
 	internet_sound.volume = 30
 
 	SEND_SOUND(user, internet_sound)
-	to_chat(user, span_info("Now playing stream: [internet_track_selected]."))
+	say("Now playing: [internet_track_selected].")
 
 /obj/machinery/jukebox/proc/stop_internet_stream(mob/user)
 	internet_playing = FALSE
