@@ -164,7 +164,9 @@
 		check_attempts++
 
 	if(!fexists(current_stream_path) || !internet_playing)
-		to_chat(user, span_danger("Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation."))
+		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation.")
+		say("Unexpected error happened during your request")
+		playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
 		internet_playing = FALSE
 		if(current_stream_path)
 			fdel(current_stream_path)
