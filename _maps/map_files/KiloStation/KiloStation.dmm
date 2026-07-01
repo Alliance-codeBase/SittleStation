@@ -59391,7 +59391,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "tmV" = (
-/obj/structure/reagent_dispensers/beerkeg{
+/obj/effect/spawner/holiday/bar_keg{
 	pixel_y = 5
 	},
 /obj/structure/table/wood,
