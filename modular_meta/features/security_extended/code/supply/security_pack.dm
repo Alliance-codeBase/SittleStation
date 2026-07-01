@@ -2,7 +2,7 @@
 	name = "Security Laser Rifle Crate"
 	desc = "Contains single Security Laser Rifle and powerpack to it. Developed by Research Nanotrasen group. \
 		For security department, ."
-	cost = CARGO_CRATE_VALUE * 10
+	cost = CARGO_CRATE_VALUE * 50
 	contains = list(/obj/item/gun/ballistic/automatic/laser/station = 1, /obj/item/ammo_box/magazine/recharge/station = 2)
 	crate_name = "security laser rifle crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
