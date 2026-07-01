@@ -109,6 +109,6 @@
 	name = "Friday Twenty Two"
 	desc = "Spooky forest! Don't shit your pants."
 	max_players = 12
-	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/miner)
+	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/runner, /datum/outfit/deathmatch_loadout/slasher)
 	map_name = "friday_twenty_two"
 	key = "friday_twenty_two"
