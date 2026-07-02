@@ -21,6 +21,12 @@ $include map_vote.txt
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
 # SERVERNAME tgstation
 
+## Server tagline: This will appear right below the server's title.
+# SERVERTAGLINE A generic TG-based server
+
+## Discord Link: This is the link to discord server
+# DISCORD_LINK
+
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 # SERVERSQLNAME tgstation
 
@@ -524,6 +530,10 @@ DRIFT_PROFILE_DELAY 150
 ## If not set, will disable urgent ahelps.
 #URGENT_ADMINHELP_WEBHOOK_URL
 
+## MASSMETA EDIT
+## Дискорд аннонсилка о разных событиях в раунде
+# ROUND_ANNOUNCE_WEBHOOK_URL
+
 ## See above, but for non-urgent ahelps
 #REGULAR_ADMINHELP_WEBHOOK_URL
 
@@ -621,6 +631,13 @@ PR_ANNOUNCEMENTS_PER_ROUND 5
 
 ## Override the voice that computers use. If left undefined, the subsystem will pick a random consistent computer voice.
 #TTS_COMPUTER_VOICE_OVERRIDE Papyrus Undertale
+
+## Default centcom voice for station's announcements
+#CENTCOM_VOICE glados
+
+## Voices that are only available to admins.
+#ADMIN_VOICES glados
+#ADMIN_VOICES wheatley
 
 ## Comment to disable sending a toast notification on the host server when initializations complete.
 ## Even if this is enabled, a notification will only be sent if there are no clients connected.

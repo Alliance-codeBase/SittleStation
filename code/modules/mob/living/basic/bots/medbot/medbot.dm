@@ -121,6 +121,18 @@
 /mob/living/basic/bot/medbot/proc/set_speech_keys()
 	if(isnull(ai_controller))
 		return
+
+	// Massmeta ADDITION BEGIN (april_fools_day)
+	if (check_holidays(APRIL_FOOLS))
+		ai_controller.set_blackboard_key(BB_NEAR_DEATH_SPEECH, ru_near_death_announcements)
+		ai_controller.set_blackboard_key(BB_WAIT_SPEECH, ru_wait_announcements)
+		ai_controller.set_blackboard_key(BB_AFTERHEAL_SPEECH, ru_afterheal_announcements)
+		ai_controller.set_blackboard_key(BB_IDLE_SPEECH, ru_idle_lines)
+		ai_controller.set_blackboard_key(BB_EMAGGED_SPEECH, ru_emagged_announcements)
+		ai_controller.set_blackboard_key(BB_WORRIED_ANNOUNCEMENTS, ru_worried_announcements)
+		return
+	// Massmeta ADDITION END
+
 	ai_controller.set_blackboard_key(BB_NEAR_DEATH_SPEECH, near_death_announcements)
 	ai_controller.set_blackboard_key(BB_WAIT_SPEECH, wait_announcements)
 	ai_controller.set_blackboard_key(BB_AFTERHEAL_SPEECH, afterheal_announcements)
@@ -222,7 +234,15 @@
 
 //this is sin
 /mob/living/basic/bot/medbot/generate_speak_list()
-	var/static/list/finalized_speak_list = (idle_lines + wait_announcements + afterheal_announcements + near_death_announcements + emagged_announcements + tipped_announcements + untipped_announcements + worried_announcements + misc_announcements)
+	// Massmeta REMOVAL var/static/list/finalized_speak_list = (idle_lines + wait_announcements + afterheal_announcements + near_death_announcements + emagged_announcements + tipped_announcements + untipped_announcements + worried_announcements + misc_announcements)
+	// Massmeta ADDITION START - april_fools_day
+	var/static/list/finalized_speak_list
+	if(check_holidays(APRIL_FOOLS))
+		finalized_speak_list = (ru_idle_lines + ru_wait_announcements + ru_afterheal_announcements + ru_near_death_announcements + ru_emagged_announcements + ru_tipped_announcements + ru_untipped_announcements + ru_worried_announcements + ru_misc_announcements)
+	else
+		finalized_speak_list = (idle_lines + wait_announcements + afterheal_announcements + near_death_announcements + emagged_announcements + tipped_announcements + untipped_announcements + worried_announcements + misc_announcements)
+	// Massmeta ADDITION END
+
 	return finalized_speak_list
 
 

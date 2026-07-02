@@ -36,4 +36,3 @@
 	window.set_content("<div>[message]</div>")
 	window.open()
 
-

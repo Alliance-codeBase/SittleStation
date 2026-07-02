@@ -821,6 +821,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/west,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/qm)
 "akf" = (
@@ -2302,6 +2303,7 @@
 /obj/item/toy/figure/ce,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /obj/machinery/light/directional/north,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
 "aBz" = (
@@ -3245,9 +3247,6 @@
 "aNN" = (
 /obj/structure/rack,
 /obj/item/gun/energy/ionrifle,
-/obj/item/gun/ballistic/automatic/battle_rifle{
-	pixel_y = 3
-	},
 /obj/item/clothing/suit/hooded/ablative,
 /obj/item/gun/energy/temperature/security,
 /obj/structure/window/reinforced/spawner/directional/south,
@@ -3469,6 +3468,7 @@
 /obj/item/kirbyplants/random,
 /obj/machinery/status_display/evac/directional/south,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/security/office)
 "aQG" = (
@@ -7749,6 +7749,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/ai/satellite/interior)
 "bRP" = (
@@ -17781,6 +17782,7 @@
 /obj/structure/closet/crate/preopen,
 /obj/effect/spawner/random/maintenance/two,
 /obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/decoration/lavalamp,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "etk" = (
@@ -26038,13 +26040,6 @@
 /area/station/maintenance/disposal/incinerator)
 "gqZ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "brig-entrance"
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Brig"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -26052,6 +26047,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/turnstile/brig{
+	dir = 4
+	},
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "gri" = (
@@ -27480,6 +27478,7 @@
 	},
 /obj/structure/closet/l3closet/scientist,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/science/research)
 "gHq" = (
@@ -29252,6 +29251,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/scientist,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/iron/white,
 /area/station/science/research)
 "heT" = (
@@ -29404,6 +29404,7 @@
 /obj/structure/table/wood,
 /obj/item/papercutter,
 /obj/item/radio/intercom/directional/east,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/wood,
 /area/station/command/heads_quarters/hop)
 "hgH" = (
@@ -41302,6 +41303,7 @@
 /obj/item/plant_analyzer,
 /obj/item/radio,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tech)
 "keH" = (
@@ -43244,13 +43246,6 @@
 /turf/open/floor/iron,
 /area/station/hallway/secondary/entry)
 "kEp" = (
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "brig-entrance"
-	},
-/obj/machinery/door/airlock/security/glass{
-	name = "Brig"
-	},
-/obj/effect/mapping_helpers/airlock/access/all/security/entrance,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -43258,10 +43253,13 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral/fourcorners,
-/obj/machinery/scanner_gate/preset_guns,
 /obj/machinery/flasher/directional/south{
 	id = "brigflashdoor"
 	},
+/obj/machinery/turnstile/brig{
+	dir = 4
+	},
+/obj/machinery/door/firedoor,
 /turf/open/floor/iron/dark,
 /area/station/security/brig)
 "kEw" = (
@@ -44999,6 +44997,10 @@
 /obj/machinery/status_display/ai/directional/north,
 /obj/effect/turf_decal/tile/red/half/contrasted{
 	dir = 4
+	},
+/obj/structure/sign/flag/massmeta/pmc_wagner{
+	pixel_x = 32;
+	pixel_y = 0
 	},
 /turf/open/floor/iron,
 /area/station/security/prison/safe)
@@ -54281,6 +54283,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral/full,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/iron/dark/smooth_large,
 /area/station/security/detectives_office)
 "nuM" = (
@@ -63265,6 +63268,7 @@
 /obj/structure/table/wood,
 /obj/machinery/computer/security/wooden_tv,
 /obj/machinery/light/small/directional/south,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/south,
 /turf/open/floor/iron/grimy,
 /area/station/command/heads_quarters/captain/private)
 "pGt" = (
@@ -66342,6 +66346,7 @@
 	c_tag = "Cargo - Waiting Room";
 	name = "cargo camera"
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/iron,
 /area/station/cargo/lobby)
 "qqe" = (
@@ -72810,6 +72815,11 @@
 	},
 /turf/open/floor/iron/white,
 /area/station/science/research)
+"rVM" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
+/turf/open/floor/engine,
+/area/station/engineering/supermatter/engine)
 "rVX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -76893,6 +76903,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "sVe" = (
@@ -77489,6 +77500,7 @@
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "tcn" = (
@@ -77636,6 +77648,7 @@
 /area/station/security/armory)
 "teA" = (
 /obj/structure/displaycase/captain,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/iron/grimy,
 /area/station/command/heads_quarters/captain)
 "teC" = (
@@ -78112,6 +78125,7 @@
 /obj/machinery/keycard_auth/wall_mounted/directional/west,
 /obj/item/flashlight/lamp,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/south,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hop)
 "tnu" = (
@@ -78566,6 +78580,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/iron,
 /area/station/service/hydroponics)
 "tsM" = (
@@ -81947,6 +81962,15 @@
 "uiH" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security/telescreen/research/directional/north,
+/obj/effect/spawner/random/decoration/lavalamp,
+/obj/effect/spawner/random/decoration/lavalamp{
+	pixel_y = -7;
+	pixel_x = -7
+	},
+/obj/effect/spawner/random/decoration/lavalamp{
+	pixel_y = 7;
+	pixel_x = 7
+	},
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "uiJ" = (
@@ -81987,6 +82011,7 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/light/directional/east,
 /obj/effect/turf_decal/tile/neutral,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/iron,
 /area/station/hallway/primary/central/fore)
 "uja" = (
@@ -82900,6 +82925,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
+/obj/machinery/vending/mod_modules,
 /turf/open/floor/iron/white,
 /area/station/science/lab)
 "uue" = (
@@ -86350,6 +86376,7 @@
 	fax_name = "Law Office";
 	name = "Law Office Fax Machine"
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/south,
 /turf/open/floor/wood,
 /area/station/service/lawoffice)
 "vmP" = (
@@ -87695,6 +87722,13 @@
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
 /turf/open/floor/iron,
 /area/station/command/heads_quarters/hos)
+"vDj" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/west,
+/turf/open/floor/iron,
+/area/station/hallway/primary/central/fore)
 "vDm" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -90605,6 +90639,7 @@
 /area/station/hallway/secondary/exit/departure_lounge)
 "wpt" = (
 /obj/structure/fireplace,
+/obj/effect/spawner/random/structure/massmeta_flags/directional/north,
 /turf/open/floor/stone,
 /area/station/command/corporate_showroom)
 "wpu" = (
@@ -97265,6 +97300,11 @@
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/maintenance/two,
 /obj/effect/turf_decal/bot,
+/obj/effect/spawner/random/decoration/lavalamp,
+/obj/effect/spawner/random/decoration/lavalamp,
+/obj/effect/spawner/random/decoration/lavalamp,
+/obj/effect/spawner/random/decoration/lavalamp,
+/obj/effect/spawner/random/decoration/lavalamp,
 /turf/open/floor/iron,
 /area/station/cargo/storage)
 "xYJ" = (
@@ -119791,7 +119831,7 @@ gAw
 aVW
 lbl
 aoe
-pRY
+rVM
 aTP
 prc
 pmA
@@ -141633,7 +141673,7 @@ jol
 lSl
 ltY
 lSl
-lSl
+vDj
 dbU
 lBR
 rRB

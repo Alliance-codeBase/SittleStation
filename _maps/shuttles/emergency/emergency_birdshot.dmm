@@ -737,6 +737,13 @@
 "Ju" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
+"JU" = (
+/obj/structure/table/optable,
+/obj/effect/spawner/surgery_tray/full,
+/obj/item/clothing/mask/surgical,
+/obj/effect/mapping_helpers/broken_floor,
+/turf/open/floor/mineral/titanium/white,
+/area/shuttle/escape)
 "Ke" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/mapping_helpers/broken_floor,
@@ -747,13 +754,6 @@
 	dir = 4
 	},
 /turf/open/floor/glass/reinforced,
-/area/shuttle/escape)
-"Ko" = (
-/obj/structure/table/optable,
-/obj/effect/spawner/surgery_tray/full,
-/obj/item/clothing/mask/surgical,
-/obj/effect/mapping_helpers/broken_floor,
-/turf/open/floor/mineral/titanium/white,
 /area/shuttle/escape)
 "Kp" = (
 /obj/effect/decal/cleanable/glass,
@@ -1033,7 +1033,7 @@ LX
 LX
 LX
 ON
-Ko
+JU
 eY
 LX
 rZ

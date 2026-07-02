@@ -261,6 +261,7 @@
 			in containment. Because of its size, it cannot be carried. Ordering this \
 			sends you a small beacon that will teleport the larger beacon to your location upon activation."
 	progression_minimum = 20 MINUTES
+	population_minimum = TRAITOR_POPULATION_LOWPOP // MASSMETA EDIT (antagonists_balance)
 	item = /obj/item/sbeacondrop
 	cost = 4
 	surplus = 0 // not while there isnt one on any station
@@ -272,6 +273,7 @@
 			load on the grid, causing a station-wide blackout. The sink is large and cannot be stored in most \
 			traditional bags and boxes. Caution: Will explode if the powernet contains sufficient amounts of energy."
 	progression_minimum = 20 MINUTES
+	population_minimum = TRAITOR_POPULATION_LOWPOP // MASSMETA EDIT (antagonists_balance)
 	item = /obj/item/powersink
 	cost = 11
 	limited_stock = 1

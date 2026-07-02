@@ -1,0 +1,4 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - bugfix: "серебрянный кол теперь можно крафтить"

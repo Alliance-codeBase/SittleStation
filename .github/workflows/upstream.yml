@@ -1,0 +1,62 @@
+﻿name: Upstream Sync
+
+on:
+  schedule:
+    - cron: '0 17 * * 3'
+  workflow_dispatch:
+
+jobs:
+  sync-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v2
+        id: generate-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Set current date
+        id: date_step
+        run: echo "time=$(TZ=Europe/Moscow date '+%F')" >> $GITHUB_OUTPUT
+
+      - name: Checkout Fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch Upstream Changes
+        id: fetch_upstream
+        run: |
+          git remote add upstream https://github.com/tgstation/tgstation
+          git fetch upstream master
+          git checkout master
+          git config user.name "mass-bot"
+          git config user.email "179393467+mass-bot@users.noreply.github.com"
+          set +e
+          git merge --no-edit upstream/master
+          merge=$?
+          echo "Exit Code: $merge"
+          set -e
+          if [ "$merge" -ne "0" ]; then
+            conflicts="$(git diff --name-only --diff-filter=U)"
+            {
+            echo "conflicts<<EOF"
+            echo "$conflicts"
+            echo "EOF"
+            } >> $GITHUB_OUTPUT
+            git add -A
+            git commit -m "merge upstream/master w conflicts"
+          fi
+
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          committer: mass-bot <179393467+mass-bot@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          branch: upstream
+          delete-branch: true
+          base: master
+          title: "Upstream ${{ steps.date_step.outputs.time }}"
+          body: "🆑 MassMeta\n add: Upstream ${{ steps.date_step.outputs.time }}\n /:cl:\n conflicts: ${{ steps.fetch_upstream.outputs.conflicts }}"

@@ -141,3 +141,13 @@ export const sound_ai_vox: Feature<number> = {
   description: 'Volume of vocal AI announcements (also known as "VOX").',
   component: FeatureSliderInput,
 };
+//MASSMETA EDIT ADDITION START (ntts && tgtts)
+export const announcement_tts_volume: Feature<number> = {
+  name: 'Announcements TTS volume',
+  category: 'SOUND',
+  description:
+    'Volume of the volume that the text-to-speech sounds will play at.',
+  component: FeatureSliderInput,
+};
+
+//MASSMETA EDIT ADDITION END (ntts && tgtts)

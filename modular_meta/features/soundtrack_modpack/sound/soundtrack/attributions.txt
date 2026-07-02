@@ -1,0 +1,9 @@
+files: ["countdown.ogg"]
+license: "GNU AGPL v3"
+copyright: "BeeStation"
+source: "https://github.com/BeeStation/BeeStation-Hornet"
+
+files: ["future_perception.ogg"]
+license: "GNU AGPL v3"
+copyright: "BeeStation"
+source: "https://github.com/BeeStation/BeeStation-Hornet"

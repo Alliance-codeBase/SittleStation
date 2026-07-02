@@ -1,0 +1,5 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - qol: "Добавлена возможность изменять громкость оповещений"
+  - code_imp: "Теперь громкость оповещений определяется не sound_tts_volume, вместо этого используя новый announcement_tts_volume"

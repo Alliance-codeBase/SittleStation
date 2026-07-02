@@ -22,18 +22,17 @@ jobs:
         id: stale
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          stale-pr-message: "This PR has been inactive for long enough to be automatically marked as stale. This means it is at risk of being auto closed in ~7 days. Please address any outstanding review items and ensure your PR is finished - if both are true, and you have auto-staled anyway, you need to actively ask maintainers (by pinging them in the /tg/station Discord) to (re)review or merge your PR. If no maintainer responds to your request, you may wish to close this PR yourself while you seek maintainer comment, as you will later be able to reopen the PR yourself."
-          stale-issue-message: "This issue has been marked for cleanup and will be automatically closed in ~14 days. If there is evidence that the issue still occurs, leave a comment with it attached and contact an issue manager or maintainer to have the label removed."
+          stale-pr-message: "Этот PR был неактивен достаточно долго, чтобы быть автоматически помеченным как устаревший. Это означает, что он рискует быть автоматически закрытым через ~7 дней, пожалуйста, рассмотрите все нерешенные вопросы по проверке и убедитесь, что ваш PR завершен, если все это верно и вы все равно автоматически заблокированы, вам нужно активно спрашивать Мейнтейнеров, будет ли ваш PR вмержен. Как только вы выполните любое из предыдущих действий, вам следует попросить сопровождающего удалить устаревшую метку с вашего PR, чтобы сбросить устаревший таймер. Если вы чувствуете, что ни один из сопровождающих не ответит в течение этого времени, вы можете закрыть этот PR самостоятельно, пока будете запрашивать комментарий у мейнтейнера, так как тогда вы сможете снова открыть PR самостоятельно"
+          stale-issue-message: "Этот баг-репорт был помечен как устраненный и будет автоматически закрыт чеерз 14 дней. Если проблема все еще актуальна, то сообщите об этом Мейнтейнерам, обновив свой баг-репорт новой информацией об ошибке, для того чтобы снять эту метку"
           days-before-stale: 7
-          days-before-close: 7
+          days-before-close: 14
+          stale-pr-label: "Застоялось"
           days-before-issue-stale: 14
           days-before-issue-close: 14
-          stale-pr-label: "Stale"
-          stale-issue-label: "Stale"
-          any-of-issue-labels: "Cleanup Flagged,🤖 Flaky Test Report"
+          stale-issue-label: "Застоявшийся баг-репорт"
           remove-issue-stale-when-updated: false
           exempt-issue-labels: "RED LABEL"
-          exempt-pr-labels: "RED LABEL,Good First PR"
+          exempt-pr-labels: "RED LABEL,Неплохой Первый пулл-реквест"
           operations-per-run: 300
       - name: Filter staled pull requests for announcement
         id: filter-prs

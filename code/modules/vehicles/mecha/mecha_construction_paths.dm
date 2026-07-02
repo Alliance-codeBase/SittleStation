@@ -79,7 +79,14 @@
 
 /datum/component/construction/unordered/mecha_chassis/spawn_result()
 	var/atom/parent_atom = parent
-	parent_atom.icon = 'icons/mob/rideables/mech_construction.dmi'
+
+	//MASSTEMA EDIT BEGIN (justice)
+	message_admins(parent_atom)
+	if (parent_atom.type == /obj/item/mecha_parts/chassis/justice)
+		parent_atom.icon = 'modular_meta/features/uplink_items/icons/mech_construction.dmi'
+	else
+		parent_atom.icon = 'icons/mob/rideables/mech_construction.dmi'
+	//MASSTEMA EDIT END
 	parent_atom.set_density(TRUE)
 	parent_atom.cut_overlays()
 	return ..()

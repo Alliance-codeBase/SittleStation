@@ -211,23 +211,26 @@ do { \
 				if ("Spoof Crew Manifest Voice")
 					var/list/possible_voices = list()
 					for(var/datum/record/crew/target in GLOB.manifest.general)
-						if(target.voice && (target.voice in SStts.available_speakers))
+						if(target.voice && (target.voice in SStts.player_voice_choices()))
 							possible_voices += target.name
 						CHECK_TICK
-					var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", possible_voices)
+					// MASSMETA EDIT START 	(ntts && /tg/tts)
+					// ORIGINAL: var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection")
+					var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", SStts.player_voice_choices())
+					// MASSMETA EDIT END (ntts /tg/tts)
 					if(isnull(voice_choice) || !after_input_check(user))
 						to_chat(user, span_warning("No choice selected, audible voice changing disabled."))
 						voice_override = null
 						return
 					var/datum/record/crew/crew_record = find_record(voice_choice)
-					if(crew_record.voice && (crew_record.voice in SStts.available_speakers))
+					if(crew_record.voice && (crew_record.voice in SStts.player_voice_choices()))
 						voice_override = voice_choice
 						return
 					else
 						to_chat(user, span_warning("Crewmember's record's voice has been changed, please select another."))
 						return
 				if("Spoof Any Voice")
-					var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", SStts.available_speakers)
+					var/voice_choice = tgui_input_list(user, "Choose what voice to use as a disguise", "Voice Selection", SStts.player_voice_choices())
 					if(isnull(voice_choice) || !after_input_check(user))
 						to_chat(user, span_warning("No choice selected, audible voice changing disabled."))
 						voice_override = null

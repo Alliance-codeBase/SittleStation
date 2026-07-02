@@ -802,6 +802,10 @@
 // If set, enables the "Link forum account" OOC verb
 /datum/config_entry/string/forum_link_uri
 
+//MASSMETA EDIT (вебхуки)
+/datum/config_entry/string/round_announce_webhook_url
+	default = ""
+
 /datum/config_entry/flag/generate_assets_in_init
 	default = FALSE
 

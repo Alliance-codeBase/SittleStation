@@ -297,18 +297,33 @@
 		/obj/item/stack/sheet/iron = 5
 	)
 	needs_anchored = FALSE
+	var/other_type = FALSE // MASSMETA EDIT (woodgen)
 	var/high_production_profile = FALSE
 
 /obj/item/circuitboard/machine/pacman/examine(mob/user)
 	. = ..()
-	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	. += span_notice("It's set to [message].")
-	. += span_notice("You can switch the mode by using a screwdriver on [src].")
+	//MASSMETA EDIT BEGIN (woodgen)
+	// var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+	// . += span_notice("It's set to [message].")
+	// . += span_notice("You can switch the mode by using a screwdriver on [src].")
+
+	if(!other_type)
+		var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+		. += span_notice("It's set to [message].")
+		. += span_notice("You can switch the mode by using a screwdriver on [src].")
+	//MASSMETA EDIT END
 
 /obj/item/circuitboard/machine/pacman/screwdriver_act(mob/living/user, obj/item/tool)
-	high_production_profile = !high_production_profile
-	var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
-	to_chat(user, span_notice("You set the board for [message]"))
+	//MASSMETA EDIT BEGIN (woodgen)
+	// high_production_profile = !high_production_profile
+	// var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+	// to_chat(user, span_notice("You set the board for [message]"))
+
+	if(!other_type)
+		high_production_profile = !high_production_profile
+		var/message = high_production_profile ? "high-power uranium mode" : "medium-power plasma mode"
+		to_chat(user, span_notice("You set the board for [message]"))
+	//MASSMETA EDIT END
 
 /obj/item/circuitboard/machine/turbine_compressor
 	name = "Turbine - Inlet Compressor"

@@ -1,0 +1,90 @@
+{
+	"jobs_ru": {
+		"Assistant": [
+			"Ассистент",
+			"Лаборант"
+		],
+	 	"Prisoner": [
+			"Призонер",
+			"Заключенный",
+			"Зэк"
+		],
+	 	"Captain": [
+			"Капитан",
+			"Кеп"
+		],
+	 	"Head of Personnel": [
+			"Глава персонала",
+			"ХОП",
+			"ГП"
+		],
+	 	"Head of Security": [
+			"Глава службы безопасности",
+			"ХОС",
+			"ГСБ"
+		],
+	 	"Research Director": [
+			"Директор исследований",
+			"РД"
+		],
+		"Chief Engineer": [
+			"Главный инженер",
+			"СЕ"
+		],
+	 	"Chief Medical Officer": [
+			"Главный врач",
+			"СМО"
+		],
+	 	"Bridge Assistant": [
+			"Ассистент мостика",
+			"Адъютант"
+		],
+	 	"Veteran Security Advisor": [
+			"Ветеран СБ",
+			"Советчик СБ"
+		],
+	 	"AI": "ИИ",
+	 	"Cyborg": "Киборг",
+	 	"Personal AI": "Персональный ИИ",
+	 	"Big Brother": "Большой брат",
+	 	"Warden": [
+			"Смотритель",
+			"Надзиратель"
+		],
+	 	"Detective": "Детектив",
+	 	"Security Officer": "Офицер",
+	 	"Security Officer (Medical)": "ТЕСТТТТ1!!!",
+	 	"Security Officer (Engineering)": "ТЕСТТТТ2!!!",
+	 	"Security Officer (Science)": "ТЕСТТТТ3!!!",
+	 	"Security Officer (Cargo)": "ТЕСТТТТ4!!!",
+	 	"Station Engineer": "Станционный инженер",
+	 	"Atmospheric Technician": "Атмосферный техник",
+	 	"Coroner": "Коронер",
+	 	"Medical Doctor": "Врач",
+	 	"Paramedic": "Парамедик",
+	 	"Chemist": "Химик",
+	 	"Scientist": "Ученый",
+	 	"Roboticist": "Робототехник",
+	 	"Geneticist": "Генетик",
+	 	"Quartermaster": [
+			"Квартирмейстер",
+			"КМ"
+		],
+	 	"Cargo Technician": "Грузчик",
+	 	"Cargo Gorilla": "Горилла грузчик",
+	 	"Shaft Miner": "Шахтер",
+	 	"Bitrunner": "Битраннер",
+	 	"Bartender": "Бармен",
+	 	"Botanist": "Ботаник",
+	 	"Cook": "Повар",
+	 	"Chef": "Шеф",
+	 	"Janitor": "Уборщик",
+	 	"Clown": "Клоун",
+	 	"Mime": "Мим",
+	 	"Curator": "Куратор",
+	 	"Lawyer": "Юрист",
+	 	"Chaplain": "Священник",
+	 	"Psychologist": "Психолог",
+	 	"Pun Pun": "Пун Пун"
+	}
+}

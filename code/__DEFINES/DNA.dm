@@ -95,6 +95,7 @@
 /// Brain implants that affect the mob's memory and cognition (skills, knowledge, etc)
 #define ORGAN_SLOT_BRAIN_HIPPOCAMPUS "brain_memory"
 #define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
+#define ORGAN_SLOT_BUTT "butt" //MASSMETA ADD (butt_farts)
 #define ORGAN_SLOT_EARS "ears"
 #define ORGAN_SLOT_EYES "eye_sight"
 #define ORGAN_SLOT_HEART "heart"

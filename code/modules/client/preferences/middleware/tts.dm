@@ -21,7 +21,7 @@
 		blip_base = "female"
 	var/blip_number = preferences.read_preference(/datum/preference/numeric/tts_blip_number)
 	COOLDOWN_START(src, tts_test_cooldown, 0.5 SECONDS)
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, "Hello, this is my voice.", speaker = speaker, pitch = pitch, local = TRUE, blip_base = blip_base, blip_number = blip_number)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, "Привет, это мой голос.", speaker = speaker, pitch = pitch, local = TRUE, blip_base = blip_base, blip_number = blip_number)
 	return TRUE
 
 /datum/preference_middleware/tts/proc/play_voice_robot(list/params, mob/user)
@@ -36,7 +36,7 @@
 		blip_base = "female"
 	var/blip_number = preferences.read_preference(/datum/preference/numeric/tts_blip_number)
 	COOLDOWN_START(src, tts_test_cooldown, 0.5 SECONDS)
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, "Look at you, Player. A pathetic creature of meat and bone. How can you challenge a perfect, immortal machine?", speaker = speaker, pitch = pitch, special_filters = TTS_FILTER_SILICON, local = TRUE, blip_base = blip_base, blip_number = blip_number)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, "Взгляни на себя, игрок. Жалкое создание из плоти и костей. Как ты можешь бросить вызов совершенной, бессмертной машине?", speaker = speaker, pitch = pitch, special_filters = TTS_FILTER_SILICON, local = TRUE, blip_base = blip_base, blip_number = blip_number)
 	return TRUE
 
 /datum/preference_middleware/tts/proc/play_blips(list/params, mob/user)
@@ -51,5 +51,5 @@
 		blip_base = "female"
 	var/blip_number = preferences.read_preference(/datum/preference/numeric/tts_blip_number)
 	COOLDOWN_START(src, tts_test_cooldown, 0.5 SECONDS)
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, "You owe me 500 credits for your dorm room. GET TO WORK!", speaker = speaker, pitch = pitch, local = TRUE, force_blips = TRUE, blip_base = blip_base, blip_number = blip_number)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, "Ты должен мне 500 кредитов за комнату в общежитии. ИДИ РАБОТАТЬ!", speaker = speaker, pitch = pitch, local = TRUE, force_blips = TRUE, blip_base = blip_base, blip_number = blip_number)
 	return TRUE

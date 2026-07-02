@@ -1,10 +1,15 @@
+//MASSMETA REMOVAL BEGIN (re_traitor secondary)
+/*
 GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
+*/
 
 /proc/add_item_to_steal(source, type)
 	GLOB.steal_item_handler.objectives_by_path[type] += source
 	return type
 
-/// Holds references to information about all of the items you might need to steal for objectives
+//MASSMETA REMOVAL BEGIN (re_traitor secondary)
+/*
+// Holds references to information about all of the items you might need to steal for objectives
 /datum/objective_item_handler
 	var/list/list/objectives_by_path
 	var/generated_items = FALSE
@@ -49,6 +54,8 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	SIGNAL_HANDLER
 	for(var/typepath in objectives_by_path)
 		objectives_by_path[typepath] -= source
+
+*/
 
 //Contains the target item datums for Steal objectives.
 /datum/objective_item
@@ -608,7 +615,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	exists_on_map = TRUE
 	difficulty = 4
 	steal_hint = "The station's data Blackbox, found solely within Telecommunications."
-	destruction_method = "Too strong to be destroyed via normal means - needs to be dusted via the supermatter, or burnt in the chapel's crematorium."
+	destruction_method = "Too strong to be destroyed via normal means - needs to be dusted via the supermatter."
 
 /obj/item/blackbox/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/blackbox)

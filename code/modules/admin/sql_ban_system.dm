@@ -647,6 +647,10 @@
 	if(is_server_ban && linked_ahelp_ticket)
 		linked_ahelp_ticket.Resolve()
 
+	//MASSMETA ADDITION EDIT START (bot_topic)
+	send_ban_created_to_bot(player_ckey, player_key, admin_ckey, usr.client.key, reason, duration, interval, roles_to_ban, applies_to_admins)
+	//MASSMETA ADDITION EDIT END (bot_topic)
+
 /datum/admins/proc/unban_panel(player_key, admin_key, player_ip, player_cid, page = 0)
 	if(!check_rights(R_BAN))
 		return
@@ -832,6 +836,12 @@
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
 			to_chat(i, span_boldannounce("[usr.client.key] has removed a ban from [role] for your IP or CID."), confidential = TRUE)
+
+	// Send unban event to Discord bot
+	//MASSMETA ADDITION EDIT START (bot_topic)
+	send_ban_unbanned_to_bot(ckey(player_key), player_key, usr.client.ckey, usr.client.key, role, null)
+	//MASSMETA ADDITION EDIT END (bot_topic)
+
 	unban_panel(player_key, admin_key, player_ip, player_cid, page)
 
 /// Sometimes an admin did not intend to unban a player. This proc undoes an unbanning operation by setting the unbanned_ keys in the DB back to null.
@@ -873,6 +883,13 @@
 	var/banned_player_message = span_boldannounce("[usr.client.key] has re-activated a removed ban from [role] for your key.")
 	var/banned_other_message = span_boldannounce("[usr.client.key] has re-activated a removed ban from [role] for your IP or CID.")
 	var/kick_banned_players = (role == "Server")
+
+
+	// MASSMETA EDIT ADDITION START (bot_topic)
+	// Send reban event to Discord bot
+	send_ban_rebanned_to_bot(ckey(player_key), player_key, usr.client.ckey, usr.client.key, role, null)
+	// MASSMETA EDIT ADDITION END(bot_topic)
+
 
 	notify_all_banned_players(ckey(player_key), player_ip, player_cid, banned_player_message, banned_other_message, kick_banned_players, applies_to_admins)
 	unban_panel(player_key, admin_key, player_ip, player_cid, page)
@@ -987,6 +1004,10 @@
 	var/kick_banned_players = (is_server_ban && (changes["Key"] || changes["IP"] || changes["CID"]))
 
 	notify_all_banned_players(player_ckey, player_ip, player_cid, player_edit_message, other_edit_message, kick_banned_players, applies_to_admins)
+
+	//MASSMETA ADDITION EDIT START (bot_topic)
+	send_ban_edited_to_bot(player_ckey, player_key, usr.client.ckey, usr.client.key, reason, duration, interval, null, changes)
+	//MASSMETA ADDITION EDIT END (bot_topic)
 
 	unban_panel(player_key, null, null, null, page)
 

@@ -40,7 +40,7 @@ vc_models = {
 app = Flask(__name__)
 
 tts = TTS(model_path = "E:/model_output_3/model_no_disc.pth", config_path = "E:/model_output_2/config.json", progress_bar=False, gpu=True)
-letters_to_use = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+letters_to_use = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ1234567890"
 random_factor = 0.35
 os.makedirs('samples', exist_ok=True)
 trim_leading_silence = lambda x: x[detect_leading_silence(x) :]
@@ -159,13 +159,17 @@ def text_to_speech_blips():
 	with io.BytesIO() as data_bytes:
 		with torch.no_grad():
 			result_sound = AudioSegment.empty()
-			if not os.path.exists('samples/' + voice):
-				os.makedirs('samples/' + voice, exist_ok=True)
-				for i, value in enumerate(letters_to_use):
-					tts.tts_to_file(text=value + ".", speaker=voice, file_path="samples/" + voice + "/" + value + ".wav")
-					sound = AudioSegment.from_file("samples/" + voice + "/" + value + ".wav", format="wav")
-					silenced_word = strip_silence(sound)
-					silenced_word.export("samples/" + voice + "/" + value + ".wav", format='wav')
+			samples_dir = "samples/" + voice
+			if not os.path.exists(samples_dir):
+				os.makedirs(samples_dir, exist_ok=True)
+			for value in letters_to_use:
+				letter_file = samples_dir + "/" + value + ".wav"
+				if os.path.isfile(letter_file):
+					continue
+				tts.tts_to_file(text=value + ".", speaker=voice, file_path=letter_file)
+				sound = AudioSegment.from_file(letter_file, format="wav")
+				silenced_word = strip_silence(sound)
+				silenced_word.export(letter_file, format='wav')
 			speaker_id = "NO SPEAKER"
 			model_to_use = None
 			found_model = False

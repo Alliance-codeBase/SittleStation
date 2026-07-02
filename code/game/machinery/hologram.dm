@@ -555,6 +555,14 @@ Possible to do for anyone motivated enough:
 		hologram.icon_state = work_off.icon_state
 		hologram.copy_overlays(work_off, TRUE)
 		hologram.makeHologram()
+		//MASSMETA EDIT ADDITION START (ntts && tgtts)
+		// talking holograms
+		hologram.voice = user.voice
+		hologram.pitch = user.pitch
+		hologram.blip_base = user.blip_base
+		hologram.blip_number = user.blip_number
+		hologram.voice_filter = user.voice_filter
+		//MASSMETA EDIT ADDITION END (ntts && tgtts)
 
 		if(AI)
 			AI.eyeobj.setLoc(get_turf(src)) //ensure the AI camera moves to the holopad
@@ -573,6 +581,12 @@ Possible to do for anyone motivated enough:
 		return hologram
 	else
 		to_chat(user, "[span_danger("ERROR:")] Unable to project hologram.")
+//MASSMETA EDIT ADDITION START (ntts && tgtts)
+/obj/machinery/holopad/get_listening_mob()
+	for(var/mob/listener as anything in masters)
+		if(masters[listener])
+			return listener
+//MASSMETA EDIT ADDITION END (ntts && tgtts)
 
 /*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
 For the other part of the code, check silicon say.dm. Particularly robot talk.*/

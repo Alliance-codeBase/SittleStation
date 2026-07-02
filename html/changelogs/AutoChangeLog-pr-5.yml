@@ -1,0 +1,7 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - rscadd: "Новая категория в модификациях"
+  - rscdel: "Категория перевода"
+  - rscdel: "Удаление вебхуков в дискорд"
+  - qol: "Сортировка модификаций"

@@ -1,0 +1,63 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//			TG OVERWRITES
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Prevents Bloodsuckers from getting affected by blood
+/mob/living/carbon/human/handle_blood(seconds_per_tick, times_fired)
+	if(mind && IS_BLOODSUCKER(src))
+		return FALSE
+	return ..()
+
+/datum/reagent/blood/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message=TRUE, touch_protection=0)
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(exposed_mob)
+	if(!bloodsuckerdatum)
+		return ..()
+	bloodsuckerdatum.AddBloodVolume(round(reac_volume, 0.1))
+
+/mob/living/carbon/transfer_blood_to(atom/movable/receiver, amount, ignore_low_blood = FALSE, ignore_incompatibility = FALSE, transfer_viruses = TRUE)
+	. = ..()
+
+	if(!mind)
+		return
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = mind.has_antag_datum(/datum/antagonist/bloodsucker)
+	if(!bloodsuckerdatum)
+		return
+	bloodsuckerdatum.AddBloodVolume(-amount)
+
+/// Prevents using a Memento Mori
+/obj/item/clothing/neck/necklace/memento_mori/memento(mob/living/carbon/human/user)
+	if(IS_BLOODSUCKER(user))
+		to_chat(user, span_warning("The Memento notices your undead soul, and refuses to react.."))
+		return
+	return ..()
+
+/mob/living/carbon/human/natural_bodytemperature_stabilization(datum/gas_mixture/environment, seconds_per_tick, times_fired)
+	// Return 0 as your natural temperature. Species proc handle_environment() will adjust your temperature based on this.
+	if(HAS_TRAIT(src, TRAIT_COLDBLOODED))
+		return 0
+	return ..()
+
+// Used when analyzing a Bloodsucker, Masquerade will hide brain traumas
+/mob/living/carbon/get_traumas()
+	if(!mind)
+		return ..()
+	var/datum/antagonist/bloodsucker/bloodsuckerdatum = IS_BLOODSUCKER(src)
+	if(bloodsuckerdatum && HAS_TRAIT(src, TRAIT_MASQUERADE))
+		return
+	return ..()
+
+/datum/outfit/bloodsucker_outfit
+	name = "Bloodsucker outfit (Preview only)"
+	suit = /obj/item/clothing/suit/costume/dracula
+	uniform = /obj/item/clothing/under/costume/draculass
+
+/datum/outfit/bloodsucker_outfit/post_equip(mob/living/carbon/human/enrico, visualsOnly=FALSE)
+	enrico.hairstyle = "Undercut"
+	enrico.hair_color = "CCC"
+	enrico.skin_tone = "caucasian3"
+	enrico.eye_color_left = "#0b032e"
+	enrico.eye_color_right = "#0b032e"
+
+	enrico.update_body(is_creating = TRUE)

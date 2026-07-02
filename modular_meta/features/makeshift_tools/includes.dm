@@ -1,0 +1,17 @@
+#include "code\belt.dm"
+#include "code\crowbar.dm"
+#include "code\kitchen.dm"
+#include "code\makeshift.dm"
+#include "code\multitool.dm"
+#include "code\radio.dm"
+#include "code\screwdriver.dm"
+#include "code\weldingtool.dm"
+#include "code\wirecutters.dm"
+#include "code\wrench.dm"
+
+/datum/modpack/makeshift_tools
+	id = "makeshift_tools"
+	name = "Самодельные инструменты"
+	group = "Features"
+	desc = "Самодельные инструменты из палок и того самого, дешево сердито, на пару раз."
+	author = "Homexp13"

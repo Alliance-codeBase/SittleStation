@@ -1,0 +1,1211 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ek" = (
+/obj/structure/alien/weeds,
+/obj/structure/mystery_box/tdome{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"eE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/item/shield/roman{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/obj/item/clothing/head/helmet/roman/legionnaire{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"fX" = (
+/obj/item/stack/sheet/iron/fifty,
+/obj/effect/mob_spawn/corpse/human/cargo_tech,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"gv" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"gD" = (
+/obj/structure/alien/weeds/node,
+/obj/machinery/disposal/delivery_chute{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"gW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"hT" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/reflector/single,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"ij" = (
+/obj/structure/mystery_box/tdome{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"jJ" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/effect/mapping_helpers/airlock/locked,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"kI" = (
+/obj/structure/alien/weeds,
+/obj/machinery/field/generator/starts_on/magic,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"mi" = (
+/obj/effect/spawner/structure/flipped_table,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"mX" = (
+/obj/effect/spawner/random/contraband/armory,
+/obj/effect/mob_spawn/corpse/human/skeleton,
+/obj/structure/closet/secure_closet{
+	req_access = list("armory")
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"nx" = (
+/obj/structure/alien/weeds,
+/obj/structure/alien/resin/wall,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"nY" = (
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/indestructible/plating/airless,
+/area/deathmatch/fullbright)
+"pS" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"pZ" = (
+/obj/effect/spawner/structure/flipped_table{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"qy" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"rt" = (
+/obj/structure/table,
+/obj/item/clothing/suit/armor/vest/capcarapace{
+	pixel_x = 0;
+	pixel_y = -2
+	},
+/obj/item/clothing/head/hats/caphat{
+	pixel_x = 0;
+	pixel_y = 9
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"rB" = (
+/turf/closed/indestructible/reinforced/titanium,
+/area/deathmatch/fullbright)
+"sd" = (
+/obj/effect/spawner/random/contraband/armory,
+/obj/effect/mob_spawn/corpse/human/intern,
+/obj/structure/closet/secure_closet{
+	req_access = list("armory")
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"tN" = (
+/obj/machinery/field/generator/starts_on/magic,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"wD" = (
+/obj/machinery/computer/emergency_shuttle{
+	dir = 1
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"xm" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"xq" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/rus_ushanka{
+	pixel_x = 0;
+	pixel_y = 7
+	},
+/obj/item/clothing/suit/armor/vest/russian_coat{
+	pixel_x = 0;
+	pixel_y = -2
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"xI" = (
+/obj/effect/spawner/structure/flipped_table{
+	dir = 4
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"yO" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"yS" = (
+/obj/machinery/disposal/delivery_chute{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"CS" = (
+/obj/structure/alien/weeds,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Dc" = (
+/obj/machinery/field/generator/starts_on/magic,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Dq" = (
+/obj/effect/spawner/structure/flipped_table{
+	dir = 1
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"DW" = (
+/obj/effect/mine/shrapnel,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"EC" = (
+/obj/item/clothing/suit/utility/fire/firefighter,
+/obj/machinery/door/airlock/titanium{
+	name = "Emergency Shuttle Airlock"
+	},
+/obj/item/clothing/head/helmet/space/eva,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"EJ" = (
+/obj/effect/spawner/structure/flipped_table,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"EL" = (
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"EO" = (
+/obj/structure/falsewall{
+	density = 0;
+	opacity = 0
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"ER" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Fx" = (
+/obj/effect/portal/permanent{
+	id = "dm"
+	},
+/obj/effect/turf_decal/stripes/end,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"FK" = (
+/obj/effect/spawner/random/contraband/armory,
+/obj/structure/closet/secure_closet{
+	req_access = list("armory")
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Gb" = (
+/obj/structure/disposalpipe/broken,
+/obj/effect/mob_spawn/corpse/human/doctor,
+/obj/item/clothing/mask/facehugger/impregnated,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/alien/weeds,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Gx" = (
+/obj/structure/alien/weeds,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Gy" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/delivery_chute,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Hj" = (
+/obj/structure/table,
+/obj/item/stack/sheet/glass{
+	amount = 5;
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Ht" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/alien/weeds,
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Hz" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/alien/weeds,
+/obj/structure/alien/resin/wall,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"IG" = (
+/obj/effect/mine/explosive/flame,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Kd" = (
+/obj/structure/alien/weeds,
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Kk" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"KX" = (
+/obj/item/gun/energy/meteorgun,
+/obj/effect/turf_decal/stripes/box,
+/turf/open/indestructible/plating/airless,
+/area/deathmatch/fullbright)
+"Lw" = (
+/obj/effect/spawner/structure/flipped_table{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"MR" = (
+/obj/structure/alien/weeds,
+/obj/effect/mob_spawn/corpse/human/cmo,
+/obj/item/clothing/mask/facehugger/impregnated,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"MV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Nh" = (
+/obj/structure/alien/weeds,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"NR" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/obj/structure/falsewall{
+	density = 0;
+	opacity = 0
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Oh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/portal/permanent{
+	id = "dm"
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"OP" = (
+/turf/closed/indestructible/reinforced/titanium/nodiagonal,
+/area/deathmatch/fullbright)
+"QE" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"QP" = (
+/obj/item/clothing/suit/armor/vest,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"QR" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/riot{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/item/clothing/head/helmet/toggleable/riot{
+	pixel_x = 0;
+	pixel_y = 8
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Ro" = (
+/obj/structure/alien/weeds,
+/obj/structure/disposalpipe/segment,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Rx" = (
+/obj/structure/alien/weeds,
+/obj/structure/disposalpipe/segment,
+/obj/structure/alien/resin/wall,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"RF" = (
+/obj/structure/table,
+/obj/item/stack/sheet/iron/five{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"RU" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/structure/alien/weeds,
+/obj/structure/alien/resin/wall,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Tg" = (
+/obj/structure/window/reinforced/spawner/directional/south,
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/indestructible/plating/airless,
+/area/deathmatch/fullbright)
+"Ty" = (
+/obj/structure/mystery_box/tdome{
+	pixel_x = 0;
+	pixel_y = -4
+	},
+/obj/effect/spawner/structure/flipped_table{
+	dir = 1
+	},
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Tz" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/alien/weeds,
+/obj/structure/alien/egg/burst,
+/obj/item/clothing/mask/facehugger/toy,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Vb" = (
+/obj/structure/alien/weeds/node,
+/obj/effect/gibspawner/xeno,
+/obj/effect/mine/explosive/light,
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Vd" = (
+/turf/open/space/basic,
+/area/deathmatch/fullbright)
+"Vl" = (
+/obj/structure/mystery_box/tdome{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/stripes/end{
+	dir = 1
+	},
+/obj/structure/sign/warning/docking/directional/north,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Vs" = (
+/turf/closed/indestructible/syndicate,
+/area/deathmatch/fullbright)
+"Ya" = (
+/obj/effect/mine/stun,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"Yf" = (
+/obj/effect/spawner/structure/window/reinforced/shuttle/indestructible,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"ZP" = (
+/obj/effect/gibspawner/human,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+"ZU" = (
+/obj/structure/closet/secure_closet{
+	req_access = list("armory")
+	},
+/obj/effect/spawner/random/contraband/armory,
+/turf/open/indestructible/plating,
+/area/deathmatch/fullbright)
+
+(1,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(2,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(3,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(4,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vs
+OP
+OP
+Yf
+OP
+OP
+EC
+OP
+jJ
+OP
+OP
+Yf
+OP
+OP
+jJ
+OP
+jJ
+OP
+rB
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(5,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+EL
+EL
+EL
+EL
+EL
+xq
+ij
+EL
+EL
+EL
+EL
+EL
+EL
+OP
+rB
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(6,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+EL
+EL
+Kk
+EL
+ER
+EL
+EL
+EL
+Kk
+EL
+EL
+pZ
+gv
+RF
+OP
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(7,1,1) = {"
+Vd
+Vd
+Vd
+Vs
+Vs
+EO
+EO
+EO
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+Lw
+EL
+Hj
+OP
+OP
+Yf
+Yf
+Yf
+Vd
+Vd
+Vd
+Vd
+"}
+(8,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+EL
+EL
+EL
+CS
+CS
+CS
+EL
+EL
+EL
+Ya
+EL
+xm
+EL
+EL
+qy
+EL
+ij
+ZU
+Yf
+Yf
+Vd
+Vd
+Vd
+"}
+(9,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+NR
+EO
+EL
+yS
+tN
+CS
+CS
+Kd
+CS
+CS
+Dc
+Gy
+EL
+Ty
+xm
+EL
+IG
+qy
+QP
+EL
+EL
+sd
+Yf
+Vd
+Vd
+Vd
+"}
+(10,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+EL
+Gx
+Hz
+RU
+ek
+Vb
+CS
+CS
+MV
+EL
+Dq
+fX
+EJ
+EL
+EL
+EL
+EL
+EL
+EL
+Yf
+Vd
+Vd
+Vd
+"}
+(11,1,1) = {"
+Vd
+Vd
+Vd
+KX
+Vs
+Vl
+eE
+hT
+gW
+Fx
+CS
+Gb
+Ht
+Tz
+Ro
+Rx
+Nh
+Oh
+EL
+EL
+EL
+mi
+EL
+Dq
+EL
+Kk
+EL
+wD
+Yf
+Vd
+Vd
+Vd
+"}
+(12,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+EL
+EL
+nx
+MR
+gD
+nx
+nx
+Gx
+yO
+EL
+EJ
+EL
+EJ
+EL
+EL
+EL
+EL
+EL
+EL
+Yf
+Vd
+Vd
+Vd
+"}
+(13,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+NR
+EO
+EL
+EL
+Dc
+EL
+CS
+CS
+CS
+CS
+kI
+EL
+EL
+EJ
+xI
+EL
+EL
+qy
+EL
+EL
+EL
+FK
+Yf
+Vd
+Vd
+Vd
+"}
+(14,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+EL
+EL
+EL
+EL
+EL
+CS
+CS
+EL
+EL
+EL
+EL
+EL
+DW
+EL
+qy
+EL
+mX
+FK
+Yf
+Yf
+Vd
+Vd
+Vd
+"}
+(15,1,1) = {"
+Vd
+Vd
+Vd
+Vs
+Vs
+EO
+EO
+EO
+EL
+pS
+EL
+EL
+Kk
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+Dq
+EL
+EL
+OP
+OP
+Yf
+Yf
+Yf
+Vd
+Vd
+Vd
+Vd
+"}
+(16,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+ZP
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+Kk
+Dq
+EL
+rt
+OP
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(17,1,1) = {"
+Vd
+Vd
+Vd
+nY
+Tg
+EO
+EO
+EO
+EL
+EL
+QE
+EL
+ij
+QR
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+EL
+OP
+rB
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(18,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vs
+OP
+OP
+Yf
+OP
+OP
+OP
+Yf
+OP
+OP
+OP
+Yf
+OP
+OP
+OP
+Yf
+OP
+OP
+rB
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(19,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(20,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}
+(21,1,1) = {"
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+"}

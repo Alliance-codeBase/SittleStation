@@ -404,11 +404,26 @@ CREATE TABLE `player` (
   `lastadminrank` varchar(32) NOT NULL DEFAULT 'Player',
   `accountjoindate` DATE DEFAULT NULL,
   `flags` smallint(5) unsigned DEFAULT '0' NOT NULL,
+  -- MASSMETA EDIT ADDITION START (metacoins)
+  `metacoins` int(10) unsigned NOT NULL DEFAULT '0',
+  -- MASSMETA EDIT ADDITION END (metacoins)
   PRIMARY KEY (`ckey`),
   KEY `idx_player_cid_ckey` (`computerid`,`ckey`),
   KEY `idx_player_ip_ckey` (`ip`,`ckey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `metacoin_purchases`
+-- MASSMETA EDIT ADDITION START (metacoins)
+DROP TABLE IF EXISTS `metacoin_purchases`;
+CREATE TABLE `metacoin_purchases` (
+  `ckey` varchar(32) NOT NULL,
+  `listing` varchar(64) NOT NULL,
+  `owned` tinyint(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`ckey`, `listing`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- MASSMETA EDIT ADDITION END (metacoins)
 
 --
 -- Table structure for table `poll_option`

@@ -379,6 +379,11 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		// Full boinks will always be done to players, so we are not guarenteed that they won't have a ticket
 		if(!recipient_ticket)
 			new /datum/admin_help(send_message, recipient, TRUE)
+
+			// MASSMETA EDIT START
+			get_ticket_info(send_message, recipient.current_ticket.id, our_ckey, admin = TRUE, new_ticket = TRUE, engager = "admin")
+			// MASSMETA EDIT END
+
 			already_logged = TRUE
 			// This action mutates our existing cached ticket information, so we recache
 			ticket = current_ticket
@@ -404,6 +409,7 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 		if(!already_logged) //Reply to an existing ticket
 			SSblackbox.LogAhelp(recipient_ticket_id, "Reply", send_message, recip_ckey, our_ckey)
+			get_ticket_info(send_message, recipient_ticket_id, our_ckey, admin = TRUE, new_ticket = FALSE, engager = "admin")
 
 		//always play non-admin recipients the adminhelp sound
 		SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
@@ -423,7 +429,10 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 				confidential = TRUE)
 			return FALSE
 		ticket.MessageNoRecipient(send_message)
+		//MASSMETA EDIT START
+		get_ticket_info(send_message, ticket_id, our_ckey, admin = FALSE, new_ticket = FALSE, engager = "player")
 		return TRUE
+		//MASSMETA EDIT END
 
 	// Ok by this point the recipient has to be an admin, and this is either an admin on admin event, or a player replying to an admin
 
@@ -489,6 +498,11 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 		confidential = TRUE)
 
 	ticket.reply_to_admins_notification(send_message)
+
+	// MASSMETA EDIT START
+	get_ticket_info(send_message, ticket_id, ckey, admin = FALSE, new_ticket = FALSE, engager = "player")
+	// MASSMETA EDIT END
+
 	SSblackbox.LogAhelp(ticket_id, "Reply", send_message, recip_ckey, our_ckey)
 
 	return TRUE

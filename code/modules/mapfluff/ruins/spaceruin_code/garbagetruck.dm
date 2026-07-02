@@ -1,19 +1,3 @@
-/obj/item/eyesnatcher
-	name = "portable eyeball extractor"
-	desc = "An overly complicated device that can pierce target's skull and extract their eyeballs if enough brute force is applied."
-	icon = 'icons/obj/medical/surgery_tools.dmi'
-	icon_state = "eyesnatcher"
-	base_icon_state = "eyesnatcher"
-	inhand_icon_state = "hypo"
-	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
-	throwforce = 0
-	w_class = WEIGHT_CLASS_SMALL
-	throw_speed = 3
-	throw_range = 5
-	///Whether it's been used to steal a pair of eyes already.
-	var/used = FALSE
-
 /obj/item/eyesnatcher/update_icon_state()
 	. = ..()
 	icon_state = "[base_icon_state][used ? "-used" : ""]"

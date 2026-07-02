@@ -1,7 +1,9 @@
 // These are used in uplink_devices.dm to determine whether or not an item is purchasable.
 
 /// This item is purchasable to traitors
+//MASSMETA ADDDITION START (re_traitorsecondary)
 #define UPLINK_TRAITORS (1 << 0)
+//MASSMETA ADDDITION END (re_traitorsecondary)
 
 /// This item is purchasable to nuke ops
 #define UPLINK_NUKE_OPS (1 << 1)
@@ -9,10 +11,20 @@
 /// This item is purchasable to clown ops
 #define UPLINK_CLOWN_OPS (1 << 2)
 
-/// Can be randomly given to spies for their bounties
-#define UPLINK_SPY (1 << 3)
+/// This item is purchasable to infiltrators (midround traitors)
+#define UPLINK_INFILTRATORS (1 << 3)
 
+/// Can be randomly given to spies for their bounties
+//MASSMETA ADDDITION START (re_traitorsecondary)
+/* ORIGINAL:
+#define UPLINK_SPY (1 << 3)
 #define UPLINK_LONE_OP (1 << 4)
+*/
+#define UPLINK_SPY (1 << 4)
+
+#define UPLINK_LONE_OP (1 << 5)
+// Это вероятно, перемешает все аплинки насмерть. Почините там как нибудь на досуге, ок, да?
+//MASSMETA ADDDITION START (re_traitorsecondary)
 
 /// A blanket define for an item being purchasable by all types of nukie
 #define UPLINK_ALL_SYNDIE_OPS (UPLINK_NUKE_OPS | UPLINK_LONE_OP | UPLINK_CLOWN_OPS)

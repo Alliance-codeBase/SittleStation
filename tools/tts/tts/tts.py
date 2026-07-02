@@ -10,7 +10,11 @@ from pydub import AudioSegment
 from pydub.silence import split_on_silence
 
 tts = TTS("tts_models/en/vctk/vits", progress_bar=False, gpu=False)
-letters_to_use = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+# MASSMETA EDIT START (ntts && /tg/tts)
+# по русски говори йобана в рот
+# ORIGINAL: "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+letters_to_use = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ1234567890"
+# MASSMETA EDIT END (ntts && /tg/tts)
 random_factor = 0.35
 os.makedirs('samples', exist_ok=True)
 app = Flask(__name__)
@@ -54,16 +58,22 @@ def text_to_speech_blips():
 	with io.BytesIO() as data_bytes:
 		with torch.no_grad():
 			result_sound = None
-			if not os.path.exists('samples/' + voice):
-				os.makedirs('samples/' + voice, exist_ok=True)
-				for i, value in enumerate(letters_to_use):
-					tts.tts_to_file(text=value + ".", speaker=voice, file_path="samples/" + voice + "/" + value + ".wav")
-					loaded_word = AudioSegment.from_file("samples/" + voice + "/" + value + ".wav")
-					audio_chunks = split_on_silence(loaded_word, min_silence_len = 100, silence_thresh = -45, keep_silence = 50)
-					combined = AudioSegment.empty()
-					for chunk in audio_chunks:
-						combined += chunk
-					combined.export("samples/" + voice + "/" + value + ".wav", format='wav')
+            # MASSMETA EDIT START (ntts && /tg/tts)
+			samples_dir = "samples/" + voice
+			if not os.path.exists(samples_dir):
+				os.makedirs(samples_dir, exist_ok=True)
+			for value in letters_to_use:
+				letter_file = samples_dir + "/" + value + ".wav"
+				if os.path.isfile(letter_file):
+					continue
+				tts.tts_to_file(text=value + ".", speaker=voice, file_path=letter_file)
+				loaded_word = AudioSegment.from_file(letter_file)
+				audio_chunks = split_on_silence(loaded_word, min_silence_len = 100, silence_thresh = -45, keep_silence = 50)
+				combined = AudioSegment.empty()
+				for chunk in audio_chunks:
+					combined += chunk
+				combined.export(letter_file, format='wav')
+			# MASSMETA EDIT END (ntts && /tg/tts)
 			for i, letter in enumerate(text):
 				if not letter.isalpha() or letter.isnumeric() or letter == " ":
 					continue

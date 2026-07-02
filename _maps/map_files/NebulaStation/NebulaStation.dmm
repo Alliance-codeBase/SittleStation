@@ -31737,6 +31737,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/mob/living/silicon/robot/shell/cell,
 /turf/open/floor/circuit/green,
 /area/station/ai/satellite/chamber)
 "eJe" = (
@@ -77237,6 +77238,9 @@
 /area/station/engineering/atmos/storage/gas)
 "lro" = (
 /obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/decoration/lavalamp,
+/obj/effect/spawner/random/decoration/lavalamp,
+/obj/effect/spawner/random/decoration/lavalamp,
 /turf/open/floor/glass/reinforced,
 /area/station/hallway/secondary/entry)
 "lrr" = (
@@ -80216,6 +80220,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/mob/living/silicon/robot/shell/cell,
 /turf/open/floor/circuit/green,
 /area/station/ai/satellite/chamber)
 "lPG" = (
@@ -102868,8 +102873,8 @@
 /area/station/medical/virology)
 "pha" = (
 /obj/item/radio/intercom/directional/north,
-/obj/machinery/vending/cart,
 /obj/effect/turf_decal/bot_white,
+/obj/machinery/vending/mod_modules,
 /turf/open/floor/iron/dark/textured_large,
 /area/station/hallway/primary/fore)
 "phb" = (

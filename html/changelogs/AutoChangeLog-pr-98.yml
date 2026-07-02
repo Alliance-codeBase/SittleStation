@@ -1,0 +1,5 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - bugfix: "Зализывания ран фелинидов распространяется и на другие кровоточащие раны, не только на /datum/wound/slash"
+  - balance: "Выше шанс заразится вирусами в ходе lick_wounds()"

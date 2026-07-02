@@ -20,7 +20,12 @@ import {
   calculateProgression,
   dangerLevelsTooltip,
 } from './calculateDangerLevel';
-import { GenericUplink, type Item } from './GenericUplink';
+/* //MASSMETA EDIT CHANGE BEGIN (re_traitorsecondary)
+ORIGINAL: import { GenericUplink, type Item } from './GenericUplink';
+*/
+import { GenericUplink, Item } from './GenericUplink';
+import { Objective, ObjectiveMenu } from './ObjectiveMenu';
+//MASSMETA EDIT CHANGE END (re_traitorsecondary)
 import { PrimaryObjectiveMenu } from './PrimaryObjectiveMenu';
 
 type UplinkItem = {
@@ -49,6 +54,8 @@ type UplinkData = {
   progression_points: number;
   joined_population?: number;
   lockable: BooleanLike;
+  current_expected_progression: number;
+  progression_scaling_deviance: number;
   current_progression_scaling: number;
   uplink_flag: number;
   assigned_role: string;
@@ -62,10 +69,16 @@ type UplinkData = {
     [key: string]: number;
   };
 
+  has_objectives: BooleanLike;
   has_progression: BooleanLike;
   primary_objectives: {
     [key: number]: string;
   };
+  completed_final_objective: string;
+  potential_objectives: Objective[];
+  active_objectives: Objective[];
+  maximum_active_objectives: number;
+  maximum_potential_objectives: number;
   purchased_items: number;
   shop_locked: BooleanLike;
   can_renegotiate: BooleanLike;
@@ -176,7 +189,17 @@ export class Uplink extends Component<any, UplinkState> {
       joined_population,
       primary_objectives,
       can_renegotiate,
+      completed_final_objective,
+      active_objectives,
+      potential_objectives,
+      has_objectives,
       has_progression,
+      //MASSMETA EDIT CHANGE START (re_traitorsecondary)
+      maximum_active_objectives,
+      maximum_potential_objectives,
+      current_expected_progression,
+      progression_scaling_deviance,
+      //MASSMETA EDIT CHANGE START (re_traitorsecondary)
       current_progression_scaling,
       extra_purchasable,
       extra_purchasable_stock,
@@ -261,7 +284,17 @@ export class Uplink extends Component<any, UplinkState> {
         },
       });
     }
-
+    // Get the difference between the current progression and
+    // expected progression
+    let progressionPercentage =
+      current_expected_progression - progression_points;
+    // Clamp it down between 0 and 2
+    progressionPercentage = Math.min(
+      Math.max(progressionPercentage / progression_scaling_deviance, -1),
+      1,
+    );
+    // Round it and convert it into a percentage
+    progressionPercentage = Math.round(progressionPercentage * 1000) / 10;
     return (
       <Window width={700} height={600} theme="syndicate">
         <Window.Content>
@@ -276,7 +309,11 @@ export class Uplink extends Component<any, UplinkState> {
                           <Box>
                             <Box>
                               <Box>Your current level of threat.</Box> Threat
-                              determines what items you can purchase.&nbsp;
+                              determines
+                              {has_objectives
+                                ? ' the severity of secondary objectives you get and '
+                                : ' '}
+                              what items you can purchase.&nbsp;
                               <Box mt={0.5}>
                                 {/* A minute in deciseconds */}
                                 Threat passively increases by{' '}
@@ -287,6 +324,29 @@ export class Uplink extends Component<any, UplinkState> {
                                 </Box>
                                 &nbsp;every minute
                               </Box>
+                              {Math.abs(progressionPercentage) > 0 && (
+                                <Box mt={0.5}>
+                                  Because your threat level is
+                                  {progressionPercentage < 0
+                                    ? ' ahead '
+                                    : ' behind '}
+                                  of where it should be, you are getting
+                                  <Box
+                                    as="span"
+                                    color={
+                                      progressionPercentage < 0
+                                        ? 'red'
+                                        : 'green'
+                                    }
+                                    ml={1}
+                                    mr={1}
+                                  >
+                                    {progressionPercentage}%
+                                  </Box>
+                                  {progressionPercentage < 0 ? 'less' : 'more'}{' '}
+                                  threat every minute
+                                </Box>
+                              )}
                               {dangerLevelsTooltip}
                             </Box>
                           </Box>
@@ -296,7 +356,7 @@ export class Uplink extends Component<any, UplinkState> {
                       </Tooltip>
                     </Stack.Item>
                   )}
-                  {!!primary_objectives && (
+                  {!!(primary_objectives || has_objectives) && (
                     <Stack.Item grow={1}>
                       <Tabs fluid>
                         {primary_objectives && (
@@ -311,6 +371,20 @@ export class Uplink extends Component<any, UplinkState> {
                             onClick={() => this.setState({ currentTab: 0 })}
                           >
                             Primary Objectives
+                          </Tabs.Tab>
+                        )}
+                        {!!has_objectives && (
+                          <Tabs.Tab
+                            style={{
+                              overflow: 'hidden',
+                              whiteSpace: 'nowrap',
+                              textOverflow: 'ellipsis',
+                            }}
+                            icon="star-half-stroke"
+                            selected={currentTab === 1}
+                            onClick={() => this.setState({ currentTab: 1 })}
+                          >
+                            Secondary Objectives
                           </Tabs.Tab>
                         )}
                         <Tabs.Tab
@@ -350,38 +424,73 @@ export class Uplink extends Component<any, UplinkState> {
               {(currentTab === 0 && primary_objectives && (
                 <PrimaryObjectiveMenu
                   primary_objectives={primary_objectives}
+                  final_objective={completed_final_objective}
                   can_renegotiate={can_renegotiate}
                 />
-              )) || (
-                <>
-                  <GenericUplink
-                    currency={`${telecrystals} TC`}
-                    categories={allCategories}
-                    items={items}
-                    handleBuy={(item: ItemExtraData) => {
-                      if (!item.extraData?.ref) {
-                        act('buy', { path: item.id });
-                      } else {
-                        act('buy', { ref: item.extraData.ref });
-                      }
-                    }}
+              )) ||
+                (currentTab === 1 && has_objectives && (
+                  <ObjectiveMenu
+                    activeObjectives={active_objectives}
+                    potentialObjectives={potential_objectives}
+                    maximumActiveObjectives={maximum_active_objectives}
+                    maximumPotentialObjectives={maximum_potential_objectives}
+                    handleObjectiveAction={(objective, action) =>
+                      act('objective_act', {
+                        check: objective.original_progression,
+                        objective_action: action,
+                        index: objective.id,
+                      })
+                    }
+                    handleStartObjective={(objective) =>
+                      act('start_objective', {
+                        check: objective.original_progression,
+                        index: objective.id,
+                      })
+                    }
+                    handleObjectiveAbort={(objective) =>
+                      act('objective_abort', {
+                        check: objective.original_progression,
+                        index: objective.id,
+                      })
+                    }
+                    handleObjectiveCompleted={(objective) =>
+                      act('finish_objective', {
+                        check: objective.original_progression,
+                        index: objective.id,
+                      })
+                    }
+                    handleRequestObjectives={() => act('regenerate_objectives')}
                   />
-                  {(shop_locked && !data.debug && (
-                    <Dimmer>
-                      <Box
-                        color="red"
-                        fontFamily={'Bahnschrift'}
-                        fontSize={3}
-                        align={'top'}
-                        as="span"
-                      >
-                        SHOP LOCKED
-                      </Box>
-                    </Dimmer>
-                  )) ||
-                    null}
-                </>
-              )}
+                )) || (
+                  <>
+                    <GenericUplink
+                      currency={`${telecrystals} TC`}
+                      categories={allCategories}
+                      items={items}
+                      handleBuy={(item: ItemExtraData) => {
+                        if (!item.extraData?.ref) {
+                          act('buy', { path: item.id });
+                        } else {
+                          act('buy', { ref: item.extraData.ref });
+                        }
+                      }}
+                    />
+                    {(shop_locked && !data.debug && (
+                      <Dimmer>
+                        <Box
+                          color="red"
+                          fontFamily={'Bahnschrift'}
+                          fontSize={3}
+                          align={'top'}
+                          as="span"
+                        >
+                          SHOP LOCKED
+                        </Box>
+                      </Dimmer>
+                    )) ||
+                      null}
+                  </>
+                )}
             </Stack.Item>
           </Stack>
         </Window.Content>

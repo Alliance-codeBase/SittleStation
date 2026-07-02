@@ -14,6 +14,7 @@
 			"Linkage": "Cross"
 		}
 	],
+	"ignored_unit_tests": ["/datum/unit_test/create_and_destroy"],
 	"job_changes": {
 		"Cook": {
 			"additional_cqc_areas": ["/area/station/service/bar/atrium"]

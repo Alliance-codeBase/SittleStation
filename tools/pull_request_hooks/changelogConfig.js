@@ -108,7 +108,7 @@ export const CHANGELOG_ENTRIES = [
       placeholders: ['something server ops should know'],
     },
   ],
-];
+]; //MASSMETA ADDITION (github update)
 
 // Valid changelog openers
 export const CHANGELOG_OPEN_TAGS = [':cl:', '??'];

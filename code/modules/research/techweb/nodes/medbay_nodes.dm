@@ -78,6 +78,10 @@
 		"chem_mass_spec",
 		"crewpinpointer",
 		"defibmount",
+		// MASSMETA EDIT BEGIN (not_enough_medical)
+		//"autodoc",
+		//"organdoc",
+		// MASSMETA EDIT END
 		"diode_disk_healing",
 		"diode_disk_sanity",
 		"healthanalyzer_advanced",

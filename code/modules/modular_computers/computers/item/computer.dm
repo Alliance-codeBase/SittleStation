@@ -164,6 +164,11 @@
 	if(SStts.tts_enabled)
 		voice = SStts.computer_voice
 
+/obj/item/modular_computer/LateInitialize()
+	. = ..()
+	if(SStts.tts_enabled)
+		voice = SStts.computer_voice
+
 ///Initialize the shell for this item, or the physical machinery it belongs to.
 /obj/item/modular_computer/proc/add_shell_component(capacity = SHELL_CAPACITY_MEDIUM, shell_flags = NONE)
 	shell = physical.AddComponent(/datum/component/shell, list(new /obj/item/circuit_component/modpc), capacity, shell_flags)

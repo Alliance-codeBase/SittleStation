@@ -37,10 +37,23 @@
  * * encode_title - if TRUE, the title will be HTML encoded
  * * encode_text - if TRUE, the text will be HTML encoded
  */
-/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override)
+/proc/priority_announce(text, title = "", sound, type, sender_override, has_important_message = FALSE, list/mob/players = GLOB.player_list, encode_title = TRUE, encode_text = TRUE, color_override, tts_source, tts_voice, tts_filter, tts_special_filters, tts_effect)
 	if(!text)
 		return
 
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	var/tts_title = title
+	var/tts_message = text
+	var/announcement_effect = tts_effect
+	if(!announcement_effect)
+		switch(type)
+			if(ANNOUNCEMENT_TYPE_CAPTAIN)
+				announcement_effect = "captain"
+			if(ANNOUNCEMENT_TYPE_SYNDICATE)
+				announcement_effect = "syndicate"
+			else
+				announcement_effect = "centcom"
+	// MASSMETA EDIT END (ntts && /tg/tts)
 	if(encode_title && title && length(title) > 0)
 		title = html_encode(title)
 	if(encode_text)
@@ -73,6 +86,9 @@
 
 	///If the announcer overrides alert messages, use that message.
 	if(SSstation.announcer.custom_alert_message && !has_important_message)
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		tts_message = SSstation.announcer.custom_alert_message
+		// MASSMETA EDIT END (ntts && /tg/tts)
 		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(SSstation.announcer.custom_alert_message)
 	else
 		announcement_strings += MAJOR_ANNOUNCEMENT_TEXT(text)
@@ -84,6 +100,9 @@
 		finalized_announcement = CHAT_ALERT_DEFAULT_SPAN(jointext(announcement_strings, ""))
 
 	dispatch_announcement_to_players(finalized_announcement, players, sound)
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	SStts.queue_global_announcement(SStts.announcement_text(tts_message, tts_title), players, tts_source, tts_voice, tts_filter, tts_special_filters, effect = announcement_effect)
+	// MASSMETA EDIT END (ntts && /tg/tts)
 
 	if(isnull(sender_override) && players == GLOB.player_list)
 		if(length(title) > 0)
@@ -136,10 +155,13 @@
  * should_play_sound - Whether the notice sound should be played or not. This can also be a callback, if you only want mobs to hear the sound based off of specific criteria.
  * color_override - optional, use the passed color instead of the default notice color.
  */
-/proc/minor_announce(message, title = "Attention:", alert = FALSE, html_encode = TRUE, list/players, sound_override, should_play_sound = TRUE, color_override)
+/proc/minor_announce(message, title = "Attention:", alert = FALSE, html_encode = TRUE, list/players, sound_override, should_play_sound = TRUE, color_override, tts_source, tts_voice, tts_filter, tts_special_filters, tts_effect)
 	if(!message)
 		return
 
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	var/tts_text = SStts.announcement_text(message, title)
+	// MASSMETA EDIT END (ntts && /tg/tts)
 	if (html_encode)
 		title = html_encode(title)
 		message = html_encode(message)
@@ -157,6 +179,9 @@
 
 	var/custom_sound = sound_override || (alert ? 'sound/announcer/notice/notice1.ogg' : 'sound/announcer/notice/notice2.ogg')
 	dispatch_announcement_to_players(finalized_announcement, players, custom_sound, should_play_sound)
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	SStts.queue_global_announcement(tts_text, players, tts_source, tts_voice, tts_filter, tts_special_filters, should_play_sound, tts_effect || "centcom")
+	// MASSMETA EDIT END (ntts && /tg/tts)
 
 /// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
 /proc/level_announce(datum/security_level/selected_level, previous_level_number)
@@ -182,6 +207,9 @@
 	var/finalized_announcement = CHAT_ALERT_COLORED_SPAN(current_level_color, jointext(level_announcement_strings, ""))
 
 	dispatch_announcement_to_players(finalized_announcement, GLOB.player_list, current_level_sound)
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	SStts.queue_global_announcement(SStts.announcement_text(message, title), GLOB.player_list, null, null, null, null, effect = "alert")
+	// MASSMETA EDIT END (ntts && /tg/tts)
 
 /// Proc that just generates a custom header based on variables fed into `priority_announce()`
 /// Will return a string.

@@ -99,6 +99,14 @@
 		qdel(query_create_message)
 		return
 	qdel(query_create_message)
+
+	// MASSMETA EDIT ADDITION START (bot_topic)
+	// Send note event to Discord bot (only for manually created notes, skip secret notes and auto-generated ban notes)
+	// logged=0 means auto-generated note (e.g. from ban creation), we don't want to send those
+	if(type == "note" && logged)
+		send_note_created_to_bot(target_ckey, target_key, admin_ckey, usr?.key, text, note_severity, secret)
+	// MASSMETA EDIT ADDITION END (bot_topic)
+
 	if(logged)
 		log_admin_private(pm)
 		message_admins("[header]:<br>[text]")
@@ -141,6 +149,12 @@
 		qdel(query_del_message)
 		return
 	qdel(query_del_message)
+	// MASSMETA EDIT ADDITION START (bot_topic)
+	// Send note deleted event to Discord bot
+	if(type == "note")
+		send_note_deleted_to_bot(ckey(target_key), target_key, deleted_by_ckey, usr?.key, text)
+	// MASSMETA EDIT ADDITION END(bot_topic)
+
 	if(logged)
 		var/m1 = "[user_key_name] has deleted a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for" : " made by"] [target_key]: [text]"
 		var/m2 = "[user_name_admin] has deleted a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for" : " made by"] [target_key]:<br>[text]"
@@ -193,6 +207,13 @@
 			qdel(query_edit_message)
 			return
 		qdel(query_edit_message)
+
+		// MASSMETA EDIT ADDITION START (bot_topic)
+		// Send note edited event to Discord bot
+		if(type == "note")
+			send_note_edited_to_bot(ckey(target_key), target_key, editor_ckey, editor_key, old_text, new_text)
+		// MASSMETA EDIT ADDITION END (bot_topic)
+
 		log_admin_private("[kn] has edited a [type] [(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""] made by [admin_key] from [old_text] to [new_text]")
 		message_admins("[kna] has edited a [type] [(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""] made by [admin_key] from<br>[old_text]<br>to<br>[new_text]")
 		if(browse)

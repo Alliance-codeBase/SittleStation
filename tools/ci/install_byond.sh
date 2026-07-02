@@ -14,7 +14,17 @@ else
   rm -rf "$HOME/BYOND"
   mkdir -p "$HOME/BYOND"
   cd "$HOME/BYOND"
-  curl -H "User-Agent: tgstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip
+  # MASSMETA CHANGE BEGIN (подягивает бульон из нашего "релиза")
+  # curl -H "User-Agent: tgstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip
+
+  curl --fail -H "User-Agent: tgstation/1.0 CI Script" \
+  "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip \
+  || {
+    echo "Byond download failed, trying mirror..."
+		curl "https://github.com/Lambda-13/massmeta/releases/latest/download/byond_linux.zip" -L -o byond.zip
+  }
+	# MASSMETA CHANGE END
+
   unzip byond.zip
   rm byond.zip
   cd byond

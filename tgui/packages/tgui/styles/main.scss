@@ -73,3 +73,7 @@
 :root {
   --scaling-amount: 1;
 }
+
+// MASSMETA DOWN HERE
+@include meta.load-css('./interfaces/MetaCoinSlot.scss');
+@include meta.load-css('./interfaces/TTSVoicePicker.scss');

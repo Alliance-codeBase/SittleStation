@@ -147,6 +147,12 @@
 	if(!(locate(/obj/item/organ/ears) in src))
 		. += span_info("[shown_name]'s ears have been removed.")
 
+		if(!(locate(/obj/item/organ/tongue) in src))
+			. += span_info("[real_name]'s tongue has been removed.")
+		//MASSMETA ADD BEGIN (heads_on_belts)
+		if(istype(src, /obj/item/bodypart/head))
+			. += span_info("You can wear it on you belt.")
+		//MASSMETA ADD END
 	if(!(locate(/obj/item/organ/tongue) in src))
 		. += span_info("[shown_name]'s tongue has been removed.")
 

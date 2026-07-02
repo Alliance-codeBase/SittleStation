@@ -73,8 +73,28 @@
 	return TOXLOSS
 
 /obj/item/reagent_containers/cup/soda_cans/interact_with_atom(atom/target, mob/living/user, list/modifiers)
-	if(!iscarbon(target) || reagents.total_volume || !user.combat_mode || user.zone_selected != BODY_ZONE_HEAD)
-		return ..()
+	if(iscarbon(target) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
+		if(target == user)
+			user.visible_message(
+				span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"),
+				span_notice("You crush the can of [src] on your forehead."),
+			)
+		else
+			user.visible_message(
+				span_warning("[user] crushes the can of [src] on [target]'s forehead!"),
+				span_notice("You crush the can of [src] on [target]'s forehead."),
+			)
+		playsound(src, 'sound/items/weapons/pierce.ogg', rand(10, 50), TRUE)
+		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target.drop_location())
+		crushed_can.icon_state = icon_state
+
+		//MASSMETA EDIT BEGIN (kvass_beverage)
+		if(icon_state == "kvass")
+			crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
+		//MASSMETA EDIT END
+
+		qdel(src)
+		return ITEM_INTERACT_SUCCESS
 
 	if(target == user)
 		user.visible_message(
@@ -100,6 +120,13 @@
 		return
 	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
 	crushed_can.icon_state = icon_state
+	//MASSMETA EDIT BEGIN (kvass_beverage)
+	if(icon_state == "kvass")
+		crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
+	//MASSMETA EDIT END
+	if(!proj.damage || proj.damage_type != BRUTE)
+		return
+
 	var/atom/throw_target = get_edge_target_turf(crushed_can, pick(GLOB.alldirs))
 	crushed_can.throw_at(throw_target, rand(1,2), 7)
 	qdel(src)
@@ -273,6 +300,12 @@
 	visible_message(span_danger("[src]'s impact with [hit_atom] causes it to rupture, spilling everywhere!"))
 	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(loc)
 	crushed_can.icon_state = icon_state
+
+	//MASSMETA EDIT BEGIN (kvass_beverage)
+	if(icon_state == "kvass")
+		crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
+	//MASSMETA EDIT END
+
 	moveToNullspace()
 	QDEL_IN(src, 1 SECONDS) // give it a second so it can still be logged for the throw impact
 

@@ -642,6 +642,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			Retitle()
 		if("reject")
 			Reject()
+		// MASSMETA ADDITION START (mentors)
+		if("mhelp")
+			MHelpThis()
+		// MASSMETA ADDITION END
 		if("reply")
 			usr.client.cmd_ahelp_reply(initiator)
 		if("icissue")
@@ -788,9 +792,15 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 			var/sanitized_message = sanitize(copytext_char(message, 1, MAX_MESSAGE_LEN))
 			user_client.current_ticket.send_message_to_tgs(sanitized_message, urgent = TRUE)
 		user_client.current_ticket.MessageNoRecipient(message, urgent)
+		// MASSMETA EDIT START (bot_topics)
+		get_ticket_info(message, user_client.current_ticket.id, user_client.ckey, admin = FALSE, new_ticket = FALSE, engager = "player")
+		// MASSMETA EDIT END (bot_topics)
 		return
 
 	new /datum/admin_help(message, user_client, FALSE, urgent)
+	// MASSMETA EDIT START (bot_topics)
+	get_ticket_info(message, user_client.current_ticket.id, user_client.ckey, admin = FALSE, new_ticket = TRUE, engager = "player")
+	// MASSMETA EDIT END (bot_topics)
 
 /client/verb/no_tgui_adminhelp(message as message)
 	set name = "NoTguiAdminhelp"

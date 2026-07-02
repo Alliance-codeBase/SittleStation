@@ -193,9 +193,17 @@
 	spawn_loc = null
 	return ..()
 
+
 /mob/living/basic/boss/thing/with_ruin_loot/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/death_drops, /obj/item/organ/brain/cybernetic/ai, FALSE)
+	//MASSMETA EDIT BEGIN
+	var/static/list/loot = list( // MASSMETA EDIT: Заменяем кибермозг копировальной машиной
+		/obj/item/circuitboard/machine/copytech,
+		/obj/item/circuitboard/machine/copytech_platform,
+	)
+	AddElement(/datum/element/death_drops, loot, FALSE)
+	//MASSMETA EDIT END
+
 
 // special stuff for our ruin to make a cooler bossfight
 

@@ -91,7 +91,13 @@
 	if(holder.data[type]) //You already unlocked it so don't bother running the unlock proc
 		return
 	holder.data[type] = TRUE
-
+	//MASSMETA EDIT ADDITION START (metacoins)
+	//Metacoins for achievementssss!
+	var/datum/metacoins_controller/metacoin_controller = get_metacoins_controller()
+	if(metacoin_controller)
+		var/achievement_type_string = "[type]"
+		metacoin_controller.award_metacoins(holder.owner_ckey, type, "achievement:[achievement_type_string]", "Achievement: [name || achievement_type_string]", FALSE, TRUE, sound = TRUE)
+	//MASSMETA EDIT ADDITION END (metacoins)
 	to_chat(user, span_greenannounce("<B>Achievement unlocked: [name]!</B>"))
 	var/sound/sound_to_send = LAZYACCESS(GLOB.achievement_sounds, user.client.prefs.read_preference(/datum/preference/choiced/sound_achievement))
 	if(sound_to_send)
@@ -155,6 +161,12 @@
 
 /datum/award/score/unlock(mob/user, datum/achievement_data/holder, value = 1)
 	holder.data[type] += value
+	//MASSMETA EDIT ADDITION START (metacoins)
+	var/datum/metacoins_controller/metacoin_controller = get_metacoins_controller()
+	if(metacoin_controller)
+		var/score_type_string = "[type]"
+		metacoin_controller.award_metacoins(holder.owner_ckey, type, "score:[score_type_string]", "Score: [name || score_type_string]", TRUE, TRUE, sound = TRUE)
+	//MASSMETA EDIT ADDITION END (metacoins)
 
 /datum/award/score/get_ui_data(list/award_data, datum/achievement_data/holder)
 	. = ..()
@@ -271,6 +283,13 @@
 		entries = entries?.Copy() || list()
 		holder.data[type] = entries
 	entries |= value
+
+	//MASSMETA EDIT ADDITION START (metacoins)
+	var/datum/metacoins_controller/metacoin_controller = get_metacoins_controller()
+	if(metacoin_controller)
+		var/score_type_string = "[type]"
+		metacoin_controller.award_metacoins(holder.owner_ckey, type, "score:[score_type_string]", "Score: [name || score_type_string]", TRUE, TRUE)
+	//MASSMETA EDIT ADDITION END (metacoins)
 
 	if(!progress_string)
 		return

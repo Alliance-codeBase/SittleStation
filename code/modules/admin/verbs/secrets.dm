@@ -814,6 +814,9 @@ ADMIN_VERB(secrets, R_NONE, "Secrets", "Abuse harder than you ever have before w
 				assign_admin_objective_and_antag(player, antag_datum)
 				var/datum/uplink_handler/uplink = antag_datum.uplink_handler
 				uplink.has_progression = FALSE
+				//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+				uplink.has_objectives = FALSE
+				//MASSMETA EDIT ADDITION END (re_traitorsecondary)
 			if(ROLE_CHANGELING)
 				var/datum/antagonist/changeling/antag_datum = new
 				antag_datum.give_objectives = keep_generic_objecives

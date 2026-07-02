@@ -198,16 +198,25 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 /// Sends a message to the appropriate channels.
 /obj/machinery/announcement_system/proc/broadcast(message, list/channels, command_span = FALSE)
 	use_energy(active_power_usage)
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	var/list/tts_message_mods = SStts.prepare_radio_announcement(src, message)
+	// MASSMETA EDIT END (ntts && /tg/tts)
 	if(!LAZYLEN(channels))
-		radio.talk_into(src, message, null, command_span ? list(speech_span, SPAN_COMMAND) : null)
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		radio.talk_into(src, message, null, command_span ? list(speech_span, SPAN_COMMAND) : null, null, tts_message_mods)
+		// MASSMETA EDIT END (ntts && /tg/tts)
 		return
 
 	// For some reasons, radio can't recognize RADIO_CHANNEL_COMMON in channels, so we need to handle it separately.
 	if (RADIO_CHANNEL_COMMON in channels)
-		radio.talk_into(src, message, null, command_span ? list(speech_span, SPAN_COMMAND) : null)
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		radio.talk_into(src, message, null, command_span ? list(speech_span, SPAN_COMMAND) : null, null, tts_message_mods)
+		// MASSMETA EDIT END (ntts && /tg/tts)
 		channels -= RADIO_CHANNEL_COMMON
 	for(var/channel in channels)
-		radio.talk_into(src, message, channel, command_span ? list(speech_span, SPAN_COMMAND) : null)
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		radio.talk_into(src, message, channel, command_span ? list(speech_span, SPAN_COMMAND) : null, null, tts_message_mods)
+		// MASSMETA EDIT END (ntts && /tg/tts)
 
 /// Announces configs entry message with the provided variables. Channels, announcement_line and command_span are optional.
 /obj/machinery/announcement_system/proc/announce(aas_config_entry_type, list/variables_map, list/channels, announcement_line, command_span)

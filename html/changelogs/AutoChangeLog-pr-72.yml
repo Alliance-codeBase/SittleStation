@@ -1,0 +1,6 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - qol: "Демоны превратились в басик-мобов"
+  - bugfix: "Теперь портативные зарядники не могут поднимать призраки"
+  - code_imp: "подтянуты изменения autoLabel.js с офтг"

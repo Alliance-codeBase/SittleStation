@@ -1,0 +1,352 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/window/reinforced/shuttle,
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"b" = (
+/obj/effect/turf_decal/siding/dark,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/arrival)
+"d" = (
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
+"g" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/computer{
+	dir = 1;
+	name = "Shuttle computer"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+"h" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/structure/extinguisher_cabinet/directional/east,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 4
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"k" = (
+/obj/machinery/transport/tram_controller,
+/turf/closed/wall/mineral/titanium,
+/area/shuttle/arrival)
+"l" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/medkit/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/medkit/regular,
+/obj/machinery/light/directional/south,
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+"m" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/arrival)
+"n" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/computer{
+	dir = 1;
+	name = "Shuttle computer"
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/directional/west,
+/obj/structure/sign/tram_plate/directional/west,
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+"o" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner,
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"r" = (
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"s" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Arrival Shuttle Airlock"
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"u" = (
+/obj/effect/turf_decal/tile/neutral/fourcorners,
+/obj/machinery/computer{
+	dir = 1;
+	name = "Shuttle computer"
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/directional/east,
+/obj/structure/sign/tram_plate/directional/east,
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+"v" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 1
+	},
+/obj/machinery/light/directional/west,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"w" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/arrival)
+"y" = (
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+"z" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/shuttle{
+	name = "Arrival Shuttle Airlock"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"B" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/emergency,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+"D" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 1
+	},
+/obj/machinery/light/directional/east,
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"F" = (
+/obj/structure/window/reinforced/shuttle,
+/obj/machinery/power/shuttle_engine/heater{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"G" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 4
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"H" = (
+/obj/machinery/requests_console{
+	department = "Arrival shuttle";
+	name = "Arrivals Shuttle console"
+	},
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/shuttle/arrival)
+"J" = (
+/obj/structure/closet/crate/internals,
+/obj/effect/turf_decal/bot/left,
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+"M" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 8
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"O" = (
+/obj/machinery/power/shuttle_engine/propulsion{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/docking_port/mobile/arrivals{
+	dir = 2;
+	name = "protos arrivals shuttle"
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/arrival)
+"S" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot,
+/obj/item/radio/intercom/directional/west,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 8
+	},
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"T" = (
+/obj/structure/flora/bush/grassy/style_random,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/flowers_yw/style_random,
+/obj/structure/flora/bush/ferny/style_random,
+/obj/structure/window/reinforced/shuttle,
+/turf/open/floor/grass,
+/area/shuttle/arrival)
+"U" = (
+/obj/structure/flora/bush/grassy/style_random,
+/obj/structure/flora/bush/lavendergrass/style_random,
+/obj/structure/flora/bush/flowers_pp/style_random,
+/obj/structure/flora/bush/sunny/style_random,
+/obj/structure/window/reinforced/shuttle,
+/turf/open/floor/grass,
+/area/shuttle/arrival)
+"W" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/directional/west,
+/obj/effect/turf_decal/siding/dark,
+/obj/effect/turf_decal/trimline/neutral/filled/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/neutral/filled/mid_joiner,
+/turf/open/floor/iron/large,
+/area/shuttle/arrival)
+"Y" = (
+/obj/machinery/vending/wallmed/directional/north{
+	use_power = 0
+	},
+/obj/structure/chair/comfy/shuttle,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/pod,
+/area/shuttle/arrival)
+
+(1,1,1) = {"
+w
+m
+a
+k
+a
+d
+a
+a
+d
+d
+"}
+(2,1,1) = {"
+r
+F
+J
+D
+M
+S
+o
+y
+n
+a
+"}
+(3,1,1) = {"
+O
+F
+l
+H
+U
+T
+b
+Y
+g
+a
+"}
+(4,1,1) = {"
+r
+F
+B
+v
+G
+h
+W
+y
+u
+a
+"}
+(5,1,1) = {"
+w
+m
+a
+z
+a
+d
+a
+s
+d
+d
+"}

@@ -1,0 +1,5 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - rscadd: "bot topics"
+  - code_imp: "ooc verb"

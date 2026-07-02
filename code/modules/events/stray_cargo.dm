@@ -172,6 +172,9 @@
 		"Nuke Op" = UPLINK_NUKE_OPS,
 		"Clown Op" = UPLINK_CLOWN_OPS,
 		"Lone Op" = UPLINK_LONE_OP,
+	//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+		"Infiltrator" = UPLINK_INFILTRATORS,
+	//MASSMETA EDIT ADDITION END (re_traitorsecondary)
 		"Spy" = UPLINK_SPY
 		)
 	var/uplink_type = tgui_input_list(usr, "Choose uplink to draw items from.", "Choose uplink type.", possible_uplinks)

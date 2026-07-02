@@ -402,7 +402,10 @@ GLOBAL_LIST_INIT(clown_mask_options, list(
 	options["Triste"] = "sadmime"
 	options["Effrayé"] = "scaredmime"
 	options["Excité"] ="sexymime"
-
+	// MASSMETA EDIT (edit_masks)
+	options["Joker"] = "mimejoker"
+	// MASSMETA EDIT
+	
 	var/choice = show_radial_menu(user,src, mimemask_designs, custom_check = FALSE, radius = 36, require_near = TRUE)
 	if(!choice)
 		return FALSE

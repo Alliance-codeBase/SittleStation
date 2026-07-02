@@ -1,6 +1,19 @@
+/* MASSMETA EDIT START (re_traitorsecondary) ORIGINAL:
+
 import { BlockQuote, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
+
+*/
+import {
+  BlockQuote,
+  Button,
+  Dimmer,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+// MASSMETA EDIT END (re_traitorsecondary)
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { type Objective, ObjectivePrintout } from './common/Objectives';
@@ -30,6 +43,10 @@ type Info = {
   intro: string;
   code: string;
   failsafe_code: string;
+  //MASSMETA ADDITION START (re_traitorsecondary)
+  replacement_code: string;
+  replacement_frequency: string;
+  //MASSMETA ADDITION END (re_traitorsecondary)
   has_uplink: BooleanLike;
   uplink_intro: string;
   uplink_unlock_info: string;
@@ -99,13 +116,46 @@ const EmployerSection = (props) => {
 };
 
 const UplinkSection = (props) => {
-  const { data } = useBackend<Info>();
-  const { has_uplink, uplink_intro, uplink_unlock_info, code, failsafe_code } =
+  // MASSMETA EDIT START (re_traitorsecondary) ORIIGNAL:
+  /*
+    const { has_uplink, uplink_intro, uplink_unlock_info, code, failsafe_code } =
     data;
+  */
+  const { data } = useBackend<Info>();
+  const {
+    has_uplink,
+    uplink_intro,
+    uplink_unlock_info,
+    code,
+    failsafe_code,
+    replacement_code,
+    replacement_frequency,
+  } = data;
+  // MASSMETA EDIT END (re_traitorsecondary)
+  // MASSMETA ADDITION START (re_traitorsecondary)
   return (
     <Section title="Uplink" mb={!has_uplink && -1}>
       <Stack fill>
-        {
+        {(!has_uplink && (
+          <Dimmer>
+            <Stack.Item fontSize="16px">
+              <Section textAlign="Center">
+                Your uplink is missing or destroyed. <br />
+                Craft a Syndicate Uplink Beacon and then speak
+                <br />
+                <span style={goalstyle}>
+                  <b>{replacement_code}</b>
+                </span>{' '}
+                on frequency{' '}
+                <span style={goalstyle}>
+                  <b>{replacement_frequency}</b>
+                </span>{' '}
+                after synchronizing with the beacon.
+              </Section>
+            </Stack.Item>
+          </Dimmer>
+        )) || (
+  // MASSMETA ADDITION END (re_traitorsecondary) ОНО НЕ ПОЗВОЛЯЕТ СТАВИТЬ КОММЕНТАРИИ, СПАСИТЕ МЕНЯ!!
           <>
             <Stack.Item bold>
               {uplink_intro}
@@ -121,16 +171,29 @@ const UplinkSection = (props) => {
               <BlockQuote>{uplink_unlock_info}</BlockQuote>
             </Stack.Item>
           </>
-        }
+        )}
       </Stack>
       <br />
-      {
+      {(has_uplink && (
+        <Section textAlign="Center">
+          If you lose your uplink, you can craft a Syndicate Uplink Beacon and
+          then speak{' '}
+          <span style={goalstyle}>
+            <b>{replacement_code}</b>
+          </span>{' '}
+          on radio frequency{' '}
+          <span style={goalstyle}>
+            <b>{replacement_frequency}</b>
+          </span>{' '}
+          after synchronizing with the beacon.
+        </Section>
+      )) || (
         <Section>
           {' '}
           <br />
           <br />
         </Section>
-      }
+      )}
     </Section>
   );
 };

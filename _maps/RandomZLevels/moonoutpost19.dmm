@@ -1284,6 +1284,18 @@
 /obj/structure/flora/rock/style_random,
 /turf/open/misc/asteroid/moon,
 /area/awaymission/moonoutpost19/main)
+"jy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/c357{
+	pixel_x = -2;
+	pixel_y = -7
+	},
+/obj/effect/turf_decal/siding/thinplating_new/light{
+	dir = 1
+	},
+/obj/machinery/duct,
+/turf/open/floor/iron,
+/area/awaymission/moonoutpost19/arrivals)
 "jD" = (
 /obj/machinery/space_heater,
 /obj/effect/decal/cleanable/dirt,
@@ -2695,6 +2707,18 @@
 	},
 /turf/open/misc/asteroid/moon,
 /area/awaymission/moonoutpost19/mines)
+"sf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/item/ammo_casing/c357{
+	pixel_x = 11;
+	pixel_y = 8
+	},
+/obj/effect/turf_decal/siding/thinplating_new/light/corner{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/awaymission/moonoutpost19/arrivals)
 "si" = (
 /obj/structure/alien/weeds,
 /obj/effect/turf_decal/tile/purple,
@@ -6075,18 +6099,6 @@
 "QS" = (
 /turf/open/misc/asteroid/moon/dug,
 /area/awaymission/moonoutpost19/main)
-"QZ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/item/ammo_casing/c357{
-	pixel_x = 11;
-	pixel_y = 8
-	},
-/obj/effect/turf_decal/siding/thinplating_new/light/corner{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/awaymission/moonoutpost19/arrivals)
 "Ra" = (
 /obj/machinery/light/small/directional/east,
 /obj/effect/turf_decal/stripes/line{
@@ -7040,7 +7052,16 @@
 /obj/structure/cable,
 /turf/open/floor/iron/moon,
 /area/awaymission/moonoutpost19/syndicate)
-"Yk" = (
+"Ym" = (
+/obj/effect/decal/cleanable/crayon{
+	icon_state = "line";
+	rotation = 90
+	},
+/turf/open/misc/asteroid/moon{
+	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251"
+	},
+/area/awaymission/moonoutpost19/main)
+"Yo" = (
 /obj/effect/turf_decal/sand,
 /obj/item/stack/ore/glass{
 	pixel_x = 8
@@ -40382,7 +40403,7 @@ xj
 yZ
 hI
 Hg
-QZ
+sf
 qg
 Bk
 Tg
@@ -40638,7 +40659,7 @@ sJ
 Qr
 Zy
 zb
-Bf
+jy
 Ll
 HD
 hJ
@@ -40896,7 +40917,7 @@ Qr
 ym
 hJ
 bo
-Yk
+Yo
 DZ
 MS
 hJ

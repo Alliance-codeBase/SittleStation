@@ -1,0 +1,5 @@
+author: "MassMeta: Glamyr"
+delete-after: True
+changes:
+  - balance: "Клаймбинг-Хуки можно заточить."
+  - balance: "Синди-Хуки: демейдж форс 5 -> 7"

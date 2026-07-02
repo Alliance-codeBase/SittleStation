@@ -171,7 +171,7 @@
 	return TRUE
 
 /mob/living/basic/bot/secbot/proc/post_arrest(mob/living/carbon/current_target)
-	playsound(src, SFX_LAW, 50, FALSE)
+	playsound(src, check_holidays(APRIL_FOOLS) ? "law_april" : SFX_LAW, 50, FALSE) // Massmeta EDIT - april_fools_day, original: playsound(src, SFX_LAW, 50, FALSE)
 
 /mob/living/basic/bot/secbot/proc/post_stun(mob/living/carbon/current_target, harm = FALSE)
 	flick("[base_icon_state]-c", src)

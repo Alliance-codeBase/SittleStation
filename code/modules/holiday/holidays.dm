@@ -483,9 +483,12 @@ GLOBAL_LIST_INIT(holiday_mail, list())
 
 /datum/holiday/pride_week/New()
 	. = ..()
+	return // MASSMETA EDIT
+	/* MASSMETA REMOVAL (lgbt_removal)
 	if(prob(30))
 		return
 	holiday_colors = pick(LESBIAN_FLAG_COLORS, GAY_MAN_FLAG_COLORS, TRANS_FLAG_COLORS, BI_FLAG_COLORS, ACE_FLAG_COLORS, PAN_FLAG_COLORS)
+	*/
 
 /datum/holiday/pride_week/get_station_prefix()
 	if(prob(10))
