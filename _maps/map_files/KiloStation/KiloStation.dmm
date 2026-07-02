@@ -28817,11 +28817,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
-"jjj" = (
-/obj/structure/lattice,
-/obj/effect/spawner/random/trash/grille_or_waste,
-/turf/open/space/basic,
-/area/space/nearstation)
 "jjs" = (
 /turf/closed/wall/r_wall/rust,
 /area/station/maintenance/starboard/aft)
@@ -130376,7 +130371,7 @@ aaa
 aaa
 aaa
 acK
-jjj
+gGF
 acK
 gGF
 gGF

@@ -1,0 +1,2854 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aH" = (
+/obj/structure/flora/bush/ferny/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"aV" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "hoodtop"
+	},
+/turf/open/misc/sandy_dirt,
+/area/deathmatch)
+"bk" = (
+/obj/structure/flora/bush/reed/style_random,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"bK" = (
+/obj/machinery/light/warm/directional/north,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"cM" = (
+/obj/structure/railing/corner/end/flip,
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"cV" = (
+/obj/structure/flora/bush/fullgrass/style_random,
+/obj/structure/flora/tree/jungle/small/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"dP" = (
+/obj/structure/railing/corner/end,
+/obj/structure/railing/corner/end/flip,
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"dT" = (
+/obj/machinery/power/port_gen/pacman/wood,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"ek" = (
+/obj/item/flashlight/seclite{
+	dir = 2
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"eE" = (
+/obj/structure/table/wood,
+/turf/open/misc/grass,
+/area/deathmatch)
+"eN" = (
+/obj/structure/chair/wood,
+/turf/open/misc/grass,
+/area/deathmatch)
+"eW" = (
+/obj/item/picket_sign,
+/turf/open/misc/grass,
+/area/deathmatch)
+"fX" = (
+/obj/structure/fluff/bus/passable{
+	icon_state = "bottomdoor"
+	},
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"gt" = (
+/obj/structure/mop_bucket,
+/turf/open/indestructible{
+	icon_state = "sand";
+	name = "grass"
+	},
+/area/deathmatch)
+"gv" = (
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"gD" = (
+/obj/machinery/light/small/directional/north,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"gI" = (
+/obj/effect/visible_heretic_influence,
+/turf/open/water/no_planet_atmos/deep/lethal,
+/area/deathmatch)
+"gW" = (
+/obj/structure/closet{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/item/clothing/suit/armor/hos{
+	icon = 'modular_meta/features/more_clothes/icons/items/suits/armor.dmi'
+	},
+/obj/item/key/atv,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"hT" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"if" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/structure/curtain/bounty{
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/obj/item/bedsheet{
+	dir = 1
+	},
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"ij" = (
+/obj/structure/flora/bush/stalky/style_random,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"iy" = (
+/obj/structure/closet/crate/grave,
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"jf" = (
+/obj/machinery/light/warm/directional/south,
+/turf/open/floor/wood,
+/area/deathmatch)
+"jw" = (
+/obj/structure/dresser,
+/obj/machinery/light/warm/directional/west,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"jJ" = (
+/obj/machinery/griddle,
+/obj/machinery/light/warm/directional/east,
+/turf/open/floor/wood,
+/area/deathmatch)
+"km" = (
+/obj/structure/dresser,
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"kB" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 6
+	},
+/obj/effect/turf_decal/arrows{
+	dir = 8
+	},
+/obj/vehicle/ridden/atv{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"kI" = (
+/obj/item/fishing_hook/jaws,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/restraints/legcuffs/beartrap,
+/obj/item/pushbroom,
+/turf/open/indestructible{
+	icon_state = "sand";
+	name = "grass"
+	},
+/area/deathmatch)
+"lD" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"mi" = (
+/obj/structure/flora/bush/fullgrass/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"mj" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible{
+	icon_state = "sand";
+	name = "grass"
+	},
+/area/deathmatch)
+"mX" = (
+/obj/structure/curtain/bounty{
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"nx" = (
+/turf/open/indestructible{
+	icon_state = "sand";
+	name = "grass"
+	},
+/area/deathmatch)
+"nK" = (
+/obj/structure/fluff/bus/passable,
+/obj/structure/fluff/bus/dense,
+/turf/open/indestructible/tram,
+/area/deathmatch)
+"nY" = (
+/obj/structure/flora/bush/reed/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"oP" = (
+/obj/item/reagent_containers/spray/pepper{
+	name = "bear spray"
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"pE" = (
+/obj/structure/curtain/bounty{
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"pS" = (
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"pZ" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/indestructible{
+	icon_state = "sand";
+	name = "grass"
+	},
+/area/deathmatch)
+"qy" = (
+/obj/structure/flora/bush/stalky/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"rt" = (
+/obj/structure/flora/bush/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"rB" = (
+/obj/structure/flora/rock/style_4,
+/turf/open/misc/dirt/dark/station,
+/area/deathmatch)
+"rU" = (
+/obj/machinery/door/airlock/wood{
+	name = "House";
+	opacity = 0
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"sd" = (
+/obj/structure/tram/alt/wood{
+	name = "wooden wall"
+	},
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"sU" = (
+/obj/structure/flora/bush/ferny/style_random,
+/obj/item/scythe,
+/turf/open/misc/grass,
+/area/deathmatch)
+"tb" = (
+/obj/effect/decal/cleanable/dirt{
+	icon_state = "wizard_rune_fail";
+	icon = 'icons/effects/96x96.dmi';
+	color = "AF1212";
+	name = "rune"
+	},
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"te" = (
+/obj/item/knife/shiv/carrot{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/machinery/hydroponics/soil,
+/turf/open/misc/grass,
+/area/deathmatch)
+"ty" = (
+/obj/structure/fluff/bus/dense,
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"tN" = (
+/turf/open/floor/carpet,
+/area/deathmatch)
+"tP" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"ul" = (
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/vehicle/ridden/atv{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 4
+	},
+/obj/effect/turf_decal/arrows{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"uB" = (
+/obj/structure/table/wood/fancy/red,
+/obj/machinery/light/warm/directional/south,
+/obj/item/pickaxe/silver{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/obj/item/food/danish_hotdog{
+	pixel_x = -1;
+	pixel_y = 5
+	},
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"uE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/item/storage/toolbox/fishing,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"uK" = (
+/obj/structure/table/wood,
+/obj/item/food/cake/brain,
+/obj/item/knife/plastic,
+/turf/open/misc/grass,
+/area/deathmatch)
+"vh" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "fronttire"
+	},
+/turf/open/misc/sandy_dirt,
+/area/deathmatch)
+"vk" = (
+/obj/structure/tram/alt/wood{
+	name = "wooden wall"
+	},
+/turf/open/floor/plating,
+/area/deathmatch)
+"vy" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottomrear"
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"wc" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "reartire"
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"wD" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "dmboats";
+	opacity = 0
+	},
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"wV" = (
+/obj/structure/railing/corner/end/flip{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"xk" = (
+/obj/structure/railing{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 5
+	},
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/botanical_waste,
+/obj/item/reagent_containers/cup/glass/waterbottle/large,
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"xm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"xq" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"xI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"xJ" = (
+/obj/structure/fluff/bus/passable,
+/turf/open/indestructible/tram,
+/area/deathmatch)
+"yb" = (
+/obj/item/soap/deluxe,
+/obj/machinery/door/airlock/instant{
+	icon = 'icons/obj/doors/airlocks/station/wood.dmi';
+	name = "Toilet";
+	opacity = 0
+	},
+/turf/open/indestructible/permalube{
+	icon_state = "dirt";
+	name = "dirt flooring"
+	},
+/area/deathmatch)
+"yO" = (
+/turf/open/floor/wood,
+/area/deathmatch)
+"yS" = (
+/obj/machinery/light/warm/directional/east,
+/turf/open/misc/grass,
+/area/deathmatch)
+"ze" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"zx" = (
+/obj/structure/flora/bush/stalky/style_random,
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"zz" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/machinery/light/warm/directional/east,
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"AA" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"CS" = (
+/turf/open/chasm/jungle,
+/area/deathmatch)
+"CT" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood/end,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"Dp" = (
+/obj/structure/fluff/bus/dense,
+/turf/open/misc/sandy_dirt,
+/area/deathmatch)
+"Dq" = (
+/obj/item/flashlight/flare/torch/on,
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"DI" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible{
+	icon_state = "sand";
+	name = "grass"
+	},
+/area/deathmatch)
+"DW" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lantern/on{
+	pixel_x = 0;
+	pixel_y = 6
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"EC" = (
+/turf/open/misc/grass,
+/area/deathmatch)
+"EJ" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottom"
+	},
+/turf/open/misc/sandy_dirt,
+/area/deathmatch)
+"EL" = (
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"EO" = (
+/obj/structure/flora/tree/jungle/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"ER" = (
+/obj/machinery/oven/range,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Fx" = (
+/obj/structure/fluff/bus/dense,
+/turf/open/misc/grass,
+/area/deathmatch)
+"FH" = (
+/obj/machinery/door/airlock/wood{
+	name = "House";
+	opacity = 0
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"FK" = (
+/obj/structure/flora/tree/jungle/style_4,
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"Gb" = (
+/obj/structure/fake_stairs/wood/directional/east,
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"Gg" = (
+/obj/item/clothing/head/helmet/skull{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"Gx" = (
+/obj/item/oar,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"Gy" = (
+/obj/structure/flora/bush/grassy/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"GB" = (
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/obj/structure/closet/crate/grave,
+/turf/open/misc/dirt/dark/station,
+/area/deathmatch)
+"Hj" = (
+/obj/structure/flora/bush/sparsegrass/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"Ht" = (
+/obj/structure/curtain/bounty{
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"Hy" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/spawner/random/trash/food_packaging,
+/obj/effect/spawner/random/trash/garbage,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Hz" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "dmgarage";
+	opacity = 0
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"Iv" = (
+/obj/structure/closet/crate/grave,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/misc/dirt/dark/station,
+/area/deathmatch)
+"IG" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet{
+	dir = 1
+	},
+/obj/machinery/light/warm/directional/west,
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"JP" = (
+/obj/structure/fluff/bus/passable,
+/obj/structure/fluff/bus/passable/seat,
+/obj/item/reagent_containers/cup/glass/waterbottle{
+	pixel_x = -1;
+	pixel_y = 22
+	},
+/turf/open/indestructible/tram,
+/area/deathmatch)
+"Kd" = (
+/turf/open/misc/dirt/dark/station,
+/area/deathmatch)
+"Kk" = (
+/obj/structure/flora/bush/pointy/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"Ks" = (
+/obj/machinery/light/warm/directional/south,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"KU" = (
+/obj/item/knife/ritual,
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"KW" = (
+/obj/structure/table,
+/obj/machinery/microwave{
+	pixel_x = 0;
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"KX" = (
+/obj/structure/flora/bush/lavendergrass/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"Lw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/structure/chair/stool/directional/south{
+	pixel_x = 0;
+	pixel_y = 7
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"Me" = (
+/obj/structure/flora/rock/style_3,
+/turf/open/misc/dirt/dark/station,
+/area/deathmatch)
+"Mw" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"MR" = (
+/obj/structure/tram/alt/wood{
+	name = "wooden wall"
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"MV" = (
+/obj/machinery/door/airlock/wood{
+	name = "Garage";
+	opacity = 0
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"Nh" = (
+/obj/structure/railing/corner/end,
+/obj/machinery/button/door/directional/east{
+	id = "dmboats"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/machinery/light/warm/directional/east,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"NR" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "frontwallbottom"
+	},
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"NZ" = (
+/obj/machinery/light/warm/directional/north,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"Oh" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"Oi" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/floor/carpet,
+/area/deathmatch)
+"OP" = (
+/obj/structure/flora/tree/jungle/small/style_random,
+/turf/open/misc/grass,
+/area/deathmatch)
+"Ql" = (
+/obj/structure/curtain/bounty{
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"QE" = (
+/turf/open/misc/sandy_dirt,
+/area/deathmatch)
+"QP" = (
+/turf/closed/indestructible/binary{
+	color = "000"
+	},
+/area/deathmatch)
+"QR" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"Ro" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/deathmatch)
+"Rp" = (
+/obj/structure/bed,
+/obj/structure/curtain/bounty{
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/obj/item/bedsheet,
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"Rx" = (
+/obj/structure/fluff/bus/passable{
+	icon_state = "topdoor"
+	},
+/obj/structure/fluff/bus/passable/seat/driver,
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/indestructible/tram,
+/area/deathmatch)
+"RF" = (
+/obj/structure/tram/alt/wood{
+	name = "wooden wall"
+	},
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"RU" = (
+/obj/effect/landmark/deathmatch_player_spawn,
+/turf/open/misc/grass,
+/area/deathmatch)
+"SV" = (
+/obj/structure/flora/bush/style_random,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"Tg" = (
+/obj/structure/curtain/bounty{
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"Tj" = (
+/obj/structure/closet/cabinet,
+/obj/item/reagent_containers/spray/waterflower/lube,
+/obj/item/spear/bamboospear,
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"Ty" = (
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"Tz" = (
+/obj/structure/closet/crate/grave,
+/obj/effect/mob_spawn/corpse/human/charredskeleton,
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"TP" = (
+/obj/machinery/light/warm/directional/west,
+/turf/open/misc/grass,
+/area/deathmatch)
+"Ui" = (
+/obj/structure/fluff/bus/passable,
+/obj/structure/fluff/bus/passable/seat,
+/turf/open/indestructible/tram,
+/area/deathmatch)
+"Uv" = (
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 10
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"US" = (
+/obj/structure/bed/double{
+	dir = 4
+	},
+/obj/item/bedsheet/yellow/double{
+	dir = 1
+	},
+/obj/item/reagent_containers/syringe/contraband/methamphetamine{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"Vb" = (
+/obj/structure/closet/secure_closet/freezer/empty,
+/obj/item/storage/backpack/meat,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Vd" = (
+/turf/open/water/no_planet_atmos/deep/lethal,
+/area/deathmatch)
+"Vl" = (
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"Vs" = (
+/obj/structure/punji_sticks,
+/turf/open/misc/grass,
+/area/deathmatch)
+"Vz" = (
+/obj/machinery/light/small/dim/directional/north,
+/obj/item/kitchen/spoon/soup_ladle{
+	pixel_x = -8;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/cup/bucket/wooden{
+	pixel_x = 0;
+	pixel_y = -4
+	},
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"VS" = (
+/obj/structure/fluff/bus/dense{
+	icon_state = "hoodbottom"
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"VY" = (
+/obj/structure/railing/corner/end{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/decal/cleanable/blood/oil/slippery,
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"Xu" = (
+/obj/machinery/light/warm/directional/south,
+/turf/open/indestructible{
+	icon_state = "sand";
+	name = "grass"
+	},
+/area/deathmatch)
+"Xw" = (
+/obj/structure/tram/alt/wood{
+	name = "wooden wall"
+	},
+/turf/open/floor/wood/large,
+/area/deathmatch)
+"XL" = (
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"XW" = (
+/obj/effect/turf_decal/trimline/brown/filled/warning,
+/obj/machinery/button/door/directional/south{
+	id = "dmgarage"
+	},
+/obj/machinery/light/warm/directional/south,
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+"XX" = (
+/obj/item/flashlight/lantern/on{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/turf/open/misc/dirt/station,
+/area/deathmatch)
+"Ya" = (
+/obj/item/flashlight/lantern/on{
+	pixel_x = 0;
+	pixel_y = 12
+	},
+/turf/open/misc/grass,
+/area/deathmatch)
+"Yf" = (
+/obj/structure/flora/bush/leafy,
+/turf/open/water/no_planet_atmos,
+/area/deathmatch)
+"Yz" = (
+/obj/structure/bed{
+	dir = 4
+	},
+/obj/item/bedsheet{
+	dir = 1
+	},
+/turf/open/floor/wood/tile,
+/area/deathmatch)
+"ZP" = (
+/obj/structure/tram/alt/wood{
+	name = "wooden wall"
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"ZU" = (
+/obj/effect/turf_decal/trimline/brown/filled/warning{
+	dir = 9
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/deathmatch)
+
+(1,1,1) = {"
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+"}
+(2,1,1) = {"
+QP
+EC
+Kd
+EC
+QE
+QE
+gv
+QE
+gv
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+KX
+EC
+EC
+mi
+EC
+EC
+gv
+Kd
+Kd
+gv
+qy
+EL
+SV
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(3,1,1) = {"
+QP
+mi
+QE
+gv
+QE
+QE
+QE
+EC
+QE
+Kd
+EC
+EC
+EC
+EC
+aH
+EC
+RU
+EC
+EO
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+Vs
+EC
+OP
+Kd
+gv
+Me
+EC
+mi
+ij
+EL
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(4,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+QE
+QE
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+OP
+aH
+EC
+EC
+EC
+EC
+EC
+EC
+Dq
+Kd
+gv
+qy
+bk
+EL
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(5,1,1) = {"
+QP
+EC
+EC
+OP
+EC
+Kd
+EC
+QE
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+Hj
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+EC
+EO
+EC
+EC
+EC
+rB
+EC
+mi
+rt
+zx
+EL
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(6,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+QE
+QE
+Kd
+EC
+EC
+OP
+EC
+nY
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+Vs
+EC
+EC
+EC
+EC
+mi
+EC
+EC
+mi
+EC
+EC
+EC
+EC
+qy
+Yf
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(7,1,1) = {"
+QP
+EC
+mi
+Hj
+EC
+OP
+gv
+QE
+gv
+QE
+EC
+EC
+te
+EC
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+OP
+EC
+sU
+EC
+qy
+ij
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(8,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+EC
+QE
+QE
+mi
+EC
+EC
+EC
+EC
+Vs
+EC
+EC
+Gy
+EC
+KX
+EC
+EC
+OP
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+Hj
+EC
+qy
+nY
+Gg
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(9,1,1) = {"
+QP
+EC
+EC
+Hj
+EC
+EC
+gv
+QE
+QE
+Kd
+EC
+EC
+Hj
+EC
+EC
+OP
+EC
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+OP
+mi
+EC
+EC
+EC
+mi
+ij
+EL
+Yf
+Vd
+Vd
+gI
+Vd
+QP
+"}
+(10,1,1) = {"
+QP
+EC
+EC
+OP
+EC
+EC
+Fx
+nK
+wc
+EC
+OP
+EC
+EC
+EC
+EC
+mi
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+EO
+EC
+EC
+EC
+mi
+EC
+EC
+EC
+EC
+EC
+nY
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(11,1,1) = {"
+QP
+EC
+EC
+EC
+Kk
+EC
+ty
+Ui
+vy
+EC
+EC
+mi
+EC
+EC
+EC
+EC
+Vs
+Gy
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+Hj
+qy
+ij
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(12,1,1) = {"
+QP
+mi
+EC
+EC
+EC
+EC
+Dp
+Ui
+NR
+EC
+EC
+EC
+EC
+KX
+OP
+EC
+EC
+EC
+EC
+EC
+Hj
+EC
+EC
+Vs
+Hj
+EC
+EC
+OP
+EC
+EC
+EC
+mi
+EC
+rt
+EC
+ij
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(13,1,1) = {"
+QP
+EC
+OP
+EC
+EC
+Kd
+Dp
+JP
+NR
+KX
+EC
+EC
+OP
+EC
+EC
+Hj
+EC
+EC
+mi
+RU
+EC
+EC
+EC
+EC
+EC
+nx
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+mi
+ij
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(14,1,1) = {"
+QP
+EC
+EC
+EC
+Hj
+EC
+ty
+xJ
+EJ
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+OP
+ek
+EC
+EC
+OP
+Hj
+RF
+RF
+RF
+kI
+mi
+EC
+EC
+EC
+EC
+EC
+qy
+bk
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(15,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+Fx
+Rx
+fX
+EC
+EC
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+Gy
+EC
+EC
+RF
+CS
+RF
+gt
+EC
+RU
+OP
+EC
+Hj
+EC
+EC
+ij
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(16,1,1) = {"
+QP
+mi
+EC
+EC
+OP
+EC
+aV
+VS
+vh
+Ya
+EC
+EC
+EC
+EC
+EC
+KX
+EC
+EC
+aH
+EC
+EC
+EC
+Kk
+RF
+Vz
+RF
+mi
+nx
+EC
+Hj
+EC
+EC
+EC
+qy
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(17,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+EC
+FK
+mi
+EC
+EC
+OP
+EC
+EC
+EC
+EO
+EC
+mi
+EC
+EC
+OP
+EC
+EC
+RF
+yb
+RF
+EC
+EC
+EC
+EC
+EC
+EC
+rt
+EL
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(18,1,1) = {"
+QP
+EC
+EC
+nY
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+Gy
+EC
+hT
+nx
+EC
+nx
+mi
+EC
+sd
+sd
+Ro
+sd
+sd
+EC
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(19,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+mi
+EC
+EC
+Hj
+EC
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+OP
+EC
+eN
+eE
+tP
+nx
+nx
+nx
+Xu
+sd
+IG
+Ql
+Yz
+sd
+sd
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(20,1,1) = {"
+QP
+EC
+OP
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+KX
+EC
+Vs
+EC
+EC
+EC
+QR
+EC
+EC
+nx
+nx
+EC
+Ro
+if
+Vl
+Yz
+km
+sd
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(21,1,1) = {"
+QP
+mi
+EC
+EC
+EC
+EC
+OP
+mi
+EC
+EC
+EC
+EC
+EC
+EO
+mi
+EC
+EC
+EC
+EC
+mi
+hT
+EC
+EC
+nx
+nx
+nx
+nx
+sd
+km
+tN
+tN
+mX
+Ro
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(22,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+mi
+EC
+eN
+DW
+tP
+nx
+EC
+nx
+EC
+nx
+FH
+Vl
+Oi
+tN
+uB
+sd
+NZ
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(23,1,1) = {"
+QP
+EC
+mi
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+Gy
+EC
+EC
+Hj
+EC
+EC
+OP
+EC
+EC
+EC
+QR
+EC
+nx
+nx
+nx
+nx
+EC
+sd
+km
+tN
+tN
+mX
+Ro
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(24,1,1) = {"
+QP
+EC
+EC
+OP
+EC
+Hj
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+Hj
+EC
+EC
+Gy
+EC
+EC
+hT
+EC
+nx
+nx
+nx
+nx
+Ro
+Rp
+Vl
+lD
+km
+sd
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(25,1,1) = {"
+QP
+EC
+EC
+EC
+RU
+EC
+Hj
+EC
+OP
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+EC
+OP
+EC
+eN
+uK
+tP
+EC
+nx
+EC
+Xu
+sd
+zz
+pE
+lD
+sd
+sd
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(26,1,1) = {"
+QP
+EC
+KX
+EC
+EC
+EC
+EC
+EC
+EC
+mi
+EC
+EC
+mi
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+EC
+mj
+mi
+nx
+EC
+nx
+EC
+sd
+sd
+Ro
+sd
+sd
+EC
+EL
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(27,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+KX
+EC
+EC
+EC
+EC
+EC
+EC
+aH
+EC
+EC
+EC
+EC
+hT
+EC
+nx
+nx
+nx
+nx
+EC
+EC
+EC
+EC
+TP
+EC
+Hj
+EC
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(28,1,1) = {"
+QP
+EC
+EC
+gv
+gv
+iy
+Gy
+EC
+EC
+EC
+Hj
+EC
+Vs
+EC
+EC
+EC
+EC
+OP
+EC
+eN
+eE
+tP
+EC
+nx
+nx
+nx
+EC
+nx
+EC
+aH
+EC
+nx
+EC
+nx
+Oh
+Oh
+xI
+Lw
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(29,1,1) = {"
+QP
+mi
+gv
+Iv
+XX
+gv
+gv
+EC
+EC
+OP
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+nx
+pZ
+EC
+nx
+EC
+nx
+nx
+nx
+nx
+EC
+nx
+nx
+nx
+nx
+nx
+xm
+xm
+xm
+uE
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(30,1,1) = {"
+QP
+gv
+Kd
+gv
+tb
+gv
+gv
+EC
+EC
+EC
+EC
+EC
+EC
+Hj
+EC
+EC
+EC
+gv
+EC
+nx
+nx
+nx
+nx
+nx
+nx
+nx
+EC
+nx
+nx
+nx
+nx
+nx
+nx
+EC
+EL
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(31,1,1) = {"
+QP
+GB
+gv
+KU
+Kd
+gv
+gv
+EC
+EC
+EO
+EC
+nY
+EC
+EC
+EC
+Hj
+EC
+gv
+OP
+yS
+nx
+nx
+EC
+nx
+nx
+yS
+nx
+DI
+nx
+EC
+nx
+nx
+nx
+EC
+EL
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(32,1,1) = {"
+QP
+gv
+gv
+Kd
+gv
+Iv
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+ZP
+Ro
+ZP
+FH
+ZP
+Ro
+ZP
+Hj
+EC
+yS
+nx
+nx
+nx
+nx
+nx
+yS
+EL
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(33,1,1) = {"
+QP
+EC
+Kd
+Tz
+gv
+EC
+EC
+EC
+EC
+Hj
+EC
+OP
+EC
+EC
+EC
+OP
+gv
+EC
+EC
+ZP
+Ht
+yO
+yO
+yO
+Ht
+ZP
+EC
+EC
+MR
+MR
+Hz
+Hz
+Hz
+MR
+MR
+gD
+EL
+EL
+Vd
+Vd
+Vd
+Vd
+QP
+"}
+(34,1,1) = {"
+QP
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+Gy
+EC
+EC
+EC
+gv
+EC
+EC
+ZP
+KW
+yO
+yO
+yO
+jf
+ZP
+EC
+Kk
+MR
+ZU
+XL
+XL
+ze
+Uv
+MR
+EL
+EL
+EL
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(35,1,1) = {"
+QP
+EC
+EC
+EC
+Hj
+EC
+EC
+Hj
+EC
+EC
+EC
+RU
+EC
+EC
+gv
+EC
+EC
+EO
+EC
+ZP
+ER
+jJ
+Vb
+yO
+Hy
+ZP
+EC
+EC
+MV
+VY
+pS
+pS
+wV
+XW
+MR
+Xw
+Xw
+Xw
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(36,1,1) = {"
+QP
+mi
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+mi
+ZP
+ZP
+ZP
+ZP
+rU
+ZP
+ZP
+OP
+Hj
+MR
+xk
+Gb
+Gb
+ul
+kB
+MR
+EL
+EL
+Xw
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(37,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+mi
+EC
+EC
+Hj
+EC
+EC
+EC
+mi
+EC
+EC
+mi
+EC
+EC
+EC
+ZP
+US
+jw
+Tj
+Ty
+Ks
+ZP
+Gy
+EC
+Xw
+bK
+Ty
+Ty
+Ty
+cM
+AA
+EL
+EL
+wD
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(38,1,1) = {"
+QP
+EC
+EC
+OP
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+EC
+eW
+EC
+gv
+EC
+EC
+mi
+EC
+ZP
+Tg
+Ty
+Tg
+Ty
+Tg
+ZP
+EC
+EC
+Xw
+dT
+Ty
+Ty
+Ty
+Ty
+Gx
+EL
+EL
+wD
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(39,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+mi
+EC
+EC
+EC
+EC
+EC
+OP
+EC
+EC
+gv
+EC
+EC
+OP
+EC
+ZP
+Ro
+vk
+Ro
+ZP
+Ro
+ZP
+EC
+EC
+Xw
+Xw
+Mw
+Ty
+Ty
+dP
+CT
+EL
+EL
+wD
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(40,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+EO
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+mi
+EC
+EC
+EC
+mi
+EC
+EC
+oP
+aH
+EC
+EC
+EC
+EC
+Xw
+Xw
+gW
+Ty
+Ty
+EL
+EL
+EL
+wD
+EL
+Vd
+Vd
+Vd
+QP
+"}
+(41,1,1) = {"
+QP
+EC
+cV
+EC
+EC
+EC
+EC
+EC
+Vs
+OP
+mi
+EC
+gv
+EC
+EC
+OP
+EC
+EC
+EC
+OP
+EC
+EC
+Gy
+RU
+EC
+OP
+EC
+mi
+OP
+EC
+Xw
+Xw
+Ty
+Nh
+xq
+EL
+EL
+Xw
+EL
+EL
+Vd
+Vd
+QP
+"}
+(42,1,1) = {"
+QP
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+EC
+gv
+mi
+EC
+EC
+EC
+mi
+EC
+EC
+aH
+mi
+EC
+EC
+mi
+EC
+EC
+EC
+EC
+mi
+EC
+Xw
+Xw
+Xw
+Xw
+Xw
+Xw
+Xw
+EL
+EL
+Vd
+Vd
+QP
+"}
+(43,1,1) = {"
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+QP
+"}
