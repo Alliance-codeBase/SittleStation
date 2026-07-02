@@ -76395,6 +76395,7 @@
 /obj/machinery/camera/preset/ordnance{
 	dir = 4
 	},
+/obj/effect/spawner/random/structure/massmeta_flags/directional/east,
 /turf/open/floor/engine/vacuum,
 /area/station/science/ordnance/bomb)
 "yej" = (
