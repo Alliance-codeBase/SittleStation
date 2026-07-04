@@ -32,11 +32,20 @@ SUBSYSTEM_DEF(traitor)
 	var/current_global_progression = 0
 	/// The amount of deviance from the current global progression before you start getting 2x the current scaling or no scaling at all
 
+	/// The current scaling per minute of progression.
+	var/current_progression_scaling = 1 MINUTES
+	/// List of code words for traitors
+	var/syndicate_code_phrase
+	/// List of code responses for traitors
+	var/syndicate_code_response
+	/// Regex of code words for traitors
+	var/regex/syndicate_code_phrase_regex
+	/// Regex of code responses for traitors
+	var/regex/syndicate_code_response_regex
+
 	//MASSMETA ADDDITION START (re_traitorsecondary)
 
 	var/list/datum/uplink_handler/uplink_handlers = list()
-	/// The current scaling per minute of progression. Has a maximum value of 1 MINUTES.
-	var/current_progression_scaling = 1 MINUTES
 	/// Used to handle the probability of getting an objective.
 	var/datum/traitor_category_handler/category_handler
 	/// The current debug handler for objectives. Used for debugging objectives
@@ -67,6 +76,11 @@ SUBSYSTEM_DEF(traitor)
 				log_world("[configuration_path] has an invalid type ([typepath]) that doesn't exist in the codebase! Please correct or remove [typepath]")
 			configuration_data[actual_typepath] = data[typepath]
 	//MASSMETA ADDITION END (re_traitor_secondary)
+
+	syndicate_code_phrase = generate_code_phrase(return_list = TRUE)
+	syndicate_code_phrase_regex = new("([jointext(syndicate_code_phrase, "|")])", "ig")
+	syndicate_code_response = generate_code_phrase(return_list = TRUE)
+	syndicate_code_response_regex = new("([jointext(syndicate_code_response, "|")])", "ig")
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/traitor/fire(resumed)

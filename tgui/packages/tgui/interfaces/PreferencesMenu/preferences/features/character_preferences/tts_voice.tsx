@@ -23,7 +23,6 @@ function FeatureTTSDropdownInput(
   const blipNumber = String(non_contextual.tts_blip_number);
   //MASSMETA EDIT END (ntts && tgtts)
 
-
   //MASSMETA EDIT REMOVAL START (ntts && tgtts)
   /* ORIGINAL:
           onClick={() => {
@@ -54,9 +53,9 @@ function FeatureTTSDropdownInput(
           height="100%"
         />
   */
-   //MASSMETA EDIT REMOVAL END (ntts && tgtts)
+  //MASSMETA EDIT REMOVAL END (ntts && tgtts)
 
-     //MASSMETA EDIT START (ntts && tgtts)
+  //MASSMETA EDIT START (ntts && tgtts)
   return (
     <Stack align="center">
       <Stack.Item grow>
@@ -79,7 +78,7 @@ function FeatureTTSDropdownInput(
         >
           Change Voice
         </Button>
-  {/*MASSMETA EDIT END (ntts && tgtts) */}
+        {/*MASSMETA EDIT END (ntts && tgtts) */}
       </Stack.Item>
     </Stack>
   );

@@ -615,7 +615,7 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	exists_on_map = TRUE
 	difficulty = 4
 	steal_hint = "The station's data Blackbox, found solely within Telecommunications."
-	destruction_method = "Too strong to be destroyed via normal means - needs to be dusted via the supermatter, or burnt in the chapel's crematorium."
+	destruction_method = "Too strong to be destroyed via normal means - needs to be dusted via the supermatter."
 
 /obj/item/blackbox/add_stealing_item_objective()
 	return add_item_to_steal(src, /obj/item/blackbox)

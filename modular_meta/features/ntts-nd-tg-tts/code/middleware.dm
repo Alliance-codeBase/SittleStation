@@ -24,7 +24,7 @@
 	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, message, speaker = speaker, pitch = pitch, local = TRUE, blip_base = blip_base, blip_number = blip_number)
 	return TRUE
 
-/datum/preference_middleware/tts/play_voice_borg(list/params, mob/user)
+/datum/preference_middleware/tts/play_voice_robot(list/params, mob/user)
 	if(!COOLDOWN_FINISHED(src, tts_test_cooldown))
 		return TRUE
 	var/speaker = params["voice"]
