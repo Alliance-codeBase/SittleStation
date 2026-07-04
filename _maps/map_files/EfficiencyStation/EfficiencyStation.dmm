@@ -218,6 +218,12 @@
 /obj/structure/closet/secure_closet/hos,
 /turf/open/floor/iron/grimy,
 /area/space)
+"bl" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/iron,
+/area/space)
 "bm" = (
 /obj/structure/chair{
 	dir = 8
@@ -509,6 +515,10 @@
 	},
 /obj/effect/turf_decal/box,
 /turf/open/floor/iron/dark,
+/area/space)
+"dc" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/iron,
 /area/space)
 "de" = (
 /obj/effect/turf_decal/tile/red/half/contrasted{
@@ -857,6 +867,13 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/red,
+/turf/open/floor/iron,
+/area/space)
+"fx" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "packageSort1"
+	},
 /turf/open/floor/iron,
 /area/space)
 "fB" = (
@@ -1514,6 +1531,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grass,
 /area/space)
+"kv" = (
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
+	},
+/turf/open/floor/plating,
+/area/space)
 "kw" = (
 /obj/structure/table/glass,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -1608,6 +1633,15 @@
 	dir = 10
 	},
 /area/space)
+"ln" = (
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/space)
 "lo" = (
 /obj/machinery/door/airlock/command{
 	name = "Gateway Atrium"
@@ -1685,6 +1719,12 @@
 	},
 /turf/open/floor/iron/dark,
 /area/space)
+"lH" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/open/floor/iron,
+/area/space)
 "lI" = (
 /obj/structure/tank_dispenser/oxygen{
 	pixel_x = -1;
@@ -1735,6 +1775,13 @@
 /obj/machinery/holopad/secure,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
+/area/space)
+"mm" = (
+/obj/machinery/door/airlock/external{
+	name = "Supply Dock Airlock";
+	req_access_txt = "31"
+	},
+/turf/open/floor/plating,
 /area/space)
 "mp" = (
 /obj/structure/chair{
@@ -1872,6 +1919,10 @@
 /obj/effect/spawner/random/contraband/prison,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
+/area/space)
+"ne" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
 /area/space)
 "nf" = (
 /turf/open/floor/engine{
@@ -2159,6 +2210,12 @@
 /obj/item/multitool,
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
 /turf/open/floor/iron/dark,
+/area/space)
+"po" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/iron,
 /area/space)
 "pp" = (
 /obj/structure/closet/emcloset,
@@ -2526,6 +2583,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/space)
+"rH" = (
+/obj/structure/closet/crate,
+/turf/open/floor/iron,
+/area/space)
 "rJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -2670,6 +2731,13 @@
 	},
 /turf/open/floor/wood,
 /area/space)
+"tf" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mining"
+	},
+/turf/open/floor/iron,
+/area/space)
 "tg" = (
 /obj/machinery/modular_computer/preset/id,
 /obj/effect/turf_decal/trimline/dark_blue/filled/line{
@@ -2688,6 +2756,14 @@
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
+/area/space)
+"tk" = (
+/obj/machinery/requests_console{
+	department = "Cargo Bay";
+	departmentType = 2;
+	pixel_x = -30
+	},
+/turf/open/floor/iron,
 /area/space)
 "tm" = (
 /obj/structure/window/reinforced/spawner/directional/north,
@@ -3031,6 +3107,20 @@
 	},
 /turf/open/floor/carpet,
 /area/space)
+"wc" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Cargo Bay Maintenance";
+	req_access_txt = "31"
+	},
+/turf/open/floor/plating,
+/area/space)
+"wf" = (
+/obj/structure/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/turf/open/floor/iron,
+/area/space)
 "wg" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/effect/turf_decal/loading_area,
@@ -3105,12 +3195,26 @@
 	},
 /turf/open/floor/iron/dark/side,
 /area/space)
+"wG" = (
+/obj/effect/turf_decal/trimline/dark_red/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/dark_red/filled/warning{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/iron,
+/area/space)
 "wI" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm4";
 	name = "Dorm 4"
 	},
 /turf/open/floor/wood,
+/area/space)
+"wJ" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/iron,
 /area/space)
 "wQ" = (
 /obj/structure/chair/office{
@@ -3134,6 +3238,13 @@
 /obj/item/radio/off,
 /obj/effect/turf_decal/tile/dark_blue/fourcorners,
 /turf/open/floor/iron/dark,
+/area/space)
+"wV" = (
+/obj/machinery/conveyor_switch/oneway{
+	dir = 8;
+	id = "cargounload"
+	},
+/turf/open/floor/iron,
 /area/space)
 "wW" = (
 /obj/structure/table/wood,
@@ -3527,6 +3638,14 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/iron,
 /area/space)
+"zJ" = (
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "qmprivacy";
+	name = "Privacy Shutter"
+	},
+/turf/open/floor/plating,
+/area/space)
 "zK" = (
 /obj/structure/bed,
 /obj/effect/spawner/random/bedsheet,
@@ -3590,6 +3709,20 @@
 "Aj" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/grass,
+/area/space)
+"Al" = (
+/obj/machinery/navbeacon{
+	codes_txt = "delivery;dir=8";
+	freq = 1400;
+	location = "QM #1"
+	},
+/turf/open/floor/plating,
+/area/space)
+"Ap" = (
+/obj/machinery/door/airlock/mining{
+	name = "Quartermaster's Office"
+	},
+/turf/open/floor/iron,
 /area/space)
 "Aq" = (
 /obj/machinery/door/poddoor/shutters/window{
@@ -3773,6 +3906,13 @@
 /turf/open/floor/engine{
 	name = "Holodeck Projector Floor"
 	},
+/area/space)
+"BR" = (
+/obj/machinery/conveyor_switch/oneway{
+	convdir = -1;
+	id = "QMLoad"
+	},
+/turf/open/floor/iron,
 /area/space)
 "BW" = (
 /obj/machinery/door/airlock{
@@ -4191,6 +4331,10 @@
 /obj/effect/mapping_helpers/airlock/access/all/service/chapel_office,
 /turf/open/floor/iron/dark,
 /area/space)
+"Fo" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/iron,
+/area/space)
 "Fp" = (
 /obj/effect/turf_decal/siding/dark_red,
 /obj/effect/turf_decal/tile/neutral/fourcorners,
@@ -4214,6 +4358,14 @@
 /turf/open/floor/iron/chapel{
 	dir = 9
 	},
+/area/space)
+"Fu" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "qmprivacy";
+	name = "Privacy Shutter"
+	},
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plating,
 /area/space)
 "Fy" = (
 /obj/effect/turf_decal/tile/neutral/half/contrasted{
@@ -4262,6 +4414,19 @@
 	},
 /turf/open/floor/iron,
 /area/space)
+"FZ" = (
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/space)
+"Ga" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "qm_warehouse";
+	name = "warehouse shutters"
+	},
+/turf/open/floor/plating,
+/area/space)
 "Gb" = (
 /obj/structure/chair{
 	dir = 4
@@ -4292,6 +4457,12 @@
 	id = "Cell 2"
 	},
 /turf/open/floor/iron,
+/area/space)
+"Gg" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/space)
 "Gj" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -4506,6 +4677,13 @@
 /obj/structure/chair/office,
 /turf/open/floor/iron/dark,
 /area/space)
+"IC" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mining"
+	},
+/turf/open/floor/plating,
+/area/space)
 "ID" = (
 /obj/effect/turf_decal/trimline/red/filled/corner,
 /obj/effect/turf_decal/tile/neutral/anticorner/contrasted{
@@ -4519,6 +4697,17 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/kirbyplants/random/dead,
+/turf/open/floor/iron,
+/area/space)
+"II" = (
+/obj/machinery/button/door/directional/south{
+	name = "QM Privacy Shutters";
+	pixel_x = -7;
+	req_access = list("cmo");
+	pixel_y = -25;
+	id = "qmprivacy"
+	},
+/obj/structure/table,
 /turf/open/floor/iron,
 /area/space)
 "IM" = (
@@ -4657,6 +4846,10 @@
 /turf/open/floor/iron{
 	icon_state = "grimy"
 	},
+/area/space)
+"Kc" = (
+/obj/structure/closet/secure_closet/quartermaster,
+/turf/open/floor/iron,
 /area/space)
 "Kf" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -5136,6 +5329,13 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/space)
+"Nz" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Cargo Bay Warehouse Maintenance";
+	req_access_txt = "31"
+	},
+/turf/open/floor/plating,
+/area/space)
 "NA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering/glass{
@@ -5284,6 +5484,17 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/kirbyplants/random,
 /turf/open/floor/iron,
+/area/space)
+"Ot" = (
+/obj/machinery/door/poddoor{
+	id = "QMLoaddoor";
+	name = "supply dock loading door"
+	},
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
+	},
+/turf/open/floor/plating,
 /area/space)
 "Oy" = (
 /turf/open/floor/wood/large,
@@ -5670,6 +5881,13 @@
 /obj/structure/table,
 /turf/open/floor/iron,
 /area/space)
+"Rk" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
+	},
+/turf/open/floor/iron,
+/area/space)
 "Rl" = (
 /obj/structure/table/wood,
 /obj/item/phone{
@@ -5950,6 +6168,10 @@
 /obj/structure/window/reinforced/spawner/directional/north,
 /turf/open/floor/iron/dark,
 /area/space)
+"TC" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/iron,
+/area/space)
 "TF" = (
 /obj/machinery/door/airlock/external{
 	name = "Security Escape Airlock";
@@ -5974,6 +6196,12 @@
 	dir = 8
 	},
 /turf/open/floor/iron,
+/area/space)
+"TJ" = (
+/obj/structure/plasticflaps{
+	opacity = 0
+	},
+/turf/open/floor/plating,
 /area/space)
 "TK" = (
 /obj/machinery/computer/gateway_control,
@@ -6397,6 +6625,15 @@
 	req_access_txt = "12"
 	},
 /turf/open/floor/plating,
+/area/space)
+"Xq" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 4;
+	id = "secmechbay";
+	name = "Security Mech Bay Shutters"
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/iron,
 /area/space)
 "Xr" = (
 /obj/structure/chair/pew{
@@ -26204,6 +26441,7 @@ om
 om
 om
 om
+NP
 om
 om
 om
@@ -26212,16 +26450,15 @@ om
 om
 om
 om
+ne
+IC
+mm
+ne
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ne
+mm
+Ot
+ne
 om
 om
 om
@@ -26461,33 +26698,33 @@ om
 om
 om
 om
+NP
+NP
+NP
+NP
+om
+om
+NP
+om
+om
+ne
+IC
+kk
+ne
+om
+ne
+kk
+kv
+ne
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
 om
 om
 om
@@ -26714,40 +26951,40 @@ om
 om
 om
 om
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+NP
 om
 om
+NP
+NP
+ZR
+ne
+ne
+IC
+mm
+ne
+ZR
+ne
+mm
+Ot
+ne
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+ZR
+ZR
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
 ZR
 ZR
 ZR
@@ -26976,29 +27213,29 @@ om
 om
 om
 om
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+bM
+wV
+tf
+XU
+XU
+XU
+XU
+XU
+Rk
+ne
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+kk
+kk
+kk
+kk
+kk
 ZR
 ZR
 ZR
@@ -27233,25 +27470,25 @@ om
 om
 om
 om
+ZR
+kk
+kk
+kk
+kk
+Al
+ZR
+bM
+XU
+XU
+XU
+XU
+XU
+rH
+XU
+Rk
+ne
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+kk
 ZR
 ZR
 ZR
@@ -27490,25 +27727,25 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+kk
+kk
+kk
+kk
+Al
+ZR
+Rf
+XU
+XU
+XU
+XU
+XU
+XU
+BR
+Rk
+ZR
+kk
+kk
 ZR
 lE
 PT
@@ -27747,25 +27984,25 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+kk
+kk
+kk
+kk
+kk
+ZR
+Rf
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+wc
+kk
+kk
 ZR
 Nr
 GW
@@ -28004,25 +28241,25 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+kk
+kk
+kk
+kk
+kk
+ZR
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+ZR
+kk
+kk
 ZR
 Qy
 Bb
@@ -28261,25 +28498,25 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+kk
+kk
+kk
+kk
+kk
+Ga
+XU
+XU
+ZR
+ZR
+Ap
+ZR
+ZR
+XU
+XU
+ZR
+kk
+kk
 ZR
 di
 eW
@@ -28518,25 +28755,25 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+Nz
+kk
+kk
+kk
+kk
+kk
+ZR
+XU
+XU
+zJ
+XU
+XU
+bl
+zJ
+XU
+XU
+ZR
+kk
+kk
 ZR
 Vy
 iP
@@ -28775,25 +29012,25 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+kk
+kk
+kk
+kk
+kk
+ZR
+XU
+XU
+ZR
+Kc
+XU
+II
+ZR
+XU
+XU
+ZR
+kk
+kk
 ZR
 ZR
 ZR
@@ -29032,26 +29269,26 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+kc
+kc
+ZR
+Fu
+Fu
+Fu
+ZR
+kc
+kc
+ZR
+kk
+kk
+kk
 kk
 kk
 kk
@@ -29294,21 +29531,21 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+XU
+XU
+XU
+tk
+XU
+XU
+XU
+lH
+XU
+XU
+ZR
+kk
+kk
+kk
 kk
 kk
 kk
@@ -29541,31 +29778,31 @@ om
 om
 om
 om
+ZR
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+ZR
+kk
+kk
+kk
 kk
 kk
 kk
@@ -29798,30 +30035,30 @@ om
 om
 om
 om
+ZR
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+Gg
+TJ
+fx
+fx
+fx
+FZ
+ZR
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+ZR
+ZR
+ZR
 ZR
 kk
 ZR
@@ -30054,31 +30291,31 @@ om
 om
 om
 om
+kk
+ZR
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+po
+po
+XU
+XU
+XU
+po
+ZR
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
 ZR
 kk
 ZR
@@ -30312,30 +30549,30 @@ om
 om
 om
 om
+ZR
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+Rf
+XU
+wf
+XU
+wf
+XU
+TC
+XU
+XU
+TC
+TC
+wJ
+TC
+TC
+kc
+dc
+dc
+XU
+XU
+XU
 ZR
 kk
 ZR
@@ -30569,30 +30806,30 @@ om
 om
 om
 om
+ZR
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+Rf
+XU
+wf
+XU
+wf
+XU
+kc
+XU
+XU
+TC
+XU
+XU
+XU
+XU
+XU
+XU
+dc
+XU
+XU
+XU
 ZR
 kk
 ZR
@@ -30826,30 +31063,30 @@ om
 om
 om
 om
+ZR
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+Rf
+XU
+XU
+XU
+XU
+XU
+TC
+XU
+XU
+TC
+XU
+XU
+XU
+XU
+XU
+XU
+dc
+XU
+XU
+XU
 ZR
 kk
 ZR
@@ -31083,30 +31320,30 @@ om
 om
 om
 om
+ZR
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+TC
+Rf
+TC
+ZR
+kk
+ln
+ZR
+ZR
+ZR
+ZR
+XU
+XU
+XU
+XU
+XU
+XU
+dc
+XU
+XU
+XU
 ZR
 kk
 ZR
@@ -31347,23 +31584,23 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
-om
+ZR
+ZR
+ZR
+ZR
+bM
+bM
+ZR
+Fo
+Fo
+kc
+kc
+Fo
+Fo
+ZR
+ZR
+ZR
+ZR
 ZR
 Jw
 ZR
@@ -31604,13 +31841,13 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
+XU
+XU
+XU
+XU
+XU
+XU
+XU
 XU
 XU
 XU
@@ -31861,13 +32098,13 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
+XU
+XU
+XU
+XU
+XU
+XU
+XU
 XU
 XU
 XU
@@ -32118,20 +32355,20 @@ om
 om
 om
 om
-om
-om
-om
-om
-om
-om
-om
 XU
 XU
 XU
 XU
-Ru
-Ru
-Ru
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
+XU
 Ru
 Ru
 Ru
@@ -32920,7 +33157,7 @@ ZR
 ZJ
 kC
 ZR
-ur
+wG
 ur
 xb
 TO
@@ -33177,7 +33414,7 @@ ZR
 Cf
 oR
 ZR
-jm
+Xq
 jm
 ZR
 ZR
