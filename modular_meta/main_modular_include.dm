@@ -54,6 +54,7 @@
 #include "features\meta_redesign\includes.dm"
 #include "features\holidays\includes.dm"
 #include "features\mentors\includes.dm"
+#include "features\progressive_traitor\includes.dm"
 
 /* --- Reverts --- */
 
