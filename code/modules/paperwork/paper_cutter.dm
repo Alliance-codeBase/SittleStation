@@ -114,7 +114,7 @@
 
 /obj/item/papercutter/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
 	if(is_type_in_list(tool, list(
-		//MASSMETA EDIT BEGIN (re_traitorsecondary) ORIGINAL
+		//MASSMETA EDIT BEGIN (progressive_traitor) ORIGINAL
 		/*
 				/obj/item/paper/fake_report,
 				/obj/item/paper/holy_writ,

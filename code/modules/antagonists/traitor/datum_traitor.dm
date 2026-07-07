@@ -28,12 +28,12 @@
 	var/should_give_codewords = TRUE
 	///give this traitor an uplink?
 	var/give_uplink = TRUE
-	//MASSMETA ADDITION START (re_traitorsecondary)
+	//MASSMETA ADDITION START (progressive_traitor)
 	/// Code that allows traitor to get a replacement uplink
 	var/replacement_uplink_code = ""
 	/// Radio frequency that traitor must speak on to get a replacement uplink
 	var/replacement_uplink_frequency = ""
-	//MASSMETA ADDITION END (re_traitorsecondary)
+	//MASSMETA ADDITION END (progressive_traitor)
 	///if TRUE, this traitor will always get hijacking as their final objective
 	var/is_hijacker = FALSE
 
@@ -55,7 +55,7 @@
 	///the final objective the traitor has to accomplish, be it escaping, hijacking, or just martyrdom.
 	var/datum/objective/ending_objective
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 /datum/antagonist/traitor/infiltrator
 	// Used to denote traitors who have joined midround and therefore have no access to secondary objectives.
@@ -68,7 +68,7 @@
 /datum/antagonist/traitor/infiltrator/sleeper_agent
 	name = "\improper Syndicate Sleeper Agent"
 
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+//MASSMETA EDIT ADDITION END (progressive_traitor)
 
 /datum/antagonist/traitor/New(give_objectives = TRUE)
 	. = ..()
@@ -77,9 +77,9 @@
 /datum/antagonist/traitor/on_gain()
 	if(give_uplink)
 		owner.give_uplink(silent = TRUE, antag_datum = src)
-	//MASSMETA ADDITION START (re_traitorsecondary)
+	//MASSMETA ADDITION START (progressive_traitor)
 	generate_replacement_codes()
-	//MASSMETA ADDITION END (re_traitorsecondary)
+	//MASSMETA ADDITION END (progressive_traitor)
 	var/datum/component/uplink/uplink = owner.find_syndicate_uplink()
 	uplink_ref = WEAKREF(uplink)
 	if(uplink)
@@ -91,11 +91,11 @@
 		uplink_handler.primary_objectives = objectives
 		uplink_handler.has_progression = TRUE
 		SStraitor.register_uplink_handler(uplink_handler)
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 		if(give_secondary_objectives)
 			uplink_handler.has_objectives = TRUE
 			uplink_handler.generate_objectives()
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+//MASSMETA EDIT ADDITION END (progressive_traitor)
 		uplink_handler.can_replace_objectives = CALLBACK(src, PROC_REF(can_change_objectives))
 		uplink_handler.replace_objectives = CALLBACK(src, PROC_REF(submit_player_objective))
 
@@ -118,20 +118,20 @@
 		forge_ending_objective()
 
 	pick_employer()
-	//MASSMETA ADDITION START (re_traitorsecondary)
+	//MASSMETA ADDITION START (progressive_traitor)
 	owner.teach_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
-	//MASSMETA ADDITION END (re_traitorsecondary)
+	//MASSMETA ADDITION END (progressive_traitor)
 	return ..()
 
 /datum/antagonist/traitor/on_removal()
 	if(!isnull(uplink_handler))
-		//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+		//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 		uplink_handler.has_objectives = FALSE
-		//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+		//MASSMETA EDIT ADDITION END (progressive_traitor)
 		uplink_handler.can_replace_objectives = null
 		uplink_handler.replace_objectives = null
 	owner.take_uplink()
-	/*MASSMETA EDIT START (re_traitorsecondary) ORIGINAL:
+	/*MASSMETA EDIT START (progressive_traitor) ORIGINAL:
 	/datum/antagonist/traitor/on_removal()
 	if(!isnull(uplink_handler))
 		uplink_handler.can_replace_objectives = null
@@ -141,9 +141,9 @@
 	//owner.special_role = null
 	owner.forget_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
 	return ..()
-	//MASSMET EDIT END (re_traitorsecondary)
+	//MASSMET EDIT END (progressive_traitor)
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 /datum/antagonist/traitor/proc/traitor_objective_to_html(datum/traitor_objective/to_display)
 	var/string = "[to_display.name]"
@@ -193,18 +193,18 @@
 	result += "<a href='byond://?src=[REF(owner)];common=give_objective'>Force add objective</a><br>"
 	return result
 
-//MASSMETA EDIT ADDITION END(re_traitorsecondary)
+//MASSMETA EDIT ADDITION END(progressive_traitor)
 
 /// Returns true if we're allowed to assign ourselves a new objective
 /datum/antagonist/traitor/proc/can_change_objectives()
 	return can_assign_self_objectives
-// // MASSMETA ADDITION START (re_traitorsecondary)
+// // MASSMETA ADDITION START (progressive_traitor)
 /// proc that generates the traitors replacement uplink code and radio frequency
 /datum/antagonist/traitor/proc/generate_replacement_codes()
 	replacement_uplink_code = "[pick(GLOB.phonetic_alphabet)] [rand(10,99)]"
 	replacement_uplink_frequency = sanitize_frequency(rand(MIN_UNUSED_FREQ, MAX_FREQ), free = FALSE, syndie = FALSE)
 
-// MASSMETA ADDITION END (re_traitorsecondary)
+// MASSMETA ADDITION END (progressive_traitor)
 
 /datum/antagonist/traitor/proc/pick_employer()
 	if(!employer)
@@ -338,10 +338,10 @@
 	data["theme"] = traitor_flavor["ui_theme"]
 	data["code"] = uplink?.unlock_code
 	data["failsafe_code"] = uplink?.failsafe_code
-	// MASSMETA ADDITION START (re_traitorsecondary)
+	// MASSMETA ADDITION START (progressive_traitor)
 	data["replacement_code"] = replacement_uplink_code
 	data["replacement_frequency"] = format_frequency(replacement_uplink_frequency)
-	// MASSMETA ADDITION END (re_traitorsecondary)
+	// MASSMETA ADDITION END (progressive_traitor)
 	data["intro"] = traitor_flavor["introduction"]
 	data["allies"] = traitor_flavor["allies"]
 	data["goal"] = traitor_flavor["goal"]
@@ -381,13 +381,13 @@
 			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			count++
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 		if(uplink_handler.final_objective)
 			objectives_text += "<br>[span_greentext("[traitor_won ? "Additionally" : "However"], the final objective \"[uplink_handler.final_objective]\" was completed!")]"
 			traitor_won = TRUE
 
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+//MASSMETA EDIT ADDITION END (progressive_traitor)
 
 	result += "<br>[owner.name] <B>[traitor_flavor["roundend_report"]]</B>"
 

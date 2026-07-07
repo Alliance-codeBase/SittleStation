@@ -63,11 +63,11 @@
 	min_val = 0
 
 /// Determines the ideal player count for maximum progression per minute.
-// MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+// MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 /datum/config_entry/number/traitor_ideal_player_count
 	default = 20
 	min_val = 1
-// MASSMETA EDIT ADDITION END (re_traitorsecondary)
+// MASSMETA EDIT ADDITION END (progressive_traitor)
 
 /// Determines how fast traitors scale in general.
 /datum/config_entry/number/traitor_scaling_multiplier
@@ -76,11 +76,11 @@
 	min_val = 0.01
 
 /// Determines how many potential objectives a traitor can have.
-//MASSMETA ADDDITION START (re_traitorsecondary)
+//MASSMETA ADDDITION START (progressive_traitor)
 /datum/config_entry/number/maximum_potential_objectives
 	default = 6
 	min_val = 1
-//MASSMETA ADDDITION END (re_traitorsecondary)
+//MASSMETA ADDDITION END (progressive_traitor)
 /datum/config_entry/number/changeling_scaling_coeff //how much does the amount of players get divided by to determine changelings
 	default = 6
 	integer = FALSE

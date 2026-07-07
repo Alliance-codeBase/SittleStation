@@ -62,7 +62,7 @@
 	)
 	category = CAT_STRUCTURE
 
-//MASSMETA ADDITION START (re_traitorsecondary)
+//MASSMETA ADDITION START (progressive_traitor)
 /datum/crafting_recipe/syndicate_uplink_beacon
 	name = "Syndicate Uplink Beacon"
 	result = /obj/structure/syndicate_uplink_beacon
@@ -76,7 +76,7 @@
 	)
 	category = CAT_STRUCTURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-// MASSMETA ADDITION END (re_traitorsecondary)
+// MASSMETA ADDITION END (progressive_traitor)
 
 /datum/crafting_recipe/manucrate
 	name = "Manufacturing Storage Unit"

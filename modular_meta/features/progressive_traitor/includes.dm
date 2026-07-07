@@ -21,6 +21,10 @@
 #include "code\objectives\sabotage_machinery.dm"
 #include "code\objectives\steal.dm"
 
+#include "code\subsystem\traitor_subsystem.dm"
+#include "code\subsystem\objective_helpers.dm"
+#include "code\components\uplink.dm"
+
 
 /datum/modpack/progressive_traitor
 	id = ""
@@ -29,3 +33,63 @@
 	desc = ""
 	author = ""
 
+/*
+todo:
+
+signals, comps, stuff:
+
+
+
+
+code/datums/components/uplink.dm
+code/datums/mind/_mind.dm
+code/game/gamemodes/objective_items.dm
+code/modules/admin/verbs/secrets.dm
+code/modules/admin/antag_panel.dm
+
+comps:
+
+code/modules/antagonists/traitor/components/traitor_objective_helpers.dm
+code/modules/antagonists/traitor/components/traitor_objective_limit_per_time.dm
+code/modules/antagonists/traitor/components/traitor_objective_mind_tracker.dm
+
+helpers:
+
+code/modules/antagonists/traitor/balance_helper.dm
+
+
+non-modular edits:
+
+code/modules/antagonists/traitor/datum_traitor.dm
+code/modules/antagonists/traitor/uplink_handler.dm
+code/modules/modular_computers/computers/item/disks/virus_disk.dm 150-156
+code/modules/paperwork/paper_cutter.dm
+code/modules/station_goals/meteor_shield.dm
+
+code/game/gamemodes/objective_items.dm
+code/datums/mind/_mind.dm
+code/datums/components/uplink.dm
+
+
+
+code/modules/events/stray_cargo.dm - 1 ln - 169-171
+
+-tfisthat?
+
+code/modules/mapfluff/ruins/spaceruin_code/garbagetruck.dm
+
+
+- tgui fuckery-wuckery
+tgui/packages/tgui/interfaces/Uplink/constants.ts
+tgui/packages/tgui/interfaces/Uplink/index.tsx
+tgui/packages/tgui/interfaces/Uplink/ObjectiveMenu.tsx
+tgui/packages/tgui/interfaces/Uplink/PrimaryObjectiveMenu.tsx
+tgui/packages/tgui/interfaces/TraitorObjectiveDebug.tsx
+
+
+done:
+code/__DEFINES/dcs/signals/signals_traitor.dm
+code/controllers/subsystem/traitor.dm
+code\datums\components\uplink.dm
+
+*/

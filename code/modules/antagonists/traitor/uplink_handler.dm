@@ -21,7 +21,7 @@
 	/// Extra stuff that can be purchased by an uplink, regardless of flag.
 	var/list/extra_purchasable = list()
 
-	//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+	//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 	/// Whether this uplink handler has objectives.
 	var/has_objectives = TRUE
@@ -42,7 +42,7 @@
 	/// Text of the final objective, once assigned. Used for uplink data and traitor greentext. Empty string means not yet reached.
 	var/final_objective = ""
 
-	//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+	//MASSMETA EDIT ADDITION END (progressive_traitor)
 
 	/// Objectives that must be completed for traitor greentext. Set by the traitor datum.
 	var/list/primary_objectives
@@ -61,13 +61,13 @@
 	///Reference to a contractor hub that the infiltrator can run, if they purchase it.
 	var/datum/contractor_hub/contractor_hub
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 /datum/uplink_handler/New()
 	. = ..()
 	maximum_potential_objectives = CONFIG_GET(number/maximum_potential_objectives)
 
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+//MASSMETA EDIT ADDITION END (progressive_traitor)
 
 /datum/uplink_handler/Destroy(force)
 	can_replace_objectives = null
@@ -161,7 +161,7 @@
 	return TRUE
 
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 /// Generates objectives for this uplink handler
 /datum/uplink_handler/proc/generate_objectives()
@@ -292,7 +292,7 @@
 
 	to_act_on.ui_perform_action(user, action)
 
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+//MASSMETA EDIT ADDITION END (progressive_traitor)
 
 ///Helper to add telecrystals to the uplink handler, calling set_telecrystals.
 /datum/uplink_handler/proc/add_telecrystals(amount)

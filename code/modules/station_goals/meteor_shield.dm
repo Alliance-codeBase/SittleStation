@@ -146,12 +146,12 @@
 		return FALSE
 	var/cooldown_applied = METEOR_SHIELD_EMAG_COOLDOWN
 
-	//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+	//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 	if(istype(emag_card, /obj/item/card/emag/meteor_shield_recalibrator))
 		cooldown_applied /= 3
 
-	//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+	//MASSMETA EDIT ADDITION END (progressive_traitor)
 
 	COOLDOWN_START(src, shared_emag_cooldown, cooldown_applied)
 	obj_flags |= EMAGGED
