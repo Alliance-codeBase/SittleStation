@@ -3633,23 +3633,15 @@
 #include "code\modules\antagonists\spy\spy_uplink.dm"
 #include "code\modules\antagonists\survivalist\survivalist.dm"
 #include "code\modules\antagonists\syndicate_monkey\syndicate_monkey.dm"
-#include "code\modules\antagonists\traitor\balance_helper.dm"
 #include "code\modules\antagonists\traitor\datum_traitor.dm"
 #include "code\modules\antagonists\traitor\objective_category.dm"
 #include "code\modules\antagonists\traitor\traitor_objective.dm"
 #include "code\modules\antagonists\traitor\uplink_handler.dm"
 #include "code\modules\antagonists\traitor\components\demoraliser.dm"
-#include "code\modules\antagonists\traitor\components\traitor_objective_helpers.dm"
-#include "code\modules\antagonists\traitor\components\traitor_objective_limit_per_time.dm"
-#include "code\modules\antagonists\traitor\components\traitor_objective_mind_tracker.dm"
 #include "code\modules\antagonists\traitor\contractor\contract_teammate.dm"
 #include "code\modules\antagonists\traitor\contractor\contractor_hub.dm"
 #include "code\modules\antagonists\traitor\contractor\contractor_items.dm"
 #include "code\modules\antagonists\traitor\contractor\syndicate_contract.dm"
-
-
-
-
 #include "code\modules\antagonists\valentines\heartbreaker.dm"
 #include "code\modules\antagonists\valentines\valentine.dm"
 #include "code\modules\antagonists\venus_human_trap\venus_human_trap.dm"

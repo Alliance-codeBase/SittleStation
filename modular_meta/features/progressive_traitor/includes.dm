@@ -25,8 +25,21 @@
 #include "code\subsystem\objective_helpers.dm"
 
 #include "code\components\uplink.dm"
+#include "code\components\traitor_objective_helpers.dm"
+#include "code\components\traitor_objective_limit_per_time.dm"
+#include "code\components\traitor_objective_mind_tracker.dm"
 
 #include "code\station_goals\meteor_shields.dm"
+
+#include "code\items\virus_disk.dm"
+
+#include "code\balance_helper.dm"
+#include "code\datum_traitor.dm"
+
+#include "code\admin\secrets.dm"
+#include "code\admin\antag_panel.dm"
+
+
 
 /datum/modpack/progressive_traitor
 	id = ""
@@ -40,37 +53,18 @@ todo:
 
 signals, comps, stuff:
 
-
-
-
-code/datums/components/uplink.dm
-code/game/gamemodes/objective_items.dm
-code/modules/admin/verbs/secrets.dm
-code/modules/admin/antag_panel.dm
-
-comps:
-
-code/modules/antagonists/traitor/components/traitor_objective_helpers.dm
-code/modules/antagonists/traitor/components/traitor_objective_limit_per_time.dm
-code/modules/antagonists/traitor/components/traitor_objective_mind_tracker.dm
-
-helpers:
-
-code/modules/antagonists/traitor/balance_helper.dm
-
-
 non-modular edits:
 
 code/modules/antagonists/traitor/datum_traitor.dm
 code/modules/antagonists/traitor/uplink_handler.dm
-code/modules/modular_computers/computers/item/disks/virus_disk.dm 150-156
-code/modules/paperwork/paper_cutter.dm
+
+code/modules/mapfluff/ruins/spaceruin_code/garbagetruck.dm
+
 
 code/modules/events/stray_cargo.dm - 1 ln - 169-171
 
 -tfisthat?
 
-code/modules/mapfluff/ruins/spaceruin_code/garbagetruck.dm
 
 
 - tgui fuckery-wuckery
@@ -86,6 +80,8 @@ code/__DEFINES/dcs/signals/signals_traitor.dm
 code/controllers/subsystem/traitor.dm
 code\datums\components\uplink.dm
 code/modules/station_goals/meteor_shield.dm
+code/modules/paperwork/paper_cutter.dm
+code/modules/modular_computers/computers/item/disks/virus_disk.dm 150-156
 
 left non-modularly:
 	code/datums/mind/_mind.dm

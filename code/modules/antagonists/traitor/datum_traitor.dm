@@ -28,12 +28,7 @@
 	var/should_give_codewords = TRUE
 	///give this traitor an uplink?
 	var/give_uplink = TRUE
-	//MASSMETA ADDITION START (progressive_traitor)
-	/// Code that allows traitor to get a replacement uplink
-	var/replacement_uplink_code = ""
-	/// Radio frequency that traitor must speak on to get a replacement uplink
-	var/replacement_uplink_frequency = ""
-	//MASSMETA ADDITION END (progressive_traitor)
+
 	///if TRUE, this traitor will always get hijacking as their final objective
 	var/is_hijacker = FALSE
 
@@ -55,21 +50,6 @@
 	///the final objective the traitor has to accomplish, be it escaping, hijacking, or just martyrdom.
 	var/datum/objective/ending_objective
 
-//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
-
-/datum/antagonist/traitor/infiltrator
-	// Used to denote traitors who have joined midround and therefore have no access to secondary objectives.
-	// Progression elements are best left to the roundstart antagonists
-	// There will still be a timelock on uplink items
-	name = "\improper Infiltrator"
-	give_secondary_objectives = FALSE
-	uplink_flag_given = UPLINK_INFILTRATORS
-
-/datum/antagonist/traitor/infiltrator/sleeper_agent
-	name = "\improper Syndicate Sleeper Agent"
-
-//MASSMETA EDIT ADDITION END (progressive_traitor)
-
 /datum/antagonist/traitor/New(give_objectives = TRUE)
 	. = ..()
 	src.give_objectives = give_objectives
@@ -77,9 +57,6 @@
 /datum/antagonist/traitor/on_gain()
 	if(give_uplink)
 		owner.give_uplink(silent = TRUE, antag_datum = src)
-	//MASSMETA ADDITION START (progressive_traitor)
-	generate_replacement_codes()
-	//MASSMETA ADDITION END (progressive_traitor)
 	var/datum/component/uplink/uplink = owner.find_syndicate_uplink()
 	uplink_ref = WEAKREF(uplink)
 	if(uplink)
@@ -91,11 +68,6 @@
 		uplink_handler.primary_objectives = objectives
 		uplink_handler.has_progression = TRUE
 		SStraitor.register_uplink_handler(uplink_handler)
-//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
-		if(give_secondary_objectives)
-			uplink_handler.has_objectives = TRUE
-			uplink_handler.generate_objectives()
-//MASSMETA EDIT ADDITION END (progressive_traitor)
 		uplink_handler.can_replace_objectives = CALLBACK(src, PROC_REF(can_change_objectives))
 		uplink_handler.replace_objectives = CALLBACK(src, PROC_REF(submit_player_objective))
 
@@ -118,9 +90,6 @@
 		forge_ending_objective()
 
 	pick_employer()
-	//MASSMETA ADDITION START (progressive_traitor)
-	owner.teach_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
-	//MASSMETA ADDITION END (progressive_traitor)
 	return ..()
 
 /datum/antagonist/traitor/on_removal()
