@@ -13,7 +13,7 @@
 	icon_state = "lesserdaemon"
 	icon_living = "lesserdaemon"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	speed = 1
+	speed = 0.75
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 	death_message = "wails in anger and fear as it collapses in defeat!"
@@ -22,11 +22,11 @@
 	faction = list("hell")
 	attack_verb_continuous = "wildly tears into"
 	attack_verb_simple = "wildly tears into"
-	maxHealth = 150
-	health = 150
-	obj_damage = 40
+	maxHealth = 300
+	health = 300
+	obj_damage = 45
 	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_upper = 18
 	wound_bonus = -15
 	lighting_cutoff_red = 22
 	lighting_cutoff_green = 5
