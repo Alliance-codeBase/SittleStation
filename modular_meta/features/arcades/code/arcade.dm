@@ -30,7 +30,7 @@
 /datum/design/board/doom
 	name = "Demons Occupied Our Marines Machine Board"
 	desc = "Allows for the construction of circuit boards used to build a new arcade machine."
-	id = "arcade_battle"
+	id = "arcade_doom"
 	build_path = /obj/item/circuitboard/computer/arcade/doom
 	category = list(
 		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_ENTERTAINMENT
