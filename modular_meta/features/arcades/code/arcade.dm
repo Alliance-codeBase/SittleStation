@@ -38,7 +38,7 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
 /datum/techweb_node/gaming
-	design_ids = list new(
+	design_ids = list(
 		"arcade_battle",
 		"arcade_orion",
 		"arcade_doom",
