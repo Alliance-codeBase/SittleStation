@@ -56,6 +56,7 @@
 #include "features\jukeboxes_music\code\music.dm"
 #include "features\mentors\includes.dm"
 #include "features\arcades\includes.dm"
+#include "features\progressive_traitor\includes.dm"
 
 /* --- Reverts --- */
 

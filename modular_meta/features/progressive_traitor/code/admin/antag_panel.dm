@@ -1,104 +1,4 @@
-GLOBAL_VAR(antag_prototypes)
-
-//Things to do somewhere in the future (If you're reading this feel free to do any of these)
-//Add HrefTokens to these
-//Make this template or at least remove + "<br>" with joins where you can grasp the big picture.
-//Span classes for the headers, wrap sections in div's and style them.
-//Move common admin commands to /mob (maybe integrate with vv dropdown so the list is one thing with some flag where to show it)
-//Move objective initialization/editing stuff from mind to objectives and completely remove mind.objectives
-
-/proc/cmp_antagpanel(datum/antagonist/A,datum/antagonist/B)
-	var/a_cat = initial(A.antagpanel_category)
-	var/b_cat = initial(B.antagpanel_category)
-	if(!a_cat && !b_cat)
-		return sorttext(initial(A.name),initial(B.name))
-	return sorttext(b_cat,a_cat)
-
-/datum/mind/proc/add_antag_wrapper(antag_type,mob/user)
-	var/datum/antagonist/new_antag = new antag_type()
-	new_antag.admin_add(src,user)
-	//If something gone wrong/admin-add assign another antagonist due to whatever clean it up
-	if(!new_antag.owner)
-		qdel(new_antag)
-
-/proc/listtrim(list/L)
-	for(var/x in L)
-		if(istext(x) && !x)
-			L -= x
-	return L
-
-/datum/antagonist/proc/antag_panel()
-	var/list/commands = list()
-	for(var/command in get_admin_commands())
-		commands += "<a href='byond://?src=[REF(src)];command=[command]'>[command]</a>"
-	var/command_part = commands.Join(" | ")
-	var/data_part = antag_panel_data()
-	var/objective_part = antag_panel_objectives()
-
-	var/list/parts = listtrim(list(command_part, data_part, objective_part))
-
-	return parts.Join("<br>")
-
-/datum/antagonist/proc/antag_panel_objectives()
-	var/result = "<i><b>Personal Objectives</b></i>:<br>"
-	if (objectives.len == 0)
-		result += "EMPTY<br>"
-	else
-		var/obj_count = 1
-		for(var/datum/objective/objective as anything in objectives)
-			result += "<B>[obj_count]</B>: [objective.explanation_text] \
-				<a href='byond://?src=[REF(owner)];obj_edit=[REF(objective)]'>Edit</a> \
-				<a href='byond://?src=[REF(owner)];obj_delete=[REF(objective)]'>Delete</a> \
-				<a href='byond://?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.check_completion() ? "green" : "red"]>[objective.completed ? "Mark as incomplete" : "Mark as complete"]</font></a> \
-				<br>"
-			obj_count++
-	result += "<a href='byond://?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>Add objective</a><br>"
-	result += "<a href='byond://?src=[REF(owner)];obj_prompt_custom=1;target_antag=[REF(src)]'>Prompt custom objective entry</a><br>"
-	result += "<a href='byond://?src=[REF(owner)];obj_announce=1'>Announce objectives</a><br>"
-	return result
-
-/datum/mind/proc/get_common_admin_commands()
-	var/common_commands = "<span>Common Commands:</span>"
-	if(ishuman(current))
-		common_commands += "<a href='byond://?src=[REF(src)];common=undress'>undress</a>"
-	else if(iscyborg(current))
-		var/mob/living/silicon/robot/R = current
-		if(R.emagged)
-			common_commands += "<a href='byond://?src=[REF(src)];silicon=Unemag'>Unemag</a>"
-	else if(isAI(current))
-		var/mob/living/silicon/ai/A = current
-		if (A.connected_robots.len)
-			for (var/mob/living/silicon/robot/R in A.connected_robots)
-				if (R.emagged)
-					common_commands += "<a href='byond://?src=[REF(src)];silicon=unemagcyborgs'>Unemag slaved cyborgs</a>"
-					break
-	return common_commands
-
-/**
- * Returns a list of "statuses" this mind has - like "Infected", "Mindshielded", etc
- */
-/datum/mind/proc/get_special_statuses()
-	var/list/result = LAZYCOPY(special_statuses)
-	if(!current)
-		result += span_bad("No body!")
-	if(current && HAS_TRAIT(current, TRAIT_MINDSHIELD))
-		result += span_good("Mindshielded")
-	if(current && HAS_MIND_TRAIT(current, TRAIT_UNCONVERTABLE))
-		result += span_good("Unconvertable")
-	return result
-
-/**
- * Returns a list of "roles" this mind has - like "Traitor", "Ex Head Rev", "Emagged", etc
- */
-/datum/mind/proc/get_special_roles()
-	var/list/roles = LAZYCOPY(special_roles)
-	if(iscyborg(current))
-		var/mob/living/silicon/robot/robot = current
-		if (robot.emagged)
-			roles += "Emagged"
-	return roles
-
-/datum/mind/proc/traitor_panel()
+/datum/mind/traitor_panel()
 	if(!SSticker.HasRoundStarted())
 		tgui_alert(usr, "Not before round-start!", "Alert")
 		return
@@ -203,10 +103,18 @@ GLOBAL_VAR(antag_prototypes)
 		var/uplink_info = "<i><b>Uplink</b></i>:"
 		var/datum/component/uplink/U = find_syndicate_uplink()
 		if(U)
+			//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
+			if(!U.uplink_handler.has_objectives)
+				uplink_info += "<a href='byond://?src=[REF(src)];common=takeuplink'>take</a>"
+			//MASSMETA EDIT ADDITION END (progressive_traitor)
 			if (check_rights(R_FUN, 0))
 				uplink_info += ", <a href='byond://?src=[REF(src)];common=crystals'>[U.uplink_handler.telecrystals]</a> TC"
 				if(U.uplink_handler.has_progression)
 					uplink_info += ", <a href='byond://?src=[REF(src)];common=progression'>[U.uplink_handler.progression_points]</a> PR"
+				//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
+				if(U.uplink_handler.has_objectives)
+					uplink_info += ", <a href='byond://?src=[REF(src)];common=give_objective'>Force Give Objective</a>"
+				//MASSMETA EDIT ADDITION END (progressive_traitor)
 			else
 				uplink_info += ", [U.uplink_handler.telecrystals] TC"
 				if(U.uplink_handler.has_progression)

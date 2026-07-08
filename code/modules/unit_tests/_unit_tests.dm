@@ -261,9 +261,9 @@
 #include "neurine_trauma_cleanup.dm"
 #include "novaflower_burn.dm"
 #include "nuke_cinematic.dm"
-// (re_traitorsecondary)
+// (progressive_traitor)
 #include "objectives.dm"
-// (re_traitorsecondary)
+// (progressive_traitor)
 #include "omnitools.dm"
 #include "operating_table.dm"
 #include "orderable_items.dm"

@@ -1,10 +1,10 @@
 /// Called whenever the uplink handler receives any sort of update. Used by uplinks to update their UI. No arguments passed
 #define COMSIG_UPLINK_HANDLER_ON_UPDATE "uplink_handler_on_update"
 
-// MASSMETA ADDITION START (re_traitorsecondary)
+// MASSMETA ADDITION START (progressive_traitor)
 /// Sent from the uplink handler when the traitor uses the syndicate uplink beacon to order a replacement uplink.
 #define COMSIG_UPLINK_HANDLER_REPLACEMENT_ORDERED "uplink_handler_replacement_ordered"
-// MASSMETA ADDTIION END (re_traitorsecondary)
+// MASSMETA ADDTIION END (progressive_traitor)
 /// Called when a device a traitor has planted effects someone's mood. Pass the mind of the viewer.
 #define COMSIG_DEMORALISING_EVENT "traitor_demoralise_event"
 /// Called when you finish drawing some graffiti so we can register more signals on it. Pass the graffiti effect.
@@ -17,7 +17,6 @@
 /// Called by an battle royale implanter when successfully implanting someone. Passes the implanted mob.
 #define COMSIG_ROYALE_IMPLANTED "royale_implanted"
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
 /// Called when the hack_comm_console objective is completed.
 #define COMSIG_GLOB_TRAITOR_OBJECTIVE_COMPLETED "!traitor_objective_completed"
 
@@ -40,4 +39,4 @@
 
 /// Called when a machine a traitor has booby trapped triggers its payload
 #define COMSIG_TRAITOR_MACHINE_TRAP_TRIGGERED "traitor_machine_trap_triggered"
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+//MASSMETA EDIT ADDITION END (progressive_traitor)
