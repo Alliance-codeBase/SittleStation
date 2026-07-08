@@ -5,7 +5,7 @@
 	desc = "A specially designed brain that allows AI to connect to a fully augmented body."
 	id = "ai_cyberbrain"
 	build_type = MECHFAB
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.7,
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT*1.35,
 		/datum/material/gold = SMALL_MATERIAL_AMOUNT*5,

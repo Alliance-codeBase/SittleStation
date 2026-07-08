@@ -6,7 +6,7 @@
 	id = "justice_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/justice
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
+	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
 	construction_time = 10 SECONDS
 	category = list(
 		RND_CATEGORY_MECHFAB_JUSTICE + RND_SUBCATEGORY_MECHFAB_CHASSIS
@@ -17,7 +17,7 @@
 	id = "justice_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_torso
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 50,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 5,
 	)
@@ -31,7 +31,7 @@
 	id = "justice_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_left_arm
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
@@ -45,7 +45,7 @@
 	id = "justice_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_right_arm
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 2,
 	)
@@ -59,7 +59,7 @@
 	id = "justice_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_left_leg
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
 	)
@@ -73,7 +73,7 @@
 	id = "justice_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_right_leg
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2,
 	)
@@ -87,7 +87,7 @@
 	id = "justice_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_armor
-	custom_materials = list(
+	materials = list(
 		/datum/material/silver = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 10,
 		/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5,

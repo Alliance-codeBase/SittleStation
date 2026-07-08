@@ -5,7 +5,7 @@
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 6,
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25,
@@ -20,7 +20,7 @@
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1,
 	)
@@ -34,7 +34,7 @@
 	category = list(
 		RND_CATEGORY_WEAPONS + RND_SUBCATEGORY_WEAPONS_AMMO
 	)
-	custom_materials = list(
+	materials = list(
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 8,
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 4,
 		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1,
