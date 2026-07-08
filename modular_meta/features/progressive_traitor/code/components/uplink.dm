@@ -36,8 +36,6 @@
 
 /datum/component/uplink/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	if(.)
-		return
 	if(!active)
 		return
 	switch(action)
@@ -120,12 +118,6 @@
 	var/atom/replacement_uplink = parent
 	locked = FALSE
 	replacement_uplink.balloon_alert_to_viewers("beep", vision_distance = COMBAT_MESSAGE_RANGE)
-/*
-	data["maximum_potential_objectives"] = uplink_handler.maximum_potential_objectives
-	data["progression_scaling_deviance"] = SStraitor.progression_scaling_deviance
-	data["current_expected_progression"] = SStraitor.current_global_progression
-	data["progression_scaling_deviance"] = SStraitor.progression_scaling_deviance
-*/
 
 /datum/component/uplink/ui_data(mob/user)
 	. = ..()
