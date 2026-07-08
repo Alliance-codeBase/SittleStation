@@ -20,12 +20,12 @@ import {
   calculateProgression,
   dangerLevelsTooltip,
 } from './calculateDangerLevel';
-/* //MASSMETA EDIT CHANGE BEGIN (re_traitorsecondary)
+/* //MASSMETA EDIT CHANGE BEGIN (progressive_traitor)
 ORIGINAL: import { GenericUplink, type Item } from './GenericUplink';
 */
-import { GenericUplink, Item } from './GenericUplink';
-import { Objective, ObjectiveMenu } from './ObjectiveMenu';
-//MASSMETA EDIT CHANGE END (re_traitorsecondary)
+import { GenericUplink, type Item } from './GenericUplink';
+import { type Objective, ObjectiveMenu } from './ObjectiveMenu';
+//MASSMETA EDIT CHANGE END (progressive_traitor)
 import { PrimaryObjectiveMenu } from './PrimaryObjectiveMenu';
 
 type UplinkItem = {
@@ -194,12 +194,12 @@ export class Uplink extends Component<any, UplinkState> {
       potential_objectives,
       has_objectives,
       has_progression,
-      //MASSMETA EDIT CHANGE START (re_traitorsecondary)
+      //MASSMETA EDIT CHANGE START (progressive_traitor)
       maximum_active_objectives,
       maximum_potential_objectives,
       current_expected_progression,
       progression_scaling_deviance,
-      //MASSMETA EDIT CHANGE START (re_traitorsecondary)
+      //MASSMETA EDIT CHANGE START (progressive_traitor)
       current_progression_scaling,
       extra_purchasable,
       extra_purchasable_stock,
