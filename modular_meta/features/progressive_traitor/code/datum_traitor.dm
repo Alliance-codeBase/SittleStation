@@ -18,13 +18,13 @@
 
 
 /datum/antagonist/traitor/on_gain()
+	generate_replacement_codes() // amazing ui shenanigans
 	. = ..()
 
 	if(give_secondary_objectives)
 		uplink_handler.has_objectives = TRUE
 		uplink_handler.generate_objectives()
 
-	generate_replacement_codes()
 	owner.teach_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
 
 
@@ -87,9 +87,4 @@
 		uplink_handler.has_objectives = FALSE
 
 	owner.forget_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
-
-/datum/antagonist/traitor/ui_static_data(mob/user)
-	. = ..()
-	.["replacement_code"] = replacement_uplink_code
-	.["replacement_frequency"] = format_frequency(replacement_uplink_frequency)
 

@@ -147,6 +147,7 @@
 		.["potential_objectives"] = potential_objectives
 		.["active_objectives"] = active_objectives
 		.["completed_final_objective"] = uplink_handler.final_objective
+		.["maximum_active_objectives"] = uplink_handler.maximum_active_objectives
 		.["maximum_potential_objectives"] = uplink_handler.maximum_potential_objectives
 		.["current_expected_progression"] = SStraitor.current_global_progression
 		.["progression_scaling_deviance"] = SStraitor.progression_scaling_deviance

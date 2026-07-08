@@ -236,6 +236,10 @@
 	data["theme"] = traitor_flavor["ui_theme"]
 	data["code"] = uplink?.unlock_code
 	data["failsafe_code"] = uplink?.failsafe_code
+	// MASSMETA ADDITION START (progressive_traitor)
+	data["replacement_code"] = replacement_uplink_code
+	data["replacement_frequency"] = format_frequency(replacement_uplink_frequency)
+	// MASSMETA ADDITION END (progressive_traitor)
 	data["intro"] = traitor_flavor["introduction"]
 	data["allies"] = traitor_flavor["allies"]
 	data["goal"] = traitor_flavor["goal"]
