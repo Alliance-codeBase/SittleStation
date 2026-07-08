@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 	desc = "A device that can set a certain number of markers, allowing items to be teleported to the set markers."
 	icon = 'modular_meta/features/cargo_extended/icons/cargo_teleporter.dmi'
 	icon_state = "cargo-off"
+	custom_materials = list(/datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 3, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/plastic = HALF_SHEET_MATERIAL_AMOUNT)
 	///the list of markers spawned by this item
 	var/list/marker_children = list()
 
