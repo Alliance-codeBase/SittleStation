@@ -1002,7 +1002,7 @@
 	name="\improper Justice left leg"
 	desc="A Justice left leg."
 	icon_state = "justice_l_leg"
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 /obj/item/mecha_parts/part/justice_right_leg
