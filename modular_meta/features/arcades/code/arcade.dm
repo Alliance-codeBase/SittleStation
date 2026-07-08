@@ -37,40 +37,21 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
-/obj/effect/spawner/random/techstorage/arcade_boards
-	name = "arcade board spawner"
-	spawn_all_loot = FALSE
-	spawn_loot_count = 1
-	loot = list(
-		/obj/item/circuitboard/computer/arcade/amputation,
-		/obj/item/circuitboard/computer/arcade/battle,
-		/obj/item/circuitboard/computer/arcade/orion_trail,
-		/obj/item/circuitboard/computer/arcade/doom,
+/datum/techweb_node/gaming
+	design_ids = list new(
+		"arcade_battle",
+		"arcade_orion",
+		"arcade_doom",
+		"slotmachine",
 	)
 
-/obj/effect/spawner/random/techstorage/service_all
-	name = "service circuit board spawner"
-	loot = list(
-		/obj/item/circuitboard/computer/arcade/battle,
-		/obj/item/circuitboard/computer/arcade/orion_trail,
-		/obj/item/circuitboard/computer/arcade/doom,
-		/obj/item/circuitboard/machine/autolathe,
-		/obj/item/circuitboard/computer/mining,
-		/obj/item/circuitboard/machine/ore_redemption,
-		/obj/item/circuitboard/computer/order_console/mining,
-		/obj/item/circuitboard/machine/microwave,
-		/obj/item/circuitboard/machine/microwave/engineering,
-		/obj/item/circuitboard/machine/deep_fryer,
-		/obj/item/circuitboard/machine/griddle,
-		/obj/item/circuitboard/machine/reagentgrinder,
-		/obj/item/circuitboard/machine/oven,
-		/obj/item/circuitboard/machine/stove,
-		/obj/item/circuitboard/machine/processor,
-		/obj/item/circuitboard/machine/gibber,
-		/obj/item/circuitboard/machine/chem_dispenser/drinks,
-		/obj/item/circuitboard/machine/chem_dispenser/drinks/beer,
-		/obj/item/circuitboard/computer/slot_machine,
-	)
+/obj/effect/spawner/random/techstorage/arcade_boards/spawn_loot()
+	. = ..()
+	new /obj/item/circuitboard/computer/arcade/doom(get_turf(src))
+
+/obj/effect/spawner/random/techstorage/service_all/spawn_loot(lootcount_override)
+	. = ..()
+	new /obj/item/circuitboard/computer/arcade/doom(get_turf(src))
 
 /obj/effect/spawner/random/entertainment/arcade
 	name = "spawn random arcade machine"
@@ -81,4 +62,4 @@
 		/obj/machinery/computer/arcade/battle = 32,
 		/obj/machinery/computer/arcade/doom = 32,
 		/obj/machinery/computer/arcade/amputation = 4,
-	)
+	) // if there is new arcade console add it here, or else it will not spawn
