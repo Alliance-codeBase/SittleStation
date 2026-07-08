@@ -3,7 +3,7 @@
 	desc = "A stock part used in the construction of various devices."
 	id = "noneuclid_capacitor"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold =SMALL_MATERIAL_AMOUNT, /datum/material/diamond =SMALL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold =SMALL_MATERIAL_AMOUNT, /datum/material/diamond =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/stock_parts/capacitor/noneuclid
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
@@ -16,7 +16,7 @@
 	desc = "A stock part used in the construction of various devices."
 	id = "noneuclid_scanning"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.3, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT*0.5)
+	custom_materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.3, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT*0.5)
 	build_path = /obj/item/stock_parts/scanning_module/noneuclid
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
@@ -29,7 +29,7 @@
 	desc = "A stock part used in the construction of various devices."
 	id = "noneuclid_servo"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.3, /datum/material/titanium = SMALL_MATERIAL_AMOUNT*0.3)
+	custom_materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.3, /datum/material/titanium = SMALL_MATERIAL_AMOUNT*0.3)
 	build_path = /obj/item/stock_parts/servo/noneuclid
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
@@ -42,7 +42,7 @@
 	desc = "A stock part used in the construction of various devices."
 	id = "noneuclid_micro_laser"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/uranium =SMALL_MATERIAL_AMOUNT, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.6)
+	custom_materials = list(/datum/material/iron =SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass =SMALL_MATERIAL_AMOUNT * 2, /datum/material/uranium =SMALL_MATERIAL_AMOUNT, /datum/material/diamond = SMALL_MATERIAL_AMOUNT*0.6)
 	build_path = /obj/item/stock_parts/micro_laser/noneuclid
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
@@ -55,7 +55,7 @@
 	desc = "A stock part used in the construction of various devices."
 	id = "noneuclid_matter_bin"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/diamond =SMALL_MATERIAL_AMOUNT, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*2.5, /datum/material/diamond =SMALL_MATERIAL_AMOUNT, /datum/material/bluespace =SMALL_MATERIAL_AMOUNT)
 	build_path = /obj/item/stock_parts/matter_bin/noneuclid
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
@@ -68,7 +68,7 @@
 	desc = "An alien power cell that produces energy seemingly out of nowhere."
 	id = "void_core"
 	build_type = PROTOLATHE | AWAY_LATHE
-	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 12, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 6, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 16, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 30, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT*5)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 12, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 12, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 6, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 16, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 30, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT*5)
 	build_path = /obj/item/stock_parts/power_store/cell/infinite/abductor
 	category = list(
 		RND_CATEGORY_STOCK_PARTS + RND_SUBCATEGORY_STOCK_PARTS_5
