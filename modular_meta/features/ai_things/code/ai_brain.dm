@@ -1,3 +1,6 @@
+/obj/item/organ/brain/cybernetic/ai
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.7, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.35, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT, /datum/material/diamond = SMALL_MATERIAL_AMOUNT)
+
 // Добавляем ИИ мозг в крафт
 
 /datum/design/ai_brain
