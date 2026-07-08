@@ -265,95 +265,9 @@
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
-<<<<<<< HEAD
-	else if (W.tool_behaviour == TOOL_MULTITOOL)
-		if(check_completion())
-			ui_interact(user)
-		else
-			to_chat(user, span_warning("The endoskeleton must be assembled before debugging can begin!"))
-
-	else if(istype(W, /obj/item/mmi))
-		var/obj/item/mmi/M = W
-		if(check_completion())
-			if(!chest.cell)
-				to_chat(user, span_warning("The endoskeleton still needs a power cell!"))
-				return
-			if(!isturf(loc))
-				to_chat(user, span_warning("You can't put [M] in, the frame has to be standing on the ground to be perfectly precise!"))
-				return
-			if(!M.brain_check(user))
-				return
-
-			var/mob/living/brain/brainmob = M.brainmob
-			if(is_banned_from(brainmob.ckey, JOB_CYBORG) || QDELETED(src) || QDELETED(brainmob) || QDELETED(user) || QDELETED(M) || !Adjacent(user))
-				if(!QDELETED(M))
-					to_chat(user, span_warning("This [M.name] does not seem to fit!"))
-				return
-			if(!user.temporarilyRemoveItemFromInventory(W))
-				return
-
-			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot/nocell(get_turf(loc), user)
-			if(!O)
-				return
-			if(M.laws && M.laws.id != DEFAULT_AI_LAWID)
-				aisync = FALSE
-				lawsync = FALSE
-				O.laws = M.laws
-				M.laws.associate(O)
-
-			O.SetInvisibility(INVISIBILITY_NONE)
-			//Transfer debug settings to new mob
-			O.custom_name = created_name
-			O.locked = panel_locked
-			if(!aisync)
-				lawsync = FALSE
-				O.set_connected_ai(null)
-			else
-				O.notify_ai(AI_NOTIFICATION_NEW_BORG)
-				if(forced_ai)
-					O.set_connected_ai(forced_ai)
-			if(!lawsync)
-				O.lawupdate = FALSE
-				if(M.laws.id == DEFAULT_AI_LAWID)
-					O.make_laws()
-					O.log_current_laws()
-
-			brainmob.mind?.remove_antags_for_borging()
-			O.job = JOB_CYBORG
-
-			O.cell = chest.cell
-			chest.cell.forceMove(O)
-
-			W.forceMove(O)//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
-			QDEL_NULL(O.mmi)  //we delete the mmi created by robot/New()
-			O.mmi = W //and give the real mmi to the borg.
-			O.updatename(brainmob.client)
-			// This canonizes that MMI'd cyborgs have memories of their previous life
-			brainmob.add_mob_memory(/datum/memory/was_cyborged, protagonist = brainmob.mind, deuteragonist = user)
-			brainmob.mind.transfer_to(O)
-			playsound(O.loc, check_holidays(APRIL_FOOLS) ? 'modular_meta/features/april_fools_day/borgs/sound/windows-xp-sad-moddif.ogg' : 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE) // Massmeta EDIT - april_fools_day, original: playsound(O.loc, 'sound/mobs/non-humanoids/cyborg/liveagain.ogg', 75, TRUE)
-
-			if(O.is_antag())
-				to_chat(O, span_userdanger("You have been robotized!"))
-				to_chat(O, span_danger("You must obey your silicon laws and master AI above all else. Your objectives will consider you to be dead."))
-
-			SSblackbox.record_feedback("amount", "cyborg_birth", 1)
-			forceMove(O)
-			O.robot_suit = src
-
-			user.log_message("put the MMI/posibrain of [key_name(M.brainmob)] into a cyborg shell", LOG_GAME)
-			M.brainmob.log_message("was put into a cyborg shell by [key_name(user)]", LOG_GAME, log_globally = FALSE)
-
-			if(!locomotion)
-				O.set_lockcharge(TRUE)
-				to_chat(O, span_warning("Error: Servo motors unresponsive."))
-
-		else
-=======
 	if(istype(tool, /obj/item/mmi))
 		var/obj/item/mmi/potential_brain = tool
 		if(!check_completion())
->>>>>>> upstream/master
 			to_chat(user, span_warning("The MMI must go in after everything else!"))
 			return ITEM_INTERACT_BLOCKING
 		if(!chest.cell)
