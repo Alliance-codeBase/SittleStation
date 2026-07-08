@@ -55,6 +55,7 @@
 #include "features\holidays\includes.dm"
 #include "features\jukeboxes_music\code\music.dm"
 #include "features\mentors\includes.dm"
+#include "features\arcades\includes.dm"
 
 /* --- Reverts --- */
 
