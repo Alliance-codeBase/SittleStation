@@ -55,6 +55,7 @@ map nebulastation
 	votable
 endmap
 
+<<<<<<< HEAD
 map pubbystation
 	votable
 endmap
@@ -86,6 +87,11 @@ map protosstation
 	maxplayers 25
 	votable
 
+=======
+map kilostation
+	votable
+	maxplayers 40
+>>>>>>> upstream/master
 endmap
 
 # Debug-only maps.

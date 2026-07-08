@@ -14,13 +14,25 @@
 			"Linkage": "Cross"
 		}
 	],
+<<<<<<< HEAD
 	"ignored_unit_tests": ["/datum/unit_test/create_and_destroy"],
+=======
+>>>>>>> upstream/master
 	"job_changes": {
 		"Cook": {
 			"additional_cqc_areas": ["/area/station/service/bar/atrium"]
 		},
 		"Captain": {
 			"special_charter": "asteroid"
+<<<<<<< HEAD
 		}
 	}
 }
+=======
+		},
+		"Chaplain": {
+			"has_monastery": 1
+		}
+	}
+}
+>>>>>>> upstream/master

@@ -22,6 +22,7 @@
 		#include "map_files\tramstation\tramstation.dmm"
 		#include "map_files\CatwalkStation\CatwalkStation_2023.dmm"
 		#include "map_files\NebulaStation\NebulaStation.dmm"
+<<<<<<< HEAD
 		#include "map_files\wawastation\wawastation.dmm"
 
 		// MASSMETA EDIT BEGIN - Compiling our modular maps too!
@@ -30,6 +31,9 @@
 		#include "map_files\bearcat\bearcat.dmm"
 		// MASSMETA EDIT END
 
+=======
+		#include "map_files\KiloStation\KiloStation.dmm"
+>>>>>>> upstream/master
 	#endif
 	#ifdef ALL_TEMPLATES
 		#include "templates.dm"
