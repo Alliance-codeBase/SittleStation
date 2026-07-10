@@ -234,7 +234,9 @@
 	return list(
 		get_asset_datum(/datum/asset/json/uplink),
 	)
-
+/* MASSMETA EDIT REMOVAL START (progressive traitor)
+check:
+modular_meta\features\progressive_traitor\code\components\uplink.dm ln 37
 /datum/component/uplink/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
@@ -269,7 +271,7 @@
 			uplink_handler.replace_objectives?.Invoke()
 			SStgui.update_uis(src)
 	return TRUE
-
+*/
 
 /// Proc that locks uplinks
 /datum/component/uplink/proc/lock_uplink()
