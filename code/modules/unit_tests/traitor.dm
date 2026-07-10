@@ -22,7 +22,7 @@
 		var/datum/antagonist/traitor/traitor = mind.add_antag_datum(/datum/antagonist/traitor)
 		if(!traitor.uplink_handler)
 			TEST_FAIL("[job_name] when made traitor does not have a proper uplink created when spawned in!")
-		//MASSMETA ADDDITION START (re_traitorsecondary) TODO: MODULARIZE
+		//MASSMETA ADDDITION START (progressive_traitor) TODO: MODULARIZE
 		for(var/datum/traitor_objective/objective_typepath as anything in subtypesof(/datum/traitor_objective))
 			if(initial(objective_typepath.abstract_type) == objective_typepath)
 				continue
@@ -31,4 +31,4 @@
 				objective.generate_objective(mind, list())
 			catch(var/exception/exception)
 				TEST_FAIL("[objective_typepath] failed to generate their objective. Reason: [exception.name] [exception.file]:[exception.line]\n[exception.desc]")
-		//MASSMETA ADDDITION END (re_traitorsecondary)
+		//MASSMETA ADDDITION END (progressive_traitor)

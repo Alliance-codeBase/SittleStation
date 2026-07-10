@@ -3,6 +3,7 @@
 #include "code\middleware.dm"
 #include "code\picker.dm"
 #include "code\announcements.dm"
+#include "code\verb.dm"
 
 /datum/modpack/ntts_nd_tg_tts
 	id = "ntts-nd-tg-tts"

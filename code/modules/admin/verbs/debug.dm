@@ -763,6 +763,14 @@ ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "Re-establish Connection To TTS"
 	message_admins("[key_name_admin(user)] successfully re-established the connection to the TTS HTTP server.")
 	log_admin("[key_name(user)] successfully re-established the connection to the TTS HTTP server.")
 
+	// MASSMETA EDIT ADDITION START (tgtts)
+	if(success)
+		var/should_restart_subsystem = tgui_alert(user, "Additionally, would you like to restart TTS subsystem?", "Success!", list("Do it!", "Nah"), 15 SECONDS) == "Do it!"
+		if(should_restart_subsystem)
+			SStts.can_fire = TRUE // make that mf actually work
+			return
+	// MASSMETA EDIT ADDITION END (tgtts)
+
 ADMIN_VERB(allow_browser_inspect, R_DEBUG, "Allow Browser Inspect", "Allow browser debugging via inspect", ADMIN_CATEGORY_DEBUG)
 	if(user.byond_version < 516)
 		to_chat(user, span_warning("You can only use this on 516!"))

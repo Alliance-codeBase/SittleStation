@@ -187,6 +187,7 @@
 #include "focus_only_tests.dm"
 #include "font_awesome_icons.dm"
 #include "food_edibility_check.dm"
+#include "food_processor.dm"
 #include "full_heal.dm"
 #include "gas_transfer.dm"
 #include "get_turf_pixel.dm"
@@ -234,6 +235,7 @@
 #include "lungs.dm"
 #include "machine_disassembly.dm"
 #include "mafia.dm"
+#include "make_vegan_wellington.dm"
 #include "map_landmarks.dm"
 #include "mapload_space_verification.dm"
 #include "mapping.dm"
@@ -261,9 +263,9 @@
 #include "neurine_trauma_cleanup.dm"
 #include "novaflower_burn.dm"
 #include "nuke_cinematic.dm"
-// (re_traitorsecondary)
+// (progressive_traitor)
 #include "objectives.dm"
-// (re_traitorsecondary)
+// (progressive_traitor)
 #include "omnitools.dm"
 #include "operating_table.dm"
 #include "orderable_items.dm"

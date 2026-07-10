@@ -83,7 +83,7 @@
 	. = ..()
 	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
 	hidden_uplink.name = "dusty radio"
-//MASSMETA ADDITION START (re_traitorsecondary)
+//MASSMETA ADDITION START (progressive_traitor)
 // Uplink subtype used as replacement uplink
 /obj/item/uplink/replacement
 	lockable_uplink = TRUE
@@ -111,7 +111,7 @@
 	if(!IS_TRAITOR(user))
 		return
 	. += span_notice("You can destroy this device with a screwdriver.")
-// MASSMETA ADDITION END (re_traitorsecondary)
+// MASSMETA ADDITION END (progressive_traitor)
 // Multitool uplink
 /obj/item/multitool/uplink/Initialize(mapload, owner, tc_amount = 20, datum/uplink_handler/uplink_handler_override = null)
 	. = ..()

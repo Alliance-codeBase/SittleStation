@@ -55,6 +55,7 @@ map nebulastation
 	votable
 endmap
 
+<<<<<<< HEAD
 map pubbystation
 	votable
 endmap

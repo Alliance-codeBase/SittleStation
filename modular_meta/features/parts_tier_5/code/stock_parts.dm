@@ -14,7 +14,7 @@
 	icon_state = "noneuclid_capacitor"
 	rating = 5
 	energy_rating = 20
-	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*0.5, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*0.5)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2, /datum/material/gold = SMALL_MATERIAL_AMOUNT, /datum/material/diamond = SMALL_MATERIAL_AMOUNT)
 
 /obj/item/stock_parts/scanning_module/noneuclid
 	name = "noneuclid scanning module"
@@ -23,7 +23,7 @@
 	icon_state = "noneuclid_scan_module"
 	rating = 5
 	energy_rating = 20
-	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*0.5, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT * 0.5, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 0.3)
 
 /obj/item/stock_parts/servo/noneuclid
 	name = "noneuclid-servo"
@@ -32,7 +32,7 @@
 	icon_state = "noneuclid_servo"
 	rating = 5
 	energy_rating = 20
-	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*0.3)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 0.3, /datum/material/titanium = SMALL_MATERIAL_AMOUNT * 0.3)
 
 /obj/item/stock_parts/micro_laser/noneuclid
 	name = "noneuclid micro-laser"
@@ -41,7 +41,7 @@
 	icon_state = "noneuclid_micro_laser"
 	rating = 5
 	energy_rating = 20
-	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*0.1, /datum/material/glass=HALF_SHEET_MATERIAL_AMOUNT*0.2)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2, /datum/material/uranium = SMALL_MATERIAL_AMOUNT, /datum/material/diamond = SMALL_MATERIAL_AMOUNT * 0.6)
 
 /obj/item/stock_parts/matter_bin/noneuclid
 	name = "noneuclid matter bin"
@@ -50,4 +50,7 @@
 	icon_state = "noneuclid_matter_bin"
 	rating = 5
 	energy_rating = 20
-	custom_materials = list(/datum/material/iron=HALF_SHEET_MATERIAL_AMOUNT*0.8)
+	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT * 2.5, /datum/material/diamond = SMALL_MATERIAL_AMOUNT, /datum/material/bluespace = SMALL_MATERIAL_AMOUNT)
+
+/obj/item/stock_parts/power_store/cell/infinite/abductor
+	custom_materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 30, /datum/material/diamond = SHEET_MATERIAL_AMOUNT * 16, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 12, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 12, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 6, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT * 5)
