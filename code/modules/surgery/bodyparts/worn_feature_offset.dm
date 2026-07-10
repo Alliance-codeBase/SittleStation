@@ -37,7 +37,7 @@
 	return ..()
 
 /// Returns the current offset which should be used for this feature
-/datum/worn_feature_offset/proc/get_offset() as /list
+/datum/worn_feature_offset/proc/get_offset()
 	var/current_dir = owner ? owner.dir : SOUTH
 	if(ISDIAGONALDIR(current_dir))
 		current_dir = current_dir & (EAST|WEST)

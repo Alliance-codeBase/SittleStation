@@ -61,9 +61,6 @@
 	// such that you never actually cared about checking if something is *edible*.
 	var/obj/item/food/clothing/moth_snack
 
-	// Is it freshly laundered
-	var/is_laundered = FALSE
-
 /obj/item/clothing/Initialize(mapload)
 	if(clothing_flags & VOICEBOX_TOGGLABLE)
 		actions_types += list(/datum/action/item_action/toggle_voice_box)
@@ -362,9 +359,6 @@
 	if(get_armor().has_any_armor() || (flags_cover & (HEADCOVERSMOUTH|PEPPERPROOF)) || (clothing_flags & STOPSPRESSUREDAMAGE) || (visor_flags & STOPSPRESSUREDAMAGE))
 		. += span_notice("It has a <a href='byond://?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes.")
 
-	if(is_laundered)
-		. += "[src] looks crisp and pristine."
-
 /obj/item/clothing/examine_tags(mob/user)
 	. = ..()
 	if (clothing_flags & THICKMATERIAL)
@@ -505,8 +499,13 @@
 	if(stubborn_stains) //Just can't make it feel right
 		return
 
-	is_laundered = TRUE
-	addtimer(VARSET_CALLBACK(src, is_laundered, FALSE), 2 MINUTES)
+	var/fresh_mood = AddComponent( \
+		/datum/component/onwear_mood, \
+		saved_event_type = /datum/mood_event/fresh_laundry, \
+		examine_string = "[src] looks crisp and pristine.", \
+	)
+
+	QDEL_IN(fresh_mood, 2 MINUTES)
 
 //This mostly exists so subtypes can call appriopriate update icon calls on the wearer.
 /obj/item/clothing/proc/update_clothes_damaged_state(damaged_state = CLOTHING_DAMAGED)
@@ -649,7 +648,7 @@ BLIND     // can't see anything
 	return ..()
 
 /// Returns a list of overlays with our blood, if we're bloodied
-/obj/item/clothing/proc/get_blood_overlay(blood_state, bodyshape = NONE)
+/obj/item/clothing/proc/get_blood_overlay(blood_state)
 	if (!GET_ATOM_BLOOD_DECAL_LENGTH(src))
 		return
 

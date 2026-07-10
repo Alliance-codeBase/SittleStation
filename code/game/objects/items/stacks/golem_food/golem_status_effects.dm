@@ -123,12 +123,16 @@
 /// Body part overlays applied by golem status effects
 /datum/bodypart_overlay/simple/golem_overlay
 	icon = 'icons/mob/human/species/golems.dmi'
+<<<<<<< HEAD
 	layers = list(
 		EXTERNAL_FRONT = BODY_FRONT_LAYER,
 		EXTERNAL_BEHIND = BODY_BEHIND_LAYER,
 		EXTERNAL_ADJACENT = BODY_ADJ_LAYER,
 	)
 	offset_location = ENTIRE_BODY
+=======
+	layers = ALL_EXTERNAL_OVERLAYS
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 	///The bodypart that the overlay is currently applied to
 	var/datum/weakref/attached_bodypart
 
@@ -139,7 +143,9 @@
 
 /datum/bodypart_overlay/simple/golem_overlay/Destroy(force)
 	var/obj/item/bodypart/referenced_bodypart = attached_bodypart.resolve()
-	referenced_bodypart?.remove_bodypart_overlay(src)
+	if(!referenced_bodypart)
+		return ..()
+	referenced_bodypart.remove_bodypart_overlay(src)
 	return ..()
 
 /// Freezes hunger for the duration

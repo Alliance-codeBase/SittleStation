@@ -309,7 +309,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/waystation/cargobay)
 "fU" = (
-/obj/effect/spawner/random/food_or_drink/keg,
+/obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/iron/freezer,
 /area/ruin/space/has_grav/waystation/kitchen)
 "gf" = (

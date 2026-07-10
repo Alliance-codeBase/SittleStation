@@ -1,7 +1,11 @@
 /// For body markings applied on the species, which need some extra code
 /datum/bodypart_overlay/simple/body_marking
+<<<<<<< HEAD
 	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
 	offset_location = ENTIRE_BODY
+=======
+	layers = EXTERNAL_ADJACENT
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 	/// Listen to the gendercode, if the limb is bimorphic
 	var/use_gender = FALSE
 	/// Which dna feature key to draw from
@@ -30,12 +34,12 @@
 	use_gender = accessory.gender_specific
 	draw_color = accessory.color_src ? set_color : null
 
-/datum/bodypart_overlay/simple/body_marking/icon_render_key(obj/item/bodypart/limb)
+/datum/bodypart_overlay/simple/body_marking/generate_icon_cache(obj/item/bodypart/limb)
 	. = ..()
 	. += use_gender
 	. += draw_color
 
-/datum/bodypart_overlay/simple/body_marking/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner)
+/datum/bodypart_overlay/simple/body_marking/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
 	return ..() && icon_state != SPRITE_ACCESSORY_NONE
 
 /datum/bodypart_overlay/simple/body_marking/get_image(obj/item/bodypart/limb, layer_index, layer_real)

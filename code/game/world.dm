@@ -159,7 +159,6 @@ GLOBAL_VAR(restart_counter)
 	SetupLogs()
 
 	load_admins(initial = TRUE)
-	load_mentors() // MASSMETA ADDITION (mentors)
 
 	load_poll_data()
 

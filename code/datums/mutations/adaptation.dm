@@ -8,11 +8,21 @@
 	locked = TRUE // fake parent
 	conflicts = list(/datum/mutation/adaptation)
 	mutation_traits = list(TRAIT_WADDLING)
+<<<<<<< HEAD
 	offset_location = ENTIRE_BODY
+=======
+	/// Icon used for the adaptation overlay
+	var/adapt_icon = "meow"
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 
 /datum/mutation/adaptation/New(datum/mutation/copymut)
-	. = ..()
+	..()
 	conflicts = typesof(/datum/mutation/adaptation)
+	if(!(type in visual_indicators))
+		visual_indicators[type] = list(mutable_appearance('icons/mob/effects/genetics.dmi', adapt_icon, -MUTATIONS_LAYER))
+
+/datum/mutation/adaptation/get_visual_indicator()
+	return visual_indicators[type][1]
 
 /datum/mutation/adaptation/cold
 	name = "Cold Adaptation"
@@ -20,7 +30,7 @@
 	text_gain_indication = span_notice("Your body feels refreshingly cold.")
 	instability = POSITIVE_INSTABILITY_MODERATE
 	mutation_traits = list(TRAIT_RESISTCOLD, TRAIT_NO_SLIP_ICE)
-	mutation_icon_state = "cold"
+	adapt_icon = "cold"
 	locked = FALSE
 
 /datum/mutation/adaptation/heat
@@ -29,7 +39,7 @@
 	text_gain_indication = span_notice("Your body feels invigoratingly warm.")
 	instability = POSITIVE_INSTABILITY_MODERATE
 	mutation_traits = list(TRAIT_RESISTHEAT, TRAIT_ASHSTORM_IMMUNE)
-	mutation_icon_state = "fire"
+	adapt_icon = "fire"
 	locked = FALSE
 
 /datum/mutation/adaptation/thermal
@@ -39,7 +49,7 @@
 	text_gain_indication = span_notice("Your body feels pleasantly room temperature.")
 	instability = POSITIVE_INSTABILITY_MAJOR
 	mutation_traits = list(TRAIT_RESISTHEAT, TRAIT_RESISTCOLD)
-	mutation_icon_state = "thermal"
+	adapt_icon = "thermal"
 	locked = TRUE // recipe
 
 /datum/mutation/adaptation/pressure
@@ -47,6 +57,6 @@
 	desc = "A strange mutation that renders the host immune to damage from both low and high pressure environments. Does not protect from temperature, including the cold of space."
 	text_gain_indication = span_notice("Your body feels impressively pressurized.")
 	instability = POSITIVE_INSTABILITY_MODERATE
-	mutation_icon_state = "pressure"
+	adapt_icon = "pressure"
 	mutation_traits = list(TRAIT_RESISTLOWPRESSURE, TRAIT_RESISTHIGHPRESSURE)
 	locked = FALSE

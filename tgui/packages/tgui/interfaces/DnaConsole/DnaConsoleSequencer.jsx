@@ -15,38 +15,22 @@ import {
 import { MutationInfo } from './MutationInfo';
 
 const GenomeImage = (props) => {
-  const { url, selected, inScanner, onClick } = props;
+  const { url, selected, onClick } = props;
   let outline;
   if (selected) {
     outline = '2px solid #22aa00';
   }
   return (
-    <Box
-      inline
-      position="relative"
-      style={{ margin: '2px', marginLeft: '4px' }}
-    >
-      <Image
-        src={url}
-        style={{
-          width: '64px',
-          display: 'block',
-          outline,
-        }}
-        onClick={onClick}
-      />
-      {inScanner && (
-        <Box
-          position="absolute"
-          bottom="2px"
-          right="2px"
-          color="good"
-          style={{ fontSize: '10px', lineHeight: 1, pointerEvents: 'none' }}
-        >
-          <b>M</b>
-        </Box>
-      )}
-    </Box>
+    <Image
+      src={url}
+      style={{
+        width: '64px',
+        margin: '2px',
+        marginLeft: '4px',
+        outline,
+      }}
+      onClick={onClick}
+    />
   );
 };
 
@@ -103,12 +87,47 @@ function isPairMatched(sequence, index) {
   );
 }
 
-function buildGenomePairs(sequence, renderGene) {
+const GenomeSequencer = (props) => {
+  const { mutation } = props;
+  if (!mutation) {
+    return <Box color="average">No genome selected for sequencing.</Box>;
+  }
+  if (mutation.Scrambled) {
+    return (
+      <Box color="average">
+        Sequence unreadable due to unpredictable mutation.
+      </Box>
+    );
+  }
+  // Create gene cycler buttons
+  const sequence = mutation.Sequence;
+  const defaultSeq = mutation.DefaultSeq;
+  const buttons = [];
+  for (let i = 0; i < sequence.length; i++) {
+    const gene = sequence.charAt(i);
+    const button = (
+      <GeneCycler
+        width="22px"
+        textAlign="center"
+        disabled={!!mutation.Scrambled || mutation.Class !== MUT_NORMAL}
+        className={
+          defaultSeq?.charAt(i) === 'X' && !mutation.Active
+            ? classes(['outline-solid', 'outline-color-orange'])
+            : false
+        }
+        gene={gene}
+        index={i}
+        alias={mutation.Alias}
+      />
+    );
+    buttons.push(button);
+  }
+  // Render genome in two rows
   const pairs = [];
-  for (let i = 0; i < sequence.length; i += 2) {
+  for (let i = 0; i < buttons.length; i += 2) {
     const pair = (
       <Box key={i} inline m={0.5}>
-        {renderGene(i)}
+        {buttons[i]}
         <Box
           mt="-2px"
           ml="10px"
@@ -116,7 +135,7 @@ function buildGenomePairs(sequence, renderGene) {
           height="8px"
           backgroundColor={isPairMatched(sequence, i) ? 'label' : 'red'}
         />
-        {renderGene(i + 1)}
+        {buttons[i + 1]}
       </Box>
     );
 
@@ -137,38 +156,6 @@ function buildGenomePairs(sequence, renderGene) {
 
     pairs.push(pair);
   }
-  return pairs;
-}
-
-const GenomeSequencer = (props) => {
-  const { mutation } = props;
-  if (!mutation) {
-    return <Box color="average">No genome selected for sequencing.</Box>;
-  }
-  if (mutation.Scrambled) {
-    return (
-      <Box color="average">
-        Sequence unreadable due to unpredictable mutation.
-      </Box>
-    );
-  }
-  const sequence = mutation.Sequence;
-  const defaultSeq = mutation.DefaultSeq;
-  const pairs = buildGenomePairs(sequence, (i) => (
-    <GeneCycler
-      width="22px"
-      textAlign="center"
-      disabled={!!mutation.Scrambled || mutation.Class !== MUT_NORMAL}
-      className={
-        defaultSeq?.charAt(i) === 'X' && !mutation.Active
-          ? classes(['outline-solid', 'outline-color-orange'])
-          : false
-      }
-      gene={sequence.charAt(i)}
-      index={i}
-      alias={mutation.Alias}
-    />
-  ));
   return (
     <>
       <Box m={-0.5}>{pairs}</Box>
@@ -180,42 +167,14 @@ const GenomeSequencer = (props) => {
   );
 };
 
-// Read only version of the genome sequencer.
-const GenomeSequencerReadOnly = (props) => {
-  const { sequence } = props;
-  const pairs = buildGenomePairs(sequence, (i) => {
-    const gene = sequence.charAt(i);
-    return (
-      <Button
-        key={i}
-        width="22px"
-        textAlign="center"
-        color={GENE_COLORS[gene] || GENE_COLORS.X}
-        style={{ pointerEvents: 'none' }} //Probably a better way but hehe >:)
-      >
-        {gene}
-      </Button>
-    );
-  });
-  return <Box m={-0.5}>{pairs}</Box>;
-};
-
 export const DnaConsoleSequencer = (props) => {
   const { data, act } = useBackend();
   const mutations = data.storage?.occupant ?? [];
-  const {
-    isJokerReady,
-    isMonkey,
-    jokerSeconds,
-    subjectStatus,
-    heldScannerBuffer,
-  } = data;
+  const { isJokerReady, isMonkey, jokerSeconds, subjectStatus } = data;
   const { sequencerMutation, jokerActive } = data.view;
   const mutation = mutations.find(
     (mutation) => mutation.Alias === sequencerMutation,
   );
-  const scannerSequence =
-    heldScannerBuffer && mutation && heldScannerBuffer[mutation.Alias];
   return (
     <>
       <Stack mb={1}>
@@ -230,7 +189,6 @@ export const DnaConsoleSequencer = (props) => {
                 key={mutation.Alias}
                 url={resolveAsset(mutation.Image)}
                 selected={mutation.Alias === sequencerMutation}
-                inScanner={!!heldScannerBuffer?.[mutation.Alias]}
                 onClick={() => {
                   act('set_view', {
                     sequencerMutation: mutation.Alias,
@@ -264,51 +222,44 @@ export const DnaConsoleSequencer = (props) => {
             Genetic sequence corrupted. Subject diagnostic report: TRANSFORMING.
           </Section>
         )) || (
-          <>
-            <Section
-              title="Genome Sequencer™"
-              buttons={
-                (!isJokerReady && (
-                  <Box lineHeight="20px" color="label">
-                    Joker on cooldown ({jokerSeconds}s)
+          <Section
+            title="Genome Sequencer™"
+            buttons={
+              (!isJokerReady && (
+                <Box lineHeight="20px" color="label">
+                  Joker on cooldown ({jokerSeconds}s)
+                </Box>
+              )) ||
+              (jokerActive && (
+                <>
+                  <Box mr={1} inline color="label">
+                    Click on a gene to reveal it.
                   </Box>
-                )) ||
-                (jokerActive && (
-                  <>
-                    <Box mr={1} inline color="label">
-                      Click on a gene to reveal it.
-                    </Box>
-                    <Button
-                      content="Cancel Joker"
-                      onClick={() =>
-                        act('set_view', {
-                          jokerActive: '',
-                        })
-                      }
-                    />
-                  </>
-                )) || (
                   <Button
-                    icon="crown"
-                    color="purple"
-                    content="Use Joker"
+                    content="Cancel Joker"
                     onClick={() =>
                       act('set_view', {
-                        jokerActive: '1',
+                        jokerActive: '',
                       })
                     }
                   />
-                )
-              }
-            >
-              <GenomeSequencer mutation={mutation} />
-            </Section>
-            {!!scannerSequence && (
-              <Section title="Held Scanner">
-                <GenomeSequencerReadOnly sequence={scannerSequence} />
-              </Section>
-            )}
-          </>
+                </>
+              )) || (
+                <Button
+                  icon="crown"
+                  color="purple"
+                  content="Use Joker"
+                  onClick={() =>
+                    act('set_view', {
+                      jokerActive: '1',
+                    })
+                  }
+                />
+              )
+            }
+          >
+            <GenomeSequencer mutation={mutation} />
+          </Section>
         )}
     </>
   );

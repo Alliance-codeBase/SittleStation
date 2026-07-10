@@ -43,7 +43,7 @@
 /turf/open/misc/asteroid/snow,
 /area/ruin/powered/snow_biodome)
 "al" = (
-/obj/effect/spawner/random/food_or_drink/keg,
+/obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/plating,
 /area/ruin/powered/snow_biodome)
 "am" = (

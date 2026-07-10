@@ -96,12 +96,26 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 /mob/living/carbon/human/dummy/log_mob_tag(text)
 	return
 
+<<<<<<< HEAD
 // To speed up the preference menu, we apply one height filter to the entire mob,
 // rather than independently applying offsets and filters to each individual overlay
 // This looks good enough to pass the sniff test and saves a lot of time
 /mob/living/carbon/human/dummy/apply_height(image/appearance, body_area)
 	if(appearance == src)
+=======
+// To speed up the preference menu, we apply 1 filter to the entire mob
+/mob/living/carbon/human/dummy/regenerate_icons()
+	. = ..()
+	apply_height_filters(src, TRUE)
+
+/mob/living/carbon/human/dummy/apply_height_filters(image/appearance, only_apply_in_prefs = FALSE)
+	if(only_apply_in_prefs)
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 		return ..()
+
+// Not necessary with above
+/mob/living/carbon/human/dummy/apply_height_offsets(image/appearance, upper_torso)
+	return
 
 /// Takes in an accessory list and returns the first entry from that list, ensuring that we dont return SPRITE_ACCESSORY_NONE in the process.
 /proc/get_consistent_feature_entry(list/accessory_feature_list)

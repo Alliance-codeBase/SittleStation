@@ -24,11 +24,19 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 
+<<<<<<< HEAD
 	minimum_survivable_temperature = T0C - 100
 	maximum_survivable_temperature = T0C + 100
 	unsuitable_atmos_damage = 0
 
 	habitable_atmos = null // Breathless
+=======
+	minimum_survivable_temperature = 0
+	maximum_survivable_temperature = T0C + 100
+	unsuitable_cold_damage = 0
+
+	habitable_atmos = null
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 
 	// A vivid red.
 	lighting_cutoff_red = 40

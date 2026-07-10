@@ -24,8 +24,6 @@ Behavior that's still missing from this component that original food items had t
 	var/food_flags = NONE
 	///Bitfield of the types of this food
 	var/foodtypes = NONE
-	///The main food complexity (read: quality) when handmade. It dictates the strength of the effect that this edible gives when eaten.
-	var/handmade_complexity = FOOD_COMPLEXITY_0
 	///Amount of seconds it takes to eat this food
 	var/eat_time = 3 SECONDS
 	///Defines how much it lowers someones satiety (Need to eat, essentialy)
@@ -61,7 +59,6 @@ Behavior that's still missing from this component that original food items had t
 	datum/callback/on_consume,
 	datum/callback/check_liked,
 	reagent_purity = 0.5,
-	handmade_complexity = FOOD_COMPLEXITY_0
 )
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -75,7 +72,6 @@ Behavior that's still missing from this component that original food items had t
 	src.foodtypes = foodtypes
 	src.eat_time = eat_time
 	src.eatverbs = string_list(eatverbs)
-	src.handmade_complexity = handmade_complexity
 
 /datum/component/edible/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine))
@@ -140,7 +136,6 @@ Behavior that's still missing from this component that original food items had t
 	datum/callback/on_consume,
 	datum/callback/check_liked,
 	reagent_purity = 0.5,
-	handmade_complexity,
 )
 	. = ..()
 
@@ -274,7 +269,7 @@ Behavior that's still missing from this component that original food items had t
 				examine_list += span_green("It is made of finest ingredients prolonging the effect!")
 
 	var/datum/mind/mind = user.mind
-	if(mind && HAS_TRAIT_FROM(owner, TRAIT_HANDMADE, REF(mind)))
+	if(mind && HAS_TRAIT_FROM(owner, TRAIT_FOOD_CHEF_MADE, REF(mind)))
 		examine_list += span_green("[owner] was made by you!")
 
 	if(!(food_flags & FOOD_IN_CONTAINER))
@@ -643,14 +638,15 @@ Behavior that's still missing from this component that original food items had t
 	var/quality_label = GLOB.food_quality_description[food_quality]
 	to_chat(gourmand, span_notice("That's \an [quality_label] meal."))
 
-/// Get the complexity of the crafted food. Some ingredients may influence this value.
+/// Get the complexity of the crafted food
 /datum/component/edible/proc/get_recipe_complexity()
-	var/complexity = FOOD_COMPLEXITY_0
-	if(HAS_TRAIT(parent, TRAIT_HANDMADE))
-		complexity += handmade_complexity
-	var/list/complexity_holder = list(complexity)
-	SEND_SIGNAL(parent, COMSIG_FOOD_GET_EXTRA_COMPLEXITY, complexity_holder)
-	return complexity_holder[1]
+	var/list/extra_complexity = list(0)
+	SEND_SIGNAL(parent, COMSIG_FOOD_GET_EXTRA_COMPLEXITY, extra_complexity)
+	var/complexity_to_add = extra_complexity[1]
+	if(!HAS_TRAIT(parent, TRAIT_FOOD_CHEF_MADE) || !istype(parent, /obj/item/food))
+		return complexity_to_add // It is factory made. Soulless.
+	var/obj/item/food/food = parent
+	return food.crafting_complexity + complexity_to_add
 
 /// Get food quality adjusted according to eater's preferences
 /datum/component/edible/proc/get_perceived_food_quality(mob/living/eater)

@@ -5,6 +5,7 @@
 	icon_state = "pig"
 	icon_living = "pig"
 	icon_dead = "pig_dead"
+	icon_gib = "pig_gib"
 	gender = MALE
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST
 	speak_emote = list("oinks","squees")

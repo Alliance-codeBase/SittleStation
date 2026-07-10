@@ -389,7 +389,6 @@
 		/obj/item/construction/rcd/borg,
 		/obj/item/pipe_dispenser,
 		/obj/item/extinguisher,
-		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/t_scanner,
@@ -413,7 +412,6 @@
 	model_select_icon = "engineer"
 	model_traits = list(TRAIT_NEGATES_GRAVITY)
 	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
-	///Weakref to the night vision action
 	var/datum/weakref/night_vision_ref
 
 /datum/action/cooldown/borg_meson
@@ -430,12 +428,10 @@
 	borg.update_sight()
 
 /obj/item/robot_model/engineering/be_transformed_to(obj/item/robot_model/old_model, forced = FALSE)
+	var/datum/action/cooldown/borg_meson/night_vision = new(loc)
 	. = ..()
 	if(!.)
 		return
-
-	//Grant night vision action
-	var/datum/action/cooldown/borg_meson/night_vision = new(loc)
 	night_vision.Grant(loc)
 	night_vision_ref = WEAKREF(night_vision)
 
@@ -924,9 +920,6 @@
 	..()
 	var/mob/living/silicon/robot/cyborg = loc
 	cyborg.remove_faction(FACTION_SILICON) //ai turrets
-	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "combatborg")
-	var/datum/action/minimap/nuclear/tacmap_action = new
-	tacmap_action.Grant(cyborg)
 
 /obj/item/robot_model/syndicate/remove_module(obj/item/removed_module)
 	..()
@@ -959,13 +952,6 @@
 	model_traits = list(TRAIT_PUSHIMMUNE)
 	hat_offset = list("north" = list(0, 3), "south" = list(0, 3), "east" = list(-1, 3), "west" = list(1, 3))
 
-/obj/item/robot_model/syndicate_medical/rebuild_modules()
-	..()
-	var/mob/living/silicon/robot/cyborg = loc
-	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "mediborg")
-	var/datum/action/minimap/nuclear/tacmap_action = new
-	tacmap_action.Grant(cyborg)
-
 /obj/item/robot_model/saboteur
 	name = "Syndicate Saboteur"
 	basic_modules = list(
@@ -974,7 +960,6 @@
 		/obj/item/pipe_dispenser,
 		/obj/item/restraints/handcuffs/cable/zipties,
 		/obj/item/extinguisher,
-		/obj/item/weldingtool/largetank/cyborg,
 		/obj/item/analyzer,
 		/obj/item/borg/cyborg_omnitool/engineering,
 		/obj/item/borg/cyborg_omnitool/engineering,
@@ -996,13 +981,6 @@
 	hat_offset = list("north" = list(0, -4), "south" = list(0, -4), "east" = list(4, -4), "west" = list(-4, -4))
 	canDispose = TRUE
 	var/datum/weakref/thermal_vision_ref
-
-/obj/item/robot_model/saboteur/rebuild_modules()
-	..()
-	var/mob/living/silicon/robot/cyborg = loc
-	add_minimap_blip(cyborg, MINIMAP_NUKEOP_BORG_BLIP, "engiborg")
-	var/datum/action/minimap/nuclear/tacmap_action = new
-	tacmap_action.Grant(cyborg)
 
 /datum/action/cooldown/borg_thermal
 	name = "Toggle Thermal Night Vision"

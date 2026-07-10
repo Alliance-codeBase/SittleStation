@@ -1320,7 +1320,7 @@
 	},
 /area/ruin/pizzeria)
 "XB" = (
-/obj/effect/spawner/random/food_or_drink/keg,
+/obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/plating/snowed/smoothed/icemoon,
 /area/icemoon/surface/outdoors/nospawn)
 "XS" = (

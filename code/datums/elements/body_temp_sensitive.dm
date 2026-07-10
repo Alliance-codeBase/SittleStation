@@ -49,7 +49,11 @@
 	var/mob/living/living_mob = target
 	var/gave_alert = FALSE
 
+<<<<<<< HEAD
 	if(living_mob.bodytemperature < min_body_temp && cold_damage > 0 && !HAS_TRAIT(living_mob, TRAIT_RESISTCOLD))
+=======
+	if(living_mob.bodytemperature < min_body_temp)
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 		living_mob.adjust_fire_loss(cold_damage * seconds_per_tick, forced = TRUE)
 		if(!living_mob.has_status_effect(/datum/status_effect/inebriated))
 			switch(cold_damage)
@@ -61,7 +65,11 @@
 					living_mob.throw_alert(ALERT_TEMPERATURE, /atom/movable/screen/alert/cold, 1)
 			gave_alert = TRUE
 
+<<<<<<< HEAD
 	else if(living_mob.bodytemperature > max_body_temp && heat_damage > 0 && !HAS_TRAIT(living_mob, TRAIT_RESISTHEAT))
+=======
+	else if(living_mob.bodytemperature > max_body_temp)
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 		living_mob.adjust_fire_loss(heat_damage * seconds_per_tick, forced = TRUE)
 		switch(heat_damage)
 			if(10 to INFINITY)

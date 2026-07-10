@@ -12,7 +12,6 @@
 	plane = AREA_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
-	tacmap_color = null
 
 	/// List of all turfs currently inside this area as nested lists indexed by zlevel.
 	/// Acts as a filtered version of area.contents For faster lookup
@@ -137,9 +136,6 @@
 
 	/// Are shuttles allowed to dock in this area
 	var/allow_shuttle_docking = FALSE
-
-	/// If TRUE, then this area will be skipped entirely by minimap rendering.
-	var/skip_minimap_rendering = FALSE
 
 /**
  * A list of teleport locations

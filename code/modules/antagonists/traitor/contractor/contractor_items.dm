@@ -4,6 +4,7 @@
 	icon_state = "pinpointer_syndicate"
 	worn_icon_state = "pinpointer_black"
 	minimum_range = 25
+	has_owner = TRUE
 	ignore_suit_sensor_level = TRUE
 
 /obj/item/paper/contractor_guide

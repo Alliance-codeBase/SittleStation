@@ -1,7 +1,11 @@
 /proc/create_portal_pair(turf/source, turf/destination, _lifespan = 300, accuracy = 0, newtype = /obj/effect/portal)
 	if(!istype(source) || !istype(destination))
 		return
+<<<<<<< HEAD
 	var/turf/actual_destination = get_valid_teleport_turf(source, destination, accuracy)
+=======
+	var/turf/actual_destination = get_teleport_turf(destination, accuracy)
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 	var/obj/effect/portal/P1 = new newtype(source, _lifespan, null, FALSE, null)
 	var/obj/effect/portal/P2 = new newtype(actual_destination, _lifespan, P1, TRUE, null)
 	if(!istype(P1) || !istype(P2))

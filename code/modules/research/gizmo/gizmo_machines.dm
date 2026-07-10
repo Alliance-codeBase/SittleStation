@@ -6,7 +6,6 @@
 	icon = 'icons/obj/science/gizmos.dmi'
 
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	obj_flags = parent_type::obj_flags | UNIQUE_RENAME
 
 	panel_open = TRUE
 	density = TRUE
@@ -17,10 +16,10 @@
 	/// Reference to the gizmo. We dont actually need to track this for anything but ease of vv
 	var/datum/gizmo_controller/controller = /datum/gizmo_controller
 	/// Possible names to pick from to keep things confusing
-	var/static/list/possible_names = list(
+	var/list/possible_names = list(
 		"gizmo", "jigger", "doohickey", "particle inverter", "polarity superplexer", "flitcher poster", "natty gonk", "quantum quantum",
 		"entropy nilum", "tachyon streamer", "doing device", "task operator", "interface responder", "kinetic observer", "turbo encabulator",
-		"statistic responder", "possibility matrix", "toety aaier", "phase anchor", "thingamajing",
+		"statistic responder", "possibility matrix", "toety aaier", "phase anchor",
 	)
 
 /obj/machinery/gizmo/Initialize(mapload)
@@ -97,7 +96,7 @@
 /obj/machinery/gizmo/toggle
 	controller = /datum/gizmo_controller/toggle
 
-	icon_states = list("gizmo_active_0", "gizmo_active_1", "gizmo_active_2", "gizmo_active_3", "gizmo_active_4")
+	icon_states = list("gizmo_active_0", "gizmo_active_1", "gizmo_active_2", "gizmo_active_3", "gizmo_active_4", "gizmo_active_5")
 
 	var/on_state = FALSE
 
@@ -121,15 +120,13 @@
 	SIGNAL_HANDLER
 
 	on_state = TRUE
-	update_appearance(UPDATE_ICON)
-	visible_message(span_smallnoticeital("[src] hums to life."))
+	update_icon()
 
 /obj/machinery/gizmo/toggle/proc/off_state(datum/source)
 	SIGNAL_HANDLER
 
 	on_state = FALSE
-	update_appearance(UPDATE_ICON)
-	visible_message(span_smallnoticeital("[src] powers down."))
+	update_icon()
 
 /// A gizmo with a voice activated interface
 /obj/machinery/gizmo/voice

@@ -9,7 +9,6 @@
 	ambience_index = AMBIENCE_RUINS
 	flags_1 = CAN_BE_DIRTY_1
 	sound_environment = SOUND_ENVIRONMENT_STONEROOM
-	skip_minimap_rendering = TRUE
 
 /area/ruin/unpowered
 	always_unpowered = TRUE

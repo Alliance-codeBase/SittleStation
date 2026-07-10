@@ -7172,12 +7172,6 @@
 	},
 /turf/open/floor/iron/dark/textured_large,
 /area/station/command/heads_quarters/rd)
-"bdi" = (
-/obj/structure/table/reinforced/rglass,
-/obj/item/paperwork/cargo,
-/obj/machinery/fax/heads/qm,
-/turf/open/floor/carpet,
-/area/station/command/heads_quarters/qm)
 "bdk" = (
 /obj/structure/frame/machine,
 /turf/open/floor/plating,
@@ -15561,6 +15555,14 @@
 	},
 /turf/open/floor/wood/large,
 /area/station/service/library/printer)
+"cqG" = (
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax{
+	fax_name = "Research Director's Office";
+	name = "Research Director's Fax Machine"
+	},
+/turf/open/floor/carpet/purple,
+/area/station/command/heads_quarters/rd)
 "cqH" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
@@ -18048,7 +18050,7 @@
 /area/station/engineering/storage)
 "cII" = (
 /obj/effect/turf_decal/bot,
-/mob/living/basic/bot/mulebot{
+/mob/living/simple_animal/bot/mulebot{
 	home_destination = "QM #2";
 	suffix = "#2"
 	},
@@ -19862,6 +19864,15 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/engineering/atmos)
+"cXo" = (
+/obj/machinery/fax{
+	fax_name = "Chief Engineer's Office";
+	name = "Chief Engineer's Fax Machine"
+	},
+/obj/item/disk/computer/engineering,
+/obj/structure/table/reinforced/rglass,
+/turf/open/floor/carpet/orange,
+/area/station/command/heads_quarters/ce)
 "cXs" = (
 /obj/effect/turf_decal/weather/sand{
 	dir = 9
@@ -22726,6 +22737,19 @@
 	},
 /turf/open/floor/carpet/neon/simple/red/nodots,
 /area/station/commons/fitness/recreation/lasertag)
+"dsn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/table/wood,
+/obj/machinery/fax{
+	fax_name = "Detective's Office";
+	name = "Detective's Fax Machine"
+	},
+/obj/structure/detectiveboard/directional/north,
+/turf/open/floor/wood/large,
+/area/station/security/detectives_office)
 "dsq" = (
 /obj/machinery/power/emitter,
 /obj/effect/turf_decal/bot{
@@ -49576,7 +49600,7 @@
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
 "hnZ" = (
-/obj/effect/spawner/holiday/bar_keg,
+/obj/structure/reagent_dispensers/beerkeg,
 /obj/item/reagent_containers/cup/glass/bottle/beer{
 	pixel_y = -3;
 	pixel_x = 9
@@ -49733,7 +49757,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/effect/spawner/random/food_or_drink/keg,
+/obj/structure/reagent_dispensers/beerkeg,
 /turf/open/misc/asteroid/airless,
 /area/space/nearstation)
 "hps" = (
@@ -50095,6 +50119,13 @@
 /obj/structure/cable,
 /turf/open/floor/iron/dark/textured,
 /area/station/security/prison/garden)
+"hrX" = (
+/obj/vehicle/sealed/car/vim,
+/obj/effect/turf_decal/bot_white,
+/obj/effect/decal/cleanable/confetti,
+/obj/structure/marker_beacon/yellow,
+/turf/open/floor/engine/hull/reinforced,
+/area/space/nearstation)
 "hrZ" = (
 /obj/effect/spawner/random/vending/snackvend,
 /turf/open/floor/glass/reinforced,
@@ -53984,6 +54015,13 @@
 	},
 /turf/open/floor/engine,
 /area/station/engineering/supermatter/room)
+"hVv" = (
+/obj/machinery/newscaster/directional/south,
+/obj/effect/turf_decal/bot_white/right,
+/obj/effect/turf_decal/tile/dark_blue/half/contrasted,
+/obj/structure/closet/crate/goldcrate,
+/turf/open/floor/iron/dark,
+/area/station/command/vault)
 "hVw" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -63475,16 +63513,6 @@
 	dir = 8
 	},
 /area/station/security/execution/education)
-"jsl" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood,
-/obj/structure/table/wood,
-/obj/structure/detectiveboard/directional/north,
-/obj/machinery/fax/heads/hos,
-/turf/open/floor/wood/large,
-/area/station/security/detectives_office)
 "jsm" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 8;
@@ -67520,6 +67548,17 @@
 /obj/structure/sign/poster/random/directional/east,
 /turf/open/floor/iron/dark,
 /area/station/science/cytology)
+"jWh" = (
+/obj/structure/table/reinforced/rglass,
+/obj/item/folder/blue,
+/obj/item/clothing/neck/stethoscope,
+/obj/item/clothing/glasses/hud/health,
+/obj/machinery/fax{
+	fax_name = "Chief Medical Officer's Office";
+	name = "Chief Medical Officer's Fax Machine"
+	},
+/turf/open/floor/carpet/blue,
+/area/station/command/heads_quarters/cmo)
 "jWn" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "queue_hop";
@@ -68721,6 +68760,14 @@
 	},
 /turf/open/floor/iron/dark,
 /area/station/hallway/secondary/service)
+"kfr" = (
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax{
+	fax_name = "Captain's Office";
+	name = "Captain's Fax Machine"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/station/command/heads_quarters/captain)
 "kfu" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
@@ -74211,6 +74258,14 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/station/engineering/break_room)
+"kRR" = (
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax{
+	fax_name = "Head of Personnel's Office";
+	name = "Head of Personnel's Fax Machine"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/station/command/heads_quarters/hop)
 "kSl" = (
 /obj/structure/chair/stool/bar/directional/north,
 /obj/effect/turf_decal/siding/dark,
@@ -75268,7 +75323,7 @@
 /area/station/engineering/supermatter/room)
 "lcm" = (
 /obj/effect/turf_decal/bot,
-/mob/living/basic/bot/mulebot{
+/mob/living/simple_animal/bot/mulebot{
 	home_destination = "QM #2";
 	suffix = "#2"
 	},
@@ -90639,7 +90694,7 @@
 /area/station/hallway/primary/fore)
 "nvZ" = (
 /obj/effect/turf_decal/bot,
-/mob/living/basic/bot/mulebot{
+/mob/living/simple_animal/bot/mulebot{
 	home_destination = "QM #2";
 	suffix = "#2"
 	},
@@ -96337,13 +96392,6 @@
 	dir = 8
 	},
 /area/station/medical/surgery/theatre)
-"oma" = (
-/obj/vehicle/sealed/mecha/vim,
-/obj/effect/turf_decal/bot_white,
-/obj/effect/decal/cleanable/confetti,
-/obj/structure/marker_beacon/yellow,
-/turf/open/floor/engine/hull/reinforced,
-/area/space/nearstation)
 "omd" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 1
@@ -97409,11 +97457,6 @@
 	dir = 4
 	},
 /area/station/security/brig/lower)
-"oui" = (
-/obj/structure/table/reinforced/rglass,
-/obj/machinery/fax/heads/captain,
-/turf/open/floor/carpet/royalblue,
-/area/station/command/heads_quarters/captain)
 "ouj" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
@@ -108908,12 +108951,6 @@
 	},
 /turf/open/floor/carpet/neon/simple/red/nodots,
 /area/station/commons/fitness/recreation/lasertag)
-"pZS" = (
-/obj/item/disk/computer/engineering,
-/obj/structure/table/reinforced/rglass,
-/obj/machinery/fax/heads/ce,
-/turf/open/floor/carpet/orange,
-/area/station/command/heads_quarters/ce)
 "qab" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -111326,6 +111363,15 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/wood/large,
 /area/station/command/heads_quarters/hop)
+"quR" = (
+/obj/structure/table/reinforced/rglass,
+/obj/machinery/fax{
+	fax_name = "Quartermaster's Office";
+	name = "Quartermaster's Fax Machine"
+	},
+/obj/item/paperwork/cargo,
+/turf/open/floor/carpet,
+/area/station/command/heads_quarters/qm)
 "quT" = (
 /obj/structure/flora/grass/brown/style_random,
 /obj/structure/flora/bush/snow/style_2,
@@ -126568,11 +126614,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/engine/hull/reinforced,
 /area/space/nearstation)
-"sIf" = (
-/obj/structure/table/reinforced/rglass,
-/obj/machinery/fax/heads/hop,
-/turf/open/floor/carpet/royalblue,
-/area/station/command/heads_quarters/hop)
 "sIh" = (
 /obj/effect/spawner/random/decoration/showcase,
 /obj/structure/window/reinforced/spawner/directional/west,
@@ -135833,6 +135874,11 @@
 	dir = 1
 	},
 /area/station/command)
+"tYE" = (
+/obj/structure/cable,
+/obj/structure/lattice/catwalk,
+/turf/open/space/openspace,
+/area/station/maintenance/solars/port/fore)
 "tYH" = (
 /obj/effect/spawner/random/vending/colavend,
 /obj/structure/window/spawner/directional/north,
@@ -143966,7 +144012,7 @@
 /turf/open/floor/engine/hull/reinforced,
 /area/space/nearstation)
 "vjZ" = (
-/obj/effect/spawner/random/food_or_drink/keg,
+/obj/structure/reagent_dispensers/beerkeg,
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/station/maintenance/port/fore)
@@ -146219,14 +146265,6 @@
 	},
 /turf/open/floor/plastic,
 /area/station/commons/dorms/laundry)
-"vAN" = (
-/obj/structure/table/reinforced/rglass,
-/obj/item/folder/blue,
-/obj/item/clothing/neck/stethoscope,
-/obj/item/clothing/glasses/hud/health,
-/obj/machinery/fax/heads/cmo,
-/turf/open/floor/carpet/blue,
-/area/station/command/heads_quarters/cmo)
 "vAQ" = (
 /obj/effect/turf_decal/tile/dark_blue/half/contrasted{
 	dir = 4
@@ -151263,13 +151301,6 @@
 /obj/machinery/light/small/red/directional/west,
 /turf/open/floor/plating,
 /area/station/maintenance/port/central)
-"wpA" = (
-/obj/machinery/newscaster/directional/south,
-/obj/effect/turf_decal/bot_white/right,
-/obj/effect/turf_decal/tile/dark_blue/half/contrasted,
-/obj/structure/closet/crate/goldcrate/stocked,
-/turf/open/floor/iron/dark,
-/area/station/command/vault)
 "wpH" = (
 /obj/effect/turf_decal/trimline/brown/filled/warning,
 /obj/effect/turf_decal/siding/dark{
@@ -159526,11 +159557,6 @@
 	},
 /turf/open/floor/plating,
 /area/station/maintenance/department/medical)
-"xEq" = (
-/obj/structure/table/reinforced/rglass,
-/obj/machinery/fax/heads/rd,
-/turf/open/floor/carpet/purple,
-/area/station/command/heads_quarters/rd)
 "xED" = (
 /obj/machinery/atmospherics/pipe/smart/simple/dark/visible{
 	dir = 4
@@ -192442,7 +192468,7 @@ gym
 gkr
 fGC
 fGC
-vAN
+jWh
 oYA
 eof
 vGS
@@ -196784,7 +196810,7 @@ gym
 fDY
 nnP
 nnP
-bdi
+quR
 lNi
 oZM
 cjE
@@ -198697,7 +198723,7 @@ lnO
 mkr
 diw
 aHQ
-pZS
+cXo
 wqt
 wqt
 ykP
@@ -202724,7 +202750,7 @@ gym
 gym
 dCk
 xFP
-xEq
+cqG
 jNP
 eNJ
 aPZ
@@ -209193,7 +209219,7 @@ gym
 gJT
 sIZ
 sIZ
-oui
+kfr
 wMq
 fdp
 stu
@@ -213288,7 +213314,7 @@ gwv
 gwv
 bNF
 wmK
-wpA
+hVv
 gwv
 gwv
 mqK
@@ -250517,7 +250543,7 @@ bsn
 bsn
 bsn
 cGq
-bsn
+tYE
 bsn
 bsn
 bsn
@@ -273204,7 +273230,7 @@ dVp
 dVp
 dVp
 fsP
-jsl
+dsn
 puC
 hcI
 jRm
@@ -275232,7 +275258,7 @@ gkg
 kan
 awX
 ukF
-oma
+hrX
 kED
 lrh
 jVn
@@ -276260,7 +276286,7 @@ xKy
 fsc
 oHf
 oHf
-sIf
+kRR
 blf
 exz
 aOs

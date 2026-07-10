@@ -234,7 +234,11 @@
 	if (!can_teleport_notifies(user))
 		return
 
+<<<<<<< HEAD
 	var/list/obj/effect/portal/created = create_portal_pair(get_turf(user), get_turf(teleport_target), 300, 1, null)
+=======
+	var/list/obj/effect/portal/created = create_portal_pair(get_turf(user), get_teleport_turf(get_turf(teleport_target)), 300, 1, null)
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 	if(LAZYLEN(created) != 2)
 		return
 

@@ -540,16 +540,11 @@
 /obj/item/mod/module/stealth/wraith/unstealth(datum/source)
 	if(!stealth_active)
 		return
-	to_chat(mod.wearer, span_warning("[src] gets discharged from contact!"))
-	do_sparks(2, TRUE, src)
-	drain_power(use_energy_cost)
-	// Don't deactivate() directly as the module may not be active in the first place when stealthing
-	on_deactivation()
-	if(!mod.active)
-		return
-	COOLDOWN_START(src, recloak_timer, 20 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(start_stealth)), 20 SECONDS)
-	stealth_active = FALSE
+	. = ..()
+	if(mod.active)
+		COOLDOWN_START(src, recloak_timer, 20 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(start_stealth)), 20 SECONDS)
+		stealth_active = FALSE
 
 /obj/item/mod/module/stealth/wraith/examine_more(mob/user)
 	. = ..()

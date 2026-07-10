@@ -6,9 +6,6 @@ on:
       maps:
         required: true
         type: string
-      map_config:
-        required: true
-        type: string
       max_required_byond_client:
         required: true
         type: string
@@ -24,5 +21,4 @@ jobs:
 
     with:
       map: ${{ matrix.map }}
-      map_config: ${{ inputs.map_config }}
       max_required_byond_client: ${{ inputs.max_required_byond_client }}

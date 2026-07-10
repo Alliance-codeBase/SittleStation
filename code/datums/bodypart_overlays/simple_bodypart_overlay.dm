@@ -14,7 +14,7 @@
 /datum/bodypart_overlay/simple/color_image(image/overlay, obj/item/bodypart/limb, layer_index)
 	overlay.color = draw_color
 
-/datum/bodypart_overlay/simple/icon_render_key(obj/item/bodypart/limb)
+/datum/bodypart_overlay/simple/generate_icon_cache(obj/item/bodypart/limb)
 	. = ..()
 	. += icon_state
 
@@ -23,17 +23,24 @@
 	icon_state = "sixpack"
 	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
 	draw_on_husks = HUSK_OVERLAY_GRAYSCALE
-	offset_location = ENTIRE_BODY
 
 ///bags drawn beneath the eyes
 /datum/bodypart_overlay/simple/bags
 	icon_state = "bags"
 	draw_color = COLOR_WEBSAFE_DARK_GRAY
+<<<<<<< HEAD
 	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
 	offset_location = UPPER_BODY
+=======
+	layers = EXTERNAL_ADJACENT
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 
 ///PENDING eyes drawn on the face
 /datum/bodypart_overlay/simple/soul_pending_eyes
 	icon_state = "soul_pending_eyes"
+<<<<<<< HEAD
 	layers = list(EXTERNAL_FRONT = BODY_FRONT_LAYER)
 	offset_location = UPPER_BODY
+=======
+	layers = EXTERNAL_FRONT
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)

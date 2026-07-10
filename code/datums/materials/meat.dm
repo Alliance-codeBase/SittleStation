@@ -72,8 +72,7 @@
 		initial_reagents = list(/datum/reagent/consumable/nutriment/protein = protein_count, /datum/reagent/consumable/nutriment/fat = fat_count), \
 		foodtypes = RAW | MEAT, \
 		eat_time = 3 SECONDS, \
-		tastes = list("meat" = 1),\
-		handmade_complexity = /obj/item/food/meat/steak::crafting_complexity)
+		tastes = list("meat" = 1))
 
 	source.AddComponent(
 		/datum/component/bloody_spreader,\

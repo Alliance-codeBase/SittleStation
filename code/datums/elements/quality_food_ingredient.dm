@@ -72,6 +72,6 @@
 	RegisterSignal(target, COMSIG_FOOD_GET_EXTRA_COMPLEXITY, PROC_REF(add_complexity), TRUE)
 	ADD_TRAIT(target, TRAIT_QUALITY_FOOD_INGREDIENT, REF(src))
 
-/datum/element/quality_food_ingredient/proc/add_complexity(datum/source, list/complexity)
+/datum/element/quality_food_ingredient/proc/add_complexity(datum/source, list/extra_complexity)
 	SIGNAL_HANDLER
-	complexity[1] += complexity_increase
+	extra_complexity[1] += complexity_increase

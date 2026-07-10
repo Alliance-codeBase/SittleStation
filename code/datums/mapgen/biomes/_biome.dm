@@ -165,16 +165,12 @@
 
 		var/picked_mob = pick(fauna_types)
 		var/is_megafauna = FALSE
-		var/is_tendril = FALSE
-
 		if (picked_mob == SPAWN_MEGAFAUNA)
 			picked_mob = pick_weight(megafauna_types)
 			is_megafauna = TRUE
-		else
-			is_tendril = ispath(picked_mob, /mob/living/basic/mining/tendril)
 
 		var/can_spawn = TRUE
-		if(is_tendril)
+		if(ispath(picked_mob, /mob/living/basic/mining/tendril))
 			for(var/turf/spawn_turf as anything in spawn_data[CAVE_SPAWN_TENDRIL])
 				if (get_dist(spawn_turf, target_turf) <= tendril_exclusion_radius)
 					can_spawn = FALSE
@@ -204,17 +200,13 @@
 		if (!can_spawn)
 			continue
 
-		if (is_tendril)
+		if (ispath(picked_mob, /mob/living/basic/mining/tendril))
 			spawn_data[CAVE_SPAWN_TENDRIL] += target_turf
 		else if (is_megafauna)
 			spawn_data[CAVE_SPAWN_MEGAFAUNA] += target_turf
 		spawn_data[CAVE_SPAWN_MOB] += target_turf
 
-		var/mob/living/created = new picked_mob(target_turf)
-
-		if (!is_tendril && !is_megafauna)
-			var/obj/effect/mining_mob_respawner/respawner = new(target_turf)
-			respawner.setup(fauna_types, created)
+		new picked_mob(target_turf)
 
 		// There can be only one Bubblegum, so don't waste spawns on it
 		if(ispath(picked_mob, /mob/living/simple_animal/hostile/megafauna/bubblegum))

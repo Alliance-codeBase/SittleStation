@@ -33,10 +33,6 @@ const testHubStorage = testGeneric(
   () => window.hubStorage && !!window.hubStorage.getItem,
 );
 
-const STORAGE_CDN_TIMEOUT = 5000;
-const persistedStorageKeys = ['panel-settings', 'chat-state', 'chat-messages'];
-const legacyHubMigrationKeys = ['panel-settings'];
-
 class HubStorageBackend implements StorageBackend {
   public impl: StorageImplementation;
 
@@ -81,35 +77,20 @@ class IFrameIndexedDbBackend implements StorageBackend {
     iframe.src = Byond.storageCdn;
 
     const completePromise: Promise<boolean> = new Promise((resolve) => {
-      const listener = (message: MessageEvent) => {
-        if (
-          message.source === iframe.contentWindow &&
-          message.data === 'ready'
-        ) {
-          resolveReady(true);
+      fetch(Byond.storageCdn, { method: "HEAD" }).then((response) => {
+        if (response.status !== 200) {
+          resolve(false);
         }
-      };
-      const resolveReady = (ready: boolean) => {
-        clearTimeout(timeout);
-        window.removeEventListener('message', listener);
-        resolve(ready);
-      };
-      const timeout = setTimeout(
-        () => resolveReady(false),
-        STORAGE_CDN_TIMEOUT,
-      );
 
-      fetch(Byond.storageCdn, { method: 'HEAD' })
-        .then((response) => {
-          if (response.status !== 200) {
-            resolveReady(false);
-          }
-        })
-        .catch(() => {
-          resolveReady(false);
-        });
+      }).catch(() => {
+        resolve(false);
+      })
 
-      window.addEventListener('message', listener);
+      window.addEventListener('message', (message) => {
+        if (message.data === "ready") {
+          resolve(true);
+        }
+      })
     });
 
     this.documentElement = document.body.appendChild(iframe);
@@ -124,23 +105,11 @@ class IFrameIndexedDbBackend implements StorageBackend {
 
   async get(key: string): Promise<any> {
     const promise = new Promise((resolve) => {
-      const listener = (message: MessageEvent) => {
-        if (
-          message.source === this.iframeWindow &&
-          message.data.key &&
-          message.data.key === key
-        ) {
-          clearTimeout(timeout);
-          window.removeEventListener('message', listener);
+      window.addEventListener('message', (message) => {
+        if (message.data.key && message.data.key === key) {
           resolve(message.data.value);
         }
-      };
-      const timeout = setTimeout(() => {
-        window.removeEventListener('message', listener);
-        resolve(undefined);
-      }, STORAGE_CDN_TIMEOUT);
-
-      window.addEventListener('message', listener);
+      });
     });
 
     this.iframeWindow.postMessage({ type: 'get', key: key }, '*');
@@ -174,89 +143,65 @@ class StorageProxy implements StorageBackend {
 
   constructor() {
     this.backendPromise = (async () => {
-      // Prefer the configured iframe storage when available. hubStorage may
-      // already be enabled by another window/server, but the iframe origin is
-      // the server-configured storage boundary.
-      if (Byond.storageCdn) {
-        const iframe = new IFrameIndexedDbBackend();
 
-        if ((await iframe.ready()) === true) {
-          if (await iframe.get('byondstorage-migrated')) return iframe;
+      // If we have not enabled byondstorage yet, we need to check
+      // if we can use the IFrame, or if we need to enable byondstorage
+      if (!testHubStorage()) {
 
-          const iframeHasPersistedStorage = (
-            await Promise.all(
-              persistedStorageKeys.map((setting) => iframe.get(setting)),
-            )
-          ).some((settings) => settings !== undefined);
+        // If we have an IFrame URL we can use, and we haven't already enabled
+        // byondstorage, we should use the IFrame backend
+        if (Byond.storageCdn) {
+          const iframe = new IFrameIndexedDbBackend();
 
-          if (!iframeHasPersistedStorage) {
-            const hubStorageWasEnabled = testHubStorage();
-            if (!hubStorageWasEnabled) {
-              Byond.winset(null, 'browser-options', '+byondstorage');
+          if ((await iframe.ready()) === true) {
+            if (await iframe.get('byondstorage-migrated')) return iframe;
 
-              await new Promise<void>((resolve) => {
-                document.addEventListener(
-                  'byondstorageupdated',
-                  () => {
-                    // This event is emitted *before* byondstorage is actually
-                    // created, so we have to wait a little bit before using it.
-                    setTimeout(resolve, 1);
-                  },
-                  { once: true },
-                );
-              });
-            }
+            Byond.winset(null, 'browser-options', '+byondstorage');
 
-            const hub = new HubStorageBackend();
+            await new Promise<void>((resolve) => {
+              document.addEventListener('byondstorageupdated', async () => {
+                setTimeout(() => {
+                  const hub = new HubStorageBackend();
 
-            // Migrate safe legacy settings from byondstorage to the IFrame.
-            // Chat history may contain server-specific HTML/components from
-            // other codebases that shared the old byondstorage namespace.
-            await Promise.all(
-              legacyHubMigrationKeys.map(async (setting) => {
-                try {
-                  const settings = await hub.get(setting);
-                  if (settings !== undefined) {
-                    await iframe.set(setting, settings);
+                  // Migrate these existing settings from byondstorage to the IFrame
+                  for (const setting of ['panel-settings', 'chat-state', 'chat-messages']) {
+                    hub
+                      .get(setting)
+                      .then((settings) => iframe.set(setting, settings));
                   }
-                } catch {
-                  // Ignore unreadable legacy storage entries. A bad old cache
-                  // key should not keep the client on byondstorage.
-                }
-              }),
-            );
 
-            if (!hubStorageWasEnabled) {
-              Byond.winset(null, 'browser-options', '-byondstorage');
-            }
+                  iframe.set('byondstorage-migrated', true);
+                  Byond.winset(null, 'browser-options', '-byondstorage');
+
+                  resolve();
+                }, 1);
+              });
+            });
+
+            return iframe;
           }
 
-          await iframe.set('byondstorage-migrated', true);
-
-          return iframe;
-        }
-
-        iframe.destroy();
-      }
-
-      if (testHubStorage()) {
-        return new HubStorageBackend();
-      }
-
-      // IFrame hasn't worked out for us, we'll need to enable byondstorage
-      Byond.winset(null, 'browser-options', '+byondstorage');
-
-      return new Promise((resolve) => {
-        const listener = () => {
-          document.removeEventListener('byondstorageupdated', listener);
-
-          // This event is emitted *before* byondstorage is actually created
-          // so we have to wait a little bit before we can use it
-          setTimeout(() => resolve(new HubStorageBackend()), 1);
+          iframe.destroy();
         };
 
-        document.addEventListener('byondstorageupdated', listener);
-      });
+        // IFrame hasn't worked out for us, we'll need to enable byondstorage
+        Byond.winset(null, 'browser-options', '+byondstorage');
+
+        return new Promise((resolve) => {
+          const listener = () => {
+            document.removeEventListener('byondstorageupdated', listener);
+
+            // This event is emitted *before* byondstorage is actually created
+            // so we have to wait a little bit before we can use it
+            setTimeout(() => resolve(new HubStorageBackend()), 1);
+          };
+
+          document.addEventListener('byondstorageupdated', listener);
+        });
+      }
+
+      // byondstorage is already enabled, we can use it straight away
+      return new HubStorageBackend();
     })();
   }
 

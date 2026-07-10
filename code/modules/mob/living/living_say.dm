@@ -367,12 +367,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message = deaf_message
 
 		var/show_message_success = show_message(message, MSG_VISUAL, deaf_message, deaf_type, avoid_highlight)
-		if(show_message_success && understood)
-			return HEAR_HEARD | HEAR_UNDERSTOOD
-		else if (show_message_success && !understood)
-			return HEAR_HEARD
-		else
-			return FALSE
+		return understood && show_message_success
 
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be separate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
@@ -393,9 +388,9 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	message = compose_message(speaker, message_language, raw_message, radio_freq, radio_freq_name, radio_freq_color, spans, message_mods)
 	var/show_message_success = show_message(message, MSG_AUDIBLE, deaf_message, deaf_type, avoid_highlight)
 	if(show_message_success && understood)
-		return HEAR_HEARD | HEAR_UNDERSTOOD
+		return TRUE
 	else if (show_message_success && !understood)
-		return HEAR_HEARD
+		return HEARD_BUT_DIDNT_UNDERSTAND
 	else
 		return FALSE
 
@@ -435,6 +430,14 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			listening |= player_mob
 
 	var/tts_message_to_use = tts_message || message_raw
+	var/list/filter = list()
+	var/list/special_filter = list()
+	if(SStts.tts_enabled && voice && !message_mods[MODE_CUSTOM_SAY_ERASE_INPUT] && !HAS_TRAIT(src, TRAIT_SIGN_LANG) && !HAS_TRAIT(src, TRAIT_UNKNOWN_VOICE))
+		if(length(voice_filter) > 0)
+			filter += voice_filter
+
+		if(length(tts_filter) > 0)
+			filter += tts_filter.Join(",")
 
 	// this signal ignores whispers or language translations (only used by beetlejuice component)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message_raw)
@@ -444,7 +447,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			stack_trace("somehow theres a null returned from get_hearers_in_view() in send_speech!")
 			continue
 
-		if(listening_movable.Hear(src, message_language, message_raw, null, null, null, spans, message_mods, message_range) & HEAR_HEARD)
+		if(listening_movable.Hear(src, message_language, message_raw, null, null, null, spans, message_mods, message_range))
 			listened += listening_movable
 
 	//speech bubble
@@ -454,7 +457,9 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		if(M.client)
 			if(!M.client.prefs.read_preference(/datum/preference/toggle/enable_runechat) || (SSlag_switch.measures[DISABLE_RUNECHAT] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES)))
 				speech_bubble_recipients.Add(M.client)
-	do_tts_message(tts_message_to_use, message_language, message_mods, tts_filter, listened)
+	if(SStts.tts_enabled && voice && !message_mods[MODE_CUSTOM_SAY_ERASE_INPUT] && !HAS_TRAIT(src, TRAIT_SIGN_LANG) && !HAS_TRAIT(src, TRAIT_UNKNOWN_VOICE))
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, get_tts_voice(filter, special_filter), filter.Join(","), listened, message_range = message_range, pitch = pitch, special_filters = special_filter.Join("|"), blip_base = blip_base, blip_number = blip_number, identifier = message_mods[MODE_TTS_IDENTIFIER])
+
 	var/image/say_popup = image('icons/mob/effects/talk.dmi', src, "[bubble_type][talk_icon_state]", FLY_LAYER)
 	SET_PLANE_EXPLICIT(say_popup, ABOVE_GAME_PLANE, src)
 	say_popup.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
@@ -462,7 +467,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	LAZYADD(update_on_z, say_popup)
 	addtimer(CALLBACK(src, PROC_REF(clear_saypopup), say_popup), 3.5 SECONDS)
 
-/mob/living/get_tts_voice(list/filter, list/special_filter)
+/mob/living/proc/get_tts_voice(list/filter, list/special_filter)
 	. = voice
 	var/obj/item/clothing/mask/mask = get_item_by_slot(ITEM_SLOT_MASK)
 	if(!istype(mask) || mask.up)

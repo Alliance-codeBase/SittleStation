@@ -13,10 +13,9 @@
  */
 
 /datum/weather
-	abstract_type = /datum/weather
-	/// Name of weather
+	/// name of weather
 	var/name = "space wind"
-	/// Description of weather
+	/// description of weather
 	var/desc = "Heavy gusts of wind blanket the area, periodically knocking down anyone caught in the open."
 	/// The message displayed in chat to foreshadow the weather's beginning
 	var/telegraph_message = span_warning("The wind begins to pick up.")
@@ -43,8 +42,6 @@
 	var/weather_overlay
 	/// Color to apply to the area while weather is occuring
 	var/weather_color = null
-	/// Alpha of the weather overlay
-	var/weather_alpha = 255
 
 	/// Displayed once the weather is over
 	var/end_message = span_danger("The wind relents its assault.")
@@ -76,9 +73,8 @@
 
 	/// Since it's above everything else, this is the layer used by default.
 	var/overlay_layer = AREA_LAYER
-	/// Planes for the overlay
-	/// Base visuals should always render to both particle and non-particle planes as to work regardless of the toggle
-	var/list/overlay_planes = list(WEATHER_PLANE, PARTICLE_WEATHER_PLANE)
+	/// Plane for the overlay
+	var/overlay_plane = WEATHER_PLANE
 	/// Used by mobs (or movables containing mobs, such as enviro bags) to prevent them from being affected by the weather.
 	var/immunity_type
 	/// If this bit of weather should also draw an overlay that's uneffected by lighting onto the area
@@ -329,7 +325,7 @@
  */
 /datum/weather/proc/start()
 	if(stage >= MAIN_STAGE)
-		return FALSE
+		return
 	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_START(type), src)
 	stage = MAIN_STAGE
 	update_areas()
@@ -338,7 +334,6 @@
 		addtimer(CALLBACK(src, PROC_REF(wind_down)), weather_duration, TIMER_UNIQUE)
 	for(var/area/impacted_area as anything in impacted_areas)
 		SEND_SIGNAL(impacted_area, COMSIG_WEATHER_BEGAN_IN_AREA(type), src)
-	return TRUE
 
 /**
  * Weather enters the winding down phase, stops effects
@@ -349,13 +344,12 @@
  */
 /datum/weather/proc/wind_down()
 	if(stage >= WIND_DOWN_STAGE)
-		return FALSE
+		return
 	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_WINDDOWN(type), src)
 	stage = WIND_DOWN_STAGE
 	update_areas()
 	send_alert(end_message, end_sound, end_sound_vol)
 	addtimer(CALLBACK(src, PROC_REF(end)), end_duration, TIMER_UNIQUE)
-	return TRUE
 
 /**
  * Fully ends the weather
@@ -366,7 +360,7 @@
  */
 /datum/weather/proc/end()
 	if(stage == END_STAGE)
-		return FALSE
+		return
 	SEND_GLOBAL_SIGNAL(COMSIG_WEATHER_END(type), src)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_CREATED)
 	stage = END_STAGE
@@ -378,7 +372,6 @@
 	if(target_trait)
 		for(var/mob/living/affected as anything in GLOB.mob_living_list | GLOB.dead_mob_list)
 			UnregisterSignal(affected, COMSIG_MOB_LOGIN)
-	return TRUE
 
 // handles sending all alerts
 /datum/weather/proc/send_alert(alert_msg, alert_sfx, alert_sfx_vol = 100)
@@ -582,16 +575,13 @@
 		// I prefer it to creating 2 extra plane masters however, so it's a cost I'm willing to pay
 		// LU
 		if(use_glow)
-			var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, WEATHER_GLOW_PLANE, 100 / 255 * weather_alpha, offset_const = offset)
+			var/mutable_appearance/glow_overlay = mutable_appearance('icons/effects/glow_weather.dmi', weather_state, overlay_layer, null, WEATHER_GLOW_PLANE, 100, offset_const = offset)
 			glow_overlay.color = weather_color
 			gen_overlay_cache += glow_overlay
 
-		// By default we render ourselves to both particle and non-particle weather, as those are mutually exclusive
-		// So that particle weather can have full alpha overlays when the pref is disabled, but partially transparent overlays when its enabled
-		for (var/overlay_plane in overlay_planes)
-			var/mutable_appearance/new_weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, alpha = weather_alpha, offset_const = offset)
-			new_weather_overlay.color = weather_color
-			gen_overlay_cache += new_weather_overlay
+		var/mutable_appearance/new_weather_overlay = mutable_appearance('icons/effects/weather_effects.dmi', weather_state, overlay_layer, plane = overlay_plane, offset_const = offset)
+		new_weather_overlay.color = weather_color
+		gen_overlay_cache += new_weather_overlay
 
 	return gen_overlay_cache
 

@@ -18,7 +18,6 @@
 
 	icon = 'icons/obj/fence.dmi'
 	icon_state = "straight"
-	tacmap_color = TACMAP_FENCE
 
 	var/cuttable = TRUE
 	var/hole_size= NO_HOLE

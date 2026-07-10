@@ -1,6 +1,5 @@
 /datum/map_template/shuttle/hunter
 	port_id = "hunter"
-	prefix = "_maps/shuttles/hunter/"
 	who_can_purchase = null
 
 /datum/map_template/shuttle/hunter/space_cop

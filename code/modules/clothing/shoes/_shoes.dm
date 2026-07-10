@@ -30,6 +30,7 @@
 	var/datum/weakref/our_alert_ref
 	var/footprint_sprite = FOOTPRINT_SPRITE_SHOES
 
+<<<<<<< HEAD
 /obj/item/clothing/shoes/Initialize(mapload)
 	. = ..()
 	register_context()
@@ -46,6 +47,8 @@
 	balloon_alert(user, "wearing [alternate_worn_layer == UNDER_UNIFORM_LAYER ? "under" : "over"] uniforms")
 	return CLICK_ACTION_SUCCESS
 
+=======
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 /datum/armor/clothing_shoes
 	bio = 50
 
@@ -67,18 +70,18 @@
 			playsound(user, 'sound/items/weapons/genhit2.ogg', 50, TRUE)
 		return BRUTELOSS
 
-/obj/item/clothing/shoes/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
+/obj/item/clothing/shoes/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
 	if(isinhands)
 		return
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedshoe")
 
-/obj/item/clothing/shoes/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file, bodyshape = NONE)
+/obj/item/clothing/shoes/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands = FALSE, icon_file)
 	. = ..()
 	if (isinhands)
 		return
-	var/blood_overlay = get_blood_overlay("shoe", bodyshape)
+	var/blood_overlay = get_blood_overlay("shoe")
 	if (blood_overlay)
 		. += blood_overlay
 

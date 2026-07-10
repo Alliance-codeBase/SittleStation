@@ -147,7 +147,6 @@
 		EXTERNAL_BEHIND = BODY_BEHIND_LAYER,
 	)
 	draw_on_husks = HUSK_OVERLAY_GRAYSCALE
-	offset_location = ENTIRE_BODY
 
 /datum/bodypart_overlay/simple/roach_shell/get_image(obj/item/bodypart/limb, layer_index, layer_real)
 	return image(

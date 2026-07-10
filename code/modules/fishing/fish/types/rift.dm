@@ -722,9 +722,8 @@
 /datum/bodypart_overlay/simple/babbearfish
 	icon_state = "babbearfish"
 	draw_on_husks = HUSK_OVERLAY_NORMAL
-	offset_location = UPPER_BODY
 
-/datum/bodypart_overlay/simple/babbearfish/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner)
+/datum/bodypart_overlay/simple/babbearfish/can_draw_on_bodypart(obj/item/bodypart/bodypart_owner, mob/living/carbon/owner, is_husked = FALSE)
 	return ..() && !(bodypart_owner.owner?.obscured_slots & HIDEEARS)
 
 /obj/item/organ/ears/babbelfish/Initialize(mapload)

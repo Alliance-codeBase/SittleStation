@@ -75,10 +75,10 @@
 	if(activator)
 		activator.holder_movement()
 
-/obj/item/grenade/iedcasing/dropped(mob/user, silent)
+/obj/item/grenade/iedcasing/dropped()
 	. = ..()
 	if(activator)
-		activator.dropped(user, silent)
+		activator.dropped()
 
 /obj/item/grenade/iedcasing/proc/process_activation(obj/item/assembly)
 	detonate()

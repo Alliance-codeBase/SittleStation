@@ -303,7 +303,7 @@
 	message = "laughs."
 	message_mime = "laughs silently!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
-	manual_specific_emote_audio_cooldown = 8 SECONDS
+	specific_emote_audio_cooldown = 8 SECONDS
 	vary = TRUE
 
 /datum/emote/living/laugh/can_run_emote(mob/living/user, status_check = TRUE , intentional, params)
@@ -419,9 +419,7 @@
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	mob_type_blacklist_typecache = list(/mob/living/brain)
 	sound_wall_ignore = TRUE
-	use_sound_tokens = TRUE
-	manual_specific_emote_audio_cooldown = 10 SECONDS
-	forced_specific_emote_audio_cooldown = 4 SECONDS
+	specific_emote_audio_cooldown = 10 SECONDS
 	vary = TRUE
 
 /datum/emote/living/scream/run_emote(mob/user, params, type_override, intentional = FALSE)
@@ -658,7 +656,8 @@
 	if(TIMER_COOLDOWN_FINISHED(user, COOLDOWN_YAWN_PROPAGATION))
 		TIMER_COOLDOWN_START(user, COOLDOWN_YAWN_PROPAGATION, cooldown * 3)
 
-	if(astype(user, /mob/living/carbon)?.obscured_slots & HIDEFACE)
+	var/mob/living/carbon/carbon_user = user
+	if(carbon_user.obscured_slots & HIDEFACE)
 		return // if your face is obscured, skip propagation
 
 	var/propagation_distance = user.client ? 5 : 2 // mindless mobs are less able to spread yawns

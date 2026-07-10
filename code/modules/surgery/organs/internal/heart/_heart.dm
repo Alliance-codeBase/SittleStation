@@ -47,12 +47,19 @@
 
 /obj/item/organ/heart/Remove(mob/living/carbon/heartless, special, movement_flags)
 	. = ..()
+<<<<<<< HEAD
 	if(!special && !QDELETED(src))
 		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 12 SECONDS, TIMER_DELETE_ME)
+=======
+	if(!special)
+		addtimer(CALLBACK(src, PROC_REF(stop_if_unowned)), 12 SECONDS)
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 	beat = BEAT_NONE
 	owner?.stop_sound_channel(CHANNEL_HEARTBEAT)
 
 /obj/item/organ/heart/proc/stop_if_unowned()
+	if(QDELETED(src))
+		return
 	if(IS_ROBOTIC_ORGAN(src))
 		return
 	if(isnull(owner))

@@ -989,7 +989,7 @@
 	add_overlay(object_overlay)
 	hood?.add_overlay(hood_object_overlay)
 
-/obj/item/clothing/suit/hooded/cultrobes/eldritch/rust/worn_overlays(mutable_appearance/standing, isinhands, icon_file, bodyshape = NONE)
+/obj/item/clothing/suit/hooded/cultrobes/eldritch/rust/worn_overlays(mutable_appearance/standing, isinhands)
 	. = ..()
 	// Should basically catch toggling the hood on/off while standing on rust
 	if(rusted)

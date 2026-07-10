@@ -1,6 +1,5 @@
 import type { BooleanLike } from 'tgui-core/react';
 import type { ExperimentData } from '../ExperimentConfigure';
-import type { MaterialMap } from '../Fabrication/Types';
 
 type StoredDesigns = Record<string, 1>;
 
@@ -42,12 +41,9 @@ export type TechwebNode = {
 
 // Unmapped static data
 type StaticData = {
-  design_cache: Record<string, [string, MaterialMap, number, number, string]>;
+  design_cache: Record<string, [string, string]>;
   id_cache: string[];
   node_cache: Record<string, DefaultNode>;
-  build_types: Record<string, string>;
-  department_flags: Record<string, string>;
-  SHEET_MATERIAL_AMOUNT: number;
 };
 
 export type TechWebData = {

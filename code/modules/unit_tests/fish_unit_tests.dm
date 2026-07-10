@@ -155,7 +155,7 @@
 	inheritability = 100
 	reagents_to_add = list(/datum/reagent/fishdummy = FISH_REAGENT_AMOUNT)
 
-/datum/fish_trait/dummy/apply_to_fish(obj/item/fish/fish, initial = TRUE)
+/datum/fish_trait/dummy/apply_to_fish(obj/item/fish/fish)
 	. = ..()
 	ADD_TRAIT(fish, TRAIT_FISH_TESTING, FISH_TRAIT_DATUM)
 

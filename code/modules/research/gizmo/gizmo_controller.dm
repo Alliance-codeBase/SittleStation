@@ -40,7 +40,3 @@
 /// Always horrible agony!
 /datum/gizmo_controller/cursed
 	interfaces = list(GIZMO_INTERFACE_WIRES = /datum/gizmo_interface/cursed)
-
-/// Hard-mode code-crack
-/datum/gizmo_controller/moo
-	interfaces = list(GIZMO_INTERFACE_WIRES = /datum/gizmo_interface/moo)

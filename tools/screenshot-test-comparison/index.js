@@ -1,33 +1,25 @@
-import {
-  copyFileSync,
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  statSync,
-  writeFileSync,
-} from 'node:fs';
-import { join, parse } from 'node:path';
-import { argv, exit } from 'node:process';
-import pixelmatch from 'pixelmatch';
-import { PNG } from 'pngjs';
+const fs = require("fs");
+const path = require("path");
+const pixelmatch = require("pixelmatch");
+const process = require("process");
+const PNG = require("pngjs").PNG;
 
-const artifactsDirectory = argv[2];
+const artifactsDirectory = process.argv[2];
 if (!artifactsDirectory) {
-  console.error('Artifacts directory was not passed in');
-  exit(1);
+  console.error("Artifacts directory was not passed in");
+  process.exit(1);
 }
 
-const screenshotsDirectory = argv[3];
+const screenshotsDirectory = process.argv[3];
 if (!screenshotsDirectory) {
-  console.error('Screenshots directory was not passed in');
-  exit(1);
+  console.error("Screenshots directory was not passed in");
+  process.exit(1);
 }
 
-const outputDirectory = argv[4];
+const outputDirectory = process.argv[4];
 if (!outputDirectory) {
-  console.error('Output directory was not passed in');
-  exit(1);
+  console.error("Output directory was not passed in");
+  process.exit(1);
 }
 
 const knownFailures = new Set();
@@ -35,46 +27,49 @@ const knownFailures = new Set();
 const fail = (screenshotName, newScreenshot, oldScreenshot, diff) => {
   knownFailures.add(screenshotName);
 
-  const outputPath = join(outputDirectory, parse(screenshotName).name);
-  mkdirSync(outputPath, {
+  const outputPath = path.join(
+    outputDirectory,
+    path.parse(screenshotName).name,
+  );
+  fs.mkdirSync(outputPath, {
     recursive: true,
   });
 
-  copyFileSync(newScreenshot, join(outputPath, 'new.png'));
+  fs.copyFileSync(newScreenshot, path.join(outputPath, "new.png"));
 
   if (oldScreenshot) {
-    copyFileSync(oldScreenshot, join(outputPath, 'old.png'));
+    fs.copyFileSync(oldScreenshot, path.join(outputPath, "old.png"));
   }
 
   if (diff) {
-    writeFileSync(join(outputPath, 'diff.png'), PNG.sync.write(diff));
+    fs.writeFileSync(path.join(outputPath, "diff.png"), PNG.sync.write(diff));
   }
 };
 
-for (const filename of readdirSync(artifactsDirectory)) {
-  if (!filename.startsWith('test_artifacts')) {
+for (const filename of fs.readdirSync(artifactsDirectory)) {
+  if (!filename.startsWith("test_artifacts")) {
     continue;
   }
 
-  const fullPath = join(artifactsDirectory, filename, 'screenshots_new');
+  const fullPath = path.join(artifactsDirectory, filename, "screenshots_new");
 
-  const fullPathStat = statSync(fullPath);
+  const fullPathStat = fs.statSync(fullPath);
   if (!fullPathStat.isDirectory()) {
     continue;
   }
 
-  for (const screenshotName of readdirSync(fullPath)) {
+  for (const screenshotName of fs.readdirSync(fullPath)) {
     if (knownFailures.has(screenshotName)) {
       continue;
     }
 
-    const fullPathScreenshotName = join(fullPath, screenshotName);
+    const fullPathScreenshotName = path.join(fullPath, screenshotName);
 
-    const fullPathCompareScreenshot = join(
+    const fullPathCompareScreenshot = path.join(
       screenshotsDirectory,
       screenshotName,
     );
-    if (!existsSync(fullPathCompareScreenshot)) {
+    if (!fs.existsSync(fullPathCompareScreenshot)) {
       console.error(
         `${fullPathCompareScreenshot} is missing an existing screenshot to compare against`,
       );
@@ -82,9 +77,11 @@ for (const filename of readdirSync(artifactsDirectory)) {
       continue;
     }
 
-    const screenshotNew = PNG.sync.read(readFileSync(fullPathScreenshotName));
+    const screenshotNew = PNG.sync.read(
+      fs.readFileSync(fullPathScreenshotName),
+    );
     const screenshotCompare = PNG.sync.read(
-      readFileSync(fullPathCompareScreenshot),
+      fs.readFileSync(fullPathCompareScreenshot),
     );
 
     if (
@@ -125,5 +122,5 @@ for (const filename of readdirSync(artifactsDirectory)) {
 
 if (knownFailures.size > 0) {
   console.error(`${knownFailures.size} screenshots failed`);
-  exit(1);
+  process.exit(1);
 }

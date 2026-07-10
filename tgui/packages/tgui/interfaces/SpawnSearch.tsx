@@ -182,15 +182,11 @@ export function SpawnSearch() {
     if (key === KEY_DOWN) {
       const next = selected >= len ? 0 : selected + 1;
       setSelected(next);
-      document
-        ?.getElementById(next.toString())
-        ?.scrollIntoView({ behavior: 'smooth' });
+      document?.getElementById(next.toString())?.scrollIntoView();
     } else if (key === KEY_UP) {
       const prev = selected <= 0 ? len : selected - 1;
       setSelected(prev);
-      document
-        ?.getElementById(prev.toString())
-        ?.scrollIntoView({ behavior: 'smooth' });
+      document?.getElementById(prev.toString())?.scrollIntoView();
     }
   }
 
@@ -235,7 +231,7 @@ export function SpawnSearch() {
 
     setQuery(newQuery);
     setSelected(0);
-    document!.getElementById('0')?.scrollIntoView({ behavior: 'smooth' });
+    document!.getElementById('0')?.scrollIntoView();
   }
 
   // Grabs the cursor when no search bar is visible.

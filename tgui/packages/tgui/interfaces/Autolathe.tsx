@@ -16,7 +16,8 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { DesignBrowser } from './Fabrication/DesignBrowser';
 import { MaterialCostSequence } from './Fabrication/MaterialCostSequence';
-import type { Design, Material, MaterialMap } from './Fabrication/Types';
+import type { Design, MaterialMap } from './Fabrication/Types';
+import type { Material } from './Fabrication/Types';
 
 type AutolatheDesign = Design & {
   customMaterials: BooleanLike;
@@ -32,7 +33,7 @@ type AutolatheData = {
 };
 
 export const Autolathe = (props) => {
-  const { act, data } = useBackend<AutolatheData>();
+  const { data } = useBackend<AutolatheData>();
   const {
     materialtotal,
     materialsmax,
@@ -83,51 +84,20 @@ export const Autolathe = (props) => {
                             key={material.name}
                             label={capitalize(material.name)}
                           >
-                            <Stack fill>
-                              <Stack.Item grow>
-                                <ProgressBar
-                                  style={{
-                                    transform: 'scaleX(-1) scaleY(1)',
-                                  }}
-                                  value={materialsmax - material.amount}
-                                  maxValue={materialsmax}
-                                  backgroundColor={material.color}
-                                  color="black"
-                                >
-                                  <div style={{ transform: 'scaleX(-1)' }}>
-                                    {material.amount / SHEET_MATERIAL_AMOUNT +
-                                      ' sheets'}
-                                  </div>
-                                </ProgressBar>
-                              </Stack.Item>
-                              <Stack.Item>Eject:</Stack.Item>
-                              {[
-                                1,
-                                5,
-                                Math.floor(
-                                  material.amount / SHEET_MATERIAL_AMOUNT,
-                                ),
-                              ]
-                                .sort()
-                                .map((amt) => (
-                                  <Stack.Item key={amt}>
-                                    <Button
-                                      disabled={
-                                        material.amount <
-                                        SHEET_MATERIAL_AMOUNT * amt
-                                      }
-                                      onClick={() =>
-                                        act('eject', {
-                                          ref: material.ref,
-                                          amount: amt,
-                                        })
-                                      }
-                                    >
-                                      x{amt}
-                                    </Button>
-                                  </Stack.Item>
-                                ))}
-                            </Stack>
+                            <ProgressBar
+                              style={{
+                                transform: 'scaleX(-1) scaleY(1)',
+                              }}
+                              value={materialsmax - material.amount}
+                              maxValue={materialsmax}
+                              backgroundColor={material.color}
+                              color="black"
+                            >
+                              <div style={{ transform: 'scaleX(-1)' }}>
+                                {material.amount / SHEET_MATERIAL_AMOUNT +
+                                  ' sheets'}
+                              </div>
+                            </ProgressBar>
                           </LabeledList.Item>
                         ))}
                       </LabeledList>

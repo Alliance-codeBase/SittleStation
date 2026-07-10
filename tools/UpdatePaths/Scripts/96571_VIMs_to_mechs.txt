@@ -1,1 +1,0 @@
-/obj/vehicle/sealed/car/vim : /obj/vehicle/sealed/mecha/vim{@OLD}

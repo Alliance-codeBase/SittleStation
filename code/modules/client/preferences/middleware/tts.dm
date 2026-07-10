@@ -5,7 +5,7 @@
 
 	action_delegations = list(
 		"play_voice" = PROC_REF(play_voice),
-		"play_voice_robot" = PROC_REF(play_voice_robot),
+		"play_voice_borg" = PROC_REF(play_voice_borg),
 		"play_blips" = PROC_REF(play_blips),
 	)
 
@@ -24,7 +24,7 @@
 	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, "Привет, это мой голос.", speaker = speaker, pitch = pitch, local = TRUE, blip_base = blip_base, blip_number = blip_number)
 	return TRUE
 
-/datum/preference_middleware/tts/proc/play_voice_robot(list/params, mob/user)
+/datum/preference_middleware/tts/proc/play_voice_borg(list/params, mob/user)
 	if(!COOLDOWN_FINISHED(src, tts_test_cooldown))
 		return TRUE
 	var/speaker = preferences.read_preference(/datum/preference/choiced/voice)

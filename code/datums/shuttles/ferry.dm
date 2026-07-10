@@ -1,6 +1,5 @@
 /datum/map_template/shuttle/ferry
 	port_id = "ferry"
-	prefix = "_maps/shuttles/ferry/"
 	name = "Base Shuttle Template (Ferry)"
 
 /datum/map_template/shuttle/ferry/base

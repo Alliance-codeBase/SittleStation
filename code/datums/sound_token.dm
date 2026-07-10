@@ -6,8 +6,7 @@
 	var/atom/source
 	/// k:v list of mob : sound status
 	var/list/listeners = list()
-	///k:v list of mobs : bool. Used to quickly check whether a mob is allowed to hear this noise. This is null by default which means ANY MOB can hear this.
-	var/list/allowed_listeners
+
 	/// Sound maximum range
 	var/range
 	/// Sound volume
@@ -30,14 +29,10 @@
 	var/start_time
 	/// Duration of the current sound file in deciseconds. Used to wrap offset for looping sounds.
 	var/sound_duration
-	/// Duration of the current sound file in deciseconds. Used to wrap offset for looping sounds.
-	var/sound_duration_override
 	/// Cell tracker managing spatial grid cells within range of the source. The wizards say this is the fastest.
 	var/datum/cell_tracker/cell_tracker
-	///Should we destroy the datum when the sound is done?
-	var/delete_on_end = FALSE
 
-/datum/sound_token/New(atom/_source, _sound, _range = 10, _volume = 50, _falloff_exponent = SOUND_FALLOFF_EXPONENT, _falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, _allowed_listeners, _sound_duration_override, _delete_on_end)
+/datum/sound_token/New(atom/_source, _sound, _range = 10, _volume = 50, _falloff_exponent = SOUND_FALLOFF_EXPONENT, _falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE)
 	source = _source
 	RegisterSignal(source, COMSIG_QDELETING, PROC_REF(source_deleted))
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(source_moved))
@@ -47,13 +42,6 @@
 	volume = _volume
 	falloff_exponent = _falloff_exponent
 	falloff_distance = _falloff_distance
-	sound_duration_override = _sound_duration_override
-	if(_delete_on_end)
-		delete_on_end = _delete_on_end
-
-	if(_allowed_listeners)
-		for(var/allowed_mob in _allowed_listeners)
-			allowed_listeners[allowed_mob] = TRUE
 
 	update_sound(_sound)
 
@@ -64,7 +52,6 @@
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_PLAYER_LOGIN, PROC_REF(player_login))
 	RegisterSignal(SSdcs, COMSIG_GLOB_PLAYER_LOGOUT, PROC_REF(player_logout))
-
 
 /datum/sound_token/Destroy(force, ...)
 	for(var/listener in listeners)
@@ -80,37 +67,29 @@
 	if(!sound_channel)
 		sound_channel = SSsounds.reserve_sound_channel_for_datum(src)
 	sound.channel = sound_channel
-	sound_duration = sound_duration_override || SSsounds.get_sound_length(_sound)
+	sound_duration = SSsounds.get_sound_length(_sound)
 	start_time = REALTIMEOFDAY
 	if(start_playing)
 		force_update_all_listeners(FALSE)
-	if(delete_on_end)
-		addtimer(CALLBACK(src, PROC_REF(on_sound_ended)), sound_duration, TIMER_UNIQUE | TIMER_OVERRIDE)
-
 
 /// Updates the data of a listener, or adds them if they are not present.
 /datum/sound_token/proc/add_or_update_listener(mob/listener_mob)
 	if(isnull(listeners[listener_mob]))
-		if(!add_listener(listener_mob))
-			return FALSE
+		add_listener(listener_mob)
 	else
 		update_listener(listener_mob)
 
-/// Adds a listener to the sound. returns TRUE if we already were added, or for some reason couldnt be added.
+/// Adds a listener to the sound.
 /datum/sound_token/proc/add_listener(mob/listener_mob)
 	if(!isnull(listeners[listener_mob]))
-		return TRUE
+		return FALSE
 
 	if(!listener_mob.client || isnewplayer(listener_mob))
-		return FALSE
-
-	if(allowed_listeners && !allowed_listeners[listener_mob])
-		return FALSE
+		return
 
 	listeners[listener_mob] = NONE
 	listener_mob.client.sound_tokens += src
-	if(source != listener_mob) //this is possible...yea... :/
-		RegisterSignal(listener_mob, COMSIG_QDELETING, PROC_REF(listener_deleted))
+	RegisterSignal(listener_mob, COMSIG_QDELETING, PROC_REF(listener_deleted))
 	RegisterSignals(listener_mob, list(SIGNAL_ADDTRAIT(TRAIT_DEAF), SIGNAL_REMOVETRAIT(TRAIT_DEAF)), PROC_REF(listener_deafness_update))
 	update_listener(listener_mob, FALSE)
 	return TRUE
@@ -144,7 +123,7 @@
 	if(source_turf.z != listener_turf.z)
 		should_be_muted = TRUE
 
-	var/distance = get_dist_euclidean(source_turf, listener_turf)
+	var/distance = get_dist(source_turf, listener_turf)
 	if(distance > range)
 		should_be_muted = TRUE
 		if(should_be_muted && is_muted)
@@ -160,7 +139,7 @@
 /datum/sound_token/proc/send_listener_sound(mob/listener_mob, update_sound)
 	PRIVATE_PROC(TRUE)
 
-	sound.status = sound_status|listeners[listener_mob]
+	sound.status = SOUND_STREAM|sound_status|listeners[listener_mob]
 	if(update_sound)
 		sound.status |= SOUND_UPDATE
 	else
@@ -216,7 +195,7 @@
 		return
 	if(player_turf.z != source_turf.z)
 		return
-	if(get_dist_euclidean(source_turf, player_turf) > range)
+	if(get_dist(source_turf, player_turf) > range)
 		return
 	add_or_update_listener(player)
 
@@ -303,7 +282,3 @@
 
 		if(!still_in_range)
 			remove_listener(listener_mob)
-
-///The sound should have ended on all clients. Time to destroy the sound token.
-/datum/sound_token/proc/on_sound_ended()
-	qdel(src)

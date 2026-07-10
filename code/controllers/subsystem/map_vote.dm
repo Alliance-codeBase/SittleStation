@@ -22,9 +22,6 @@ SUBSYSTEM_DEF(map_vote)
 	/// Stores the last amount of potential players to compare next time we're called
 	var/player_cache = -1
 
-	/// Cached list of votable maps
-	var/list/votable_map_cache
-
 	/// Stores a formatted html string of the tally counts
 	var/tally_printout = span_red("Loading...")
 
@@ -116,9 +113,8 @@ SUBSYSTEM_DEF(map_vote)
 	else
 		filter_threshold = length(GLOB.clients)
 
-	// Cached because it's called off ui_data, I really don't think this is worth it but whatever
-	if(filter_threshold == player_cache && !isnull(votable_map_cache))
-		return votable_map_cache.Copy()
+	if(filter_threshold == player_cache)
+		return null
 
 	player_cache = filter_threshold
 	var/list/pop_valid_maps = list()
@@ -134,6 +130,7 @@ SUBSYSTEM_DEF(map_vote)
 			continue
 		pop_valid_maps += possible_config.map_name
 
+<<<<<<< HEAD
 	// Remove stale (played twice in the past KEEP_ROUNDS_MAP + 1 rounds (including this one as the + 1)) maps
 	var/list/freshened_valid_maps = list()
 	for(var/map_name in pop_valid_maps)
@@ -148,6 +145,9 @@ SUBSYSTEM_DEF(map_vote)
 
 	votable_map_cache = freshened_valid_maps.Copy()
 	return freshened_valid_maps
+=======
+	return valid_maps
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 
 /datum/controller/subsystem/map_vote/proc/filter_cache_to_valid_maps()
 	var/connected_players = length(GLOB.player_list)

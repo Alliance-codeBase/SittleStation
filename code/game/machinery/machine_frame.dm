@@ -445,7 +445,7 @@
 			user.balloon_alert(user, "missing components!")
 			return FALSE
 
-	if(!circuit.completion_requirements(src, user))
+	if(!circuit.completion_requirements(src))
 		return FALSE
 
 	tool.play_tool_sound(src)

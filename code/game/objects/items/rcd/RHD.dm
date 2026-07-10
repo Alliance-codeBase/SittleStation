@@ -30,8 +30,6 @@
 	var/has_ammobar = FALSE
 	/// amount of divisions in the ammo indicator overlay/number of ammo indicator states
 	var/ammo_sections = 10
-	/// icon_state prefix used for charge overlays — defaults to icon_state if not set
-	var/charge_icon_state
 	/// bitflags for upgrades
 	var/construction_upgrades = NONE
 	/// bitflags for banned upgrades
@@ -181,7 +179,7 @@
 	if(has_ammobar)
 		var/ratio = ceil((matter / max_matter) * ammo_sections)
 		if(ratio > 0)
-			. += "[charge_icon_state || icon_state]_charge[ratio]"
+			. += "[icon_state]_charge[ratio]"
 
 /**
  * Uses resource to do some action. Returns amount of resource used or TRUE/FALSE if only an dry run is required
@@ -195,7 +193,7 @@
 	if(!silo_mats || !silo_link)
 		if(matter < amount)
 			if(has_ammobar)
-				flick("[charge_icon_state || icon_state]_empty", src)
+				flick("[icon_state]_empty", src)
 			if(user)
 				balloon_alert(user, "not enough matter!")
 			return FALSE

@@ -47,11 +47,6 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 	butcher_replacement = null
 
-/obj/item/bodypart/arm/left/robot/generate_icon_key()
-	. = ..()
-	if(limb_id == BODYPART_ID_ROBOTIC)
-		. += should_draw_greyscale ? icon_greyscale : icon_static
-
 /obj/item/bodypart/arm/right/robot
 	name = "cyborg right arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
@@ -89,11 +84,6 @@
 	bodypart_flags = BODYPART_UNHUSKABLE
 	butcher_replacement = null
 
-/obj/item/bodypart/arm/right/robot/generate_icon_key()
-	. = ..()
-	if(limb_id == BODYPART_ID_ROBOTIC)
-		. += should_draw_greyscale ? icon_greyscale : icon_static
-
 /obj/item/bodypart/leg/left/robot
 	name = "cyborg left leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
@@ -130,11 +120,6 @@
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
 	bodypart_flags = BODYPART_UNHUSKABLE
 	butcher_replacement = null
-
-/obj/item/bodypart/leg/left/robot/generate_icon_key()
-	. = ..()
-	if(limb_id == BODYPART_ID_ROBOTIC)
-		. += should_draw_greyscale ? icon_greyscale : icon_static
 
 /obj/item/bodypart/leg/left/robot/emp_effect(severity, protection)
 	. = ..()
@@ -186,11 +171,6 @@
 	damage_examines = list(BRUTE = ROBOTIC_BRUTE_EXAMINE_TEXT, BURN = ROBOTIC_BURN_EXAMINE_TEXT)
 	bodypart_flags = BODYPART_UNHUSKABLE
 	butcher_replacement = null
-
-/obj/item/bodypart/leg/right/robot/generate_icon_key()
-	. = ..()
-	if(limb_id == BODYPART_ID_ROBOTIC)
-		. += should_draw_greyscale ? icon_greyscale : icon_static
 
 /obj/item/bodypart/leg/right/robot/emp_effect(severity, protection)
 	. = ..()
@@ -246,13 +226,6 @@
 
 	var/wired = FALSE
 	var/obj/item/stock_parts/power_store/cell = null
-
-/obj/item/bodypart/chest/robot/generate_icon_key()
-	. = ..()
-	// When we reskin cybernetic limbs, we solely change their icon, nothing else
-	// So we need to include the relevant icon in the cache key
-	if(limb_id == BODYPART_ID_ROBOTIC)
-		. += should_draw_greyscale ? icon_greyscale : icon_static
 
 /obj/item/bodypart/chest/robot/emp_effect(severity, protection)
 	. = ..()
@@ -430,11 +403,6 @@
 
 	var/obj/item/assembly/flash/handheld/flash1 = null
 	var/obj/item/assembly/flash/handheld/flash2 = null
-
-/obj/item/bodypart/head/robot/generate_icon_key()
-	. = ..()
-	if(limb_id == BODYPART_ID_ROBOTIC)
-		. += should_draw_greyscale ? icon_greyscale : icon_static
 
 #define EMP_GLITCH "EMP_GLITCH"
 

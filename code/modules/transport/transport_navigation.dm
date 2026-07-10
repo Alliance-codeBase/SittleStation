@@ -46,24 +46,24 @@
 	specific_transport_id = TRAMSTATION_LINE_1
 
 /obj/effect/landmark/transport/nav_beacon/tram/nav/tramstation/main
-	name = "tram announcement system"
+	name = TRAMSTATION_LINE_1
 	specific_transport_id = TRAM_NAV_BEACONS
 	dir = WEST
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/tramstation/west
-	name = "Arrivals"
+	name = "Arrivals Station"
 	platform_code = TRAMSTATION_WEST
 	tgui_icons = list("Arrivals" = "plane-arrival", "Command" = "bullhorn", "Security" = "gavel")
 	arrival_sound = 'sound/machines/tram/arrivals_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/tramstation/central
-	name = "Medical"
+	name = "Medical Station"
 	platform_code = TRAMSTATION_CENTRAL
 	tgui_icons = list("Service" = "cocktail", "Medical" = "plus", "Engineering" = "wrench")
 	arrival_sound = 'sound/machines/tram/medical_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/tramstation/east
-	name = "Escape"
+	name = "Escape Station"
 	platform_code = TRAMSTATION_EAST
 	tgui_icons = list("Departures" = "plane-departure", "Cargo" = "box", "Science" = "flask")
 	arrival_sound = 'sound/machines/tram/escape_line_processed.ogg'
@@ -87,28 +87,28 @@
 	dir = WEST
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/sec_wing
-	name = "Security"
+	name = "Security Station"
 	specific_transport_id = BIRDSHOT_LINE_1
 	platform_code = BIRDSHOT_SECURITY_WING
 	tgui_icons = list("Security" = "gavel")
 	arrival_sound = 'sound/machines/tram/medical_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/prison_wing
-	name = "Prison"
+	name = "Prison Station"
 	specific_transport_id = BIRDSHOT_LINE_1
 	platform_code = BIRDSHOT_PRISON_WING
 	tgui_icons = list("Prison" = "box")
 	arrival_sound = 'sound/machines/tram/other_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/maint_left
-	name = "Escape"
+	name = "Escape Station"
 	specific_transport_id = BIRDSHOT_LINE_2
 	platform_code = BIRDSHOT_MAINTENANCE_LEFT
 	tgui_icons = list("Port Platform" = "plane-departure")
 	arrival_sound = 'sound/machines/tram/escape_line_processed.ogg'
 
 /obj/effect/landmark/transport/nav_beacon/tram/platform/birdshot/maint_right
-	name = "Arrivals"
+	name = "Arrivals Station"
 	specific_transport_id = BIRDSHOT_LINE_2
 	platform_code = BRIDSHOT_MAINTENANCE_RIGHT
 	tgui_icons = list("Starboard Platform" = "plane-arrival")

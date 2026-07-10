@@ -2,9 +2,7 @@
 	name = "ventpointer"
 	desc = "A handheld tracking device. It will locate and point to nearby vents. A bit unreliable though."
 	icon_state = "pinpointer_vent"
-	minimum_range = 8 //gotta use them eyes
-	close_range = 12
-	medium_range = 20
+	minimum_range = 14 //gotta use them eyes
 
 /obj/item/pinpointer/vent/scan_for_target()
 	var/closest_dist = INFINITY

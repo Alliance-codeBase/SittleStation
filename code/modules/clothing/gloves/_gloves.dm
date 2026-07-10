@@ -44,18 +44,18 @@
 	user.visible_message(span_suicide("\the [src] are forcing [user]'s hands around [user.p_their()] neck! It looks like the gloves are possessed!"))
 	return OXYLOSS
 
-/obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE, icon_file, bodyshape = NONE)
+/obj/item/clothing/gloves/worn_overlays(mutable_appearance/standing, isinhands = FALSE)
 	. = ..()
 	if(isinhands)
 		return
 	if(damaged_clothes)
 		. += mutable_appearance('icons/effects/item_damage.dmi', "damagedgloves")
 
-/obj/item/clothing/gloves/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
+/obj/item/clothing/gloves/separate_worn_overlays(mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
 	. = ..()
 	if (isinhands)
 		return
-	var/blood_overlay = get_blood_overlay("glove", bodyshape)
+	var/blood_overlay = get_blood_overlay("glove")
 	if (blood_overlay)
 		. += blood_overlay
 

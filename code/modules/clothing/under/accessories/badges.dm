@@ -131,9 +131,11 @@
 	. += display
 
 // Examining the clothes will display the examine message of the dogtag
-/obj/item/clothing/accessory/dogtag/attach(obj/item/clothing/under/attached_to)
+/obj/item/clothing/accessory/dogtag/attach(obj/item/clothing/under/attach_to, mob/living/attacher)
 	. = ..()
-	RegisterSignal(attached_to, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	if(!.)
+		return
+	RegisterSignal(attach_to, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 
 /obj/item/clothing/accessory/dogtag/detach(obj/item/clothing/under/detach_from)
 	. = ..()
@@ -236,13 +238,12 @@
 	name = "subversive pin"
 	desc = "A badge which loudly and proudly proclaims your hostility to the Nanotrasen Security Team, and authority in general."
 	icon_state = "anti_sec"
-	clothing_traits = list(TRAIT_ALWAYS_WANTED)
 
 /obj/item/clothing/accessory/anti_sec_pin/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/pinnable_accessory, silent = TRUE, pinning_time = 5 SECONDS)
 
-/obj/item/clothing/accessory/anti_sec_pin/try_attach(obj/item/clothing/under/attach_to, mob/living/attacher)
+/obj/item/clothing/accessory/anti_sec_pin/attach(obj/item/clothing/under/attach_to, mob/living/attacher)
 	. = ..()
 	if (!. || isnull(attacher))
 		return
@@ -253,12 +254,14 @@
 
 /obj/item/clothing/accessory/anti_sec_pin/accessory_equipped(obj/item/clothing/under/clothes, mob/living/user)
 	. = ..()
+	ADD_TRAIT(user, TRAIT_ALWAYS_WANTED, "[CLOTHING_TRAIT]_[REF(src)]")
 	if (ishuman(user))
 		var/mob/living/carbon/human/human_wearer = user
 		human_wearer.sec_hud_set_security_status()
 
 /obj/item/clothing/accessory/anti_sec_pin/accessory_dropped(obj/item/clothing/under/clothes, mob/living/user)
 	. = ..()
+	REMOVE_TRAIT(user, TRAIT_ALWAYS_WANTED, "[CLOTHING_TRAIT]_[REF(src)]")
 	if (ishuman(user))
 		var/mob/living/carbon/human/human_wearer = user
 		human_wearer.sec_hud_set_security_status()

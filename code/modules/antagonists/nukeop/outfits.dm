@@ -13,11 +13,6 @@
 
 	skillchips = list(/obj/item/skillchip/disk_verifier)
 	box = /obj/item/storage/box/survival/syndie
-	implants = list(
-		/obj/item/implant/weapons_auth,
-		/obj/item/implant/explosive,
-		/obj/item/implant/tacmap/nuclear,
-	)
 	/// Amount of TC to automatically store in this outfit's uplink.
 	var/tc = 25
 	/// Enables big voice on this outfit's headset, used for nukie leaders.
@@ -37,12 +32,6 @@
 /datum/outfit/syndicate/leader
 	name = "Syndicate Leader - Basic"
 	command_radio = TRUE
-
-	implants = list(
-		/obj/item/implant/weapons_auth,
-		/obj/item/implant/explosive,
-		/obj/item/implant/tacmap/nuclear/leader,
-	)
 
 	id_trim = /datum/id_trim/chameleon/operative/nuke_leader
 
@@ -95,11 +84,6 @@
 /datum/outfit/syndicate/full/loneop
 	name = "Syndicate Operative - Full Kit (Loneop)"
 	uplink_type = /obj/item/uplink/loneop
-	implants = list(
-		/obj/item/implant/weapons_auth,
-		/obj/item/implant/explosive,
-		/obj/item/implant/tacmap/nuclear/leader,
-	)
 
 /datum/outfit/syndicate/full/plasmaman
 	name = "Syndicate Operative - Full Kit (Plasmaman)"
@@ -229,8 +213,3 @@
 	command_radio = TRUE
 	tc = 0
 	uplink_type = null
-	implants = list(
-		/obj/item/implant/weapons_auth,
-		/obj/item/implant/explosive,
-		/obj/item/implant/tacmap/nuclear/offbase,
-	)

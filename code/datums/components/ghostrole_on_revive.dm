@@ -77,7 +77,10 @@
 
 	// we might have some lingering blinking eyes
 	var/obj/item/bodypart/head/head = source.get_bodypart(BODY_ZONE_HEAD)
-	head?.remove_bodypart_overlay(/datum/bodypart_overlay/simple/soul_pending_eyes)
+	if(head)
+		var/soul_eyes = locate(/datum/bodypart_overlay/simple/soul_pending_eyes) in head.bodypart_overlays
+		if(soul_eyes)
+			head.remove_bodypart_overlay(soul_eyes)
 
 	prepare_brain(removed_brain)
 

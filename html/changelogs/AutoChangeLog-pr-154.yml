@@ -1,4 +1,0 @@
-author: "MassMeta"
-delete-after: True
-changes:
-  - server: "Перенос autowiki.js на актуальный домен."

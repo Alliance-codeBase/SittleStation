@@ -1266,7 +1266,15 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/machinery/fax/heads/qm,
+/obj/item/paper_bin{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/folder/yellow,
+/obj/item/clipboard,
+/obj/item/disk/computer/quartermaster,
+/obj/item/disk/computer/quartermaster,
+/obj/item/disk/computer/quartermaster,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
@@ -14202,6 +14210,7 @@
 /obj/effect/turf_decal/tile/purple/anticorner/contrasted{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
@@ -14209,6 +14218,16 @@
 /obj/item/book/manual/wiki/cytology,
 /turf/open/floor/iron/showroomfloor,
 /area/station/science/auxlab)
+=======
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/sign/poster/contraband/the_griffin/directional/north,
+/mob/living/simple_animal/bot/mulebot,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+/turf/open/floor/iron/dark,
+/area/station/cargo/warehouse)
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 "eGL" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance"
@@ -22976,11 +22995,14 @@
 	dir = 1
 	},
 /obj/structure/table,
+/obj/machinery/fax{
+	fax_name = "Head of Personnel's Office";
+	name = "Head of Personnel's Fax Machine"
+	},
 /obj/effect/turf_decal/tile/neutral/opposingcorners,
 /obj/effect/turf_decal/tile/blue/half/contrasted{
 	dir = 1
 	},
-/obj/machinery/fax/heads/hop,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hop)
 "hrY" = (
@@ -29389,6 +29411,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/station/maintenance/department/electrical)
+"jjj" = (
+/obj/structure/lattice,
+/obj/effect/spawner/random/trash/grille_or_waste,
+/turf/open/space/basic,
+/area/space/nearstation)
 "jjs" = (
 /turf/closed/wall/r_wall/rust,
 /area/station/maintenance/starboard/aft)
@@ -35206,13 +35233,16 @@
 /area/station/maintenance/solars/port/fore)
 "lfd" = (
 /obj/structure/table/reinforced,
+/obj/machinery/fax{
+	fax_name = "Research Director's Office";
+	name = "Research Director's Fax Machine"
+	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/purple/half/contrasted{
 	dir = 8
 	},
-/obj/machinery/fax/heads/rd,
 /turf/open/floor/iron/showroomfloor,
 /area/station/command/heads_quarters/rd)
 "lfl" = (
@@ -43604,6 +43634,7 @@
 	pixel_x = 11;
 	pixel_y = -7
 	},
+<<<<<<< HEAD
 /obj/item/cigarette/cigar{
 	pixel_x = 8;
 	pixel_y = 4
@@ -43612,6 +43643,8 @@
 	pixel_x = 10;
 	pixel_y = -1
 	},
+=======
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 /obj/item/stamp/granted,
 /turf/open/floor/carpet/orange,
 /area/station/command/heads_quarters/qm)
@@ -45796,6 +45829,7 @@
 "oJa" = (
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/light/small/directional/north,
+<<<<<<< HEAD
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
 	location = "QM #1"
@@ -45805,6 +45839,10 @@
 /obj/effect/turf_decal/delivery,
 /obj/effect/decal/cleanable/blood/oil,
 /mob/living/basic/bot/mulebot,
+=======
+/mob/living/simple_animal/bot/mulebot,
+/obj/effect/turf_decal/tile/neutral/half/contrasted,
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 /turf/open/floor/iron/dark,
 /area/station/cargo/warehouse)
 "oJd" = (
@@ -48958,8 +48996,16 @@
 "pIS" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/structure/table/wood,
+/obj/machinery/fax{
+	fax_name = "Head of Security's Office";
+	name = "Head of Security's Fax Machine"
+	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
+<<<<<<< HEAD
 /obj/machinery/fax/heads/hos,
+=======
+/obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/hos)
 "pIT" = (
@@ -56666,8 +56712,11 @@
 /area/station/maintenance/starboard/fore)
 "sdp" = (
 /obj/structure/table/reinforced,
+/obj/machinery/fax{
+	fax_name = "Chief Engineer's Office";
+	name = "Chief Engineer's Fax Machine"
+	},
 /obj/effect/turf_decal/tile/neutral/half/contrasted,
-/obj/machinery/fax/heads/ce,
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/ce)
 "sdT" = (
@@ -60722,6 +60771,12 @@
 /turf/open/floor/plating,
 /area/station/maintenance/disposal)
 "tmV" = (
+<<<<<<< HEAD
+=======
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_y = 5
+	},
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/item/storage/box/drinkingglasses,
@@ -132032,7 +132087,11 @@ aaa
 aaa
 aaa
 acK
+<<<<<<< HEAD
 acm
+=======
+jjj
+>>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 acK
 acm
 aeo
