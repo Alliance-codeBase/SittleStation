@@ -168,7 +168,7 @@
 		log_runtime("Jukebox: Failed to download or extract audio from YouTube.", list(
 			"Code: [output[1]]",
 			"Output: [output[2]]",
-			"Error:" [output[3]])
+			"Error: [output[3]]")
 		)
 
 		say("Unexpected error happened during your request")
