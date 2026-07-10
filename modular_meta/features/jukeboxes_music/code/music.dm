@@ -165,7 +165,7 @@
 
 	if(!fexists(current_stream_path) || !internet_playing)
 		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation.")
-		log_internet_request("Jukebox \
+		log_game("Jukebox \
 		error code: [output[1]] \
 		stdout: [output[2]] \
 		stderr: [output[3]]")
