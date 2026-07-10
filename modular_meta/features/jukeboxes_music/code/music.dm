@@ -164,8 +164,12 @@
 		check_attempts++
 
 	if(!fexists(current_stream_path) || !internet_playing)
-		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation.\
-		output: [output]")
+		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation.")
+		log_internet_request("Jukebox \
+		error code: [output[1]] \
+		stdout: [output[2]] \
+		stderr: [output[3]]")
+
 		say("Unexpected error happened during your request")
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
 		internet_playing = FALSE
