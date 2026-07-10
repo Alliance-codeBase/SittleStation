@@ -53,12 +53,9 @@
 #include "features\ntts-nd-tg-tts\includes.dm"
 #include "features\meta_redesign\includes.dm"
 #include "features\holidays\includes.dm"
-<<<<<<< HEAD
 #include "features\jukeboxes_music\code\music.dm"
 #include "features\mentors\includes.dm"
 #include "features\progressive_traitor\includes.dm"
-=======
->>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 
 /* --- Reverts --- */
 

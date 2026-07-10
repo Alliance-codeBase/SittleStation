@@ -54,7 +54,7 @@
 		if("play_voice")
 			return middleware.play_voice(params, ui.user)
 		if("play_robot")
-			return middleware.play_voice_borg(params, ui.user)
+			return middleware.play_voice_robot(params, ui.user)
 		if("play_blips")
 			return middleware.play_blips(params, ui.user)
 		if("play_radio")

@@ -10,7 +10,7 @@
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 2,
 		/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.25,
 	)
-	build_path = /obj/item/ammo_box/magazine/recharge
+	build_path = /obj/item/ammo_box/magazine/recharge/station
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/powerpack/stun
@@ -24,7 +24,7 @@
 		/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 3,
 		/datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT * 1,
 	)
-	build_path = /obj/item/ammo_box/magazine/recharge/stun
+	build_path = /obj/item/ammo_box/magazine/recharge/station/stun
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/powerpack/scatter
@@ -40,7 +40,7 @@
 		/datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 1,
 		/datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.5,
 	)
-	build_path = /obj/item/ammo_box/magazine/recharge/scatter
+	build_path = /obj/item/ammo_box/magazine/recharge/station/scatter
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/techweb_node/energy_rifle_tierone

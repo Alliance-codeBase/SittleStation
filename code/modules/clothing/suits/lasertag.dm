@@ -34,10 +34,6 @@
 	allowed = list (/obj/item/gun/energy/laser/redtag)
 	resistance_flags = NONE
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 
 /obj/item/clothing/suit/redtag/equipped(mob/equipper, slot)
 	. = ..()

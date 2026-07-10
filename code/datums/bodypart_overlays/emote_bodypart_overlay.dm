@@ -1,11 +1,8 @@
 ///Variant of bodypart_overlay for displaying emote overlays. See [/datum/emote/living/blush/run_emote] for an example on how to use one of these.
 /datum/bodypart_overlay/simple/emote
 	icon = 'icons/mob/human/emote_visuals.dmi'
-<<<<<<< HEAD
 	offset_location = UPPER_BODY
 	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
-=======
->>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 	///The body zone to attach the overlay to, overlay won't be added if no bodypart can be found with this
 	var/attached_body_zone = BODY_ZONE_CHEST
 	///The feature key used to figure out what specific bodily feature we offset this to follow
@@ -30,10 +27,8 @@
 
 ///Removes the overlay from the attached bodypart and updates the necessary sprites
 /datum/bodypart_overlay/simple/emote/Destroy()
-	var/obj/item/bodypart/referenced_bodypart = attached_bodypart.resolve()
-	if(!referenced_bodypart)
-		return ..()
-	referenced_bodypart.remove_bodypart_overlay(src)
+	var/obj/item/bodypart/referenced_bodypart = attached_bodypart?.resolve()
+	referenced_bodypart?.remove_bodypart_overlay(src)
 	return ..()
 
 /**
@@ -46,13 +41,7 @@
  */
 /mob/living/carbon/human/proc/give_emote_overlay(datum/bodypart_overlay/simple/emote/overlay_typepath)
 	var/obj/item/bodypart/bodypart = get_bodypart(overlay_typepath::attached_body_zone)
-	if(!bodypart)
-		return null
-	if(locate(overlay_typepath) in bodypart.bodypart_overlays)
-		return null
-	var/datum/bodypart_overlay/simple/emote/overlay = new overlay_typepath()
-	bodypart.add_bodypart_overlay(overlay)
-	return overlay
+	return bodypart?.add_bodypart_overlay(overlay_typepath)
 
 /datum/bodypart_overlay/simple/emote/tongue
 	icon_state = "tongue"

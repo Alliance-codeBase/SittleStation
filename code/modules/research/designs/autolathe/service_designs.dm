@@ -661,7 +661,6 @@
 		RND_CATEGORY_TOOLS + RND_SUBCATEGORY_TOOLS_SERVICE,
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
-<<<<<<< HEAD
 
 /datum/design/rdd
 	name = "Rapid Decoration Device (RDD)"
@@ -683,5 +682,3 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SERVICE
 
-=======
->>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)

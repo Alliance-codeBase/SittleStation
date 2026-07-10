@@ -6,8 +6,5 @@
 #include "re_hooch_heals_assistants.dm"
 #include "justice_mecha.dm"
 #include "techweb_nodes.dm"
-<<<<<<< HEAD
 #include "mentors.dm"
 #include "signals_traitor.dm"
-=======
->>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)

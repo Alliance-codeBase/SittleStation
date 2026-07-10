@@ -72,7 +72,6 @@
 	. = ..()
 	add_relay_to(GET_NEW_PLANE(RENDER_PLANE_EMISSIVE_BLOOM, offset), blend_override = BLEND_MULTIPLY)
 
-<<<<<<< HEAD
 /atom/movable/screen/plane_master/rendering_plate/particle_weather
 	name = "Particle Weather Holder Plate"
 	documentation = "Plane used to render particle weather, masked by WEATHER_MASK_PLANE. \
@@ -162,8 +161,6 @@
 	// Render a copy of ourselves onto the emissive plane encoded into the bloom channel
 	add_relay_to(GET_NEW_PLANE(EMISSIVE_PLANE, offset), relay_color = GLOB.emissive_color)
 
-=======
->>>>>>> parent of c1c522274a5 (Merge branch 'efficency' of https://github.com/Glamyrio/PostMeta into fixes)
 /atom/movable/screen/plane_master/rendering_plate/turf_lighting
 	name = "Turf lighting post-processing plate"
 	documentation = "Used by overlay lighting, and possibly over plates, to mask out turf lighting."

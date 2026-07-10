@@ -25,7 +25,7 @@ $include map_vote.txt
 # SERVERTAGLINE A generic TG-based server
 
 ## Discord Link: This is the link to discord server
-# DISCORD_LINK 
+# DISCORD_LINK
 
 ## Server SQL name: This is the name used to identify the server to the SQL DB, distinct from SERVERNAME as it must be at most 32 characters.
 # SERVERSQLNAME tgstation
