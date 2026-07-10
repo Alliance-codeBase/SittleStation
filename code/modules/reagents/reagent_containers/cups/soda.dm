@@ -73,31 +73,28 @@
 	return TOXLOSS
 
 /obj/item/reagent_containers/cup/soda_cans/interact_with_atom(atom/target, mob/living/user, list/modifiers)
-	// Проверяем: цель — живое существо, банка пустая, включен режим боя и выбрана голова
-	if(iscarbon(target) && !reagents.total_volume && user.combat_mode && user.zone_selected == BODY_ZONE_HEAD)
-		if(target == user)
-			user.visible_message(
-				span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"),
-				span_notice("You crush the can of [src] on your forehead."),
-			)
-		else
-			user.visible_message(
-				span_warning("[user] crushes the can of [src] on [target]'s forehead!"),
-				span_notice("You crush the can of [src] on [target]'s forehead."),
-			)
-		playsound(src, 'sound/items/weapons/pierce.ogg', rand(10, 50), TRUE)
-		var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target.drop_location())
-		crushed_can.icon_state = icon_state
+	if(!iscarbon(target) || reagents.total_volume || !user.combat_mode || user.zone_selected != BODY_ZONE_HEAD)
+		return ..()
 
-		//MASSMETA EDIT BEGIN (kvass_beverage)
-		if(icon_state == "kvass")
-			crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
-		//MASSMETA EDIT END
-
-		qdel(src)
-		return ITEM_INTERACT_SUCCESS
-
-	return ..() //MASSMETA EDIT (bad_code_fix); check deleted by commit history
+	if(target == user)
+		user.visible_message(
+			span_warning("[user] crushes the can of [src] on [user.p_their()] forehead!"),
+			span_notice("You crush the can of [src] on your forehead."),
+		)
+	else
+		user.visible_message(
+			span_warning("[user] crushes the can of [src] on [target]'s forehead!"),
+			span_notice("You crush the can of [src] on [target]'s forehead."),
+		)
+	playsound(src, 'sound/items/weapons/pierce.ogg', rand(10, 50), TRUE)
+	var/obj/item/trash/can/crushed_can = new /obj/item/trash/can(target.drop_location())
+	crushed_can.icon_state = icon_state
+	//MASSMETA EDIT BEGIN (kvass_beverage)
+	if(icon_state == "kvass")
+		crushed_can.icon = 'modular_meta/features/kvass_beverage/icons/janitor.dmi'
+	//MASSMETA EDIT END
+	qdel(src)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/soda_cans/bullet_act(obj/projectile/proj)
 	. = ..()
