@@ -156,7 +156,7 @@
 
 	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\""
 
-	shell(shell_command)
+	var/list/output = world.shelleo(shell_command)
 
 	var/check_attempts = 0
 	while(!fexists(current_stream_path) && check_attempts < 40)
@@ -164,7 +164,8 @@
 		check_attempts++
 
 	if(!fexists(current_stream_path) || !internet_playing)
-		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation.")
+		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation.\
+		output: [output]")
 		say("Unexpected error happened during your request")
 		playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
 		internet_playing = FALSE
