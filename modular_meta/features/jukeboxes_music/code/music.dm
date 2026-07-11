@@ -34,6 +34,8 @@
 	return data
 
 /obj/machinery/jukebox/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(isobserver(ui.user))
+		return
 	if(action == "select_track")
 		var/track_name = params["track"]
 
@@ -56,12 +58,12 @@
 
 	if(action == "toggle")
 		if(internet_track_selected)
-			var/mob/user = ui.user
-			if(!user)
+
+			if(!ui.user)
 				return TRUE
 
 			if(internet_playing)
-				stop_internet_stream(user)
+				stop_internet_stream()
 			else
 				if(hascall(src, "turn_off"))
 					call(src, "turn_off")()
@@ -70,24 +72,23 @@
 
 				internet_playing = TRUE
 				update_static_data_for_all_viewers()
-				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, start_internet_stream), user)
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, start_internet_stream), ui.user)
 
 			return TRUE
 
 	if(action == "request_internet_track")
-		var/mob/user = ui.user
-		if(!user || !user.client)
+		if(!ui.user || !ui.user.client)
 			return TRUE
 
 		if(!CONFIG_GET(flag/request_internet_sound))
-			to_chat(user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
+			to_chat(ui.user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
 			return TRUE
 
-		if(user.client.prefs.muted & MUTE_INTERNET_REQUEST)
-			to_chat(user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
+		if(ui.user.client.prefs.muted & MUTE_INTERNET_REQUEST)
+			to_chat(ui.user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
 			return TRUE
 
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), user)
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), ui.user)
 		return TRUE
 
 	if(..())
@@ -180,24 +181,19 @@
 		update_static_data_for_all_viewers()
 		return
 
-	var/sound/internet_sound = sound(file(current_stream_path))
-	internet_sound.wait = 0
-	internet_sound.repeat = 0
-	internet_sound.channel = CHANNEL_JUKEBOX
-	internet_sound.volume = 30
-
-	SEND_SOUND(user, internet_sound)
+	var/datum/track/internet_track = new()
+	internet_track.song_path = current_stream_path
+	internet_track.song_length = rustg_sound_length(current_stream_path)
+	internet_track.song_name = internet_track_selected
+	music_player.unlisten_all()
+	music_player.selection = internet_track
+	music_player.start_music()
 	say("Now playing: [internet_track_selected].")
 
-/obj/machinery/jukebox/proc/stop_internet_stream(mob/user)
+/obj/machinery/jukebox/proc/stop_internet_stream()
 	internet_playing = FALSE
-	if(user)
-		var/sound/mute_sound = sound(null)
-		mute_sound.channel = CHANNEL_JUKEBOX
-		SEND_SOUND(user, mute_sound)
-
+	music_player.unlisten_all()
 	if(current_stream_path)
 		fdel(current_stream_path)
 		current_stream_path = ""
-
 	update_static_data_for_all_viewers()
