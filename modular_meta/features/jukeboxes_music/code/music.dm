@@ -3,11 +3,15 @@
 	var/internet_track_selected = null
 	var/internet_playing = FALSE
 	var/current_stream_path = ""
-	var/sound/current_internet_sound
+	var/list/music_files = list()
 
 /obj/machinery/jukebox/Destroy()
 	stop_internet_stream()
 	return ..()
+
+/obj/machinery/jukebox/Initialize(mapload)
+	. = ..()
+	SSticker.OnRoundend(CALLBACK(src, PROC_REF(cleanup_files)))
 
 /obj/machinery/jukebox/ui_data(mob/user)
 	var/list/data = ..()
@@ -35,10 +39,8 @@
 	return data
 
 /obj/machinery/jukebox/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	var/mob/user = ui.user
-	if(!user || isobserver(user))
-		return FALSE
-
+	if(isobserver(ui.user))
+		return
 	if(action == "select_track")
 		var/track_name = params["track"]
 
@@ -61,6 +63,7 @@
 
 	if(action == "toggle")
 		if(internet_track_selected)
+
 			if(internet_playing)
 				stop_internet_stream()
 			else
@@ -71,23 +74,23 @@
 
 				internet_playing = TRUE
 				update_static_data_for_all_viewers()
-				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, start_internet_stream), user)
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, start_internet_stream), ui.user)
 
 			return TRUE
 
 	if(action == "request_internet_track")
-		if(!user.client)
+		if(!ui.user)
 			return TRUE
 
 		if(!CONFIG_GET(flag/request_internet_sound))
-			to_chat(user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
+			to_chat(ui.user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
 			return TRUE
 
-		if(user.client.prefs.muted & MUTE_INTERNET_REQUEST)
-			to_chat(user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
+		if(ui.user.client.prefs.muted & MUTE_INTERNET_REQUEST)
+			to_chat(ui.user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
 			return TRUE
 
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), user)
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), ui.user)
 		return TRUE
 
 	if(..())
@@ -148,68 +151,54 @@
 	safe_url = replacetext(safe_url, ";", "")
 	safe_url = replacetext(safe_url, "&", "")
 
-	var/stream_id = rand(1111, 9999)
+	var/stream_id = rustg_hash_string(RUSTG_HASH_MD5, safe_url)
 	var/output_template = "data/music_cache/yt_[stream_id]"
 	current_stream_path = "[output_template].ogg"
-
-	fdel(current_stream_path)
-
 	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\""
 
-	var/list/output = world.shelleo(shell_command)
+	if(!fexists(current_stream_path))
+		var/list/output = world.shelleo(shell_command)
 
-	var/check_attempts = 0
-	while(!fexists(current_stream_path) && check_attempts < 40)
-		sleep(5)
-		check_attempts++
+		var/check_attempts = 0
+		while(!fexists(current_stream_path) && check_attempts < 40)
+			sleep(5)
+			check_attempts++
 
-	if(!fexists(current_stream_path) || !internet_playing)
-		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server-logs for details.")
-		log_runtime("Jukebox: Failed to download or extract audio from YouTube.", list(
-			"Code: [output[1]]",
-			"Output: [output[2]]",
-			"Error: [output[3]]")
-		)
+		if(!fexists(current_stream_path) || !internet_playing)
+			stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server-logs for details.")
+			log_runtime("Jukebox: Failed to download or extract audio from YouTube.", list(
+				"Code: [output[1]]",
+				"Output: [output[2]]",
+				"Error: [output[3]]")
+			)
 
-		say("Unexpected error happened during your request")
-		playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
-		internet_playing = FALSE
-		if(current_stream_path)
-			fdel(current_stream_path)
-			current_stream_path = ""
-		update_static_data_for_all_viewers()
-		return
+			say("Unexpected error happened during your request")
+			playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
+			internet_playing = FALSE
+			if(current_stream_path)
+				fdel(current_stream_path)
+				current_stream_path = ""
+			update_static_data_for_all_viewers()
+			return
 
-	var/sound/internet_sound = sound(file(current_stream_path))
-	internet_sound.wait = 0
-	internet_sound.repeat = 0
-	internet_sound.channel = CHANNEL_JUKEBOX
-	internet_sound.volume = 50
-
-	internet_sound.x = 0
-	internet_sound.y = 0
-	internet_sound.z = 0
-	internet_sound.falloff = 3
-	current_internet_sound = internet_sound
-
+	var/datum/track/internet_track = new()
+	internet_track.song_path = current_stream_path
+	internet_track.song_length = rustg_sound_length(current_stream_path)
+	internet_track.song_name = internet_track_selected
+	music_player.unlisten_all()
+	music_player.selection = internet_track
+	music_player.start_music()
+	if(!(current_stream_path in music_files))
+		music_files += current_stream_path
 	say("Now playing: [internet_track_selected].")
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == src.z && get_dist(M, src) <= 7)
-			M.playsound_local(src, null, 50, FALSE, channel = CHANNEL_JUKEBOX, S = internet_sound)
 
 /obj/machinery/jukebox/proc/stop_internet_stream()
 	internet_playing = FALSE
-	current_internet_sound = null
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == src.z && get_dist(M, src) <= 12)
-			var/sound/mute_sound = sound(null)
-			mute_sound.channel = CHANNEL_JUKEBOX
-			SEND_SOUND(M, mute_sound)
-
+	music_player.unlisten_all()
 	if(current_stream_path)
-		fdel(current_stream_path)
 		current_stream_path = ""
-
 	update_static_data_for_all_viewers()
+
+/obj/machinery/jukebox/proc/cleanup_files()
+	for(var/music_file in music_files)
+		fdel(music_file)
