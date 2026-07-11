@@ -151,35 +151,35 @@
 	safe_url = replacetext(safe_url, ";", "")
 	safe_url = replacetext(safe_url, "&", "")
 
-	var/stream_id = rand(1111, 9999)
+	var/stream_id = rustg_hash_string(RUSTG_HASH_MD5, safe_url)
 	var/output_template = "data/music_cache/yt_[stream_id]"
 	current_stream_path = "[output_template].ogg"
-
 	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\""
 
-	var/list/output = world.shelleo(shell_command)
+	if(!fexists(current_stream_path))
+		var/list/output = world.shelleo(shell_command)
 
-	var/check_attempts = 0
-	while(!fexists(current_stream_path) && check_attempts < 40)
-		sleep(5)
-		check_attempts++
+		var/check_attempts = 0
+		while(!fexists(current_stream_path) && check_attempts < 40)
+			sleep(5)
+			check_attempts++
 
-	if(!fexists(current_stream_path) || !internet_playing)
-		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server-logs for details.")
-		log_runtime("Jukebox: Failed to download or extract audio from YouTube.", list(
-			"Code: [output[1]]",
-			"Output: [output[2]]",
-			"Error: [output[3]]")
-		)
+		if(!fexists(current_stream_path) || !internet_playing)
+			stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server-logs for details.")
+			log_runtime("Jukebox: Failed to download or extract audio from YouTube.", list(
+				"Code: [output[1]]",
+				"Output: [output[2]]",
+				"Error: [output[3]]")
+			)
 
-		say("Unexpected error happened during your request")
-		playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
-		internet_playing = FALSE
-		if(current_stream_path)
-			fdel(current_stream_path)
-			current_stream_path = ""
-		update_static_data_for_all_viewers()
-		return
+			say("Unexpected error happened during your request")
+			playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
+			internet_playing = FALSE
+			if(current_stream_path)
+				fdel(current_stream_path)
+				current_stream_path = ""
+			update_static_data_for_all_viewers()
+			return
 
 	var/datum/track/internet_track = new()
 	internet_track.song_path = current_stream_path
@@ -188,7 +188,7 @@
 	music_player.unlisten_all()
 	music_player.selection = internet_track
 	music_player.start_music()
-	if(current_stream_path in music_files)
+	if(!(current_stream_path in music_files))
 		music_files += current_stream_path
 	say("Now playing: [internet_track_selected].")
 
