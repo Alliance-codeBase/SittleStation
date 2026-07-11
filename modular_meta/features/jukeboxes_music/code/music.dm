@@ -3,10 +3,15 @@
 	var/internet_track_selected = null
 	var/internet_playing = FALSE
 	var/current_stream_path = ""
+	var/list/music_files = list()
 
 /obj/machinery/jukebox/Destroy()
 	stop_internet_stream()
 	return ..()
+
+/obj/machinery/jukebox/Initialize(mapload)
+	. = ..()
+	SSticker.OnRoundend(CALLBACK(src, PROC_REF(cleanup_files)))
 
 /obj/machinery/jukebox/ui_data(mob/user)
 	var/list/data = ..()
@@ -42,7 +47,7 @@
 		if(custom_songs[track_name])
 			internet_track_selected = track_name
 			if(internet_playing)
-				stop_internet_stream(ui.user)
+				stop_internet_stream()
 
 			if(hascall(src, "turn_off"))
 				call(src, "turn_off")()
@@ -54,13 +59,10 @@
 		else
 			internet_track_selected = null
 			if(internet_playing)
-				stop_internet_stream(ui.user)
+				stop_internet_stream()
 
 	if(action == "toggle")
 		if(internet_track_selected)
-
-			if(!ui.user)
-				return TRUE
 
 			if(internet_playing)
 				stop_internet_stream()
@@ -77,7 +79,7 @@
 			return TRUE
 
 	if(action == "request_internet_track")
-		if(!ui.user || !ui.user.client)
+		if(!ui.user)
 			return TRUE
 
 		if(!CONFIG_GET(flag/request_internet_sound))
@@ -120,7 +122,7 @@
 	internet_track_selected = display_name
 
 	if(internet_playing)
-		stop_internet_stream(user)
+		stop_internet_stream()
 
 	log_internet_request("[user.key]/([user.name]) successfully loaded via Jukebox: [request_url]")
 	say("Added [track_title] to the track list.")
@@ -152,8 +154,6 @@
 	var/stream_id = rand(1111, 9999)
 	var/output_template = "data/music_cache/yt_[stream_id]"
 	current_stream_path = "[output_template].ogg"
-
-	fdel(current_stream_path)
 
 	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\""
 
@@ -188,12 +188,17 @@
 	music_player.unlisten_all()
 	music_player.selection = internet_track
 	music_player.start_music()
+	if(current_stream_path in music_files)
+		music_files += current_stream_path
 	say("Now playing: [internet_track_selected].")
 
 /obj/machinery/jukebox/proc/stop_internet_stream()
 	internet_playing = FALSE
 	music_player.unlisten_all()
 	if(current_stream_path)
-		fdel(current_stream_path)
 		current_stream_path = ""
 	update_static_data_for_all_viewers()
+
+/obj/machinery/jukebox/proc/cleanup_files()
+	for(var/music_file in music_files)
+		fdel(music_file)
