@@ -3,7 +3,6 @@
 	var/internet_track_selected = null
 	var/internet_playing = FALSE
 	var/current_stream_path = ""
-	var/sound/current_internet_sound
 
 /obj/machinery/jukebox/Destroy()
 	stop_internet_stream()
@@ -35,17 +34,13 @@
 	return data
 
 /obj/machinery/jukebox/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	var/mob/user = ui.user
-	if(!user || isobserver(user))
-		return FALSE
-
 	if(action == "select_track")
 		var/track_name = params["track"]
 
 		if(custom_songs[track_name])
 			internet_track_selected = track_name
 			if(internet_playing)
-				stop_internet_stream()
+				stop_internet_stream(ui.user)
 
 			if(hascall(src, "turn_off"))
 				call(src, "turn_off")()
@@ -57,12 +52,16 @@
 		else
 			internet_track_selected = null
 			if(internet_playing)
-				stop_internet_stream()
+				stop_internet_stream(ui.user)
 
 	if(action == "toggle")
 		if(internet_track_selected)
+			var/mob/user = ui.user
+			if(!user)
+				return TRUE
+
 			if(internet_playing)
-				stop_internet_stream()
+				stop_internet_stream(user)
 			else
 				if(hascall(src, "turn_off"))
 					call(src, "turn_off")()
@@ -76,7 +75,8 @@
 			return TRUE
 
 	if(action == "request_internet_track")
-		if(!user.client)
+		var/mob/user = ui.user
+		if(!user || !user.client)
 			return TRUE
 
 		if(!CONFIG_GET(flag/request_internet_sound))
@@ -119,7 +119,7 @@
 	internet_track_selected = display_name
 
 	if(internet_playing)
-		stop_internet_stream()
+		stop_internet_stream(user)
 
 	log_internet_request("[user.key]/([user.name]) successfully loaded via Jukebox: [request_url]")
 	say("Added [track_title] to the track list.")
@@ -184,29 +184,17 @@
 	internet_sound.wait = 0
 	internet_sound.repeat = 0
 	internet_sound.channel = CHANNEL_JUKEBOX
-	internet_sound.volume = 50
+	internet_sound.volume = 30
 
-	internet_sound.x = 0
-	internet_sound.y = 0
-	internet_sound.z = 0
-	internet_sound.falloff = 3
-	current_internet_sound = internet_sound
-
+	SEND_SOUND(user, internet_sound)
 	say("Now playing: [internet_track_selected].")
 
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == src.z && get_dist(M, src) <= 7)
-			M.playsound_local(src, null, 50, FALSE, channel = CHANNEL_JUKEBOX, S = internet_sound)
-
-/obj/machinery/jukebox/proc/stop_internet_stream()
+/obj/machinery/jukebox/proc/stop_internet_stream(mob/user)
 	internet_playing = FALSE
-	current_internet_sound = null
-
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == src.z && get_dist(M, src) <= 12)
-			var/sound/mute_sound = sound(null)
-			mute_sound.channel = CHANNEL_JUKEBOX
-			SEND_SOUND(M, mute_sound)
+	if(user)
+		var/sound/mute_sound = sound(null)
+		mute_sound.channel = CHANNEL_JUKEBOX
+		SEND_SOUND(user, mute_sound)
 
 	if(current_stream_path)
 		fdel(current_stream_path)
