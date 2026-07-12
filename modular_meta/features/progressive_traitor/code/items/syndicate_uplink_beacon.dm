@@ -1,4 +1,3 @@
-// TODO Перенести это в модульную папку (progressive_traitor)
 /// Device that traitors can craft in order to be sent a new, undisguised uplink
 /obj/structure/syndicate_uplink_beacon
 	name = "suspicious beacon"

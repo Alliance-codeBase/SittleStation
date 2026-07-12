@@ -32,6 +32,7 @@
 #include "code\station_goals\meteor_shields.dm"
 
 #include "code\items\virus_disk.dm"
+#include "code\items\syndicate_uplink_beacon.dm"
 
 #include "code\balance_helper.dm"
 #include "code\datum_traitor.dm"
