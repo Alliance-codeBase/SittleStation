@@ -3,7 +3,6 @@
 	var/internet_track_selected = null
 	var/internet_playing = FALSE
 	var/current_stream_path = ""
-	var/list/music_files = list()
 
 /obj/machinery/jukebox/Destroy()
 	stop_internet_stream()
@@ -191,9 +190,6 @@
 	music_player.unlisten_all()
 	music_player.selection = internet_track
 	music_player.start_music()
-	if(!(current_stream_path in music_files))
-		music_files += current_stream_path
-	fdel("[output_template].log")
 	say("Now playing: [internet_track_selected].")
 
 /obj/machinery/jukebox/proc/stop_internet_stream()
