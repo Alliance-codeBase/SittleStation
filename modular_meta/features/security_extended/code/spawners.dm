@@ -6,7 +6,7 @@
 	new /obj/item/ammo_box/magazine/recharge(get_turf(src))
 	new /obj/item/gun/ballistic/automatic/laser/station(get_turf(src))
 
-/obj/machinery/vending/autodrobe/Initialize(mapload)
+/obj/machinery/vending/security/Initialize(mapload)
 	.=..()
 	premium += list(
 		/obj/item/melee/tonfa = 1,

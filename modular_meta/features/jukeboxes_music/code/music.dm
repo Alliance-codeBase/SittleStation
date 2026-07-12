@@ -8,6 +8,10 @@
 	stop_internet_stream()
 	return ..()
 
+/obj/machinery/jukebox/Initialize(mapload)
+	. = ..()
+	SSticker.OnRoundend(CALLBACK(src, PROC_REF(cleanup_files)))
+
 /obj/machinery/jukebox/ui_data(mob/user)
 	var/list/data = ..()
 	data["internet_sound_enabled"] = CONFIG_GET(flag/request_internet_sound) ? TRUE : FALSE
@@ -34,13 +38,15 @@
 	return data
 
 /obj/machinery/jukebox/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(isobserver(ui.user))
+		return
 	if(action == "select_track")
 		var/track_name = params["track"]
 
 		if(custom_songs[track_name])
 			internet_track_selected = track_name
 			if(internet_playing)
-				stop_internet_stream(ui.user)
+				stop_internet_stream()
 
 			if(hascall(src, "turn_off"))
 				call(src, "turn_off")()
@@ -52,16 +58,13 @@
 		else
 			internet_track_selected = null
 			if(internet_playing)
-				stop_internet_stream(ui.user)
+				stop_internet_stream()
 
 	if(action == "toggle")
 		if(internet_track_selected)
-			var/mob/user = ui.user
-			if(!user)
-				return TRUE
 
 			if(internet_playing)
-				stop_internet_stream(user)
+				stop_internet_stream()
 			else
 				if(hascall(src, "turn_off"))
 					call(src, "turn_off")()
@@ -70,24 +73,23 @@
 
 				internet_playing = TRUE
 				update_static_data_for_all_viewers()
-				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, start_internet_stream), user)
+				INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, start_internet_stream), ui.user)
 
 			return TRUE
 
 	if(action == "request_internet_track")
-		var/mob/user = ui.user
-		if(!user || !user.client)
+		if(!ui.user)
 			return TRUE
 
 		if(!CONFIG_GET(flag/request_internet_sound))
-			to_chat(user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
+			to_chat(ui.user, span_danger("This server has disabled internet sound requests."), confidential = TRUE)
 			return TRUE
 
-		if(user.client.prefs.muted & MUTE_INTERNET_REQUEST)
-			to_chat(user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
+		if(ui.user.client.prefs.muted & MUTE_INTERNET_REQUEST)
+			to_chat(ui.user, span_danger("You cannot play music at this time. (muted)."), confidential = TRUE)
 			return TRUE
 
-		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), user)
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/jukebox, handle_internet_request), ui.user)
 		return TRUE
 
 	if(..())
@@ -119,7 +121,7 @@
 	internet_track_selected = display_name
 
 	if(internet_playing)
-		stop_internet_stream(user)
+		stop_internet_stream()
 
 	log_internet_request("[user.key]/([user.name]) successfully loaded via Jukebox: [request_url]")
 	say("Added [track_title] to the track list.")
@@ -148,50 +150,55 @@
 	safe_url = replacetext(safe_url, ";", "")
 	safe_url = replacetext(safe_url, "&", "")
 
-	var/stream_id = rand(1111, 9999)
+	var/stream_id = rustg_hash_string(RUSTG_HASH_MD5, safe_url)
 	var/output_template = "data/music_cache/yt_[stream_id]"
 	current_stream_path = "[output_template].ogg"
+	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\" > \"data/music_cache/yt_[stream_id].log\" 2>&1"
+	if(!fexists(current_stream_path))
+		if(world.system_type == MS_WINDOWS)
+			shell("cmd /c \"[shell_command]\"")
+		else if(world.system_type == UNIX)
+			shell("sh -c \"[shell_command]\"")
+		else
+			shell("[shell_command]")
 
-	fdel(current_stream_path)
+		var/check_attempts = 0
+		while(!fexists(current_stream_path) && check_attempts < 40)
+			sleep(5)
+			check_attempts++
 
-	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\""
+		if(!fexists(current_stream_path) || !internet_playing)
+			var/output = rustg_file_read("data/music_cache/yt_[stream_id].log")
+			stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server-logs for details.")
+			log_runtime("Jukebox: Failed to download or extract audio from YouTube.", list(
+				"stdout: [output]"
+			))
 
-	shell(shell_command)
+			say("Unexpected error happened during your request")
+			playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
+			internet_playing = FALSE
+			if(current_stream_path)
+				fdel(current_stream_path)
+				current_stream_path = ""
+			update_static_data_for_all_viewers()
+			return
 
-	var/check_attempts = 0
-	while(!fexists(current_stream_path) && check_attempts < 40)
-		sleep(5)
-		check_attempts++
-
-	if(!fexists(current_stream_path) || !internet_playing)
-		stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server yt-dlp/ffmpeg installation.")
-		say("Unexpected error happened during your request")
-		playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
-		internet_playing = FALSE
-		if(current_stream_path)
-			fdel(current_stream_path)
-			current_stream_path = ""
-		update_static_data_for_all_viewers()
-		return
-
-	var/sound/internet_sound = sound(file(current_stream_path))
-	internet_sound.wait = 0
-	internet_sound.repeat = 0
-	internet_sound.channel = CHANNEL_JUKEBOX
-	internet_sound.volume = 30
-
-	SEND_SOUND(user, internet_sound)
+	var/datum/track/internet_track = new()
+	internet_track.song_path = current_stream_path
+	internet_track.song_length = rustg_sound_length(current_stream_path)
+	internet_track.song_name = internet_track_selected
+	music_player.unlisten_all()
+	music_player.selection = internet_track
+	music_player.start_music()
 	say("Now playing: [internet_track_selected].")
 
-/obj/machinery/jukebox/proc/stop_internet_stream(mob/user)
+/obj/machinery/jukebox/proc/stop_internet_stream()
 	internet_playing = FALSE
-	if(user)
-		var/sound/mute_sound = sound(null)
-		mute_sound.channel = CHANNEL_JUKEBOX
-		SEND_SOUND(user, mute_sound)
-
+	music_player.unlisten_all()
 	if(current_stream_path)
-		fdel(current_stream_path)
 		current_stream_path = ""
-
 	update_static_data_for_all_viewers()
+
+/obj/machinery/jukebox/proc/cleanup_files()
+	for(var/file in flist("data/music_cache/*"))
+		fdel("data/music_cache/[file]")
