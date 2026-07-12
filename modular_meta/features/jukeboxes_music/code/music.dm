@@ -157,8 +157,6 @@
 	if(!fexists(current_stream_path))
 		if(world.system_type == MS_WINDOWS)
 			shell("cmd /c \"[shell_command]\"")
-		else if(world.system_type == UNIX)
-			shell("sh -c \"[shell_command]\"")
 		else
 			shell("[shell_command]")
 
