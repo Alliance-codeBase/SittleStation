@@ -154,10 +154,14 @@
 	var/stream_id = rustg_hash_string(RUSTG_HASH_MD5, safe_url)
 	var/output_template = "data/music_cache/yt_[stream_id]"
 	current_stream_path = "[output_template].ogg"
-	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\""
-
+	var/shell_command = "yt-dlp -x --audio-format vorbis --audio-quality 5 -o \"[output_template].%(ext)s\" \"[safe_url]\" > \"data/music_cache/yt_[stream_id].log\" 2>&1"
 	if(!fexists(current_stream_path))
-		var/list/output = world.shelleo(shell_command)
+		if(world.system_type == MS_WINDOWS)
+			shell("cmd /c \"[shell_command]\"")
+		else if(world.system_type == UNIX)
+			shell("sh -c \"[shell_command]\"")
+		else
+			shell("[shell_command]")
 
 		var/check_attempts = 0
 		while(!fexists(current_stream_path) && check_attempts < 40)
@@ -165,12 +169,11 @@
 			check_attempts++
 
 		if(!fexists(current_stream_path) || !internet_playing)
+			var/output = rustg_file_read("data/music_cache/yt_[stream_id].log")
 			stack_trace("Jukebox: Failed to download or extract audio from YouTube. Check server-logs for details.")
 			log_runtime("Jukebox: Failed to download or extract audio from YouTube.", list(
-				"Code: [output[1]]",
-				"Output: [output[2]]",
-				"Error: [output[3]]")
-			)
+				"stdout: [output]"
+			))
 
 			say("Unexpected error happened during your request")
 			playsound(src, 'sound/machines/compiler/compiler-failure.ogg' , 50)
@@ -190,6 +193,7 @@
 	music_player.start_music()
 	if(!(current_stream_path in music_files))
 		music_files += current_stream_path
+	fdel("[output_template].log")
 	say("Now playing: [internet_track_selected].")
 
 /obj/machinery/jukebox/proc/stop_internet_stream()
@@ -200,5 +204,5 @@
 	update_static_data_for_all_viewers()
 
 /obj/machinery/jukebox/proc/cleanup_files()
-	for(var/music_file in music_files)
-		fdel(music_file)
+	for(var/file in flist("data/music_cache/*"))
+		fdel("data/music_cache/[file]")
