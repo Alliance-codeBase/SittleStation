@@ -38,6 +38,7 @@
 #include "code\balance_helper.dm"
 #include "code\datum_traitor.dm"
 #include "code\uplink_handler.dm"
+#include "code\battlecruiser.dm"
 
 #include "code\admin\secrets.dm"
 #include "code\admin\antag_panel.dm"
