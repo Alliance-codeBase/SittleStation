@@ -225,10 +225,11 @@
 /obj/item/grenade/c4/es8
 	name = "ES8 explosive charge"
 	desc = "A high-power explosive charge designed to create a shockwave in a structural weakpoint of the station."
-
+	icon = 'modular_meta/features/progressive_traitor/icons/grenade.dmi'
 	icon_state = "plasticx40"
 	inhand_icon_state = "plasticx4"
-	worn_icon_state = "x4"
+	worn_icon = 'modular_meta/features/progressive_traitor/icons/grenade.dmi'
+	worn_icon_state = "plasticx40"
 
 	boom_sizes = list(3, 6, 9)
 
