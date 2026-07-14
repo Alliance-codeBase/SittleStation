@@ -33,6 +33,7 @@
 
 #include "code\items\virus_disk.dm"
 #include "code\items\syndicate_uplink_beacon.dm"
+#include "code\items\es8_charge.dm"
 
 #include "code\balance_helper.dm"
 #include "code\datum_traitor.dm"
