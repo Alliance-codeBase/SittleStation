@@ -24,10 +24,11 @@
 	if(!IS_TRAITOR(user))
 		to_chat(user, span_warning("You can't seem to find a way to detonate the charge."))
 		if(prob(50) || HAS_TRAIT(user, TRAIT_CLUMSY))
-			boom_sizes = list(0, -1, -1) // heheh
 			to_chat(user, span_warning("You start pressing random buttons on [src]. You don't think it's a wise thing to do, though you still continue"))
 			if(do_after(user, 5 SECONDS, user))
-				detonate()
+				// detonate() man...
+				explosion(src, 0, -1 , -1, -1, 3)
+				qdel(src)
 			else
 				to_chat(user, span_warning("You decide to leave alone the [src]"))
 		return FALSE
