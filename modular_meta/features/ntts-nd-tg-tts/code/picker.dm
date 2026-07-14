@@ -87,7 +87,7 @@
 	SStts.queued_radio_messages_compression[identifier] = 0
 	// SStts.queued_radio_messages_compression[identifier] = ion ? 31 : 0
 	COOLDOWN_START(middleware, tts_test_cooldown, 0.5 SECONDS)
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, params["message"], speaker = params["voice"], pitch = preferences.read_preference(/datum/preference/numeric/tts_voice_pitch), listeners = list(), blip_base = get_blip_base(), blip_number = preferences.read_preference(/datum/preference/numeric/tts_blip_number), identifier = identifier)
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), user.client, params["message"], language = /datum/language/common, speaker = params["voice"], pitch = preferences.read_preference(/datum/preference/numeric/tts_voice_pitch), listeners = list(), blip_base = get_blip_base(), blip_number = preferences.read_preference(/datum/preference/numeric/tts_blip_number), identifier = identifier)
 	return TRUE
 
 /datum/tts_voice_picker/proc/play_mask(list/params, mob/user, obj/item/clothing/mask/mask_type)

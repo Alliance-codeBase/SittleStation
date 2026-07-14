@@ -234,11 +234,9 @@
 	return list(
 		get_asset_datum(/datum/asset/json/uplink),
 	)
-
+// MASSMETA EDIT ADDITION START (progressive traitor)
 /datum/component/uplink/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	if(.)
-		return
 	if(!active)
 		return
 	switch(action)
@@ -265,11 +263,53 @@
 			if(!lockable)
 				return TRUE
 			lock_uplink()
+
 		if("renegotiate_objectives")
 			uplink_handler.replace_objectives?.Invoke()
 			SStgui.update_uis(src)
+
+	if(!uplink_handler.has_objectives)
+		return TRUE
+
+	if(uplink_handler.owner?.current != ui.user || !uplink_handler.can_take_objectives)
+		return TRUE
+
+	switch(action)
+		if("regenerate_objectives")
+			uplink_handler.generate_objectives()
+			return TRUE
+
+	var/list/objectives
+	switch(action)
+		if("start_objective")
+			objectives = uplink_handler.potential_objectives
+		if("objective_act", "finish_objective", "objective_abort")
+			objectives = uplink_handler.active_objectives
+
+	if(!objectives)
+		return
+
+	var/objective_index = round(text2num(params["index"]))
+	if(objective_index < 1 || objective_index > length(objectives))
+		return TRUE
+	var/datum/traitor_objective/objective = objectives[objective_index]
+
+	// Objective actions
+	switch(action)
+		if("start_objective")
+			uplink_handler.take_objective(ui.user, objective)
+		if("objective_act")
+			uplink_handler.ui_objective_act(ui.user, objective, params["objective_action"])
+		if("finish_objective")
+			if(!objective.finish_objective(ui.user))
+				return
+			uplink_handler.complete_objective(objective)
+		if("objective_abort")
+			uplink_handler.abort_objective(objective)
+
 	return TRUE
 
+// MASSMETA EDIT ADDTION END (progressive traitor)
 
 /// Proc that locks uplinks
 /datum/component/uplink/proc/lock_uplink()

@@ -152,6 +152,20 @@
 	if(!ship.load(battlecruiser_loading_turf))
 		CRASH("Loading battlecruiser ship failed!")
 
+	//MASSMETA EDIT ADDITION START (progressive traitor)
+	// check modular_meta\features\progressive_traitor\code\battlecruiser.dm
+
+	var/list/starfury_ports = list()
+	for(var/obj/docking_port/stationary/port in SSshuttle.stationary_docking_ports)
+		if(istype(port, /obj/docking_port/stationary/starfury_fighter))
+			starfury_ports += port
+		if(istype(port, /obj/docking_port/stationary/starfury_corvette))
+			starfury_ports += port
+
+	SSshuttle.setup_shuttles(starfury_ports)
+
+	//MASSMETA EDIT ADDITION END (progressive traitor)
+
 	if(!team)
 		team = new()
 		var/obj/machinery/nuclearbomb/selfdestruct/nuke = SSmachines.get_machines_by_type(/obj/machinery/nuclearbomb/selfdestruct)[1]
