@@ -241,7 +241,8 @@
 	var/datum/hud/user_hud = he_drive.hud_used
 	if(!user_hud)
 		return
-	user_hud.add_screen_object(/atom/movable/screen/justice_charge_arrow, HUD_JUSTICE_CHARGE_ARROW, HUD_GROUP_INFO, charge_arrow.inactive_icon, around_player)
+	charge_arrow = user_hud.add_screen_object(/atom/movable/screen/justice_charge_arrow, HUD_JUSTICE_CHARGE_ARROW, HUD_GROUP_INFO, null, around_player, TRUE)
+	charge_arrow.icon_state = charge_arrow.inactive_icon
 
 /obj/vehicle/sealed/mecha/justice/mob_exit(mob/exiter, silent, randomstep, forced)
 	. = ..()
