@@ -121,23 +121,3 @@
 	bomb = 25
 	fire = 25
 	acid = 25
-
-/obj/structure/closet/crate/uav_crate
-	name = "UV-L Iguana Crate"
-	desc = "A crate containing an unmanned vehicle with a controller."
-	icon_state = "securecreature"
-
-/obj/structure/closet/crate/uav_crate/PopulateContents()
-	. = ..()
-	new /obj/item/deployable_vehicle(src)
-	new /obj/item/unmanned_vehicle_remote(src)
-
-/obj/structure/closet/crate/uvt_crate
-	name = "UV-T Skink Crate"
-	desc = "A crate containing a scouting drone and a controller."
-	icon_state = "securecreature"
-
-/obj/structure/closet/crate/uvt_crate/PopulateContents()
-	. = ..()
-	new /obj/item/deployable_vehicle/tiny(src)
-	new /obj/item/unmanned_vehicle_remote(src)
