@@ -1,4 +1,4 @@
-// TODO: MODULARIZE (re_traitorsecondary)
+// TODO: MODULARIZE (progressive_traitor)
 /datum/unit_test/objectives_category/Run()
 	var/datum/traitor_category_handler/category_handler = allocate(/datum/traitor_category_handler)
 	var/list/objectives_that_exist = list()

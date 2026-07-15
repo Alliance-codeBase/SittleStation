@@ -5,7 +5,6 @@
 	icon_state = "pig"
 	icon_living = "pig"
 	icon_dead = "pig_dead"
-	icon_gib = "pig_gib"
 	gender = MALE
 	mob_biotypes = MOB_ORGANIC | MOB_BEAST
 	speak_emote = list("oinks","squees")
@@ -51,10 +50,11 @@
 
 ///wrapper for the tameable component addition so you can have non tamable cow subtypes
 /mob/living/basic/pig/proc/make_tameable()
-	var/list/food_types = string_list(list(/obj/item/food/grown/carrot))
+	var/list/food_types = string_list(list(/obj/item/food/grown/carrotlike/carrot))
 	AddComponent(/datum/component/tameable, food_types = food_types, tame_chance = 25, bonus_tame_chance = 15)
 
 /mob/living/basic/pig/tamed(mob/living/tamer, atom/food)
+	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/pig)
 	visible_message(span_notice("[src] snorts respectfully."))
 

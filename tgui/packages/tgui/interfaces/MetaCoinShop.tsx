@@ -58,7 +58,7 @@ const renderListingIcon = (item: ShopItem) => {
 
 export const MetaCoinShop = () => {
   const { act, data } = useBackend<Data>();
-  const { isPregame, balance, preroundItems = [] } = data;
+  const { isPregame, balance, preroundItems = [], persistentItems = [] } = data;
 
   const [activeTab, setActiveTab] = useLocalState<'preround' | 'persistent'>(
     'metacoinShopTab',
@@ -218,7 +218,60 @@ export const MetaCoinShop = () => {
 
         {activeTab === 'persistent' && (
           <Section title="Persistent rewards">
-            <NoticeBox>Persistent rewards are not implemented yet.</NoticeBox>
+            {!persistentItems.length ? (
+              <NoticeBox>No persistent rewards available.</NoticeBox>
+            ) : (
+              <Stack vertical>
+                {persistentItems.map((item) => {
+                  const owned = Boolean(item.owned);
+                  const canAfford = Boolean(item.canAfford);
+                  const buttonDisabled = owned || !canAfford;
+
+                  return (
+                    <Stack.Item key={item.id}>
+                      <Section
+                        title={item.name}
+                        buttons={
+                          <Button
+                            icon={owned ? 'check' : 'shopping-cart'}
+                            disabled={buttonDisabled}
+                            onClick={() =>
+                              act('buy_persistent', {
+                                itemId: item.id,
+                              })
+                            }
+                          >
+                            Buy ({item.price})
+                          </Button>
+                        }
+                      >
+                        <Stack>
+                          <Stack.Item>{renderListingIcon(item)}</Stack.Item>
+                          <Stack.Item grow>
+                            <Box>{item.desc}</Box>
+                            <Box mt={1} color="label">
+                              Price: {item.price}
+                            </Box>
+
+                            {owned && (
+                              <Box mt={1} color="good">
+                                Already owned.
+                              </Box>
+                            )}
+
+                            {!canAfford && !owned && (
+                              <Box mt={1} color="bad">
+                                Not enough metacoins.
+                              </Box>
+                            )}
+                          </Stack.Item>
+                        </Stack>
+                      </Section>
+                    </Stack.Item>
+                  );
+                })}
+              </Stack>
+            )}
           </Section>
         )}
       </Window.Content>

@@ -1,0 +1,12 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - rscadd: "Добавлен вызов proc  award_metacoins в /datum/award/score/unlock"
+  - code_imp: "Добавлено описание для proc award_metacoins() для дальнейшего удобного встраивания"
+  - code_imp: "Отсортирован список metacoin_achievement_reward_overrides, красиво и удобно!"
+  - refactor: "Небольшой (small) рефактор award_metacoins()"
+  - rscdel: "proc/award_achievement_metacoins"
+  - admin: "Админ логирование для полученных метакоинов."
+  - admin: "Админ логирование для полученных антаг-токенов"
+  - admin: "Админ логирование для \"не полученных\" антаг-токенов"
+  - admin: "Админ верб на выдачу метакоинов."

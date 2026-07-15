@@ -1,0 +1,4 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - bugfix: "set_announcement_voices() вызывается корректно"

@@ -2,6 +2,7 @@
 /obj/item/circuitboard/machine/bluespace_miner
 	name = "Bluespace Miner"
 	build_path = /obj/machinery/mineral/bluespace_miner
+	custom_materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	req_components = list(
 		/datum/stock_part/matter_bin = 3,
 		/datum/stock_part/micro_laser = 1,

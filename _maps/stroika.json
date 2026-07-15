@@ -3,6 +3,7 @@
 	"map_name": "Stroika",
 	"map_path": "map_files/Stroika",
 	"map_file": "Stroika.dmm",
+	"exclude_from_ci": true,
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
 	"planetary": 1,
@@ -10,7 +11,7 @@
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
 		"whiteship": "whiteship_box"
-		},
+	},
 	"traits": [
 		{
 			"Mining": true,

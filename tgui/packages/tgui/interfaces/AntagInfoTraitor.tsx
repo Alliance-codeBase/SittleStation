@@ -1,4 +1,4 @@
-/* MASSMETA EDIT START (re_traitorsecondary) ORIGINAL:
+/* MASSMETA EDIT START (progressive_traitor) ORIGINAL:
 
 import { BlockQuote, Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
@@ -12,8 +12,8 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
-// MASSMETA EDIT END (re_traitorsecondary)
+import type { BooleanLike } from 'tgui-core/react';
+// MASSMETA EDIT END (progressive_traitor)
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { type Objective, ObjectivePrintout } from './common/Objectives';
@@ -43,10 +43,10 @@ type Info = {
   intro: string;
   code: string;
   failsafe_code: string;
-  //MASSMETA ADDITION START (re_traitorsecondary)
+  //MASSMETA ADDITION START (progressive_traitor)
   replacement_code: string;
   replacement_frequency: string;
-  //MASSMETA ADDITION END (re_traitorsecondary)
+  //MASSMETA ADDITION END (progressive_traitor)
   has_uplink: BooleanLike;
   uplink_intro: string;
   uplink_unlock_info: string;
@@ -116,7 +116,7 @@ const EmployerSection = (props) => {
 };
 
 const UplinkSection = (props) => {
-  // MASSMETA EDIT START (re_traitorsecondary) ORIIGNAL:
+  // MASSMETA EDIT START (progressive_traitor) ORIIGNAL:
   /*
     const { has_uplink, uplink_intro, uplink_unlock_info, code, failsafe_code } =
     data;
@@ -131,8 +131,8 @@ const UplinkSection = (props) => {
     replacement_code,
     replacement_frequency,
   } = data;
-  // MASSMETA EDIT END (re_traitorsecondary)
-  // MASSMETA ADDITION START (re_traitorsecondary)
+  // MASSMETA EDIT END (progressive_traitor)
+  // MASSMETA ADDITION START (progressive_traitor)
   return (
     <Section title="Uplink" mb={!has_uplink && -1}>
       <Stack fill>
@@ -155,7 +155,7 @@ const UplinkSection = (props) => {
             </Stack.Item>
           </Dimmer>
         )) || (
-  // MASSMETA ADDITION END (re_traitorsecondary) ОНО НЕ ПОЗВОЛЯЕТ СТАВИТЬ КОММЕНТАРИИ, СПАСИТЕ МЕНЯ!!
+          // MASSMETA ADDITION END (progressive_traitor) ОНО НЕ ПОЗВОЛЯЕТ СТАВИТЬ КОММЕНТАРИИ, СПАСИТЕ МЕНЯ!!
           <>
             <Stack.Item bold>
               {uplink_intro}

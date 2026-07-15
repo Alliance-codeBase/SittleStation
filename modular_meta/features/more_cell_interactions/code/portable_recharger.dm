@@ -6,6 +6,7 @@
 	anchored = TRUE
 	idle_power_usage = 0
 	active_power_usage = 0
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2)
 	var/closed = TRUE
 	var/obj/item/case_portable_recharger/portable_recharger
 
@@ -147,6 +148,7 @@
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = FLAMMABLE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/gold = SHEET_MATERIAL_AMOUNT * 2.5, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2)
 	var/obj/machinery/recharger/portable_recharger/link
 	var/obj/item/stock_parts/power_store/cell/incell = null
 

@@ -138,6 +138,11 @@
 #define TRAIT_MASQUERADE "masquerade"
 #define TRAIT_COLDBLOODED "coldblooded"
 
+// Huds, see TG PR № 95119
+#define HUD_BLOODSUCKER_BLOOD "bloodsucker_blood"
+#define HUD_BLOODSUCKER_VAMPRANK "bloodsucker_vamprank"
+#define HUD_BLOODSUCKER_SUNLIGHT "bloodsucker_sunlight"
+
 //Bloodsuckers defines ended//
 
 #define SINFULDEMON_TRAIT "Sinful Demon"

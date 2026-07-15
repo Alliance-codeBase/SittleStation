@@ -1,0 +1,4 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - bugfix: "Скиллчип автохирургии активируется автоматически, при покупке в магазине"

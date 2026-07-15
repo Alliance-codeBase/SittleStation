@@ -1,4 +1,5 @@
-#include "code\felinid_tweaks\wound_licking.dm"
+#include "code\felinid_tweaks\pierce.dm"
+#include "code\felinid_tweaks\slash.dm"
 
 /datum/modpack/spaceman_races
 	id = "RACES"

@@ -23,6 +23,10 @@ type Data = {
   played_sound: string;
   print_report: string;
   subheader: string;
+  //MASSMETA EDIT ADDITION START (ntts && tgtts)
+  tts_voice: string;
+  tts_voices: string[];
+  //MASSMETA EDIT ADDITION END (ntts && tgtts)
 };
 
 export function CommandReport() {
@@ -30,7 +34,7 @@ export function CommandReport() {
     <Window
       title="Create Command Report"
       width={325}
-      height={685}
+      height={730}
       theme="admin"
     >
       <Window.Content>
@@ -39,6 +43,9 @@ export function CommandReport() {
             <CentComName />
             <AnnouncementColor />
             <AnnouncementSound />
+            {/* //MASSMETA EDIT ADDITION START (ntts && tgtts)*/}
+            <AnnouncementVoice />
+            {/* //MASSMETA EDIT ADDITION END (ntts && tgtts)*/}
           </Stack.Item>
           <Stack.Item>
             <SubHeader />
@@ -144,6 +151,28 @@ function AnnouncementSound(props) {
     </Section>
   );
 }
+
+//MASSMETA EDIT ADDITION START (ntts && tgtts)
+function AnnouncementVoice(props) {
+  const { act, data } = useBackend<Data>();
+  const { tts_voice, tts_voices = [] } = data;
+
+  return (
+    <Section title="Set announcement voice" textAlign="center">
+      <Dropdown
+        width="100%"
+        selected={tts_voice}
+        options={tts_voices}
+        onSelected={(value) =>
+          act('set_tts_voice', {
+            picked_voice: value,
+          })
+        }
+      />
+    </Section>
+  );
+}
+//MASSMETA EDIT ADDITION END (ntts && tgtts)
 
 /** Creates the report textarea with a submit button. */
 function ReportText(props) {

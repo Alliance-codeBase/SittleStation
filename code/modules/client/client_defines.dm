@@ -75,10 +75,6 @@
 	///The visual delay to use for the current client.Move(), mostly used for making a client based move look like it came from some other slower source
 	var/visual_delay = 0
 
-		///////////////
-		//SOUND STUFF//
-		///////////////
-
 		////////////
 		//SECURITY//
 		////////////
@@ -186,8 +182,6 @@
 	///A lazy list of atoms we've examined in the last RECENT_EXAMINE_MAX_WINDOW (default 2) seconds, so that we will call [/atom/proc/examine_more] instead of [/atom/proc/examine] on them when examining
 	var/list/recent_examines
 
-	var/list/parallax_layers
-	var/list/parallax_layers_cached
 	var/atom/movable/screen/parallax_home/parallax_rock
 	///this is the last recorded client eye by SSparallax/fire()
 	var/atom/movable/movingmob
@@ -196,13 +190,8 @@
 	var/dont_animate_parallax
 	/// Direction our current area wants to move parallax
 	var/parallax_movedir = 0
-	/// How many parallax layers to show our client
-	var/parallax_layers_max = 4
 	/// Timers for the area directional animation, one for each layer
 	var/list/parallax_animate_timers
-	/// Do we want to do parallax animations at all?
-	/// Exists to prevent laptop fires
-	var/do_parallax_animations = TRUE
 
 	///Are we locking our movement input?
 	var/movement_locked = FALSE
@@ -262,3 +251,8 @@
 
 	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
 	var/window_scaling
+
+	var/datum/tgui_window/stat_panel
+
+	/// OOC colour of the clients messages.
+	var/ooc_colour = null

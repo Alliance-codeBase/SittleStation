@@ -26,6 +26,10 @@
 	},
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
+"eQ" = (
+/obj/item/stack/sheet/mineral/sandstone,
+/turf/open/misc/beach/sand,
+/area/deathmatch/fullbright)
 "eV" = (
 /obj/effect/turf_decal/sand,
 /obj/item/grenade/syndieminibomb/concussion,
@@ -170,6 +174,11 @@
 /obj/item/storage/toolbox/emergency/turret,
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
+"vL" = (
+/obj/structure/platform/sandstone,
+/obj/item/gun/ballistic/rifle/boltaction/donkrifle,
+/turf/open/misc/beach/sand,
+/area/deathmatch/fullbright)
 "zA" = (
 /obj/machinery/deployable_turret/hmg{
 	dir = 9
@@ -231,6 +240,14 @@
 	name = "The Hole";
 	id = "hole";
 	desc = null
+	},
+/turf/open/misc/beach/sand,
+/area/deathmatch/fullbright)
+"Fr" = (
+/obj/effect/turf_decal/sand,
+/obj/item/gun/ballistic/shotgun/china_lake,
+/obj/structure/closet/secure_closet{
+	req_access = list("armory")
 	},
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
@@ -337,6 +354,10 @@
 	},
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
+"OR" = (
+/obj/item/storage/backpack/duffelbag/syndie/c4,
+/turf/open/misc/beach/sand,
+/area/deathmatch/fullbright)
 "Qr" = (
 /obj/structure/tram/alt/wood{
 	name = "wooden wall"
@@ -383,6 +404,7 @@
 /obj/effect/turf_decal/sand,
 /obj/item/stack/sheet/mineral/sandbags/fifty,
 /obj/item/stack/sheet/mineral/sandstone/thirty,
+/obj/structure/closet/secure_closet,
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
 "TH" = (
@@ -400,10 +422,10 @@
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
 "Un" = (
-/obj/structure/tram/alt/wood{
-	name = "wooden wall"
+/obj/effect/turf_decal/weather/sand{
+	dir = 8
 	},
-/turf/open/chasm/true/no_smooth/fake_motion_sand/fast,
+/turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
 "Wb" = (
 /obj/structure/mineral_door/sandstone{
@@ -434,11 +456,7 @@
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
 "WS" = (
-/obj/structure/platform/sandstone,
-/obj/item/gun/ballistic/automatic/lahti{
-	pixel_x = 11;
-	pixel_y = 0
-	},
+/obj/item/food/egg/watcher,
 /turf/open/misc/beach/sand,
 /area/deathmatch/fullbright)
 "Xj" = (
@@ -454,50 +472,50 @@
 /area/deathmatch/fullbright)
 
 (1,1,1) = {"
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
-Ce
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+BQ
+OR
+BQ
+BQ
+BQ
 "}
 (2,1,1) = {"
-Ce
 BQ
 BQ
 BQ
 BQ
 BQ
 BQ
-BQ
-BQ
+RG
+RG
+RG
 BQ
 BQ
 BQ
@@ -521,12 +539,12 @@ gn
 gn
 gn
 gn
-Ce
+BQ
 "}
 (3,1,1) = {"
-Ce
 BQ
-WS
+BQ
+Lo
 Lo
 Lo
 BQ
@@ -556,12 +574,12 @@ gn
 TL
 GP
 gn
-Ce
+BQ
 "}
 (4,1,1) = {"
-Ce
 BQ
-Lo
+BQ
+vL
 BQ
 BQ
 BQ
@@ -591,10 +609,10 @@ gn
 gE
 Og
 gn
-Ce
+BQ
 "}
 (5,1,1) = {"
-Ce
+BQ
 BQ
 Lo
 BQ
@@ -626,10 +644,10 @@ gn
 gn
 Ik
 gn
-Ce
+BQ
 "}
 (6,1,1) = {"
-Ce
+BQ
 BQ
 Tn
 BQ
@@ -661,10 +679,10 @@ BQ
 gn
 fm
 gn
-Ce
+BQ
 "}
 (7,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -696,10 +714,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (8,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -731,10 +749,10 @@ BQ
 BQ
 RG
 RG
-Ce
+BQ
 "}
 (9,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -766,10 +784,10 @@ BQ
 RG
 RG
 RE
-Ce
+BQ
 "}
 (10,1,1) = {"
-Ce
+BQ
 BQ
 zY
 RG
@@ -801,10 +819,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (11,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 RG
@@ -836,10 +854,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (12,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -859,7 +877,7 @@ BQ
 BQ
 zY
 BQ
-BQ
+RG
 BQ
 BQ
 tH
@@ -871,10 +889,10 @@ Lb
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (13,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -906,17 +924,17 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (14,1,1) = {"
-Ce
+Mk
 BQ
 BQ
 BQ
 BQ
 zN
 Mk
-BQ
+RG
 BQ
 BQ
 BQ
@@ -941,11 +959,11 @@ BQ
 BQ
 Wl
 BQ
-Ce
+BQ
 "}
 (15,1,1) = {"
-Ce
-TH
+HC
+nn
 TH
 TH
 nn
@@ -975,11 +993,10 @@ zN
 nn
 nn
 nn
-nn
-Ce
+Mk
+BQ
 "}
 (16,1,1) = {"
-Ce
 HC
 HC
 HC
@@ -989,13 +1006,7 @@ HC
 HC
 HC
 HC
-nn
-nn
 HC
-HC
-HC
-HC
-nn
 nn
 nn
 HC
@@ -1005,16 +1016,23 @@ HC
 nn
 nn
 nn
+HC
+HC
+HC
+HC
+nn
+nn
+nn
 nn
 HC
 HC
 HC
 HC
 HC
-Ce
+TH
 "}
 (17,1,1) = {"
-Ce
+HC
 HC
 HC
 HC
@@ -1046,10 +1064,10 @@ HC
 HC
 HC
 HC
-Ce
+HC
 "}
 (18,1,1) = {"
-Ce
+HC
 HC
 HC
 HC
@@ -1081,10 +1099,10 @@ HC
 Oy
 Oy
 HC
-Ce
+HC
 "}
 (19,1,1) = {"
-Ce
+Un
 oj
 Oy
 Oy
@@ -1116,10 +1134,9 @@ OD
 BQ
 BQ
 EC
-Ce
+Oy
 "}
 (20,1,1) = {"
-Ce
 BQ
 BQ
 BQ
@@ -1151,10 +1168,11 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
+BQ
 "}
 (21,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -1173,9 +1191,9 @@ RG
 RG
 BQ
 BQ
-RG
-RG
 BQ
+RG
+RG
 BQ
 RG
 RG
@@ -1186,10 +1204,12 @@ RG
 RG
 BQ
 BQ
-Ce
+BQ
 "}
 (22,1,1) = {"
-Ce
+RG
+RG
+eQ
 BQ
 BQ
 BQ
@@ -1199,15 +1219,13 @@ BQ
 BQ
 BQ
 BQ
-BQ
-BQ
-BQ
+RG
 BQ
 BQ
 zY
 BQ
 BQ
-BQ
+RG
 BQ
 BQ
 BQ
@@ -1221,10 +1239,10 @@ zA
 RG
 BQ
 BQ
-Ce
+BQ
 "}
 (23,1,1) = {"
-Ce
+RG
 BQ
 BQ
 BQ
@@ -1256,10 +1274,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (24,1,1) = {"
-Ce
+RG
 BQ
 RG
 RG
@@ -1291,10 +1309,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (25,1,1) = {"
-Ce
+RG
 BQ
 RG
 zY
@@ -1326,10 +1344,10 @@ BQ
 RG
 BQ
 RG
-Ce
+BQ
 "}
 (26,1,1) = {"
-Ce
+RG
 Tn
 RG
 BQ
@@ -1351,7 +1369,7 @@ BQ
 BQ
 gn
 TA
-TA
+Fr
 gn
 gn
 gn
@@ -1361,10 +1379,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (27,1,1) = {"
-Ce
+RG
 SG
 RG
 BQ
@@ -1396,10 +1414,10 @@ RG
 BQ
 RG
 BQ
-Ce
+BQ
 "}
 (28,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -1431,10 +1449,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (29,1,1) = {"
-Ce
+RG
 RG
 fz
 RG
@@ -1466,10 +1484,10 @@ Tn
 RG
 BQ
 RG
-Ce
+BQ
 "}
 (30,1,1) = {"
-Ce
+Tn
 RG
 RG
 RG
@@ -1501,10 +1519,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (31,1,1) = {"
-Ce
+BQ
 RG
 vn
 BQ
@@ -1536,26 +1554,26 @@ RG
 BQ
 RG
 BQ
-Ce
+BQ
 "}
 (32,1,1) = {"
-Ce
-RG
-RG
-RG
-BQ
-BQ
-RG
-BQ
-BQ
-RG
-RG
-BQ
-RG
 BQ
 RG
 RG
 RG
+BQ
+BQ
+RG
+BQ
+BQ
+RG
+RG
+BQ
+RG
+BQ
+RG
+RG
+RG
 RG
 BQ
 BQ
@@ -1571,10 +1589,10 @@ BQ
 BQ
 BQ
 BQ
-Ce
+BQ
 "}
 (33,1,1) = {"
-Ce
+BQ
 BQ
 BQ
 BQ
@@ -1609,7 +1627,7 @@ Ce
 Ce
 "}
 (34,1,1) = {"
-Ce
+BQ
 RG
 Tn
 XI
@@ -1644,7 +1662,7 @@ Ce
 Ce
 "}
 (35,1,1) = {"
-Ce
+RG
 RG
 RG
 XI
@@ -1653,7 +1671,7 @@ ri
 fk
 BQ
 BQ
-RG
+BQ
 Ce
 oA
 Ce
@@ -1679,16 +1697,16 @@ oA
 GX
 "}
 (36,1,1) = {"
-Ce
-Ce
-Ce
-Un
-Un
-Un
-Un
-Ce
-Ce
-Ce
+WS
+RG
+BQ
+XI
+XI
+Qr
+Qr
+BQ
+BQ
+RG
 Ce
 aS
 oA

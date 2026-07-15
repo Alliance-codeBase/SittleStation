@@ -60,14 +60,14 @@
 /datum/lazy_template/deathmatch/nuthouse
 	name = "Nuthouse"
 	desc = "DurkaRP."
-	max_players = 6
+	max_players = 8
 	allowed_loadouts = list(
 		/datum/outfit/deathmatch_loadout/patient,
 	)
 	map_name = "nuthouse"
 	key = "nuthouse"
 
-datum/lazy_template/deathmatch/furiousmages
+/datum/lazy_template/deathmatch/furiousmages
 	name = "Wizard Proving Grounds"
 	desc = "An arcane battlefield to determine the most powerful wizard."
 	max_players = 16
@@ -83,19 +83,6 @@ datum/lazy_template/deathmatch/furiousmages
 	map_name = "furious_mages"
 	key = "furious_mages"
 
-/datum/lazy_template/deathmatch/deep_space
-	name = "Deep Space"
-	desc = "A deep-space cargo shipping station has fallen under attack by a Syndicate boarding party."
-	max_players = 8
-	automatic_gameend_time = 15 MINUTES //its a pretty big map
-	allowed_loadouts = list(
-		/datum/outfit/deathmatch_loadout/cargo_spaceman,
-		/datum/outfit/deathmatch_loadout/syndicate_spaceman,
-		/datum/outfit/deathmatch_loadout/spacetider,
-	)
-	map_name = "deep_space"
-	key = "deep_space"
-
 /datum/lazy_template/deathmatch/waffle_corp
 	name = "Waffle Corp Parking Lot"
 	desc = "You're not a real Syndicate agent until you've killed a rival on this infamous battlefield."
@@ -109,3 +96,19 @@ datum/lazy_template/deathmatch/furiousmages
 		)
 	map_name = "waffle_corp"
 	key = "waffle_corp"
+
+/datum/lazy_template/deathmatch/icemoon
+	name = "Planet Icemoon"
+	desc = "Fight until you freeze."
+	max_players = 8
+	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/miner)
+	map_name = "icemoon"
+	key = "icemoon"
+
+/datum/lazy_template/deathmatch/friday_xxii
+	name = "Friday Twenty Two"
+	desc = "Spooky forest! Don't shit your pants."
+	max_players = 12
+	allowed_loadouts = list(/datum/outfit/deathmatch_loadout/runner, /datum/outfit/deathmatch_loadout/slasher)
+	map_name = "friday_twenty_two"
+	key = "friday_twenty_two"

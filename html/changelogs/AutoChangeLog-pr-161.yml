@@ -1,0 +1,6 @@
+author: "Bruh24"
+delete-after: True
+changes:
+  - admin: "Debug Re-establish connection with HTTP server теперь также предлагает перезапуск сабсистемы TTS, на случай если она по какой-либо причине перестала работать"
+  - admin: "Новый админ-верб: Change Announcement Voice"
+  - code_imp: "Заполнен недостающий readme.md для tgtts модуля"

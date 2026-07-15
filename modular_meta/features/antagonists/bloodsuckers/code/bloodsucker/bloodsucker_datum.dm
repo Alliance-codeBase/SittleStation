@@ -115,13 +115,13 @@
 	RegisterSignal(current_mob,COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
 	RegisterSignal(current_mob, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+	RegisterSignal(current_mob, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
 	handle_clown_mutation(current_mob, mob_override ? null : "As a vampiric clown, you are no longer a danger to yourself. Your clownish nature has been subdued by your thirst for blood.")
 	add_team_hud(current_mob)
 
 	if(current_mob.hud_used)
 		on_hud_created()
-	else
-		RegisterSignal(current_mob, COMSIG_MOB_HUD_CREATED, PROC_REF(on_hud_created))
+
 #ifdef BLOODSUCKER_TESTING
 	var/turf/user_loc = get_turf(current_mob)
 	new /obj/structure/closet/crate/coffin(user_loc)
@@ -139,30 +139,21 @@
 	UnregisterSignal(current_mob, list(COMSIG_LIVING_LIFE, COMSIG_ATOM_EXAMINE, COMSIG_LIVING_DEATH))
 	handle_clown_mutation(current_mob, removing = FALSE)
 
-	if(current_mob.hud_used)
-		var/datum/hud/hud_used = current_mob.hud_used
-		hud_used.infodisplay -= blood_display
-		hud_used.infodisplay -= vamprank_display
-		hud_used.infodisplay -= sunlight_display
-		QDEL_NULL(blood_display)
-		QDEL_NULL(vamprank_display)
-		QDEL_NULL(sunlight_display)
+	if(!current_mob.hud_used)
+		return
+
+	var/datum/hud/bloodsucker_hud = current_mob.hud_used
+	bloodsucker_hud.remove_screen_object(HUD_BLOODSUCKER_BLOOD)
+	bloodsucker_hud.remove_screen_object(HUD_BLOODSUCKER_VAMPRANK)
+	bloodsucker_hud.remove_screen_object(HUD_BLOODSUCKER_SUNLIGHT)
 
 /datum/antagonist/bloodsucker/proc/on_hud_created(datum/source)
 	SIGNAL_HANDLER
 	var/datum/hud/bloodsucker_hud = owner.current.hud_used
 
-	blood_display = new /atom/movable/screen/bloodsucker/blood_counter(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += blood_display
-
-	vamprank_display = new /atom/movable/screen/bloodsucker/rank_counter(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += vamprank_display
-
-	sunlight_display = new /atom/movable/screen/bloodsucker/sunlight_counter(null, bloodsucker_hud)
-	bloodsucker_hud.infodisplay += sunlight_display
-
-	bloodsucker_hud.show_hud(bloodsucker_hud.hud_version)
-	UnregisterSignal(owner.current, COMSIG_MOB_HUD_CREATED)
+	bloodsucker_hud.add_screen_object(/atom/movable/screen/bloodsucker/blood_counter, HUD_BLOODSUCKER_BLOOD, HUD_GROUP_INFO)
+	bloodsucker_hud.add_screen_object(/atom/movable/screen/bloodsucker/rank_counter, HUD_BLOODSUCKER_VAMPRANK, HUD_GROUP_INFO)
+	bloodsucker_hud.add_screen_object(/atom/movable/screen/bloodsucker/sunlight_counter, HUD_BLOODSUCKER_SUNLIGHT, HUD_GROUP_INFO)
 
 /datum/antagonist/bloodsucker/get_admin_commands()
 	. = ..()

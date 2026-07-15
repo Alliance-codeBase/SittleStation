@@ -122,7 +122,6 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
-	crafting_flags = NONE
 
 /datum/crafting_recipe/hardened_stake
 	name = "Hardened Stake"
@@ -134,7 +133,7 @@
 	)
 	time = 6 SECONDS
 	category = CAT_WEAPON_MELEE
-	crafting_flags = NONE
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 
 /datum/crafting_recipe/silver_stake
 	name = "Silver Stake"
@@ -146,4 +145,3 @@
 	)
 	time = 8 SECONDS
 	category = CAT_WEAPON_MELEE
-	crafting_flags = CRAFT_CHECK_DENSITY

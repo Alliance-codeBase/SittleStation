@@ -1,0 +1,6 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - map: "Добавлена карта Пятница 22го"
+  - map: "Обновлена Дурка"
+  - rscdel: "Удалён Херобрин"

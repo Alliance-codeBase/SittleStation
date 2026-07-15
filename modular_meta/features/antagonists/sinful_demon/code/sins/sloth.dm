@@ -59,7 +59,7 @@
 	jaunt_duration = 1 SECONDS
 
 /datum/action/cooldown/spell/timestop/sloth
-	name = "Stop Time"
+	name = "Sloth Stop Time"
 	desc = "This spell stops time for everyone INCLUDE you."
 	button_icon_state = "time"
 	background_icon_state = "bg_demon"

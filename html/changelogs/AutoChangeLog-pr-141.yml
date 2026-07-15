@@ -1,0 +1,5 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - sound: "fake discord ping"
+  - admin: "fake discord ping smite"

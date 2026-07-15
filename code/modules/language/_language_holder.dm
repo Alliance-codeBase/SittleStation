@@ -225,12 +225,16 @@ Key procs
 /// Checks if you have the language passed.
 /datum/language_holder/proc/has_language(language, flag_to_check = UNDERSTOOD_LANGUAGE)
 	var/list/langs_to_check = list()
-	if(flag_to_check & SPOKEN_LANGUAGE && !LAZYACCESS(blocked_speaking, language))
+	if(flag_to_check & SPOKEN_LANGUAGE && LAZYACCESS(spoken_languages, language))
 		langs_to_check |= spoken_languages
-	if(flag_to_check & UNDERSTOOD_LANGUAGE && !LAZYACCESS(blocked_understanding, language))
+	if(flag_to_check & UNDERSTOOD_LANGUAGE && LAZYACCESS(understood_languages, language))
 		langs_to_check |= understood_languages
 
 	return language in langs_to_check
+
+/// Checks if you have partial understanding of the language passed.
+/datum/language_holder/proc/has_partial_language(language)
+	return LAZYACCESS(best_mutual_languages, language)
 
 /// Checks if you can speak the language. Tongue limitations should be supplied as an argument.
 /datum/language_holder/proc/can_speak_language(language)
@@ -271,6 +275,10 @@ Key procs
 	// They can only speak common, oh well.
 	else
 		return /datum/language/common
+
+/// Returns a list of languages we understand
+/datum/language_holder/proc/get_understood_languages()
+	return assoc_to_keys(understood_languages) - assoc_to_keys(blocked_understanding)
 
 /// Opens a language menu reading from the language holder.
 /datum/language_holder/proc/open_language_menu(mob/user)

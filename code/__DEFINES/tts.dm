@@ -7,8 +7,14 @@
 ///TTS filter to activate start/stop radio clicks on speech.
 #define TTS_FILTER_RADIO "radio"
 ///TTS filter to activate a silicon effect on speech.
-//MASSMETA EDIT BEGIN (/n/tts)
-//#define TTS_FILTER_SILICON "silicon"
-
-#define TTS_FILTER_SILICON "robotic"
-//MASSMETA EDIT END
+#define TTS_FILTER_SILICON "silicon"
+//Hear all TTS over radio.
+#define TTS_SOUND_ALL_RADIO "Enabled"
+//Hear all TTS over departmental radio channels only.
+#define TTS_SOUND_DEPARTMENTAL_RADIO "Departmental Radio Only"
+//Hear no TTS over radio.
+#define TTS_SOUND_NO_RADIO "Disabled"
+//Flag for TTS ghost radio
+#define TTS_GHOST_RADIO "GHOST RADIO"
+#define TTS_BLIPS_MASCULINE "Masculine"
+#define TTS_BLIPS_FEMININE "Feminine"

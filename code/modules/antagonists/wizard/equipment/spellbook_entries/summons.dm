@@ -21,7 +21,7 @@
 
 /datum/spellbook_entry/summon/guns/can_be_purchased()
 	// Must be a high chaos round + Also must be config enabled
-	return SSdynamic.current_tier.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_guns)
+	return SSdynamic?.current_tier?.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_guns) //MASSMETA EDIT (runtimes fix) ORIGINAL: return SSdynamic.current_tier.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_guns)
 
 /datum/spellbook_entry/summon/guns/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy = TRUE)
 	summon_guns(user, 10)
@@ -35,7 +35,7 @@
 
 /datum/spellbook_entry/summon/magic/can_be_purchased()
 	// Must be a high chaos round + Also must be config enabled
-	return SSdynamic.current_tier.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_magic)
+	return SSdynamic?.current_tier?.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_magic) //MASSMETA EDIT (runtimes fix) ORIGINAL: return SSdynamic.current_tier.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_magic)
 
 /datum/spellbook_entry/summon/magic/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy = TRUE)
 	summon_magic(user, 10)
@@ -52,7 +52,7 @@
 
 /datum/spellbook_entry/summon/events/can_be_purchased()
 	// Must be a high chaos round + Also must be config enabled
-	return SSdynamic.current_tier.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_events)
+	return SSdynamic?.current_tier?.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_events) //MASSMETA EDIT (runtimes fix) ORIGINAL: return SSdynamic.current_tier.tier == DYNAMIC_TIER_HIGH && !CONFIG_GET(flag/no_summon_events)
 
 /datum/spellbook_entry/summon/events/buy_spell(mob/living/carbon/human/user, obj/item/spellbook/book, log_buy = TRUE)
 	summon_events(user)
@@ -126,7 +126,7 @@
 	return ..()
 
 /datum/spellbook_entry/summon/specific_spell/can_be_purchased()
-	if(SSdynamic.current_tier.tier != DYNAMIC_TIER_HIGH)
+	if(SSdynamic?.current_tier?.tier != DYNAMIC_TIER_HIGH) //MASSMETA EDIT (runtimes fix) ORIGINAL: if(SSdynamic.current_tier.tier != DYNAMIC_TIER_HIGH)
 		return FALSE
 	if(GLOB.mass_teaching)
 		return FALSE

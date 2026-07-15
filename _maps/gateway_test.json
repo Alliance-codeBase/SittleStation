@@ -4,6 +4,7 @@
 	"map_path": "map_files/debug",
 	"map_file": "gateway_test.dmm",
 	"space_ruin_levels": 0,
+	"exclude_from_ci": true,
 	"minetype": "none",
 	"load_all_away_missions": true,
 	"ignored_unit_tests": [

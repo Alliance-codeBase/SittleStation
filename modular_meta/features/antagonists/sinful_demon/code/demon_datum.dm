@@ -118,7 +118,7 @@
 
 /datum/antagonist/sinfuldemon/on_gain()
 	forge_objectives()
-	owner.current.faction += "hell"
+	owner.current.add_faction("hell")
 	for(var/all_traits in sinfuldemon_traits) //adds demon traits
 		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
 	switch(demonsin)
@@ -203,7 +203,7 @@
 	return ..()
 
 /datum/antagonist/sinfuldemon/on_removal()
-	owner.current.faction -= "hell"
+	owner.current.add_faction("hell")
 	for(var/all_status_traits in owner.current._status_traits) //removes demon traits
 		REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
 	for(var/datum/action/cooldown/spell in owner.current.actions)

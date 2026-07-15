@@ -4,6 +4,7 @@
 	worn_icon = 'modular_meta/features/butt_farts/icons/worn_butts.dmi' //Wearable on the head
 	icon = 'modular_meta/features/butt_farts/icons/butts.dmi'
 	icon_state = "ass"
+	organ_flags = ORGAN_ORGANIC | ORGAN_VIRGIN | ORGAN_EXTERNAL
 	zone = BODY_ZONE_PRECISE_GROIN
 	slot = ORGAN_SLOT_BUTT
 	throw_speed = 1
@@ -21,7 +22,6 @@
 	var/atmos_gas = "miasma=0.25;TEMP=310.15" //310.15 is body temperature (TODO сделать зависимость от core temp)
 	var/fart_instability = 1 //Percent chance to lose your rear each fart.
 	var/cooling_down = FALSE
-
 
 /datum/embedding/butt
 	pain_mult = 0

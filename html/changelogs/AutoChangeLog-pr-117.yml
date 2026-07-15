@@ -1,0 +1,5 @@
+author: "MassMeta: glamyr"
+delete-after: True
+changes:
+  - balance: "Ребаланс тонфы, все расписано в пре"
+  - sound: "Добавлен звук легкому удару объектов"

@@ -63,11 +63,11 @@
 	min_val = 0
 
 /// Determines the ideal player count for maximum progression per minute.
-// MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+// MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 /datum/config_entry/number/traitor_ideal_player_count
 	default = 20
 	min_val = 1
-// MASSMETA EDIT ADDITION END (re_traitorsecondary)
+// MASSMETA EDIT ADDITION END (progressive_traitor)
 
 /// Determines how fast traitors scale in general.
 /datum/config_entry/number/traitor_scaling_multiplier
@@ -76,11 +76,11 @@
 	min_val = 0.01
 
 /// Determines how many potential objectives a traitor can have.
-//MASSMETA ADDDITION START (re_traitorsecondary)
+//MASSMETA ADDDITION START (progressive_traitor)
 /datum/config_entry/number/maximum_potential_objectives
 	default = 6
 	min_val = 1
-//MASSMETA ADDDITION END (re_traitorsecondary)
+//MASSMETA ADDDITION END (progressive_traitor)
 /datum/config_entry/number/changeling_scaling_coeff //how much does the amount of players get divided by to determine changelings
 	default = 6
 	integer = FALSE
@@ -409,15 +409,6 @@
 
 /datum/config_entry/flag/enable_night_shifts
 
-/datum/config_entry/flag/randomize_shift_time
-
-/datum/config_entry/flag/shift_time_realtime
-
-/datum/config_entry/number/shift_time_start_hour
-	default = 12
-	min_val = 0
-	max_val = 23
-
 /datum/config_entry/number/monkeycap
 	default = 64
 	min_val = 0
@@ -457,13 +448,15 @@
 
 /datum/config_entry/flag/disallow_circuit_sounds
 
-/datum/config_entry/flag/tts_no_whisper
-
 /datum/config_entry/string/tts_http_url
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/tts_http_token
 	protection = CONFIG_ENTRY_LOCKED|CONFIG_ENTRY_HIDDEN
+
+/datum/config_entry/string/tts_tram_announcer_override
+
+/datum/config_entry/string/tts_computer_voice_override
 
 /datum/config_entry/number/tts_max_concurrent_requests
 	default = 4
@@ -499,15 +492,30 @@
 /// Disables Quirk point balancing for the server and clients.
 /datum/config_entry/flag/disable_quirk_points
 
+/datum/config_entry/flag/disable_quirk_points/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		SSquirks.points_enabled = !config_entry_value
+
 /// The maximum amount of positive quirks one character can have at roundstart.
 /datum/config_entry/number/max_positive_quirks
 	default = 6
 	min_val = -1
 
+/datum/config_entry/number/max_positive_quirks/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		SSquirks.max_positive_quirks = config_entry_value
+
 /// Freebie quirk points. Can't go negative because we have no way of enforcing a person has a quirk before they join.
 /datum/config_entry/number/default_quirk_points
 	default = 2
 	min_val = 0
+
+/datum/config_entry/number/default_quirk_points/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		SSquirks.default_quirk_points = config_entry_value
 
 /// Max personalities you can have at once
 /datum/config_entry/number/max_personalities
@@ -531,3 +539,7 @@
 
 /datum/config_entry/number/max_shuttle_size
 	default = 250
+
+/datum/config_entry/number/minimum_ascension_time
+	default = 0 // 1 minute
+	min_val = 0

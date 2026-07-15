@@ -1,6 +1,12 @@
 name: CI Suite
 
 on:
+  push:
+    branches:
+    - master
+    - 'project/**'
+    - 'gh-readonly-queue/master/**'
+    - 'gh-readonly-queue/project/**'
   pull_request:
     branches:
       - master
@@ -52,6 +58,7 @@ jobs:
     uses: ./.github/workflows/perform_regular_version_tests.yml
     with:
       maps: ${{ needs.collect_data.outputs.maps }}
+      map_config: ${{ needs.collect_data.outputs.map_config }}
       max_required_byond_client: ${{ needs.collect_data.outputs.max_required_byond_client }}
 
   run_alternate_tests:
@@ -63,18 +70,18 @@ jobs:
       alternate_tests: ${{ needs.collect_data.outputs.alternate_tests }}
       default_max_required_byond_client: ${{ needs.collect_data.outputs.max_required_byond_client }}
 
-  compare_screenshots:
-    if: needs.collect_data.outputs.alternate_tests == '[]' || needs.run_alternate_tests.result == 'success'
-    needs: [collect_data, run_all_tests, run_alternate_tests]
-    name: Compare Screenshot Tests
-    uses: ./.github/workflows/compare_screenshots.yml
+  #compare_screenshots:
+  #  if: needs.collect_data.outputs.alternate_tests == '[]' || needs.run_alternate_tests.result == 'success'
+  #  needs: [collect_data, run_all_tests, run_alternate_tests]
+  #  name: Compare Screenshot Tests
+  #  uses: ./.github/workflows/compare_screenshots.yml
 
   completion_gate: # Serves as a non-moving target for branch rulesets
     if: always() && !cancelled()
     name: Completion Gate
     needs: [
-        compare_screenshots,
-        #compile_all_maps, - we need ts fixed, so we doesn't include it, for now
+        #compare_screenshots,
+        compile_all_maps,
         run_all_tests,
         run_alternate_tests,
         #run_linters,

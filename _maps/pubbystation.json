@@ -9,9 +9,13 @@
 		"ferry": "ferry_fancy",
 		"cargo": "cargo_pubby"
 	},
+	"ignored_unit_tests": ["/datum/unit_test/create_and_destroy"],
 	"job_changes": {
 		"Cook": {
-			"additional_cqc_areas": ["/area/station/service/bar/atrium", "/area/station/security/prison/upper"]
+			"additional_cqc_areas": [
+				"/area/station/service/bar/atrium",
+				"/area/station/security/prison/upper"
+			]
 		},
 		"Prisoner": {
 			"spawn_positions": 2

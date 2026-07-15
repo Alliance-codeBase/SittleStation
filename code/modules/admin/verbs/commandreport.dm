@@ -42,6 +42,10 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 	var/announcement_color = "default"
 	/// The subheader to include when sending the announcement. Keep blank to not include a subheader
 	var/subheader = ""
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	/// TTS voice used for various command reports and announcements
+	var/tts_voice
+	// MASSMETA EDIT END (ntts && /tg/tts)
 	/// A static list of preset names that can be chosen.
 	var/list/preset_names = list(CENTCOM_PRESET, SYNDICATE_PRESET, WIZARD_PRESET, CUSTOM_PRESET)
 
@@ -50,6 +54,9 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 	if(command_name() != CENTCOM_PRESET)
 		command_name = command_name()
 		preset_names.Insert(1, command_name())
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	tts_voice = SStts.centcom_voice
+	// MASSMETA EDIT END (ntts && /tg/tts)
 
 /datum/command_report_menu/ui_state(mob/user)
 	return ADMIN_STATE(R_ADMIN)
@@ -73,6 +80,9 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 	data["played_sound"] = played_sound
 	data["announcement_color"] = announcement_color
 	data["subheader"] = subheader
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	data["tts_voice"] = tts_voice
+	// MASSMETA EDIT END (ntts && /tg/tts)
 
 	return data
 
@@ -81,6 +91,9 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 	data["command_name_presets"] = preset_names
 	data["announcer_sounds"] = list(DEFAULT_ANNOUNCEMENT_SOUND) + GLOB.announcer_keys + CUSTOM_SOUND_PRESET
 	data["announcement_colors"] = ANNOUNCEMENT_COLORS
+	// MASSMETA EDIT START (ntts && /tg/tts)
+	data["tts_voices"] = SStts.admin_voices()
+	// MASSMETA EDIT END (ntts && /tg/tts)
 
 	return data
 
@@ -123,6 +136,12 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 				announcement_color = chosen_color
 		if("set_subheader")
 			subheader = params["new_subheader"]
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		if("set_tts_voice")
+			var/picked_voice = params["picked_voice"]
+			if(picked_voice in SStts.admin_voices())
+				tts_voice = picked_voice
+		// MASSMETA EDIT END (ntts && /tg/tts)
 		if("submit_report")
 			if(!command_name)
 				to_chat(ui_user, span_danger("You can't send a report with no command name."))
@@ -157,7 +176,10 @@ ADMIN_VERB(create_command_report, R_ADMIN, "Create Command Report", "Create a co
 				chosen_color = "red"
 			else if(command_name == WIZARD_PRESET)
 				chosen_color = "purple"
-		priority_announce(command_report_content, subheader == ""? null : subheader, report_sound, has_important_message = TRUE, color_override = chosen_color)
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		var/tts_effect = (command_name == CENTCOM_PRESET) ? "centcom" : "syndicate"
+		priority_announce(command_report_content, subheader == ""? null : subheader, report_sound, has_important_message = TRUE, color_override = chosen_color, tts_voice = tts_voice, tts_effect = tts_effect)
+		// MASSMETA EDIT END (ntts && /tg/tts)
 
 	if(!announce_contents || print_report)
 		print_command_report(command_report_content, "[announce_contents ? "" : "Classified "][command_name] Update", !announce_contents, contains_advanced_html = TRUE)

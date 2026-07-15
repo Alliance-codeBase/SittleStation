@@ -28,12 +28,7 @@
 	var/should_give_codewords = TRUE
 	///give this traitor an uplink?
 	var/give_uplink = TRUE
-	//MASSMETA ADDITION START (re_traitorsecondary)
-	/// Code that allows traitor to get a replacement uplink
-	var/replacement_uplink_code = ""
-	/// Radio frequency that traitor must speak on to get a replacement uplink
-	var/replacement_uplink_frequency = ""
-	//MASSMETA ADDITION END (re_traitorsecondary)
+
 	///if TRUE, this traitor will always get hijacking as their final objective
 	var/is_hijacker = FALSE
 
@@ -55,21 +50,6 @@
 	///the final objective the traitor has to accomplish, be it escaping, hijacking, or just martyrdom.
 	var/datum/objective/ending_objective
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
-
-/datum/antagonist/traitor/infiltrator
-	// Used to denote traitors who have joined midround and therefore have no access to secondary objectives.
-	// Progression elements are best left to the roundstart antagonists
-	// There will still be a timelock on uplink items
-	name = "\improper Infiltrator"
-	give_secondary_objectives = FALSE
-	uplink_flag_given = UPLINK_INFILTRATORS
-
-/datum/antagonist/traitor/infiltrator/sleeper_agent
-	name = "\improper Syndicate Sleeper Agent"
-
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
-
 /datum/antagonist/traitor/New(give_objectives = TRUE)
 	. = ..()
 	src.give_objectives = give_objectives
@@ -77,9 +57,6 @@
 /datum/antagonist/traitor/on_gain()
 	if(give_uplink)
 		owner.give_uplink(silent = TRUE, antag_datum = src)
-	//MASSMETA ADDITION START (re_traitorsecondary)
-	generate_replacement_codes()
-	//MASSMETA ADDITION END (re_traitorsecondary)
 	var/datum/component/uplink/uplink = owner.find_syndicate_uplink()
 	uplink_ref = WEAKREF(uplink)
 	if(uplink)
@@ -91,11 +68,6 @@
 		uplink_handler.primary_objectives = objectives
 		uplink_handler.has_progression = TRUE
 		SStraitor.register_uplink_handler(uplink_handler)
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
-		if(give_secondary_objectives)
-			uplink_handler.has_objectives = TRUE
-			uplink_handler.generate_objectives()
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
 		uplink_handler.can_replace_objectives = CALLBACK(src, PROC_REF(can_change_objectives))
 		uplink_handler.replace_objectives = CALLBACK(src, PROC_REF(submit_player_objective))
 
@@ -118,93 +90,19 @@
 		forge_ending_objective()
 
 	pick_employer()
-	//MASSMETA ADDITION START (re_traitorsecondary)
-	owner.teach_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
-	//MASSMETA ADDITION END (re_traitorsecondary)
 	return ..()
 
 /datum/antagonist/traitor/on_removal()
 	if(!isnull(uplink_handler))
-		//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
-		uplink_handler.has_objectives = FALSE
-		//MASSMETA EDIT ADDITION END (re_traitorsecondary)
 		uplink_handler.can_replace_objectives = null
 		uplink_handler.replace_objectives = null
 	owner.take_uplink()
-	/*MASSMETA EDIT START (re_traitorsecondary) ORIGINAL:
-	/datum/antagonist/traitor/on_removal()
-	if(!isnull(uplink_handler))
-		uplink_handler.can_replace_objectives = null
-		uplink_handler.replace_objectives = null
-	owner.take_uplink()
-	*/
-	//owner.special_role = null
-	owner.forget_crafting_recipe(/datum/crafting_recipe/syndicate_uplink_beacon)
 	return ..()
-	//MASSMET EDIT END (re_traitorsecondary)
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
-
-/datum/antagonist/traitor/proc/traitor_objective_to_html(datum/traitor_objective/to_display)
-	var/string = "[to_display.name]"
-	if(to_display.objective_state == OBJECTIVE_STATE_ACTIVE || to_display.objective_state == OBJECTIVE_STATE_INACTIVE)
-		string += " <a href='byond://?src=[REF(owner)];edit_obj_tc=[REF(to_display)]'>[to_display.telecrystal_reward] TC</a>"
-		string += " <a href='byond://?src=[REF(owner)];edit_obj_pr=[REF(to_display)]'>[to_display.progression_reward] PR</a>"
-	else
-		string += ", [to_display.telecrystal_reward] TC"
-		string += ", [to_display.progression_reward] PR"
-	if(to_display.objective_state == OBJECTIVE_STATE_ACTIVE && !istype(to_display, /datum/traitor_objective/ultimate))
-		string += " <a href='byond://?src=[REF(owner)];fail_objective=[REF(to_display)]'>Fail this objective</a>"
-		string += " <a href='byond://?src=[REF(owner)];succeed_objective=[REF(to_display)]'>Succeed this objective</a>"
-	if(to_display.objective_state == OBJECTIVE_STATE_INACTIVE)
-		string += " <a href='byond://?src=[REF(owner)];fail_objective=[REF(to_display)]'>Dispose of this objective</a>"
-
-	if(to_display.skipped)
-		string += " - <b>Skipped</b>"
-	else if(to_display.objective_state == OBJECTIVE_STATE_FAILED)
-		string += " - <b><font color='red'>Failed</font></b>"
-	else if(to_display.objective_state == OBJECTIVE_STATE_INVALID)
-		string += " - <b>Invalidated</b>"
-	else if(to_display.objective_state == OBJECTIVE_STATE_COMPLETED)
-		string += " - <b><font color='green'>Succeeded</font></b>"
-
-	return string
-
-/datum/antagonist/traitor/antag_panel_objectives()
-	var/result = ..()
-	if(!uplink_handler)
-		return result
-	result += "<i><b>Traitor specific objectives</b></i><br>"
-	result += "<i><b>Concluded Objectives</b></i>:<br>"
-	for(var/datum/traitor_objective/objective as anything in uplink_handler.completed_objectives)
-		result += "[traitor_objective_to_html(objective)]<br>"
-	if(!length(uplink_handler.completed_objectives))
-		result += "EMPTY<br>"
-	result += "<i><b>Ongoing Objectives</b></i>:<br>"
-	for(var/datum/traitor_objective/objective as anything in uplink_handler.active_objectives)
-		result += "[traitor_objective_to_html(objective)]<br>"
-	if(!length(uplink_handler.active_objectives))
-		result += "EMPTY<br>"
-	result += "<i><b>Potential Objectives</b></i>:<br>"
-	for(var/datum/traitor_objective/objective as anything in uplink_handler.potential_objectives)
-		result += "[traitor_objective_to_html(objective)]<br>"
-	if(!length(uplink_handler.potential_objectives))
-		result += "EMPTY<br>"
-	result += "<a href='byond://?src=[REF(owner)];common=give_objective'>Force add objective</a><br>"
-	return result
-
-//MASSMETA EDIT ADDITION END(re_traitorsecondary)
 
 /// Returns true if we're allowed to assign ourselves a new objective
 /datum/antagonist/traitor/proc/can_change_objectives()
 	return can_assign_self_objectives
-// // MASSMETA ADDITION START (re_traitorsecondary)
-/// proc that generates the traitors replacement uplink code and radio frequency
-/datum/antagonist/traitor/proc/generate_replacement_codes()
-	replacement_uplink_code = "[pick(GLOB.phonetic_alphabet)] [rand(10,99)]"
-	replacement_uplink_frequency = sanitize_frequency(rand(MIN_UNUSED_FREQ, MAX_FREQ), free = FALSE, syndie = FALSE)
-
-// MASSMETA ADDITION END (re_traitorsecondary)
 
 /datum/antagonist/traitor/proc/pick_employer()
 	if(!employer)
@@ -312,8 +210,8 @@
 
 	handle_clown_mutation(datum_owner, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 	if(should_give_codewords)
-		datum_owner.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_phrase_regex, "blue", src)
-		datum_owner.AddComponent(/datum/component/codeword_hearing, GLOB.syndicate_code_response_regex, "red", src)
+		datum_owner.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_phrase_regex, "blue", src)
+		datum_owner.AddComponent(/datum/component/codeword_hearing, SStraitor.syndicate_code_response_regex, "red", src)
 
 /datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
 	var/mob/living/datum_owner = mob_override || owner.current
@@ -333,15 +231,15 @@
 	var/list/data = list()
 	data["has_codewords"] = should_give_codewords
 	if(should_give_codewords)
-		data["phrases"] = jointext(GLOB.syndicate_code_phrase, ", ")
-		data["responses"] = jointext(GLOB.syndicate_code_response, ", ")
+		data["phrases"] = jointext(SStraitor.syndicate_code_phrase, ", ")
+		data["responses"] = jointext(SStraitor.syndicate_code_response, ", ")
 	data["theme"] = traitor_flavor["ui_theme"]
 	data["code"] = uplink?.unlock_code
 	data["failsafe_code"] = uplink?.failsafe_code
-	// MASSMETA ADDITION START (re_traitorsecondary)
+	// MASSMETA ADDITION START (progressive_traitor)
 	data["replacement_code"] = replacement_uplink_code
 	data["replacement_frequency"] = format_frequency(replacement_uplink_frequency)
-	// MASSMETA ADDITION END (re_traitorsecondary)
+	// MASSMETA ADDITION END (progressive_traitor)
 	data["intro"] = traitor_flavor["introduction"]
 	data["allies"] = traitor_flavor["allies"]
 	data["goal"] = traitor_flavor["goal"]
@@ -381,13 +279,13 @@
 			objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] [objective.get_roundend_success_suffix()]"
 			count++
 
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+//MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
 
 		if(uplink_handler.final_objective)
 			objectives_text += "<br>[span_greentext("[traitor_won ? "Additionally" : "However"], the final objective \"[uplink_handler.final_objective]\" was completed!")]"
 			traitor_won = TRUE
 
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+//MASSMETA EDIT ADDITION END (progressive_traitor)
 
 	result += "<br>[owner.name] <B>[traitor_flavor["roundend_report"]]</B>"
 
@@ -431,8 +329,8 @@
 	return sent_data
 
 /datum/antagonist/traitor/roundend_report_footer()
-	var/phrases = jointext(GLOB.syndicate_code_phrase, ", ")
-	var/responses = jointext(GLOB.syndicate_code_response, ", ")
+	var/phrases = jointext(SStraitor.syndicate_code_phrase, ", ")
+	var/responses = jointext(SStraitor.syndicate_code_response, ", ")
 
 	var/message = "<br><b>The code phrases were:</b> <span class='bluetext'>[phrases]</span><br>\
 					<b>The code responses were:</b> [span_redtext("[responses]")]<br>"

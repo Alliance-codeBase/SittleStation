@@ -29,6 +29,7 @@
 		"razor",
 		"bucket",
 		"mop",
+		"wet_floor_sign",
 		"pushbroom",
 		"normtrash",
 		"wirebrush",
@@ -38,6 +39,7 @@
 		"ticket_machine",
 		"radio_entertainment",
 		"manual_cell_recharger", // MASSMETA EDIT (more_cell_interactions)
+		"rdd",
 		"photocopier",
 	)
 

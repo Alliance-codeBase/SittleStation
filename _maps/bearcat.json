@@ -3,6 +3,7 @@
 	"map_name": "Bearcat",
 	"map_path": "map_files/bearcat",
 	"map_file": "bearcat.dmm",
+	"exclude_from_ci": true,
 	"shuttles": {
 		"cargo": "cargo_box",
 		"ferry": "ferry_fancy",
@@ -18,19 +19,21 @@
 			"Baseturf": "/turf/open/openspace",
 			"Linkage": "Cross",
 			"Gravity": true
-
 		},
 		{
 			"Baseturf": "/turf/open/openspace",
 			"Linkage": "Cross",
 			"Gravity": true
-
 		}
-	]
-	,
+	],
 	"job_changes": {
 		"Cook": {
-			"additional_cqc_areas": ["/area/station/service/bar", "/area/station/service/hydroponics", "/area/station/maintenance/floor2/port/fore", "/area/station/commons/lounge"]
+			"additional_cqc_areas": [
+				"/area/station/service/bar",
+				"/area/station/service/hydroponics",
+				"/area/station/maintenance/floor2/port/fore",
+				"/area/station/commons/lounge"
+			]
 		},
 		"Coroner": {
 			"total_positions": 0,

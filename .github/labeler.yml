@@ -1,4 +1,3 @@
-
 "GitHub":
   - changed-files:
       - any-glob-to-any-file: [".github/**"]
@@ -13,8 +12,8 @@
       - any-glob-to-any-file: [".vscode/**"]
 "Документация":
   - all:
-    - changed-files:
-        - any-glob-to-any-file: ["**/*.md"]
+      - changed-files:
+          - any-glob-to-any-file: ["**/*.md"]
 "Звуки":
   - changed-files:
       - any-glob-to-any-file: ["**/*.ogg"]
@@ -29,12 +28,12 @@
       - any-glob-to-any-file: ["modular_meta/**"]
 "Спрайты":
   - changed-files:
-       - any-glob-to-any-file: ["**/*.dmi"]
+      - any-glob-to-any-file: ["**/*.dmi"]
 
-"Слияние с апстримом":
+"Апстрим":
   - all:
       - base-branch: "master"
-      - head-branch: "merge[-_]upstream"
+      - head-branch: "upstream"
 "Фишка":
   - head-branch: ["^feat", "feat"]
 "Улучшение":

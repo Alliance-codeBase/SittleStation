@@ -28,7 +28,7 @@
 	skill_icon = "utensils"
 	activate_message = span_notice("Kick them all.")
 	deactivate_message = span_notice("No more kaza ruk.")
-	var/datum/martial_art/kaza_ruk/style
+	var/datum/martial_art/kaza_ruk/sc/style
 
 /obj/item/skillchip/kaza_ruk/Initialize(mapload)
 	. = ..()
@@ -41,3 +41,20 @@
 /obj/item/skillchip/kaza_ruk/on_deactivate(mob/living/carbon/user, silent = FALSE)
 	style.unlearn(user)
 	return ..()
+
+/datum/martial_art/kaza_ruk/sc/quick_choke(mob/living/attacker, mob/living/defender)
+	attacker.do_attack_animation(defender)
+	defender.visible_message(
+		span_warning("[attacker] pounds [defender] on the chest!"),
+		span_userdanger("Your chest is slammed by [attacker]! You can't breathe!"),
+		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		COMBAT_MESSAGE_RANGE,
+		attacker,
+	)
+	to_chat(attacker, span_danger("You pound [defender] on the chest!"))
+	playsound(attacker, 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
+	if(defender.losebreath <= 15)
+		defender.losebreath = clamp(defender.losebreath + 5, 0, 10)
+	defender.adjust_oxy_loss(5)
+	log_combat(attacker, defender, "quickchoked")
+	return MARTIAL_ATTACK_SUCCESS

@@ -2,14 +2,14 @@
 	name = "manual battery charger"
 	desc = "Charges cell by converting mechanical energy into electrical energy. Just activate it in-hand and the cell will be charged by the your force."
 	icon = 'modular_meta/features/more_cell_interactions/icons/manual_cell_recharger.dmi'
-	worn_icon = null //blame sanecmen
+	worn_icon = 'modular_meta/features/more_cell_interactions/icons/worn_manual_cell_recharger.dmi'
 	icon_state = "handheldcharger_black_empty"
-	worn_icon_state = null
+	worn_icon_state = "handheldcharger_black_empty"
 	obj_flags = CONDUCTS_ELECTRICITY
 	item_flags = NOBLUDGEON
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.05, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.05)
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = SHEET_MATERIAL_AMOUNT)
 	var/obj/item/stock_parts/power_store/cell/incell
 	var/obj/item/stock_parts/servo/motor
 
@@ -57,6 +57,7 @@
 			incell = I
 			user.transferItemToLoc(I, src)
 			icon_state = "handheldcharger_black"
+			worn_icon_state = "handheldcharger_black"
 			update_icon()
 			to_chat(user, span_notice("You insert [incell] in [src].")) // Господи как же я кончал шуссу в рот охххххххх бля
 		else
@@ -82,6 +83,7 @@
 		user.put_in_hands(incell)
 		incell = null
 		icon_state= "handheldcharger_black_empty"
+		worn_icon_state = "handheldcharger_black_empty"
 		update_icon()
 		incell.update_icon()
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
@@ -98,6 +100,7 @@
 				/obj/item/stack/sheet/glass = 1,
 				)
 	tool_behaviors = list(TOOL_WELDER, TOOL_SCREWDRIVER)
+	crafting_flags = CRAFT_SKIP_MATERIALS_PARITY
 	category = CAT_TOOLS
 
 // Крафт через автолат

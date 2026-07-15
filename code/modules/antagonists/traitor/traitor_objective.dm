@@ -87,7 +87,7 @@
 	var/list/types = list()
 	while(current_type != /datum/traitor_objective)
 		types += current_type
-		current_type = type2parent(current_type)
+		current_type = current_type::parent_type
 	types += /datum/traitor_objective
 	// Reverse the list direction
 	reverse_range(types)
