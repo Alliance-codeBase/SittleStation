@@ -78,12 +78,14 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	mesh.amount = 10
 	var/obj/item/stock_parts/power_store/cell/high/cell = new /obj/item/stock_parts/power_store/cell/high(src)
 	cell.charge = 10000 // the fuck is a cell unit? ten thousand I guess? because after test a hundred is turned to be 0.1%
+	var/obj/item/gun/energy/e_gun/mini/gun = new /obj/item/gun/energy/e_gun/mini(src)
+	gun.pin = /obj/item/firing_pin/explorer
 	var/obj/item/tank/jetpack/jpack = new /obj/item/tank/jetpack(src)
 	//get current gas
 	var/datum/gas_mixture/gas = jpack.return_air() // bitch it's literally oxygen
 	gas.assert_gas(jpack.gas_type)
 	// quadruple it and give it to the next jetpack
-	gas.gases[jpack.gas_type][MOLES] += ((24 * ONE_ATMOSPHERE) * jpack.volume / (R_IDEAL_GAS_EQUATION * T20C))
+	gas.set_gas(/datum/gas/oxygen, ((24 * ONE_ATMOSPHERE) * jpack.volume / (R_IDEAL_GAS_EQUATION * T20C)))
 	jpack.desc += span_notice(" \n Though it definetly seems to have enlarged in proportions when I took it from the box..")
 	new /obj/item/clothing/suit/space(src)
 	new /obj/item/clothing/head/helmet/space(src)
@@ -91,7 +93,6 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	new /obj/item/storage/medkit/advanced(src)
 	new /obj/item/storage/belt/utility/full(src)
 	new /obj/item/knife/combat/survival(src)
-	new /obj/item/gun/energy/e_gun/mini(src)
 	new /obj/item/case_portable_recharger(src)
 	new /obj/item/manual_cell_recharger(src)
 	new /obj/item/stock_parts/servo/pico(src)
