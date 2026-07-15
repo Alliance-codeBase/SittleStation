@@ -83,7 +83,7 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	var/datum/gas_mixture/gas = jpack.return_air() // bitch it's literally oxygen
 	gas.assert_gas(jpack.gas_type)
 	// quadruple it and give it to the next jetpack
-	gas.gases[jpack.gas_type][MOLES] += ((24 * ONE_ATMOSPHERE) * jpack.volume / (R_IDEAL_GAS_EQUATION * T20C))
+	gas.set_gas(/datum/gas/oxygen, ((24 * ONE_ATMOSPHERE) * jpack.volume / (R_IDEAL_GAS_EQUATION * T20C)))
 	jpack.desc += span_notice(" \n Though it definetly seems to have enlarged in proportions when I took it from the box..")
 	new /obj/item/clothing/suit/space(src)
 	new /obj/item/clothing/head/helmet/space(src)
