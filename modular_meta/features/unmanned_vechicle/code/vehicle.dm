@@ -11,15 +11,11 @@
 
 	var/next_vehicle_move_delay = 0
 	var/vehicle_move_delay = 2
-	var/turret_type
-	var/turret_pattern = "tracked"
 	var/can_interact = FALSE
 	var/fire_delay = 5
 	var/static/serial = 1
 	var/controlled = FALSE
 	var/unmanned_flags = 2
-
-	COOLDOWN_DECLARE(fire_cooldown)
 
 /datum/armor/unmanned_drone
 	melee = 25
@@ -45,6 +41,26 @@
 
 /obj/vehicle/unmanned/repair_damage(repair_amount)
 	. = ..()
+
+/obj/vehicle/unmanned/atom_destruction(damage_flag)
+	do_sparks(3, TRUE, src)
+	playsound(src, 'sound/effects/sparks/sparks4.ogg', 60, TRUE)
+	new /obj/item/stack/sheet/iron(loc, 2)
+
+	if(has_buckled_mobs())
+		unbuckle_all_mobs(force = TRUE)
+
+	SEND_SIGNAL(src, COMSIG_ATOM_DESTRUCTION, damage_flag)
+
+	var/turf/T = drop_location()
+	for(var/atom/movable/AM in src)
+		if(AM.flags_1 & INITIALIZED_1)
+			AM.forceMove(T)
+			if(isitem(AM))
+				var/obj/item/I = AM
+				I.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), 1, 1)
+
+	return ..()
 
 /obj/vehicle/unmanned/relaymove(mob/living/user, direction)
 	if(world.time < next_vehicle_move_delay)
