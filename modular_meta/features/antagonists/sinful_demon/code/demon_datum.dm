@@ -157,6 +157,8 @@
 	var/list/available_shop_abilities = list()
 	var/objective_refresh_timer = 0
 	var/has_rerolled_sin = FALSE
+	var/currently_corrupting = FALSE
+	var/list/corrupted_tiles = list()
 
 	var/static/list/demon_spells = typecacheof(list(
 		/datum/action/cooldown/spell/shapeshift/demon,
@@ -578,6 +580,27 @@
 			return TRUE
 
 	return FALSE
+
+/datum/antagonist/sinfuldemon/proc/send_unique_beam(target_turf, atom/movable/source, time = 0.3 SECONDS, by_type = TRUE)
+	if(by_type)
+		switch(demonsin)
+			if(SIN_GLUTTONY)
+				source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time, beam_color = "#8b9221ff")
+			if(SIN_GREED)
+				source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time, beam_color = "#00fc86")
+			if(SIN_WRATH)
+				source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time, beam_color = "#e94a4a")
+			if(SIN_ENVY)
+				source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time, beam_color = "#81128b")
+			if(SIN_PRIDE)
+				var/datum/beam/pride_beam = source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time, beam_color = "#f112a7")
+				animate(pride_beam.visuals, time, color = "#e20849")
+			if(SIN_SLOTH)
+				source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time, beam_color = "#c784b0")
+	else
+		source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time)
+
+
 
 #undef SIN_ENVY
 #undef SIN_GLUTTONY

@@ -104,8 +104,6 @@ datum/objective/demon_absorb_highrisk/proc/trigger_absorption(mob/living/carbon/
 	var/area/target_area
 	var/time_spent = 0
 	var/required_time = 120
-	var/currently_corrupting = FALSE
-	var/list/corrupted_tiles = list()
 
 /datum/objective/demon_corrupt_area/New()
 	..()
@@ -151,10 +149,10 @@ datum/objective/demon_absorb_highrisk/proc/trigger_absorption(mob/living/carbon/
 		SStgui.update_uis(demon)
 
 	if(time_spent >= required_time)
-		trigger_corruption(living_mob) //living?
-	if(currently_corrupting || completed || !target_area)
+		trigger_corruption(living_mob)
+	if(completed || !target_area)
 		return
-	corrupt_tiles(area_turfs, beam_source = living_mob)
+	demon.corrupt_tiles(area_turfs, living_mob,target_area, TRUE)
 
 /datum/objective/demon_corrupt_area/proc/trigger_corruption(mob/living/living_mob)
 	completed = TRUE
@@ -170,55 +168,60 @@ datum/objective/demon_absorb_highrisk/proc/trigger_absorption(mob/living/carbon/
 
 	qdel(src)
 
-/** TODO: RELOCATE THIS TO /datum/antagonist/demon - it allows to proc call it much easier**/
 /// Args:
 /// - Tiles to corrupt - list of tiles to corrupt.
 /// - beam_source - atom, our demon or anything to cast a beam from.
 /// - Shuffle - boolean, whether shall be var/list/valid_tiles shuffled and cd applied.
-/datum/objective/demon_corrupt_area/proc/corrupt_tiles(list/tiles_to_corrupt, atom/movable/beam_source, shuffle = TRUE )
+/datum/antagonist/sinfuldemon/proc/corrupt_tiles(list/tiles_to_corrupt, atom/movable/beam_source, area/target_area, shuffle = TRUE)
 	set waitfor = FALSE
+	var/mob/demon_mob = beam_source
+
+	if(currently_corrupting)
+		return
+
 	currently_corrupting = TRUE
-	var/list/valid_tiles = list()
+
 	if(!corrupted_tiles)
 		corrupted_tiles = list()
 
+	var/list/valid_tiles = list()
+
 	for(var/turf/valid_tile in tiles_to_corrupt)
 		if(istype(valid_tile, /turf/closed))
-			return
+			continue
 		else
-			valid_tile += valid_tiles
+			valid_tiles += valid_tile
 
 	if(shuffle)
 		valid_tiles = shuffle(valid_tiles)
 
 	for(var/turf/area_turf in valid_tiles)
-		if(QDELETED(beam_source) || get_area(beam_source) != target_area)
+		if(QDELETED(beam_source) || !demon_mob.mind.has_antag_datum(/datum/antagonist/sinfuldemon) || get_area(beam_source) != target_area)
+			currently_corrupting = FALSE
 			break
+
 		if(area_turf in corrupted_tiles)
 			continue
+
 		if(istype(area_turf, /turf/closed))
 			continue
 
 		corrupted_tiles += area_turf
 		new /obj/effect/temp_visual/cult/turf/floor(area_turf)
-		new /obj/effect/turf_decal/tile/dark_red/full(area_turf)
 		playsound(area_turf, 'sound/effects/magic/enter_blood.ogg', 100, TRUE)
+		sleep(0.5 SECONDS)
+		new /obj/effect/turf_decal/tile/dark_red/full(area_turf) // temporary
 		if(beam_source)
-			beam_source.Beam(area_turf, "sendbeam", 'icons/effects/beam.dmi', 2 SECONDS)
+			send_unique_beam(area_turf, beam_source)
 		if(shuffle) // if it's not shuffled, why bother delaying it?
-			sleep(0.5 SECONDS)
+			sleep(1 SECONDS)
 
 	currently_corrupting = FALSE
+
 
 /// todo:
 /*
 obj lurk - shall be visually represented, aka tile effect or etc
 gameplay wise - it should give buffs demon (when corrupted)
 corrupted tiles should slowdown people.
-*/
-
-/*
-
-var/list/valid_turfs = list()
-
 */
