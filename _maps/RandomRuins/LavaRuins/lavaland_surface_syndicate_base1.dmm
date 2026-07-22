@@ -615,8 +615,14 @@
 /obj/effect/mapping_helpers/apc/syndicate_access,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+<<<<<<< HEAD
 /obj/machinery/reagentgrinder{
 	pixel_y = 8
+=======
+/obj/item/storage/pill_bottle/sepsisillin,
+/turf/open/floor/iron/white/side{
+	dir = 9
+>>>>>>> upstream/master
 	},
 /obj/structure/table/reinforced/plasmarglass,
 /obj/effect/turf_decal/tile/green/opposingcorners,
