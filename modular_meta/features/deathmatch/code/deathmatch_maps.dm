@@ -93,6 +93,7 @@
 		/datum/outfit/deathmatch_loadout/syndicate/donk,
 		/datum/outfit/deathmatch_loadout/syndicate/gorlex,
 		/datum/outfit/deathmatch_loadout/syndicate/waffle,
+		/datum/outfit/deathmatch_loadout/syndicate/roroco,
 		)
 	map_name = "waffle_corp"
 	key = "waffle_corp"
