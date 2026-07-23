@@ -226,21 +226,8 @@
 	// Returns a list of mobs who can hear any of the radios given in @radios, indexed by the radio. More expensive than get_hearers_in_radio_ranges()
 	for(var/obj/item/radio/radio as anything in radios)
 		var/list/possible_hearers = get_hearers_in_LOS(radio.canhear_range, radio)
-<<<<<<< HEAD
-		/*if(LAZYLEN(possible_hearers))
-
-			.[radio] = filter_tts_listeners(possible_hearers, frequency)
-		*/
-		var/list/weakref_hearers = list()
-		for(var/ref in possible_hearers)
-			weakref_hearers += WEAKREF(ref)
-		if(LAZYLEN(possible_hearers))
-			.[WEAKREF(radio)] = filter_tts_listeners(weakref_hearers, frequency)
-
-=======
 		if(length(possible_hearers))
 			.[radio] = possible_hearers
->>>>>>> upstream/master
 
 /// A filter to be applied to get_hearers_in_x, that removes any non-mob hearers, converting them to their relevant mob if one exists (such as dullahan heads).
 /// Modifies input list.

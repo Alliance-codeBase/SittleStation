@@ -420,38 +420,6 @@ SUBSYSTEM_DEF(tts)
 			// MASSMETA EDIT END (ntts && /tg/tts)
 			continue
 		if(length(normal_response.headers) && normal_response.headers.Find("audio-length"))
-<<<<<<< HEAD
-			current_request.audio_length = text2num(normal_response.headers["audio-length"]) * 10
-			if(!current_request.audio_length)
-				current_request.audio_length = 0
-
-		// MASSMETA EDIT START (ntts && /tg/tts)
-
-		if(!current_request.announcement && length(blips_response.headers) && blips_response.headers.Find("audio-length"))
-			current_request.audio_length_blips = text2num(blips_response.headers["audio-length"]) * 10
-
-		// MASSMETA EDIT END (ntts && /tg/tts)
-
-			if(!current_request.audio_length_blips)
-				current_request.audio_length_blips = 0
-		// MASSMETA EDIT START (ntts && /tg/tts)
-		if(!current_request.announcement)
-			if(length(radio_response.headers) && radio_response.headers.Find("audio-length"))
-				current_request.audio_length_radio = text2num(radio_response.headers["audio-length"]) * 10
-		// MASSMETA EDIT END (ntts && /tg/tts)
-
-				if(!current_request.audio_length_radio)
-					current_request.audio_length_radio = 0
-			if(length(radio_blips_response.headers) && radio_blips_response.headers.Find("audio-length"))
-				current_request.audio_length_blips_radio = text2num(radio_blips_response.headers["audio-length"]) * 10
-				if(!current_request.audio_length_blips_radio)
-					current_request.audio_length_blips_radio = 0
-			if(current_request.request_radio_gibberish && length(radio_gibberish_response.headers) && radio_gibberish_response.headers.Find("audio-length"))
-				current_request.audio_length_radio_gibberish = text2num(radio_gibberish_response.headers["audio-length"]) * 10
-				if(!current_request.audio_length_radio_gibberish)
-					current_request.audio_length_radio_gibberish = 0
-
-=======
 			current_request.audio_length = text2num(normal_response.headers["audio-length"]) * 10 || 0
 		if(length(blips_response.headers) && blips_response.headers.Find("audio-length"))
 			current_request.audio_length_blips = text2num(blips_response.headers["audio-length"]) * 10 || 0
@@ -461,7 +429,15 @@ SUBSYSTEM_DEF(tts)
 			current_request.audio_length_blips_radio = text2num(radio_blips_response.headers["audio-length"]) * 10 || 0
 		if(length(radio_gibberish_response.headers) && radio_gibberish_response.headers.Find("audio-length"))
 			current_request.audio_length_radio_gibberish = text2num(radio_gibberish_response.headers["audio-length"]) * 10
->>>>>>> upstream/master
+		// MASSMETA EDIT START (ntts && /tg/tts)
+		if(!current_request.announcement && length(blips_response.headers) && blips_response.headers.Find("audio-length"))
+			current_request.audio_length_blips = text2num(blips_response.headers["audio-length"]) * 10
+
+		if(!current_request.announcement)
+			if(length(radio_response.headers) && radio_response.headers.Find("audio-length"))
+				current_request.audio_length_radio = text2num(radio_response.headers["audio-length"]) * 10
+		// MASSMETA EDIT END (ntts && /tg/tts)
+
 		current_request.audio_file = "tmp/tts/[identifier].ogg"
 
 
@@ -548,11 +524,7 @@ SUBSYSTEM_DEF(tts)
 				audio_file = new(current_target.audio_file)
 				// MASSMETA EDIT START (ntts && /tg/tts)
 				audio_file_blips = new(current_target.audio_file_blips)
-<<<<<<< HEAD
-				play_tts(tts_target, current_target.listeners, audio_file, audio_file_blips, current_target.language, current_target.message_range, current_target.volume_offset, FALSE, null, current_target.audio_length, current_target.audio_length_blips)
-				completed_tts_messages[current_target.identifier] = list("ref" = current_target, "expiry_time" = world.time + 300)
 				// MASSMETA EDIT END (ntts && /tg/tts)
-=======
 				play_tts(
 					target = tts_target,
 					listeners = current_target.listeners,
@@ -571,7 +543,6 @@ SUBSYSTEM_DEF(tts)
 					TTS_REQUEST_EXPIRE = world.time + 30 SECONDS,
 				)
 
->>>>>>> upstream/master
 				if(length(data) != 1)
 					var/datum/tts_request/next_target = data[2]
 					next_target.when_to_play = world.time + current_target.audio_length
@@ -624,19 +595,10 @@ SUBSYSTEM_DEF(tts)
 		clear_radio_message(identifier)
 
 	for(var/identifier, request in completed_tts_messages)
-<<<<<<< HEAD
-		if(MC_TICK_CHECK)
-			return
-		if (completed_tts_messages[identifier]["expiry_time"] >= world.time + 300)
-			completed_tts_messages[identifier]["ref"] = null
-			completed_tts_messages[identifier] = null
-			completed_tts_messages.Remove(identifier)
-=======
 		if (world.time < completed_tts_messages[identifier][TTS_REQUEST_EXPIRE])
 			continue
 
 		clear_radio_message(identifier)
->>>>>>> upstream/master
 
 #undef TTS_ARBRITRARY_DELAY
 

@@ -713,57 +713,7 @@
 		return ITEM_INTERACT_SUCCESS
 
 	if(state_open && is_operational)
-<<<<<<< HEAD
-		if(istype(tool, /obj/item/clothing/suit))
-			if(suit)
-				to_chat(user, span_warning("The unit already contains a suit!"))
-				return ITEM_INTERACT_BLOCKING
-			if(!user.transferItemToLoc(tool, src))
-				return ITEM_INTERACT_BLOCKING
-			suit = tool
-		else if(istype(tool, /obj/item/clothing/head))
-			if(helmet)
-				to_chat(user, span_warning("The unit already contains a helmet!"))
-				return ITEM_INTERACT_BLOCKING
-			if(!user.transferItemToLoc(tool, src))
-				return ITEM_INTERACT_BLOCKING
-			helmet = tool
-		else if(istype(tool, /obj/item/clothing/mask))
-			if(mask)
-				to_chat(user, span_warning("The unit already contains a mask!"))
-				return ITEM_INTERACT_BLOCKING
-			if(!user.transferItemToLoc(tool, src))
-				return ITEM_INTERACT_BLOCKING
-			mask = tool
-		else if(istype(tool, /obj/item/storage/backpack) || istype(tool, /obj/item/mod/control))
-			if(mod)
-				to_chat(user, span_warning("The unit already contains a backpack or MOD!"))
-				return ITEM_INTERACT_BLOCKING
-			if(!user.transferItemToLoc(tool, src))
-				return ITEM_INTERACT_BLOCKING
-			mod = tool
-		//MASSMETA EDIT BEGIN (hardsuits)
-		else if(istype(tool, /obj/item/choice_beacon/space_suit))
-			if(space_suit)
-				to_chat(user, span_warning("The unit already contains a delivery beacon!"))
-				return ITEM_INTERACT_BLOCKING
-			if(!user.transferItemToLoc(tool, src))
-				return ITEM_INTERACT_BLOCKING
-			space_suit = tool
-		//MASSMETA EDIT END
-		else
-			if(storage)
-				to_chat(user, span_warning("The auxiliary storage compartment is full!"))
-				return ITEM_INTERACT_BLOCKING
-			if(!user.transferItemToLoc(tool, src))
-				return ITEM_INTERACT_BLOCKING
-			storage = tool
-		visible_message(span_notice("[user] inserts [tool] into [src]"), span_notice("You load [tool] into [src]."))
-		update_appearance()
-		return ITEM_INTERACT_SUCCESS
-=======
 		return try_insert_item(user, tool)
->>>>>>> upstream/master
 
 	if(panel_open)
 		if(is_wire_tool(tool))
@@ -848,6 +798,15 @@
 			return ITEM_INTERACT_BLOCKING
 
 		mod = to_insert
+	//MASSMETA EDIT BEGIN (hardsuits)
+	else if(istype(to_insert, /obj/item/choice_beacon/space_suit))
+		if(space_suit)
+			to_chat(user, span_warning("The unit already contains a delivery beacon!"))
+			return ITEM_INTERACT_BLOCKING
+		if(!user.transferItemToLoc(to_insert, src))
+			return ITEM_INTERACT_BLOCKING
+		space_suit = to_insert
+	//MASSMETA EDIT END
 	else
 		if(storage)
 			to_chat(user, span_warning("The auxiliary storage compartment is full!"))
