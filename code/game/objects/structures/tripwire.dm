@@ -189,6 +189,7 @@
 /obj/structure/tripwire/cable
 	name = "heavy cable"
 	desc = "A very thick cable made to withstand great force."
+	icon = 'icons/obj/tripwire.dmi'
 	icon_state = "tripwire_1"
 
 /obj/structure/tripwire/cable/Initialize(mapload)
