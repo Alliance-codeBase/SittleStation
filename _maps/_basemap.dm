@@ -24,7 +24,6 @@
 		#include "map_files\NebulaStation\NebulaStation.dmm"
 		#include "map_files\KiloStation\KiloStation.dmm"
 		// MASSMETA EDIT BEGIN - Compiling our modular maps too!
-		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\bearcat\bearcat.dmm"
 		// MASSMETA EDIT END
 
