@@ -6,18 +6,20 @@
 	circuit = /obj/item/circuitboard/computer/arcade/doom
 
 /obj/machinery/computer/arcade/doom/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "CssDoom", name)
-		ui.open()
+		ui = SStgui.try_update_ui(user, src, ui)
+		if(!ui)
+			ui = new(user, src, "CssDoom", name)
+			ui.open()
 
 /obj/machinery/computer/arcade/doom/ui_data(mob/user)
 	return list()
 
-/obj/machinery/computer/arcade/doom/ui_act(action, list/params, datum/tgui/ui, datum/ui_status/status)
+/obj/machinery/computer/arcade/doom/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return TRUE
 	return FALSE
