@@ -25,8 +25,33 @@ SUBSYSTEM_DEF(assets)
 	transport.Load()
 
 /datum/controller/subsystem/assets/Initialize()
+	// MASSMETA EDIT
+	for(var/datum/asset/asset_type as anything in typesof(/datum/asset))
+		if (asset_type == initial(asset_type.abstract_type))
+			continue
+
+		if (initial(asset_type.early))
+			continue
+
+		var/pre_init = REALTIMEOFDAY
+		var/list/typepath_split = splittext("[asset_type]", "/")
+		var/typepath_readable = capitalize(replacetext(typepath_split[length(typepath_split)], "_", " "))
+
+		SStitle.add_init_text(asset_type, "> [typepath_readable]", "<font color='yellow'>CREATING...</font>")
+		if (load_asset_datum(asset_type))
+			var/time = (REALTIMEOFDAY - pre_init) / (1 SECONDS)
+			if(time <= 0.1)
+				SStitle.remove_init_text(asset_type)
+			else
+				SStitle.add_init_text(asset_type, "> [typepath_readable]", "<font color='green'>DONE</font>", time)
+		else
+			stack_trace("Could not initialize early asset [asset_type]!")
+			SStitle.add_init_text(asset_type, "> [typepath_readable]", "<font color='red'>FAILED</font>")
+	// MASSMETA EDIT END
+	/* ORIGINAL
 	for(var/datum/asset/asset_type as anything in valid_subtypesof(/datum/asset))
 		load_asset_datum(asset_type)
+	*/
 
 	transport.Initialize(cache)
 

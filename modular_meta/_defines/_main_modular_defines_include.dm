@@ -6,5 +6,6 @@
 #include "re_hooch_heals_assistants.dm"
 #include "justice_mecha.dm"
 #include "techweb_nodes.dm"
+#include "mc.dm"
 #include "mentors.dm"
 #include "signals_traitor.dm"
