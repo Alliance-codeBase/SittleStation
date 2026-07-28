@@ -131,8 +131,13 @@ SUBSYSTEM_DEF(mapping)
 	require_area_resort()
 	process_teleport_locs() //Sets up the wizard teleport locations
 	preloadTemplates()
+	var/start_time // MASSMETA ADDITION
 
 #ifndef LOWMEMORYMODE
+	// MASSMETA ADDITION
+	start_time = REALTIMEOFDAY
+	SStitle.add_init_text("Empty Space", "> Space", "<font color='yellow'>LOADING...</font>")
+	// MASSMETA ADDITION END
 	// Create space ruin levels
 	while (space_levels_so_far < current_map.space_ruin_levels)
 		add_new_zlevel("Ruin Area [space_levels_so_far+1]", ZTRAITS_SPACE)
@@ -142,6 +147,11 @@ SUBSYSTEM_DEF(mapping)
 	while (space_levels_so_far < current_map.space_empty_levels + current_map.space_ruin_levels)
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far+1]", list(ZTRAIT_LINKAGE = CROSSLINKED))
 		++space_levels_so_far
+	// MASSMETA ADDITION
+	SStitle.add_init_text("Empty Space", "> Space", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS))
+
+	start_time = REALTIMEOFDAY
+	//MASSMETA ADDITION END
 
 	if(current_map.wilderness_levels)
 		var/list/FailedZs = list()
@@ -153,12 +163,24 @@ SUBSYSTEM_DEF(mapping)
 
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
+		SStitle.add_init_text("Away Mission", "> Away Mission", "<font color='yellow'>LOADING...</font>") // MASSMETA ADDITION
 		createRandomZlevel(prob(CONFIG_GET(number/config_gateway_chance)))
+		SStitle.add_init_text("Away Mission", "> Away Mission", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS)) // MASSMETA ADDITION
 
 	else if (SSmapping.current_map.load_all_away_missions) // we're likely in a local testing environment, so punch it.
+		SStitle.add_init_text("Away Mission", "> All Away Missions", "<font color='yellow'>LOADING...</font>") // MASSMETA ADDITION
 		load_all_away_missions()
+	// MASSMETA ADDITION
+		SStitle.add_init_text("Away Mission", "> All Away Missions", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS))
+	else
+		SStitle.add_init_text("Away Mission", "> Away Mission", "<font color='yellow'>SKIPPED</font>")
+
+	start_time = REALTIMEOFDAY
+	SStitle.add_init_text("Ruins", "> Ruins", "<font color='yellow'>LOADING...</font>")
+	// MASSMETA ADDITION END
 
 	setup_ruins()
+	SStitle.add_init_text("Ruins", "> Ruins", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS)) // MASSMETA ADDITION
 #endif
 
 	// Run map generation after ruin space is reserved, since this space is used for the cave gen.
@@ -403,7 +425,10 @@ Used by the AI doomsday and the self-destruct nuke.
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE, height_autosetup = TRUE)
 	. = list()
 	var/start_time = REALTIMEOFDAY
-
+	// MASSMETA ADDITION
+	if(!silent)
+		SStitle.add_init_text(path, "> [name]", "<font color='yellow'>LOADING...</font>")
+	//MASSMETA ADDITION END
 	if (!islist(files))  // handle single-level maps
 		files = list(files)
 
@@ -456,7 +481,7 @@ Used by the AI doomsday and the self-destruct nuke.
 		if (!pm.load(x_offset, y_offset, start_z + parsed_maps[P], no_changeturf = TRUE, new_z = TRUE))
 			errorList |= pm.original_path
 	if(!silent)
-		INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
+		SStitle.add_init_text(path, "> [name]", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS)) // MASSMETA EDIT ORIGINAL: INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
 	return parsed_maps
 
 /datum/controller/subsystem/mapping/proc/loadWorld()
@@ -468,7 +493,7 @@ Used by the AI doomsday and the self-destruct nuke.
 
 	// load the station
 	station_start = world.maxz + 1
-	INIT_ANNOUNCE("Loading [current_map.map_name]...")
+	//INIT_ANNOUNCE("Loading [current_map.map_name]...") MASSMETA REMOVAL
 	LoadGroup(FailedZs, "Station", current_map.map_path, current_map.map_file, current_map.traits, ZTRAITS_STATION, height_autosetup = current_map.height_autosetup)
 
 	if(SSdbcore.Connect())

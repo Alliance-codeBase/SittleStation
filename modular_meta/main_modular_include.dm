@@ -87,3 +87,4 @@
 #include "tweaks\simple_vote_by_default\includes.dm"
 #include "tweaks\runtimes_fix\includes.dm"
 #include "tweaks\metacoins_to_homepage\includes.dm"
+#include "tweaks\init_text\includes.dm"

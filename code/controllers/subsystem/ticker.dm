@@ -128,6 +128,7 @@ SUBSYSTEM_DEF(ticker)
 
 			current_state = GAME_STATE_PREGAME
 			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
+			SStitle.update_init_text() // MASSMETA ADDITION
 			fire()
 		if(GAME_STATE_PREGAME)
 			//lobby stats for statpanels
@@ -158,6 +159,7 @@ SUBSYSTEM_DEF(ticker)
 				SEND_SIGNAL(src, COMSIG_TICKER_ENTER_SETTING_UP)
 				current_state = GAME_STATE_SETTING_UP
 				Master.SetRunLevel(RUNLEVEL_SETUP)
+				SStitle.fade_init_text() // MASSMETA ADDITION
 				if(start_immediately)
 					fire()
 
@@ -352,6 +354,8 @@ SUBSYSTEM_DEF(ticker)
 			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score) * 2] hardcore random points if you greentext this round!"))
 		else
 			to_chat(iter_human, span_notice("You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!"))
+
+		SStitle.update_init_text() // MASSMETA ADDITION
 
 /datum/controller/subsystem/ticker/proc/display_roundstart_logout_report()
 	var/list/msg = list("[span_boldnotice("Roundstart logout report")]\n\n")
