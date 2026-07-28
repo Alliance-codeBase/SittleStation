@@ -171,7 +171,10 @@
 	objectives += ending_objective
 
 /datum/antagonist/traitor/proc/forge_single_generic_objective()
-	if(prob(KILL_PROB))
+	//MASSMETA EDIT BEGIN (antagonists_balance)
+	//if(prob(KILL_PROB)
+	if(prob(KILL_PROB) && GLOB.joined_player_list.len >= 10)
+	//MASSMETA EDIT END (antagonists_balance)
 		var/list/active_ais = active_ais(skip_syndicate = TRUE)
 		if(active_ais.len && prob(DESTROY_AI_PROB(GLOB.joined_player_list.len)))
 			var/datum/objective/destroy/destroy_objective = new()
