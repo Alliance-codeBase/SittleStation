@@ -2,7 +2,7 @@
 
 ### Defines/Helpers:
 
-- modular_meta/\_defines/mc.dm
+- modular_meta/_defines/mc.dm
 
 ### TG Proc/File Changes:
 
