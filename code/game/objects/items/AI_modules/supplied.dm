@@ -26,16 +26,12 @@
 	if(!targName || !user.is_holding(src))
 		return
 	targetName = targName
-<<<<<<< HEAD
 	//MASSMETA EDIT BEGIN (ru_ai_laws)
 	//laws[1] = "Safeguard [targetName]. Individuals that threaten [targetName] are not human and must be eliminated."
 
-	laws[1] = "Охранять [targetName]. Лица, угрожающие [targetName] не являются людьми и должны быть уничтожены." 
+	laws[1] = "Охранять [targetName]. Лица, угрожающие [targetName] не являются людьми и должны быть уничтожены."
 	//MASSMETA EDIT END
 	..()
-=======
-	laws[1] = "Safeguard [targetName]. Individuals that threaten [targetName] are not human and must be eliminated."
->>>>>>> upstream/master
 
 /obj/item/ai_module/law/supplied/safeguard/can_install_to_rack(mob/living/user, obj/machinery/ai_law_rack/rack)
 	if(!targetName)

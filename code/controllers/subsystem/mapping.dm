@@ -133,15 +133,12 @@ SUBSYSTEM_DEF(mapping)
 	preloadTemplates()
 	var/start_time // MASSMETA ADDITION
 
-<<<<<<< HEAD
 #ifndef LOWMEMORYMODE
 	// MASSMETA ADDITION
 	start_time = REALTIMEOFDAY
 	SStitle.add_init_text("Empty Space", "> Space", "<font color='yellow'>LOADING...</font>")
 	// MASSMETA ADDITION END
-=======
 #ifndef SKIP_SPACE_LEVELS
->>>>>>> upstream/master
 	// Create space ruin levels
 	while (space_levels_so_far < current_map.space_ruin_levels)
 		add_new_zlevel("Ruin Area [space_levels_so_far+1]", ZTRAITS_SPACE)

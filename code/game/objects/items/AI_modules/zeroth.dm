@@ -13,16 +13,12 @@
 	if(!targName || !user.is_holding(src))
 		return
 	targetName = targName
-<<<<<<< HEAD
 	//MASSMETA EDIT BEGIN (ru_ai_laws)
 	//laws[1] = "Only [targetName] is human"
 
 	laws[1] = "Только [targetName] является человеком"
 	//MASSMETA EDIT END
 	..()
-=======
-	laws[1] = "Only [targetName] is human"
->>>>>>> upstream/master
 
 /obj/item/ai_module/law/zeroth/onehuman/can_install_to_rack(mob/living/user, obj/machinery/ai_law_rack/rack)
 	if(!targetName)
