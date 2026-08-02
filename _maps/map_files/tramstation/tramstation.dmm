@@ -16426,11 +16426,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
-"eDD" = (
-/obj/structure/table/reinforced,
-/obj/effect/spawner/random/decoration/lavalamp,
-/turf/open/floor/iron/dark,
-/area/station/service/bar)
 "eDG" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 8
@@ -69822,6 +69817,7 @@
 "xpC" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/spawner/directional/south,
+/obj/item/storage/photo_album/bar,
 /turf/open/floor/iron/dark,
 /area/station/service/bar)
 "xpE" = (
@@ -169150,10 +169146,10 @@ mHc
 uqA
 aTw
 jgn
-eDD
 crT
 crT
-eDD
+crT
+crT
 oVc
 mzb
 wev
@@ -169662,14 +169658,14 @@ rBy
 vJt
 mHc
 uyS
-eDD
+crT
 fkU
 yfd
 rro
 fZR
 eKq
 aCa
-eDD
+crT
 wcv
 mHc
 mHc
@@ -170176,14 +170172,14 @@ oCx
 vJt
 mHc
 wwK
-eDD
+crT
 kcu
 nBy
 eTP
 bKF
 tXL
 hOh
-eDD
+crT
 hCp
 mHc
 mHc
@@ -170692,7 +170688,7 @@ mHc
 jbx
 xLh
 uyq
-eDD
+crT
 crT
 xpC
 ivn
