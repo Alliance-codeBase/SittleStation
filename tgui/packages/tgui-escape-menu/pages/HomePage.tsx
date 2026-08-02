@@ -65,6 +65,16 @@ export function HomePage({
             }}
           >
             Character
+            {/* MASSMETA ADDITION */}
+          </MenuButton>
+          <MenuButton
+            onClick={() => {
+              onAction('metacoins_shop');
+              onClose();
+            }}
+          >
+            Metacoins Shop
+            {/* MASSMETA ADDITION END */}
           </MenuButton>
           <MenuButton
             onClick={() => {

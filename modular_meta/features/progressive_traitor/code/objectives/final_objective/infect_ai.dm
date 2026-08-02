@@ -52,5 +52,5 @@
 			podspawn(list(
 				"target" = get_turf(user),
 				"style" = /datum/pod_style/syndicate,
-				"spawn" = /obj/item/ai_module/malf,
+				"spawn" = /datum/ai_laws/syndicate_override,
 			))

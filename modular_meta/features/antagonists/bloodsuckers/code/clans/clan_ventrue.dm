@@ -16,7 +16,7 @@
 
 /datum/bloodsucker_clan/ventrue/New(datum/antagonist/bloodsucker/owner_datum)
 	. = ..()
-	if(!(/datum/crafting_recipe/vassalrack in bloodsuckerdatum.owner?.learned_recipes))
+	if(!(/datum/crafting_recipe/vassalrack in bloodsuckerdatum.owner?.learned_crafting_recipes))
 		bloodsuckerdatum.owner.teach_crafting_recipe(/datum/crafting_recipe/vassalrack)
 	return TRUE
 

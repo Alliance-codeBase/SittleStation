@@ -27,7 +27,7 @@
 		), 50, TRUE)
 		return
 	. = ..()
-	if(user.stat == CONSCIOUS)
+	if(!IS_UNCONSCIOUS_OR_CRIT(user))
 		if((!user.get_organ_by_type(/obj/item/organ/internal/butt) || !ishuman(user)))
 			to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 			return
