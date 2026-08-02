@@ -14,6 +14,14 @@ To check if a reward is bought
 		// you can lock anything behind it, unique reskins? job titles? jobs? like be able to spawn as an NT official? anything whatsoever!
 */
 
+/datum/metacoinshop/listing/persistent/perm_surg
+		id = "perm_surg"
+		name = "4U70-P3R4710N skillchip"
+		desc = "This investment will allow you to cut your self open (without much harm)"
+		price = 4870
+		listing_type = "persistent"
+		item_type = /obj/item/skillchip/self_surgery
+
 // DO NOT CHANGE ID'S, DOING SO WILL RESULT A DUPLICATE IN DB
 /datum/metacoinshop/listing/persistent/wycc_soul
 	id = "wycc_soul"
