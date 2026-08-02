@@ -23,3 +23,33 @@ To check if a reward is bought
 	price = 220**2.20
 	icon = 'icons/mob/human/species/ghost.dmi'
 	icon_state = "ghost_base"
+
+/datum/metacoinshop/settings_panel
+	var/client/owner
+
+/datum/metacoinshop/settings_panel/New(client/owner, mob/viewer)
+	src.owner = owner
+	ui_interact(viewer)
+
+/datum/metacoinshop/settings_panel/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/metacoinshop/settings_panel/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "MetacoinSettings")
+		ui.open()
+
+/datum/metacoin_shop_controller/proc/get_owned_rewards(ckey)
+	var/datum/metacoin_shop_controller/controller
+	var/rewards = controller.persistent_catalog
+
+	for(var/reward in rewards)
+		1
+
+
+
+/datum/metacoinshop/settings_panel/ui_data(mob/user)
+	var/list/panel
+	if(shop.owns_persistent(user.ckey, reward) == TRUE)
+
