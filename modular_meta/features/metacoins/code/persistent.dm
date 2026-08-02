@@ -40,16 +40,24 @@ To check if a reward is bought
 		ui = new(user, src, "MetacoinSettings")
 		ui.open()
 
-/datum/metacoin_shop_controller/proc/get_owned_rewards(ckey)
-	var/datum/metacoin_shop_controller/controller
-	var/rewards = controller.persistent_catalog
+/// Returns ID's of owned persistent items as list
+/// params:
+/// - target_ckey - your player, for which you want to get owned items for.
+/datum/metacoin_shop_controller/proc/get_owned_rewards(target_ckey)
+	var/list/owned_listings = list()
+	if(!target_ckey)
+		return list()
 
-	for(var/reward in rewards)
-		1
-
-
+	for(var/reward in persistent_catalog)
+		if(owns_persistent(target_ckey, reward))
+			owned_listings += reward
+	return owned_listings
 
 /datum/metacoinshop/settings_panel/ui_data(mob/user)
-	var/list/panel
-	if(shop.owns_persistent(user.ckey, reward) == TRUE)
+	var/datum/metacoin_shop_controller/controller = get_metacoin_controller()
+	var/user_client = user.client
+	var/list/ui_data = list()
+	var/rewards_data = controller.get_owned_rewards(user_client)
+	ui_data["rewards"] = rewards_data
 
+	return ui_data
