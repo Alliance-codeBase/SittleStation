@@ -14227,7 +14227,7 @@
 "dNT" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/table/wood/fancy/blue,
-/obj/item/ai_module/supplied/freeform,
+/obj/item/ai_module/law/supplied/freeform,
 /obj/effect/spawner/random/aimodule/neutral,
 /obj/machinery/door/window/left/directional/east{
 	name = "Neutral Modules";
@@ -14355,11 +14355,11 @@
 "dPT" = (
 /obj/structure/table/wood,
 /obj/item/radio/intercom/directional/north,
-/obj/item/food/grown/harebell,
-/obj/item/food/grown/harebell,
-/obj/item/food/grown/harebell,
-/obj/item/food/grown/harebell,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/harebell,
+/obj/item/food/grown/flower/harebell,
+/obj/item/food/grown/flower/harebell,
+/obj/item/food/grown/flower/harebell,
+/obj/item/food/grown/flower/harebell,
 /obj/machinery/camera/directional/north{
 	c_tag = "Civilian - Chapel Monastary"
 	},
@@ -16426,11 +16426,6 @@
 	},
 /turf/open/floor/iron,
 /area/station/service/hydroponics/garden)
-"eDD" = (
-/obj/structure/table/reinforced,
-/obj/effect/spawner/random/decoration/lavalamp,
-/turf/open/floor/iron/dark,
-/area/station/service/bar)
 "eDG" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 8
@@ -20239,10 +20234,9 @@
 /turf/open/floor/iron/dark,
 /area/station/command/heads_quarters/cmo)
 "fYw" = (
-/obj/machinery/computer/upload/borg/no_lock{
-	dir = 8
-	},
 /obj/machinery/status_display/ai/directional/east,
+/obj/structure/table/wood/fancy/green,
+/obj/effect/spawner/random/aimodule/harmless,
 /turf/open/floor/circuit/green,
 /area/station/ai/upload/chamber)
 "fYB" = (
@@ -20592,9 +20586,10 @@
 /turf/closed/wall/r_wall,
 /area/station/security/execution/education)
 "gfV" = (
-/obj/structure/table/wood/fancy/green,
-/obj/effect/spawner/round_default_module,
 /obj/machinery/camera/motion/directional/east,
+/obj/machinery/ai_law_rack/base/core{
+	pixel_y = 12
+	},
 /turf/open/floor/circuit/green,
 /area/station/ai/upload/chamber)
 "gfX" = (
@@ -20667,7 +20662,7 @@
 /area/station/maintenance/port/central)
 "ggV" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_y = 2
 	},
 /turf/open/floor/iron/dark,
@@ -23635,7 +23630,6 @@
 "hkF" = (
 /obj/structure/table,
 /obj/item/aicard,
-/obj/item/ai_module/reset,
 /turf/open/floor/iron/dark,
 /area/station/engineering/storage/tech)
 "hkN" = (
@@ -26865,10 +26859,20 @@
 /turf/open/floor/catwalk_floor,
 /area/station/maintenance/tram/mid)
 "ixC" = (
-/obj/machinery/computer/upload/ai/no_lock{
-	dir = 8
-	},
 /obj/machinery/status_display/evac/directional/east,
+/obj/structure/table/wood/fancy/green,
+/obj/effect/spawner/round_default_module,
+/obj/item/ai_module/law/supplied/freeform{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/ai_module/law/supplied/freeform{
+	pixel_y = 1;
+	pixel_x = -2
+	},
+/obj/item/ai_module/law/supplied/freeform{
+	pixel_y = 2
+	},
 /turf/open/floor/circuit/green,
 /area/station/ai/upload/chamber)
 "ixK" = (
@@ -33899,7 +33903,7 @@
 /area/station/medical/medbay/lobby)
 "kMm" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/harebell,
+/obj/item/food/grown/flower/harebell,
 /turf/open/floor/iron/dark,
 /area/station/service/chapel)
 "kMn" = (
@@ -40519,6 +40523,9 @@
 "nbF" = (
 /obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable,
+/obj/machinery/ai_slipper{
+	uses = 8
+	},
 /turf/open/floor/circuit,
 /area/station/ai/upload/chamber)
 "nbI" = (
@@ -41464,7 +41471,6 @@
 "nrf" = (
 /obj/structure/window/reinforced/spawner/directional/west,
 /obj/structure/table/wood/fancy/red,
-/obj/item/ai_module/reset/purge,
 /obj/effect/spawner/random/aimodule/harmful,
 /obj/machinery/door/window/left/directional/east{
 	name = "Dangerous Modules";
@@ -45186,19 +45192,19 @@
 /area/station/hallway/secondary/exit)
 "oOT" = (
 /obj/structure/table/wood,
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_y = 2
 	},
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_y = 2
 	},
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_y = 2
 	},
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_y = 2
 	},
-/obj/item/food/grown/poppy{
+/obj/item/food/grown/flower/poppy{
 	pixel_y = 2
 	},
 /obj/machinery/light/cold/directional/north,
@@ -54713,6 +54719,9 @@
 /obj/machinery/camera/motion/directional/west{
 	c_tag = "Secure - AI Upload"
 	},
+/obj/machinery/ai_slipper{
+	uses = 8
+	},
 /turf/open/floor/circuit/red,
 /area/station/ai/upload/chamber)
 "seR" = (
@@ -58660,13 +58669,6 @@
 /turf/open/floor/iron/dark,
 /area/station/science/explab)
 "typ" = (
-/obj/structure/table/wood/fancy/green,
-/obj/effect/spawner/random/aimodule/harmless,
-/obj/item/ai_module/supplied/freeform{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/ai_module/reset,
 /obj/item/radio/intercom/directional/east{
 	name = "ai intercom";
 	frequency = 1447
@@ -69815,6 +69817,7 @@
 "xpC" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/spawner/directional/south,
+/obj/item/storage/photo_album/bar,
 /turf/open/floor/iron/dark,
 /area/station/service/bar)
 "xpE" = (
@@ -169143,10 +169146,10 @@ mHc
 uqA
 aTw
 jgn
-eDD
 crT
 crT
-eDD
+crT
+crT
 oVc
 mzb
 wev
@@ -169655,14 +169658,14 @@ rBy
 vJt
 mHc
 uyS
-eDD
+crT
 fkU
 yfd
 rro
 fZR
 eKq
 aCa
-eDD
+crT
 wcv
 mHc
 mHc
@@ -170169,14 +170172,14 @@ oCx
 vJt
 mHc
 wwK
-eDD
+crT
 kcu
 nBy
 eTP
 bKF
 tXL
 hOh
-eDD
+crT
 hCp
 mHc
 mHc
@@ -170685,7 +170688,7 @@ mHc
 jbx
 xLh
 uyq
-eDD
+crT
 crT
 xpC
 ivn

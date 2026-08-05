@@ -1,2 +1,2 @@
-/obj/item/ai_module/zeroth/onehuman
+/obj/item/ai_module/law/zeroth/onehuman
 	laws = list("Только СУБЪЕКТ является человеком.")
