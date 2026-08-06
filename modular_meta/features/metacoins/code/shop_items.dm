@@ -7,6 +7,7 @@
 	var/listing_type = "item"
 	var/icon
 	var/icon_state
+	var/list/variant_options = list()
 
 /// Is called after a successful purchase.
 /datum/metacoinshop/listing/proc/on_bought(datum/metacoin_shop_controller/shop, target_ckey, mob/player_mob, client/player_client, balance_after, role_id = null)

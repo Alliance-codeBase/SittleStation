@@ -217,7 +217,18 @@ export const MetaCoinShop = () => {
         )}
 
         {activeTab === 'persistent' && (
-          <Section title="Persistent rewards">
+          <Section
+            title="Persistent rewards"
+            buttons={
+              <Button
+                icon="cog"
+                tooltip="Configure"
+                onClick={() => act('open_settings')}
+              >
+                Settings
+              </Button>
+            }
+          >
             {!persistentItems.length ? (
               <NoticeBox>No persistent rewards available.</NoticeBox>
             ) : (

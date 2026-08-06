@@ -553,6 +553,22 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(query)
 	return variant
 
+/datum/metacoin_shop_controller/proc/serialize_variant_options(variant_options)
+	if(!islist(variant_options))
+		return null
+
+	var/list/serialized = list()
+	for(var/option_name in variant_options)
+		var/list/values = list()
+		for(var/variant_path in variant_options[option_name])
+			var/datum/metacoinshop/listing_variant/variant_type = variant_path
+			values += list(list(
+				"id" = initial(variant_type.id),
+				"name" = initial(variant_type.name),
+			))
+		serialized[option_name] = values
+	return serialized
+
 /// Stores the selected variant JSON string of a persistent reward for a player.
 /datum/metacoin_shop_controller/proc/set_persistent_variant(target_ckey, listing_id, variant = null)
 	target_ckey = ckey(target_ckey)
@@ -1025,6 +1041,10 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	if(action == "open_slots")
 		new /datum/metacoin_slot_panel(owner, ui.user)
+		return TRUE
+
+	if(action == "open_settings")
+		new /datum/metacoinshop/settings_panel(owner, ui.user)
 		return TRUE
 
 	if(action == "open_antag_token")
