@@ -363,6 +363,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 			"fallbackIcon" = default_listing_fallback_icon,
 			"owned" = is_owned,
 			"canAfford" = !isnull(balance) && (balance >= listing.price),
+			"variantOptions" = serialize_variant_options(listing.variant_options),
 		)
 
 		if(is_antag_token)
@@ -553,6 +554,26 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(query)
 	return variant
 
+/// Returns the item type to spawn for this player
+/// Override for custom logic
+/datum/metacoinshop/listing/proc/get_chosen_typepath(target_ckey)
+	if(!length(variant_options))
+		return item_type
+
+	var/option_name = variant_options[1]
+	var/saved_variant = get_metacoin_controller().get_pending_variant(target_ckey, src.id)
+	var/selected_id = parse_choice(saved_variant, option_name)
+
+	var/datum/metacoinshop/listing_variant/variant_type = get_variant_datum(option_name, selected_id)
+	if(!variant_type)
+		return item_type
+
+	var/item_path = initial(variant_type.item_type)
+	if(!item_path)
+		return item_type
+
+	return item_path
+
 /datum/metacoin_shop_controller/proc/serialize_variant_options(variant_options)
 	if(!islist(variant_options))
 		return null
@@ -624,6 +645,16 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		return list()
 
 	return pending_items.Copy()
+
+/datum/metacoin_shop_controller/proc/get_pending_variant(target_ckey, item_id)
+	if(!target_ckey || !item_id)
+		return null
+
+	var/list/pending_items = preround_pending_by_ckey[target_ckey]
+	if(!islist(pending_items))
+		return null
+
+	return pending_items[item_id]
 
 /datum/metacoin_shop_controller/proc/fetch_balance(target_ckey)
 	if(!target_ckey)
@@ -713,7 +744,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		"balance" = new_balance,
 	)
 
-/datum/metacoin_shop_controller/proc/buy(target_ckey, item_id, role_id = null, client/player_client = null)
+/datum/metacoin_shop_controller/proc/buy(target_ckey, item_id, role_id = null, client/player_client = null, variant = null)
 	target_ckey = ckey(target_ckey || player_client?.ckey)
 	if(!target_ckey || !item_id)
 		return list("ok" = FALSE, "error" = "invalid_request")
@@ -770,7 +801,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(!take["ok"])
 			return take
 
-		pending_items += item_id
+		pending_items[item_id] = variant
 
 		listing.on_bought(src, target_ckey, player_mob, player_client, take["balance"])
 
@@ -987,7 +1018,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(listing.listing_type != "item" || !listing.item_type)
 			continue
 
-		var/obj/item/new_item = new listing.item_type(human_spawned)
+		var/obj/item/new_item = new listing.get_chosen_typepath(target_ckey)(human_spawned)
 		listing.bought_on_spawn(src, target_ckey, human_spawned, new_item, player_client)
 		if(human_spawned.back?.atom_storage?.attempt_insert(new_item, human_spawned, override = TRUE))
 			continue
@@ -1056,7 +1087,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(!target_item)
 			return FALSE
 
-		var/result = get_metacoin_controller().buy(owner?.ckey, target_item, null, owner)
+		var/result = get_metacoin_controller().buy(owner?.ckey, target_item, null, owner, params["variant"])
 		if(!result["ok"])
 			var/mob/user_mob = ui?.user
 			if(user_mob)

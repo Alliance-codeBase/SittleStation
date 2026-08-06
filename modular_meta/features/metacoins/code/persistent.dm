@@ -19,6 +19,7 @@ To check if a reward is bought
 /datum/metacoinshop/listing_variant
 	var/id
 	var/name
+	var/item_type
 
 /datum/metacoinshop/listing/persistent/wycc_soul
 	id = "wycc_soul"
@@ -38,6 +39,6 @@ for a user to choose from, for an example, they may choose to get an green craoy
 	name = "Neobuchniy"
 
 /datum/metacoinshop/listing_variant/wycc_soul/strange
-	id = "Strange"
+	id = "strange"
 	name = "Stranniy"
 

@@ -25,7 +25,29 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 // it's persistenly repeated code on each round if the SSdb returns true whether something's been bought, use it for any effects on demand
 // later on we'll add a preference flag to disable bought items on demand
 
+/// Returns datum of chosen variant of
+/datum/metacoinshop/listing/proc/get_variant_datum(option_name, option_id)
+	for(var/variant_path in variant_options?[option_name])
+		var/datum/metacoinshop/listing_variant/variant_type = variant_path
+		if(initial(variant_type.id) == option_id)
+			return variant_type
+	return null
+
+/// Returns the id of the variant the player chose for the option group. Defaults to the group's first variant when nothing was chosen.
+/// - variant - your string from db e.g "coolish"
+/// - group - the option group key from variant_options
+/datum/metacoinshop/listing/proc/parse_choice(variant, group)
+	var/datum/metacoinshop/listing_variant/first_variant = variant_options[group][1]
+	var/list/chosen = json_decode(variant)
+	if(islist(chosen))
+		var/chosen_id = chosen[group]
+		if(chosen_id)
+			return chosen_id
+	return initial(first_variant.id)
+
 /datum/metacoinshop/listing/preround
+
+
 
 /*
 /datum/metacoinshop/listing/preround/donut_box/on_bought(datum/metacoin_shop_controller/shop, target_ckey, mob/player_mob, client/player_client, balance_after, role_id = null)
@@ -38,7 +60,37 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	sleep(10)
 	human_spawned.gib()// DIE!
 
+
+example usage of variants for prerounds:
+
+/datum/metacoinshop/listing/preround/backpack
+	id = "backpack"
+	name = "Backpack"
+	desc = "A backpack of your chosen style!"
+	price = 200
+	item_type = /obj/item/storage/backpack
+	variant_options = list("style" = list(
+		/datum/metacoinshop/listing_variant/backpack/miner,
+		/datum/metacoinshop/listing_variant/backpack/security,
+	))
+
+example usage of variants for persistent
+
+/datum/metacoinshop/listing/persistent/_blessing/persistent_grant(datum/metacoin_shop_controller/shop, target_ckey, mob/living/spawned, client/player_client)
+	var/saved_variant = shop.get_persistent_variant(target_ckey, src.id)
+	var/selected_id = parse_choice(saved_variant, "blessing")
+	var/datum/metacoinshop/listing_variant/variant_type = get_variant_datum("blessing", selected_id)
+	switch(variant_type.id)
+		if("health")
+			spawned.heal_overall_damage(25)
+		if("wealth")
+			spawned.put_in_hands(new /obj/item/stack/spacecash/c1000(spawned))
+
 */
+
+
+
+
 /datum/metacoinshop/listing/preround/donut_box
 	id = "donut_box"
 	name = "Donut Box"
