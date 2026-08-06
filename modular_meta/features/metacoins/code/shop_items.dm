@@ -86,7 +86,6 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	gas.assert_gas(jpack.gas_type)
 	// quadruple it and give it to the next jetpack
 	gas.set_gas(/datum/gas/oxygen, ((24 * ONE_ATMOSPHERE) * jpack.volume / (R_IDEAL_GAS_EQUATION * T20C)))
-	jpack.desc += span_notice(" \n Though it definetly seems to have enlarged in proportions when I took it from the box..")
 	new /obj/item/clothing/suit/space(src)
 	new /obj/item/clothing/head/helmet/space(src)
 	new /obj/item/tank/internals/oxygen(src)
@@ -97,6 +96,15 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	new /obj/item/manual_cell_recharger(src)
 	new /obj/item/stock_parts/servo/pico(src)
 	new /obj/item/flashlight/seclite(src)
+
+/obj/item/storage/box/eva_kit/examine(mob/user)
+	. = ..()
+	. += span_notice("It has a small label taped to it that says, \"Bluespace compressed!\" ")
+
+/obj/item/storage/box/eva_kit/examine_more(mob/user)
+	. = ..()
+	. += span_notice("Items seem to be rather small on the inside.. however, taking anything from the box makes it impossible to put it back in..")
+
 
 /datum/metacoinshop/listing/preround/self_surgery
 	id = "surgery"
@@ -111,6 +119,8 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	var/obj/item/skillchip/skillchip = new item_type()
 	human_spawned.implant_skillchip(skillchip)
 	skillchip.try_activate_skillchip()
+	playsound(human_spawned, 'sound/items/weapons/circsawhit.ogg', 100)
+	to_chat(human_spawned, span_notice("You've been implanted with [skillchip.name]"))
 
 /datum/metacoinshop/listing/preround/antag_token
 	id = "antag_token"

@@ -374,6 +374,19 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	return catalog_data
 
+/// Returns ID's of owned persistent items as list
+/// params:
+/// - target_ckey - ckey of your player, for which you want to get owned items for.
+/datum/metacoin_shop_controller/proc/get_owned_rewards(target_ckey)
+	var/list/owned_listings = list()
+	if(!target_ckey)
+		return list()
+
+	for(var/reward in persistent_catalog)
+		if(owns_persistent(target_ckey, reward))
+			owned_listings += reward
+	return owned_listings
+
 /datum/metacoin_shop_controller/proc/owned_persistent(target_ckey)
 	target_ckey = ckey(target_ckey)
 	if(!target_ckey)
@@ -429,8 +442,40 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(select_query)
 	return is_owned
 
+// Using database as it's way easier to implement than with preferences
+/// Returns TRUE/FALSE of a one individual reward. Note: If you want to get a list of enabled rewards you might want to use \
+/datum/metacoin_shop_controller/proc/get_enabled_rewards()
+/// params:
+/// - target_ckey - ckey of your player, for which you want to get enabled items for.
+/datum/metacoin_shop_controller/proc/get_enabled_reward(target_ckey, listing_id)
+	target_ckey = ckey(target_ckey)
+
+	if(!target_ckey || !listing_id)
+		return FALSE
+	if(!SSdbcore.Connect())
+		return null
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"SELECT enabled FROM [table_purchases] WHERE ckey = :ckey AND listing = :listing LIMIT 1",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+		),
+	)
+	if(!query.warn_execute(async = FALSE))
+		qdel(query)
+		return null
+
+	var/is_enabled = FALSE
+
+	if(query.NextRow(async = FALSE))
+		is_enabled = query.item[1] > 0
+	qdel(query)
+	return is_enabled
+
 /// You may use this to manually set any listing_id to TRUE or FALSE. upsert queries add new lines in a table, so there "shall" be no issues with it
-/datum/metacoin_shop_controller/proc/set_persistent(target_ckey, listing_id, owned = TRUE)
+/datum/metacoin_shop_controller/proc/set_persistent_owned(target_ckey, listing_id, owned = TRUE)
 	target_ckey = ckey(target_ckey)
 	if(!target_ckey || !listing_id)
 		return FALSE
@@ -455,6 +500,85 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(upsert_query)
 	return TRUE
 
+/datum/metacoin_shop_controller/proc/set_persistent_enabled(target_ckey, listing_id, enabled = TRUE)
+	target_ckey = ckey(target_ckey)
+	if(!target_ckey || !listing_id)
+		return FALSE
+
+	if(!SSdbcore.Connect())
+		return FALSE
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/upsert_query = SSdbcore.NewQuery(
+		"INSERT INTO [table_purchases] (ckey, listing, enabled) VALUES (:ckey, :listing, :enabled) ON DUPLICATE KEY UPDATE enabled = VALUES(enabled)",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+			"enabled" = enabled ? TRUE : FALSE,
+		),
+	)
+
+	if(!upsert_query.warn_execute(async = FALSE))
+		qdel(upsert_query)
+		return FALSE
+
+	qdel(upsert_query)
+	return TRUE
+
+/// Returns the stored variant JSON string of a persistent reward for a player. Null if not owned/not set.
+/datum/metacoin_shop_controller/proc/get_persistent_variant(target_ckey, listing_id)
+	target_ckey = ckey(target_ckey)
+	if(!target_ckey || !listing_id)
+		return null
+
+	if(!SSdbcore.Connect())
+		return null
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"SELECT variant FROM [table_purchases] WHERE ckey = :ckey AND listing = :listing LIMIT 1",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+		),
+	)
+	if(!query.warn_execute(async = FALSE))
+		qdel(query)
+		return null
+
+	var/variant
+	if(query.NextRow(async = FALSE))
+		variant = query.item[1]
+
+	qdel(query)
+	return variant
+
+/// Stores the selected variant JSON string of a persistent reward for a player.
+/datum/metacoin_shop_controller/proc/set_persistent_variant(target_ckey, listing_id, variant = null)
+	target_ckey = ckey(target_ckey)
+	if(!target_ckey || !listing_id)
+		return FALSE
+
+	if(!SSdbcore.Connect())
+		return FALSE
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/upsert_query = SSdbcore.NewQuery(
+		"INSERT INTO [table_purchases] (ckey, listing, variant) VALUES (:ckey, :listing, :variant) ON DUPLICATE KEY UPDATE variant = VALUES(variant)",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+			"variant" = variant,
+		),
+	)
+
+	if(!upsert_query.warn_execute(async = FALSE))
+		qdel(upsert_query)
+		return FALSE
+
+	qdel(upsert_query)
+	return TRUE
+
 /datum/metacoin_shop_controller/proc/grant_persistents(target_ckey, mob/living/spawned, client/player_client)
 	target_ckey = ckey(target_ckey)
 	if(!target_ckey)
@@ -467,6 +591,8 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	for(var/listing_id in owned_items)
 		var/datum/metacoinshop/listing/listing = persistent_catalog[listing_id]
 		if(!listing)
+			continue
+		if(!get_enabled_reward(target_ckey, listing_id))
 			continue
 
 		listing.persistent_grant(src, target_ckey, spawned, player_client)
@@ -598,7 +724,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(!take["ok"])
 			return take
 
-		if(!set_persistent(target_ckey, item_id, TRUE))
+		if(!set_persistent_owned(target_ckey, item_id, TRUE))
 			if(!add_metacoins(target_ckey, listing.price))
 				log_game("[src] persistent purchase refund failed: ckey=[target_ckey], listing=[item_id], price=[listing.price].")
 			return list("ok" = FALSE, "error" = "db_failed")
