@@ -294,7 +294,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	if(sum_to_refund > 0)
 		var/message = failure_text
-		add_metacoins(target_ckey, sum_to_refund)
+		add_metacoins(target_ckey, sum_to_refund)ё
 		to_chat(notify_mob, span_warning(message))
 		notify_mob.playsound_local(notify_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
 		return TRUE
@@ -1025,7 +1025,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		log_game("[src] refunding items of [player_client.ckey], Reason: joined round as non-human") // borgos and cargorillas don't need items
 		return
 
-	if(preround_delivered_by_ckey[target_ckey]) // already
+	if(preround_delivered_by_ckey[target_ckey])
 		return
 
 	var/list/pending_items = preround_pending_by_ckey[target_ckey]
@@ -1069,6 +1069,21 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	grant_persistents(target_ckey, spawned, spawned.client)
 	deliver_items(target_ckey, spawned, spawned.client)
+
+	// we need this to sleep because we want to SSdynamic to grant their roles, because they have higher priority
+	// this also allows us to potentially escape any situations where latejoiners have more than one antagonist role
+	sleep(2 SECONDS)
+	var/datum/mind/mind = spawned.mind
+	if(mind.has_antag_datum(/datum/antagonist, TRUE))
+		refund_token(target_ckey, "Antag token grant failed: Dynamic has assigened you a role, \
+		note, if you still wish to play a certain role, please, contact your local admin.")
+		return
+	if(!CONFIG_GET(flag/allow_latejoin_antagonists))
+		refund_token(target_ckey, "Antag token grant failed: Server configuration has opted-out \
+		to disable latejoin antagonists")
+		return
+
+	grant_token_on_spawn(spawned, spawned.client)
 
 /datum/metacoin_shop_panel
 	var/client/owner
