@@ -294,7 +294,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	if(sum_to_refund > 0)
 		var/message = failure_text
-		add_metacoins(target_ckey, sum_to_refund)ё
+		add_metacoins(target_ckey, sum_to_refund)
 		to_chat(notify_mob, span_warning(message))
 		notify_mob.playsound_local(notify_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
 		return TRUE
@@ -1046,7 +1046,9 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(listing.listing_type != "item" || !listing.item_type)
 			continue
 
-		var/obj/item/new_item = new listing.get_chosen_typepath(target_ckey)(human_spawned)
+		var/item_path = listing.get_chosen_typepath(target_ckey)
+		var/obj/item/new_item = new item_path(human_spawned)
+
 		listing.bought_on_spawn(src, target_ckey, human_spawned, new_item, player_client)
 		if(human_spawned.back?.atom_storage?.attempt_insert(new_item, human_spawned, override = TRUE))
 			continue
@@ -1069,10 +1071,9 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	grant_persistents(target_ckey, spawned, spawned.client)
 	deliver_items(target_ckey, spawned, spawned.client)
+	addtimer(CALLBACK(src, PROC_REF(latejoin_token_grant), target_ckey, spawned), 2 SECONDS)
 
-	// we need this to sleep because we want to SSdynamic to grant their roles, because they have higher priority
-	// this also allows us to potentially escape any situations where latejoiners have more than one antagonist role
-	sleep(2 SECONDS)
+/datum/metacoin_shop_controller/proc/latejoin_token_grant(target_ckey, mob/living/spawned)
 	var/datum/mind/mind = spawned.mind
 	if(mind.has_antag_datum(/datum/antagonist, TRUE))
 		refund_token(target_ckey, "Antag token grant failed: Dynamic has assigened you a role, \
@@ -1083,7 +1084,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		to disable latejoin antagonists")
 		return
 
-	grant_token_on_spawn(spawned, spawned.client)
+	grant_token_on_spawn(spawned.ckey, spawned, spawned.client)
 
 /datum/metacoin_shop_panel
 	var/client/owner
