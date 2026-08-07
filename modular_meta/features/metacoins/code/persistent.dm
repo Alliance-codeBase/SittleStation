@@ -17,7 +17,7 @@ To check if a reward is bought
 /datum/metacoinshop/listing/persistent/perm_surg
 		id = "perm_surg"
 		name = "4U70-P3R4710N skillchip"
-		desc = "This investment will allow you to cut your self open (without much harm)"
+		desc = "Auto-surgery skillchip, for your daily self-cutting needs!"
 		price = 8704
 		listing_type = "persistent"
 		item_type = /obj/item/skillchip/self_surgery
