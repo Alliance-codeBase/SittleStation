@@ -54,6 +54,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	signals_registered = TRUE
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_spawn))
+	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_LATEJOIN_SPAWN, PROC_REF(on_latejoin))
 	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(on_round_start)))
 	SSticker.OnRoundend(CALLBACK(src, PROC_REF(on_round_end)))
 
@@ -70,7 +71,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 /datum/metacoin_shop_controller/proc/is_open()
 	if(!SSticker)
 		return FALSE
-	return SSticker.current_state == GAME_STATE_PREGAME
+	return SSticker.current_state == GAME_STATE_PREGAME // todo make this configurable
 
 /datum/metacoin_shop_controller/proc/get_token_listing()
 	return preround_catalog["antag_token"]
@@ -101,7 +102,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		JOB_SECURITY_OFFICER_SUPPLY,
 		JOB_PRISONER,
 		JOB_CARGO_GORILLA,
-	) //i've spawned as a heretic captain, that's why it exists
+	) //i've spawned as a heretic captain, that's why it exists. // todo: make this configurable
 
 	return antag_token_restricted_jobs
 
@@ -274,6 +275,29 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		))
 
 	return roles_ui_data
+
+// so the thing is, I wanted it to be a one general proc to refund both preround items and refunds
+// sadly, I'm too lazy to rethink everything from scratch
+/datum/metacoin_shop_controller/proc/refund_items(target_ckey, failure_text, mob/notify_mob)
+	var/list/items_to_refund = preround_pending_by_ckey[target_ckey]
+
+	if(!length(items_to_refund))
+		return FALSE
+
+	var/sum_to_refund = 0
+
+	for(var/item in items_to_refund)
+		var/datum/metacoinshop/listing/listing = preround_catalog[item]
+		sum_to_refund += listing.price
+
+	preround_pending_by_ckey -= target_ckey
+
+	if(sum_to_refund > 0)
+		var/message = failure_text
+		add_metacoins(target_ckey, sum_to_refund)
+		to_chat(notify_mob, span_warning(message))
+		notify_mob.playsound_local(notify_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
+		return TRUE
 
 /datum/metacoin_shop_controller/proc/refund_token(target_ckey, failure_text, mob/notify_mob)
 	if(!target_ckey)
@@ -993,11 +1017,15 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	grant_token_on_spawn(target_ckey, spawned, player_client)
 	grant_persistents(target_ckey, spawned, player_client)
+	deliver_items(target_ckey, spawned, player_client)
 
+/datum/metacoin_shop_controller/proc/deliver_items(target_ckey, mob/living/spawned, client/player_client)
 	if(!ishuman(spawned))
+		refund_items(target_ckey, "We were unable to deliver your preround items", spawned)
+		log_game("[src] refunding items of [player_client.ckey], Reason: joined round as non-human") // borgos and cargorillas don't need items
 		return
 
-	if(preround_delivered_by_ckey[target_ckey])
+	if(preround_delivered_by_ckey[target_ckey]) // already
 		return
 
 	var/list/pending_items = preround_pending_by_ckey[target_ckey]
@@ -1033,6 +1061,14 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	to_chat(human_spawned, span_boldnicegreen("Your preround purchases were delivered."))
 
 	human_spawned.playsound_local(human_spawned, 'sound/misc/server-ready.ogg', 25, TRUE, use_reverb = FALSE)
+
+/datum/metacoin_shop_controller/proc/on_latejoin(datum/source, datum/job/job, mob/living/spawned)
+	SIGNAL_HANDLER
+
+	var/target_ckey = spawned.ckey
+
+	grant_persistents(target_ckey, spawned, spawned.client)
+	deliver_items(target_ckey, spawned, spawned.client)
 
 /datum/metacoin_shop_panel
 	var/client/owner
