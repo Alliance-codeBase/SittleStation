@@ -2,8 +2,6 @@
 
 ### Description:
 
-Here you do things with your money
-
 ### TG Proc/File Changes:
 
 code\datums\achievements_awards.dm - 94 - 99 - every achievement gives you some coins!
@@ -14,8 +12,6 @@ code\modules\deathmatch\deathmatch_controller.dm -
 ### Modular Overrides:
 
 TODO:
-
-- THE THINGS
 
 ### Defines:
 
