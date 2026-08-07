@@ -18,7 +18,7 @@ To check if a reward is bought
 		id = "perm_surg"
 		name = "4U70-P3R4710N skillchip"
 		desc = "This investment will allow you to cut your self open (without much harm)"
-		price = 4870
+		price = 8704
 		listing_type = "persistent"
 		item_type = /obj/item/skillchip/self_surgery
 
