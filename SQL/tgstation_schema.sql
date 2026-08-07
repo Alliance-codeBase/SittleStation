@@ -422,7 +422,7 @@ CREATE TABLE `metacoin_purchases` (
   `listing` varchar(64) NOT NULL,
   `owned` tinyint(1) NOT NULL DEFAULT 1,
   `enabled` tinyint(1) NOT NULL DEFAULT 1,
-  `variant` text NULL DEFAULT NULL
+  `variant` text NULL DEFAULT NULL,
   PRIMARY KEY (`ckey`, `listing`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 -- MASSMETA EDIT ADDITION END (metacoins)
