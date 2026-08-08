@@ -467,12 +467,29 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(select_query)
 	return is_owned
 
+/// Returns reward id's of currently enabled persistent rewards
+/// - target_ckey - ckey of your player,
+/datum/metacoin_shop_controller/proc/get_enabled_rewards(target_ckey)
+	target_ckey = ckey(target_ckey)
+	var/list/which_enabled = list()
+	var/datum/metacoinshop/listing/reward
+
+	if(!target_ckey)
+		return list()
+	if(!SSdbcore.Connect())
+		return list()
+
+	for(reward as anything in persistent_catalog)
+		if(check_reward_preference(target_ckey, reward.id))
+			which_enabled += reward.id
+	return which_enabled
+
 // Using database as it's way easier to implement than with preferences
-/// Returns TRUE/FALSE of a one individual reward. Note: If you want to get a list of enabled rewards you might want to use \
-/datum/metacoin_shop_controller/proc/get_enabled_rewards()
+/// Returns TRUE/FALSE of a one individual reward. Note: If you want to get a list of enabled rewards you might want to use
 /// params:
-/// - target_ckey - ckey of your player, for which you want to get enabled items for.
-/datum/metacoin_shop_controller/proc/get_enabled_reward(target_ckey, listing_id)
+/// - target_ckey - ckey of your player, for which you want to check preference for
+/// - listing_id - id of your datum/metacoinshop/listing
+/datum/metacoin_shop_controller/proc/check_reward_preference(target_ckey, listing_id)
 	target_ckey = ckey(target_ckey)
 
 	if(!target_ckey || !listing_id)
@@ -653,7 +670,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		var/datum/metacoinshop/listing/listing = persistent_catalog[listing_id]
 		if(!listing)
 			continue
-		if(!get_enabled_reward(target_ckey, listing_id))
+		if(!check_reward_preference(target_ckey, listing_id))
 			continue
 
 		listing.persistent_grant(src, target_ckey, spawned, player_client)
@@ -704,8 +721,8 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(select_query)
 	return metacoin_balance
 
-/datum/metacoin_shop_controller/proc/add_metacoins(target_ckey, delta_amount)
-	if(!target_ckey || !isnum(delta_amount) || delta_amount <= 0)
+/datum/metacoin_shop_controller/proc/add_metacoins(target_ckey, amount)
+	if(!target_ckey || !isnum(amount) || amount <= 0)
 		return FALSE
 
 	if(!SSdbcore.Connect())
@@ -715,7 +732,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	var/datum/db_query/update_query = SSdbcore.NewQuery(
 		"UPDATE [table_player] SET metacoins = metacoins + :delta WHERE ckey = :ckey",
 		list(
-			"delta" = delta_amount,
+			"delta" = amount,
 			"ckey" = target_ckey,
 		),
 	)
@@ -728,8 +745,8 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	return TRUE
 
 ///Takes coins in one atomic query
-/datum/metacoin_shop_controller/proc/take_metacoins(target_ckey, delta_amount)
-	if(!target_ckey || !isnum(delta_amount) || delta_amount <= 0)
+/datum/metacoin_shop_controller/proc/take_metacoins(target_ckey, amount)
+	if(!target_ckey || !isnum(amount) || amount <= 0)
 		return list("ok" = FALSE, "error" = "invalid_request")
 
 	if(!SSdbcore.Connect())
@@ -739,14 +756,14 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	if(isnull(current_balance))
 		return list("ok" = FALSE, "error" = "db_unavailable")
 
-	if(current_balance < delta_amount)
+	if(current_balance < amount)
 		return list("ok" = FALSE, "error" = "not_enough")
 
 	var/table_player = format_table_name("player")
 	var/datum/db_query/take_query = SSdbcore.NewQuery(
 		"UPDATE [table_player] SET metacoins = metacoins - :delta WHERE ckey = :ckey AND metacoins >= :delta",
 		list(
-			"delta" = delta_amount,
+			"delta" = amount,
 			"ckey" = target_ckey,
 		),
 	)
@@ -760,7 +777,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	if(isnull(new_balance))
 		return list("ok" = FALSE, "error" = "db_failed")
 
-	if(new_balance > (current_balance - delta_amount))
+	if(new_balance > (current_balance - amount))
 		return list("ok" = FALSE, "error" = "not_enough")
 
 	return list(

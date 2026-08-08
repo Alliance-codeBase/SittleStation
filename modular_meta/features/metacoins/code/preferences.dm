@@ -32,7 +32,7 @@
 			"icon" = listing.icon,
 			"iconState" = listing.icon_state,
 			"fallbackIcon" = controller.default_listing_fallback_icon,
-			"enabled" = controller.get_enabled_reward(user_ckey, reward_id),
+			"enabled" = controller.check_reward_preference(user_ckey, reward_id),
 			"variant" = controller.get_persistent_variant(user_ckey, reward_id),
 			"variantOptions" = controller.serialize_variant_options(listing.variant_options),
 		))
@@ -54,7 +54,7 @@
 			return FALSE
 		if(!controller.owns_persistent(owner_ckey, reward_id))
 			return FALSE
-		return controller.set_persistent_enabled(owner_ckey, reward_id, !controller.get_enabled_reward(owner_ckey, reward_id))
+		return controller.set_persistent_enabled(owner_ckey, reward_id, !controller.check_reward_preference(owner_ckey, reward_id))
 
 	if(action == "set_variant")
 		var/reward_id = params["rewardId"]
