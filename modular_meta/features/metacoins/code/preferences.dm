@@ -1,18 +1,6 @@
 /datum/metacoinshop/settings_panel
-	var/client/owner
-
-/datum/metacoinshop/settings_panel/New(client/owner, mob/viewer)
-	src.owner = owner
-	ui_interact(viewer)
-
-/datum/metacoinshop/settings_panel/ui_state(mob/user)
-	return GLOB.always_state
-
-/datum/metacoinshop/settings_panel/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "MetacoinSettings")
-		ui.open()
+	parent_type = /datum/metacoinshop/panel
+	interface_id = "MetacoinSettings"
 
 /datum/metacoinshop/settings_panel/ui_data(mob/user)
 	var/datum/metacoin_shop_controller/controller = get_metacoin_controller()
@@ -20,7 +8,7 @@
 	var/list/ui_data = list()
 	var/list/rewards_data = list()
 
-	for(var/reward_id in controller.get_owned_rewards(user_ckey))
+	for(var/reward_id in controller.owned_persistent(user_ckey))
 		var/datum/metacoinshop/listing/listing = controller.persistent_catalog[reward_id]
 		if(!listing)
 			continue
@@ -52,8 +40,10 @@
 		var/reward_id = params["rewardId"]
 		if(!reward_id || !owner_ckey)
 			return FALSE
+
 		if(!controller.owns_persistent(owner_ckey, reward_id))
 			return FALSE
+
 		return controller.set_persistent_enabled(owner_ckey, reward_id, !controller.check_reward_preference(owner_ckey, reward_id))
 
 	if(action == "set_variant")
@@ -61,8 +51,10 @@
 		var/variant = params["variant"]
 		if(!reward_id || !owner_ckey)
 			return FALSE
+
 		if(!controller.owns_persistent(owner_ckey, reward_id))
 			return FALSE
+
 		return controller.set_persistent_variant(owner_ckey, reward_id, variant)
 
 	return FALSE

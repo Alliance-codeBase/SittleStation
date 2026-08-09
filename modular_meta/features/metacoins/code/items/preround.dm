@@ -1,54 +1,3 @@
-/datum/metacoinshop/listing
-	var/id
-	var/name
-	var/desc
-	var/price
-	var/item_type
-	var/listing_type = "item"
-	var/icon
-	var/icon_state
-	var/list/variant_options = list()
-
-/// Is called after a successful purchase.
-/datum/metacoinshop/listing/proc/on_bought(datum/metacoin_shop_controller/shop, target_ckey, mob/player_mob, client/player_client, balance_after, role_id = null)
-	return TRUE
-// here lies any additional logic you might want to add, mainly, I added it because I wanted to see a cool announcement when wycc's soul is bought
-
-/datum/metacoinshop/listing/proc/bought_on_spawn(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, obj/item/item, client/player_client)
-	return
-
-// It's like the same ^^^ but you may edit variables of stuff in params, like human_spawned or item. e.g you may buy a baton, \
-then have it variable edit'ed like so item.force = 25, potentially escaping any additional hardcode or unneeded bloat
-
-/datum/metacoinshop/listing/proc/persistent_grant(datum/metacoin_shop_controller/shop, target_ckey, mob/living/spawned, client/player_client)
-	return
-// it's persistenly repeated code on each round if the SSdb returns true whether something's been bought, use it for any effects on demand
-// later on we'll add a preference flag to disable bought items on demand
-
-/// Returns datum of chosen variant of
-/datum/metacoinshop/listing/proc/get_variant_datum(option_name, option_id)
-	for(var/variant_path in variant_options?[option_name])
-		var/datum/metacoinshop/listing_variant/variant_type = variant_path
-		if(initial(variant_type.id) == option_id)
-			return variant_type
-	return null
-
-/// Returns the id of the variant the player chose for the option group. Defaults to the group's first variant when nothing was chosen.
-/// - variant - your string from db e.g "coolish"
-/// - group - the option group key from variant_options
-/datum/metacoinshop/listing/proc/parse_choice(variant, group)
-	var/datum/metacoinshop/listing_variant/first_variant = variant_options[group][1]
-	var/list/chosen = json_decode(variant)
-	if(islist(chosen))
-		var/chosen_id = chosen[group]
-		if(chosen_id)
-			return chosen_id
-	return initial(first_variant.id)
-
-/datum/metacoinshop/listing/preround
-
-
-
 /*
 /datum/metacoinshop/listing/preround/donut_box/on_bought(datum/metacoin_shop_controller/shop, target_ckey, mob/player_mob, client/player_client, balance_after, role_id = null)
 	to_chat(player_mob, span_green("success! die!")) // no idea why's there mob/player mob in params, but it's there, it exists! and it matters!
@@ -88,9 +37,6 @@ example usage of variants for persistent
 
 */
 
-
-
-
 /datum/metacoinshop/listing/preround/donut_box
 	id = "donut_box"
 	name = "Donut Box"
@@ -124,8 +70,8 @@ example usage of variants for persistent
 	desc = "A sturdy looking box, label says \"it has everything needed for space exploration\""
 
 /obj/item/storage/box/eva_kit/Initialize(mapload)
-	.=..()
-	var/obj/item/stack/medical/suture/suture = new/obj/item/stack/medical/suture(src)
+	. = ..()
+	var/obj/item/stack/medical/suture/suture = new /obj/item/stack/medical/suture(src)
 	suture.amount = 10
 	var/obj/item/stack/medical/mesh/mesh = new /obj/item/stack/medical/mesh(src)
 	mesh.amount = 10
@@ -158,7 +104,6 @@ example usage of variants for persistent
 	. = ..()
 	. += span_notice("Items seem to be rather small on the inside.. however, taking anything from the box makes it impossible to put it back in..")
 
-
 /datum/metacoinshop/listing/preround/self_surgery
 	id = "surgery"
 	name = "4U70-P3R4710N skillchip"
@@ -174,80 +119,3 @@ example usage of variants for persistent
 	skillchip.try_activate_skillchip()
 	playsound(human_spawned, 'sound/items/weapons/circsawhit.ogg', 100)
 	to_chat(human_spawned, span_notice("You've been implanted with [skillchip.name]"))
-
-/datum/metacoinshop/listing/preround/antag_token
-	id = "antag_token"
-	name = "Antag Token"
-	desc = "Guarantees one chosen antagonist role at roundstart."
-	price = 650
-	item_type = /obj/item/coin/antagtoken // to get the display icon of ours
-	listing_type = "other"
-
-/datum/metacoin_shop_listing
-	parent_type = /datum/metacoinshop/listing
-
-/datum/metacoinshop/antag_role
-	var/id
-	/// Displayed name.
-	var/name
-	/// Displayed description.
-	var/desc
-	/// as in code\modules\jobs\departments\departments.dm. Needed for UI sorting purpouses.
-	var/ui_order = 100
-/// Check dynamic.toml, put here your ruleset tag \
-(The name of it, e.g ["Roundstart Traitor"]) Under no circumstances there shall be midround antag, or any other that spawns with unique loadout.
-	var/ruleset_tag
-	/// check code\__DEFINES\role_preferences.dm , when bought role is banned, then it will try to refund the metacoins.
-	var/jobban_flag
-	/// Your antag datum.
-	var/antag_datum
-	/// Defaulted value, if for some reason config is unavailable.
-	var/default_min_pop = 0
-
-/datum/metacoinshop/antag_role/traitor
-	id = "traitor"
-	name = "Traitor"
-	ui_order = 10
-	desc = "An unpaid debt. A score to be settled. Maybe you were just in the wrong \
-	   	place at the wrong time. Whatever the reasons, you were selected to \
-	   	infiltrate Space Station 13."
-	ruleset_tag = "Roundstart Traitor"
-	jobban_flag = ROLE_TRAITOR
-	antag_datum = /datum/antagonist/traitor
-	default_min_pop = 3
-
-/datum/metacoinshop/antag_role/changeling
-	id = "changeling"
-	name = "Changeling"
-	ui_order = 20
-	desc = "A highly intelligent alien predator that is capable of altering their \
-	shape to flawlessly resemble a human."
-	ruleset_tag = "Roundstart Changeling"
-	jobban_flag = ROLE_CHANGELING
-	antag_datum = /datum/antagonist/changeling
-	default_min_pop = 15
-
-/datum/metacoinshop/antag_role/heretic
-	id = "heretic"
-	name = "Heretic"
-	ui_order = 30
-	desc = " Forgotten, devoured, gutted. Humanity has forgotten the eldritch forces \
-	   	of decay, but the mansus veil has weakened. We will make them taste fear \
-	   	again..."
-	ruleset_tag = "Roundstart Heretics"
-	jobban_flag = ROLE_HERETIC
-	antag_datum = /datum/antagonist/heretic
-	default_min_pop = 30
-
-/datum/metacoinshop/antag_role/spy
-	id = "spy"
-	name = "Spy"
-	ui_order = 40
-	desc = "Your mission, should you choose to accept it: Infiltrate Space Station 13. \
-	Disguise yourself as a member of their crew and steal vital equipment. \
-	Should you be caught or killed, your employer will disavow any knowledge of your actions. Good luck agent. \
-	Complete Spy Bounties to earn rewards from your employer. Use these rewards to sow chaos and mischief!"
-	ruleset_tag = "Roundstart Spies"
-	jobban_flag = ROLE_SPY
-	antag_datum = /datum/antagonist/spy
-	default_min_pop = 5

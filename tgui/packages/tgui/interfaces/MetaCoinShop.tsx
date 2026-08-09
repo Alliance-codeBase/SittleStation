@@ -21,7 +21,7 @@ type VariantOptions = Record<string, VariantOption[]>;
 
 type ShopItem = {
   id: string;
-  kind?: 'item' | 'antag_token';
+  kind?: string;
   name: string;
   desc: string;
   price: number;
@@ -43,7 +43,6 @@ type Data = {
   persistentItems: ShopItem[];
 };
 
-// MASSMETA EDIT ADDITION START (metacoins)
 const renderListingIcon = (item: ShopItem) => {
   const fallbackName = item.fallbackIcon || 'question-circle';
   const fallbackNode = <Icon name={fallbackName} size={2} />;
@@ -62,7 +61,6 @@ const renderListingIcon = (item: ShopItem) => {
 
   return fallbackNode;
 };
-// MASSMETA EDIT ADDITION END (metacoins)
 
 const parseVariant = (variant: string | null | undefined) => {
   if (!variant) {

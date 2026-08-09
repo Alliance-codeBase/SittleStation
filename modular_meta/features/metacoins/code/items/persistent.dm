@@ -16,11 +16,6 @@ To check if a reward is bought
 
 // DO NOT CHANGE ID'S, DOING SO WILL RESULT A DUPLICATE IN DB
 
-/datum/metacoinshop/listing_variant
-	var/id
-	var/name
-	var/item_type
-
 /datum/metacoinshop/listing/persistent/wycc_soul
 	id = "wycc_soul"
 	name = "Unusual Cursed Strange Genuine Unique Vintage Collector's Decorated Community Self-made massmeta Wycc's own Soul"
@@ -41,4 +36,3 @@ for a user to choose from, for an example, they may choose to get an green craoy
 /datum/metacoinshop/listing_variant/wycc_soul/strange
 	id = "strange"
 	name = "Stranniy"
-
