@@ -21,10 +21,6 @@ ADMIN_VERB(mc_give, R_ADMIN, "Grant Metacoins", "Grant metacoins to a target cke
 		grant_reason = "Manual admin grant"
 
 	var/datum/metacoins_controller/controller = get_metacoins_controller()
-	if(!controller)
-		to_chat(user, span_warning("Metacoin controller is unavailable."), confidential = TRUE)
-		return
-
 	var/reward_source = "admin_manual_grant:[user.ckey]"
 	var/reward_reason = "Admin grant: [grant_reason]"
 	var/success = controller.award_metacoins(target_ckey, amount, reward_source, reward_reason, TRUE)
@@ -62,12 +58,8 @@ ADMIN_VERB(mc_take, R_ADMIN, "Take Metacoins", "Take metacoins from a target cke
 	if(!length(take_reason))
 		take_reason = "Manual admin take"
 
-	var/datum/metacoin_shop_controller/shop = get_metacoin_controller()
-	if(!shop || !SSdbcore.Connect())
-		to_chat(user, span_warning("Metacoin shop controller or database is unavailable."), confidential = TRUE)
-		return
-
-	if(!shop.take_metacoins(target_ckey, amount)["ok"])
+	var/datum/metacoins_controller/wallet = get_metacoins_controller()
+	if(!wallet.take_metacoins(target_ckey, amount)["ok"])
 		to_chat(user, span_warning("Failed to take metacoins."), confidential = TRUE)
 		return
 
