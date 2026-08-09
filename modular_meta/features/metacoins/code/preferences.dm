@@ -1,15 +1,15 @@
-/datum/metacoinshop/settings_panel
-	parent_type = /datum/metacoinshop/panel
+/datum/metacoinshop/panel/settings
 	interface_id = "MetacoinSettings"
 
-/datum/metacoinshop/settings_panel/ui_data(mob/user)
-	var/datum/metacoin_shop_controller/controller = get_metacoin_controller()
+/datum/metacoinshop/panel/settings/ui_data(mob/user)
+	var/datum/metacoin_shop_controller/shop = get_metacoin_controller()
+	var/datum/metacoinshop/persistent/persistent = shop.persistent
 	var/user_ckey = user.ckey
 	var/list/ui_data = list()
 	var/list/rewards_data = list()
 
-	for(var/reward_id in controller.owned_persistent(user_ckey))
-		var/datum/metacoinshop/listing/listing = controller.persistent_catalog[reward_id]
+	for(var/reward_id in persistent.get_owned(user_ckey))
+		var/datum/metacoinshop/listing/listing = shop.persistent_catalog[reward_id]
 		if(!listing)
 			continue
 
@@ -19,21 +19,21 @@
 			"desc" = listing.desc,
 			"icon" = listing.icon,
 			"iconState" = listing.icon_state,
-			"fallbackIcon" = controller.default_listing_fallback_icon,
-			"enabled" = controller.check_reward_preference(user_ckey, reward_id),
-			"variant" = controller.get_persistent_variant(user_ckey, reward_id),
-			"variantOptions" = controller.serialize_variant_options(listing.variant_options),
+			"fallbackIcon" = shop.default_listing_fallback_icon,
+			"enabled" = persistent.is_enabled(user_ckey, reward_id),
+			"variant" = persistent.get_variant(user_ckey, reward_id),
+			"variantOptions" = listing.serialize_variants(),
 		))
 
 	ui_data["rewards"] = rewards_data
 	return ui_data
 
-/datum/metacoinshop/settings_panel/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+/datum/metacoinshop/panel/settings/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 
-	var/datum/metacoin_shop_controller/controller = get_metacoin_controller()
+	var/datum/metacoinshop/persistent/persistent = get_metacoin_controller().persistent
 	var/owner_ckey = owner?.ckey
 
 	if(action == "toggle_persistent")
@@ -41,10 +41,13 @@
 		if(!reward_id || !owner_ckey)
 			return FALSE
 
-		if(!controller.owns_persistent(owner_ckey, reward_id))
+		if(!persistent.owns(owner_ckey, reward_id))
 			return FALSE
 
-		return controller.set_persistent_enabled(owner_ckey, reward_id, !controller.check_reward_preference(owner_ckey, reward_id))
+		var/enabled = persistent.is_enabled(owner_ckey, reward_id)
+		if(isnull(enabled))
+			return FALSE
+		return persistent.set_enabled(owner_ckey, reward_id, !enabled)
 
 	if(action == "set_variant")
 		var/reward_id = params["rewardId"]
@@ -52,9 +55,9 @@
 		if(!reward_id || !owner_ckey)
 			return FALSE
 
-		if(!controller.owns_persistent(owner_ckey, reward_id))
+		if(!persistent.owns(owner_ckey, reward_id))
 			return FALSE
 
-		return controller.set_persistent_variant(owner_ckey, reward_id, variant)
+		return persistent.set_variant(owner_ckey, reward_id, variant)
 
 	return FALSE

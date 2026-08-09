@@ -26,7 +26,7 @@ example usage of variants for prerounds:
 example usage of variants for persistent
 
 /datum/metacoinshop/listing/persistent/_blessing/persistent_grant(datum/metacoin_shop_controller/shop, target_ckey, mob/living/spawned, client/player_client)
-	var/saved_variant = shop.get_persistent_variant(target_ckey, src.id)
+	var/saved_variant = shop.persistent.get_variant(target_ckey, src.id)
 	var/selected_id = parse_choice(saved_variant, "blessing")
 	var/datum/metacoinshop/listing_variant/variant_type = get_variant_datum("blessing", selected_id)
 	switch(variant_type.id)
@@ -111,7 +111,7 @@ example usage of variants for persistent
 	This one is new, I'd say, \"almost pristine condition.\" It will be already implanted in your brain upon purchause and your arrival."
 	price = 250
 	item_type = /obj/item/skillchip/self_surgery
-	listing_type = "other"
+	delivery_text = "applied"
 
 /datum/metacoinshop/listing/preround/self_surgery/bought_on_spawn(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, obj/item/item, client/player_client)
 	var/obj/item/skillchip/skillchip = new item_type()
@@ -119,3 +119,6 @@ example usage of variants for persistent
 	skillchip.try_activate_skillchip()
 	playsound(human_spawned, 'sound/items/weapons/circsawhit.ogg', 100)
 	to_chat(human_spawned, span_notice("You've been implanted with [skillchip.name]"))
+
+/datum/metacoinshop/listing/preround/self_surgery/deliver(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, client/player_client)
+	bought_on_spawn(shop, target_ckey, human_spawned, null, player_client)

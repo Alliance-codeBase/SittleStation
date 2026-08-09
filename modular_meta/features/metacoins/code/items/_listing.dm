@@ -25,6 +25,63 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 // it's persistenly repeated code on each round if the SSdb returns true whether something's been bought, use it for any effects on demand
 // later on we'll add a preference flag to disable bought items on demand
 
+/datum/metacoinshop/listing/proc/buy(datum/metacoin_shop_controller/shop, target_ckey, client/player_client, variant, role_id)
+	return list("ok" = FALSE, "error" = "unknown_item")
+
+/datum/metacoinshop/listing/proc/is_owned(target_ckey, list/owned_items)
+	return islist(owned_items) && (id in owned_items)
+
+/datum/metacoinshop/listing/proc/serialize(datum/metacoin_shop_controller/shop, target_ckey, balance, list/owned_items)
+	return list(
+		"id" = id,
+		"kind" = listing_type,
+		"name" = name,
+		"desc" = desc,
+		"price" = price,
+		"icon" = icon,
+		"iconState" = icon_state,
+		"fallbackIcon" = shop.default_listing_fallback_icon,
+		"owned" = is_owned(target_ckey, owned_items),
+		"canAfford" = !isnull(balance) && balance >= price,
+		"variantOptions" = serialize_variants(),
+	)
+
+/datum/metacoinshop/listing/proc/serialize_variants()
+	if(!islist(variant_options))
+		return null
+
+	var/list/serialized = list()
+	for(var/option_name in variant_options)
+		var/list/values = list()
+		for(var/variant_path in variant_options[option_name])
+			var/datum/metacoinshop/listing_variant/variant_type = variant_path
+			values += list(list(
+				"id" = initial(variant_type.id),
+				"name" = initial(variant_type.name),
+			))
+		serialized[option_name] = values
+	return serialized
+
+/datum/metacoinshop/listing/proc/notify_bought(mob/player_mob, message)
+	if(!player_mob)
+		return
+
+	to_chat(player_mob, span_boldnicegreen(message))
+	player_mob.playsound_local(player_mob, 'sound/effects/kaching.ogg', 40, TRUE, use_reverb = FALSE)
+	SStgui.update_user_uis(player_mob)
+
+/datum/metacoinshop/listing/proc/reset(datum/metacoin_shop_controller/shop)
+	return
+
+/datum/metacoinshop/listing/proc/on_spawn(datum/metacoin_shop_controller/shop, target_ckey, mob/living/spawned, client/player_client)
+	return
+
+/datum/metacoinshop/listing/proc/on_latejoin(datum/metacoin_shop_controller/shop, target_ckey, mob/living/spawned)
+	return
+
+/datum/metacoinshop/listing/proc/deliver(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, client/player_client)
+	return
+
 /// Returns datum of chosen variant of
 /datum/metacoinshop/listing/proc/get_variant_datum(option_name, option_id)
 	for(var/variant_path in variant_options?[option_name])
@@ -47,12 +104,12 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 
 /// Returns the item type to spawn for this player
 /// Override for custom logic
-/datum/metacoinshop/listing/proc/get_chosen_typepath(target_ckey)
+/datum/metacoinshop/listing/proc/get_chosen_typepath(datum/metacoin_shop_controller/shop, target_ckey)
 	if(!length(variant_options))
 		return item_type
 
 	var/option_name = variant_options[1]
-	var/saved_variant = get_metacoin_controller().get_pending_variant(target_ckey, src.id)
+	var/saved_variant = shop.get_pending_variant(target_ckey, src.id)
 	var/selected_id = parse_choice(saved_variant, option_name)
 
 	var/datum/metacoinshop/listing_variant/variant_type = get_variant_datum(option_name, selected_id)
@@ -66,6 +123,42 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	return item_path
 
 /datum/metacoinshop/listing/preround
+	var/delivery_text = "delivered"
+
+/datum/metacoinshop/listing/preround/buy(datum/metacoin_shop_controller/shop, target_ckey, client/player_client, variant, role_id)
+	if(!shop.is_open())
+		return list("ok" = FALSE, "error" = "shop_closed")
+
+	var/list/pending_items = shop.preround_pending_by_ckey[target_ckey]
+	if(!islist(pending_items))
+		pending_items = list()
+		shop.preround_pending_by_ckey[target_ckey] = pending_items
+
+	if(id in pending_items)
+		return list("ok" = FALSE, "error" = "already_owned")
+
+	var/list/take = shop.wallet.take_metacoins(target_ckey, price)
+	if(!take["ok"])
+		return take
+
+	pending_items[id] = variant
+	var/mob/player_mob = player_client?.mob || get_mob_by_ckey(target_ckey)
+	on_bought(shop, target_ckey, player_mob, player_client, take["balance"])
+	notify_bought(player_mob, "Purchased [name] for [price] metacoins. It will be [delivery_text] on first roundstart spawn.")
+	return list("ok" = TRUE)
+
+/datum/metacoinshop/listing/preround/deliver(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, client/player_client)
+	if(!item_type)
+		return
+
+	var/item_path = get_chosen_typepath(shop, target_ckey)
+	var/obj/item/new_item = new item_path(human_spawned)
+	bought_on_spawn(shop, target_ckey, human_spawned, new_item, player_client)
+	if(human_spawned.back?.atom_storage?.attempt_insert(new_item, human_spawned, override = TRUE))
+		return
+
+	if(!human_spawned.put_in_hands(new_item))
+		new_item.forceMove(get_turf(human_spawned))
 
 /datum/metacoinshop/listing_variant
 	var/id
