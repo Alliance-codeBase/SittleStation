@@ -122,7 +122,7 @@ export const MetaCoinAntagToken = () => {
               const statusText = role.available
                 ? null
                 : role.unavailableCode === 'min_pop'
-                  ? `Not enough population (${Number(role.minPopCurrent ?? 0)}/${Number(role.minPopRequired ?? 0)}).`
+                  ? `Not enough population (${role.minPopCurrent ?? 0}/${role.minPopRequired ?? 0}).`
                   : unavailableReasonText;
               const statusColor = role.available ? 'label' : 'bad';
               const iconBorderColor = roleDisabled

@@ -21,7 +21,7 @@ type VariantOptions = Record<string, VariantOption[]>;
 
 type ShopItem = {
   id: string;
-  kind?: string;
+  kind: 'item' | 'antag_token' | 'persistent';
   name: string;
   desc: string;
   price: number;
@@ -38,7 +38,6 @@ type ShopItem = {
 type Data = {
   isPregame: boolean;
   balance: number;
-  antagTokenSlotsLeft: number;
   preroundItems: ShopItem[];
   persistentItems: ShopItem[];
 };
@@ -139,9 +138,9 @@ export const MetaCoinShop = () => {
                   <Stack.Item key={item.id}>
                     {(() => {
                       const isAntagToken = item.kind === 'antag_token';
-                      const owned = Boolean(item.owned);
-                      const canAfford = Boolean(item.canAfford);
-                      const tokensLeft = Number(item.tokensLeft || 0);
+                      const owned = item.owned;
+                      const canAfford = item.canAfford;
+                      const tokensLeft = item.tokensLeft ?? 0;
                       const tokenSoldOut = isAntagToken && tokensLeft <= 0;
                       const currentVariant = parseVariant(
                         selectedVariants[item.id],
