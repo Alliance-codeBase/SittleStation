@@ -10,11 +10,15 @@
 #define METACOIN_SLOT_COOLDOWN_DS 5
 #define METACOIN_SLOT_JACKPOT_ICON FA_ICON_7
 
-/datum/metacoin_shop_controller
+/datum/metacoinshop/slot
+	var/datum/metacoin_shop_controller/shop
 	var/list/lock_by_ckey = list()
-	var/list/cd_by_ckey = list()
+	var/list/cooldown_by_ckey = list()
 
-/datum/metacoin_shop_controller/proc/get_icons()
+/datum/metacoinshop/slot/New(datum/metacoin_shop_controller/shop)
+	src.shop = shop
+
+/datum/metacoinshop/slot/proc/get_icons()
 	var/static/list/slot_icons = list(
 		FA_ICON_LEMON = list("colour" = "yellow"),
 		FA_ICON_STAR = list("colour" = "yellow"),
@@ -26,7 +30,7 @@
 	)
 	return slot_icons
 
-/datum/metacoin_shop_controller/proc/roll_reels()
+/datum/metacoinshop/slot/proc/roll_reels()
 	var/list/icons = get_icons()
 	var/list/reels = list()
 
@@ -43,7 +47,7 @@
 
 	return reels
 
-/datum/metacoin_shop_controller/proc/get_line(list/reels)
+/datum/metacoinshop/slot/proc/get_line(list/reels)
 	var/best = 0
 
 	for(var/row_index in 1 to 3)
@@ -62,7 +66,7 @@
 
 	return best
 
-/datum/metacoin_shop_controller/proc/is_jackpot(list/reels)
+/datum/metacoinshop/slot/proc/is_jackpot(list/reels)
 	var/icon = "[METACOIN_SLOT_JACKPOT_ICON]"
 	for(var/reel_index in 1 to 5)
 		if(reels[reel_index][2]["icon_name"] != icon)
@@ -70,7 +74,7 @@
 
 	return TRUE
 
-/datum/metacoin_shop_controller/proc/get_base_win(line, jackpot)
+/datum/metacoinshop/slot/proc/get_base_win(line, jackpot)
 	if(jackpot)
 		return METACOIN_SLOT_PAYOUT_JACKPOT
 	if(line >= 5)
@@ -81,53 +85,63 @@
 		return METACOIN_SLOT_PAYOUT_LINE3
 	return 0
 
-/datum/metacoin_shop_controller/proc/get_win(line, jackpot, bet)
+/datum/metacoinshop/slot/proc/get_win(line, jackpot, bet)
 	var/base = get_base_win(line, jackpot)
 	if(base <= 0)
 		return 0
 
 	return round((base * bet) / METACOIN_SLOT_BASE_BET)
 
-/datum/metacoin_shop_controller/proc/normalize_bet(raw_bet)
-	var/bet = METACOIN_SLOT_DEFAULT_BET
-	if(isnull(raw_bet))
-		return bet
+/datum/metacoinshop/slot/proc/apply_payout(ck, payout, balance)
+	if(payout <= 0)
+		return balance
+	if(!shop.wallet.add_metacoins(ck, payout))
+		return null
+	return shop.wallet.fetch_balance(ck)
 
-	if(isnum(raw_bet))
-		bet = round(raw_bet)
-	else if(istext(raw_bet))
-		bet = round(text2num(raw_bet))
-	else
+/datum/metacoinshop/slot/proc/normalize_bet(raw_bet)
+	if(isnull(raw_bet))
+		return METACOIN_SLOT_DEFAULT_BET
+	if(istext(raw_bet))
+		raw_bet = text2num(raw_bet)
+	if(!isnum(raw_bet))
 		return null
 
+	var/bet = round(raw_bet)
 	if(bet < METACOIN_SLOT_MIN_BET || bet > METACOIN_SLOT_MAX_BET)
 		return null
-
 	if((bet - METACOIN_SLOT_MIN_BET) % METACOIN_SLOT_BET_STEP)
 		return null
 
 	return bet
 
-/datum/metacoin_shop_controller/proc/get_cd(ck)
+/datum/metacoinshop/slot/proc/get_cooldown(ck)
 	ck = ckey(ck)
 	if(!ck)
 		return 0
 
-	var/next = cd_by_ckey[ck] || 0
+	var/next = cooldown_by_ckey[ck] || 0
 	if(next <= world.time)
 		return 0
 
 	return next - world.time
 
-/datum/metacoin_shop_controller/proc/unlock_spin(ck)
+/datum/metacoinshop/slot/proc/unlock(ck)
 	ck = ckey(ck)
 	if(!ck)
 		return
 
 	lock_by_ckey -= ck
 
+/datum/metacoinshop/slot/proc/send_announcement(mob/player, message, snd)
+	if(QDELETED(player) || player.stat != DEAD || !player.client)
+		return
 
-/datum/metacoin_shop_controller/proc/announce_win(winner_name, payout, line, jackpot, atom/winner_source)
+	to_chat(player, message)
+	if(player.client.prefs.read_preference(/datum/preference/toggle/sound_announcements))
+		SEND_SOUND(player, sound(snd))
+
+/datum/metacoinshop/slot/proc/announce_win(winner_name, payout, line, jackpot, atom/winner_source)
 	if(!winner_name || payout <= 0)
 		return
 
@@ -151,28 +165,12 @@
 	var/announce_final = "<div class='chat_alert_default'><span class='announcement_header'><span class='minor_announcement_title'>[title]</span></span><span class='minor_announcement_text'>[text]</span></div>"
 
 	for(var/mob/lobby_mob as anything in GLOB.new_player_list)
-		if(!isnewplayer(lobby_mob))
-			continue
-		if(QDELETED(lobby_mob) || lobby_mob.stat != DEAD)
-			continue
-		var/mob/dead/new_player/new_player = lobby_mob
-		if(!new_player.client)
-			continue
-		to_chat(new_player, announce_final)
-		if(new_player.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements))
-			SEND_SOUND(new_player, sound(announce_sound))
+		if(isnewplayer(lobby_mob))
+			send_announcement(lobby_mob, announce_final, announce_sound)
 
 	for(var/mob/player_mob as anything in GLOB.player_list)
-		if(!isobserver(player_mob))
-			continue
-		if(QDELETED(player_mob) || player_mob.stat != DEAD)
-			continue
-		var/mob/dead/observer/ghost = player_mob
-		if(!ghost.client)
-			continue
-		to_chat(ghost, announce_final)
-		if(ghost.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements))
-			SEND_SOUND(ghost, sound(announce_sound))
+		if(isobserver(player_mob))
+			send_announcement(player_mob, announce_final, announce_sound)
 
 	if(isobserver(winner_source))
 		notify_ghosts(
@@ -181,24 +179,21 @@
 			header = announce_title
 		)
 
-/datum/metacoin_shop_controller/proc/spin(ck, mob/user, raw_bet)
+/datum/metacoinshop/slot/proc/spin(ck, mob/user, raw_bet)
 	ck = ckey(ck)
 	if(!ck)
 		return list("ok" = FALSE, "error" = "invalid_request")
 
-	if(!is_open() && !isobserver(user))
+	if(!shop.is_open() && !isobserver(user))
 		return list("ok" = FALSE, "error" = "shop_closed")
 
 	var/lock_until = lock_by_ckey[ck] || 0
 	if(lock_until > world.time)
 		return list("ok" = FALSE, "error" = "busy")
 	if(lock_until)
-		lock_by_ckey -= ck
+		unlock(ck)
 
-	if(!SSdbcore.Connect())
-		return list("ok" = FALSE, "error" = "db_unavailable")
-
-	var/cd = get_cd(ck)
+	var/cd = get_cooldown(ck)
 	if(cd > 0)
 		return list(
 			"ok" = FALSE,
@@ -212,67 +207,24 @@
 
 	lock_by_ckey[ck] = world.time + 40
 
-	var/balance = fetch_balance(ck)
-	if(isnull(balance))
-		lock_by_ckey -= ck
-		return list("ok" = FALSE, "error" = "db_unavailable")
+	var/list/take = shop.wallet.take_metacoins(ck, bet)
+	if(!take["ok"])
+		unlock(ck)
+		return take
 
-	if(balance < bet)
-		lock_by_ckey -= ck
-		return list("ok" = FALSE, "error" = "not_enough")
-
-	var/table_player = format_table_name("player")
-	var/datum/db_query/debit_query = SSdbcore.NewQuery(
-		"UPDATE [table_player] SET metacoins = metacoins - :price WHERE ckey = :ckey AND metacoins >= :price",
-		list(
-			"price" = bet,
-			"ckey" = ck,
-		),
-	)
-
-	if(!debit_query.warn_execute(async = FALSE))
-		qdel(debit_query)
-		lock_by_ckey -= ck
-		return list("ok" = FALSE, "error" = "db_failed")
-	qdel(debit_query)
-
-	var/debit_balance = fetch_balance(ck)
-	if(isnull(debit_balance))
-		lock_by_ckey -= ck
-		return list("ok" = FALSE, "error" = "db_failed")
-
-	if(debit_balance > (balance - bet))
-		lock_by_ckey -= ck
-		return list("ok" = FALSE, "error" = "not_enough")
-
-	cd_by_ckey[ck] = world.time + METACOIN_SLOT_COOLDOWN_DS
+	cooldown_by_ckey[ck] = world.time + METACOIN_SLOT_COOLDOWN_DS
 
 	var/list/reels = roll_reels()
 	var/line = get_line(reels)
 	var/jackpot = is_jackpot(reels)
 	var/payout = get_win(line, jackpot, bet)
 
-	if(payout > 0)
-		var/datum/db_query/payout_query = SSdbcore.NewQuery(
-			"UPDATE [table_player] SET metacoins = metacoins + :amount WHERE ckey = :ckey",
-			list(
-				"amount" = payout,
-				"ckey" = ck,
-			),
-		)
-
-		if(!payout_query.warn_execute(async = FALSE))
-			qdel(payout_query)
-			lock_by_ckey -= ck
-			return list("ok" = FALSE, "error" = "db_failed")
-		qdel(payout_query)
-
-	var/end_balance = fetch_balance(ck)
+	var/end_balance = apply_payout(ck, payout, take["balance"])
 	if(isnull(end_balance))
-		lock_by_ckey -= ck
+		unlock(ck)
 		return list("ok" = FALSE, "error" = "db_failed")
 
-	addtimer(CALLBACK(src, PROC_REF(unlock_spin), ck), 40)
+	addtimer(CALLBACK(src, PROC_REF(unlock), ck), 40)
 	return list(
 		"ok" = TRUE,
 		"reels" = reels,
@@ -281,20 +233,21 @@
 		"payout" = payout,
 		"bet" = bet,
 		"balance" = end_balance,
-		"cooldownLeftDs" = get_cd(ck),
+		"cooldownLeftDs" = get_cooldown(ck),
 	)
 
-/datum/metacoin_slot_panel
-	var/client/owner
+/datum/metacoinshop/panel/slot
+	interface_id = "MetaCoinSlot"
+	var/datum/metacoinshop/slot/machine
 	var/list/reels = list()
 	var/working = FALSE
 	var/balance = 0
 	var/list/last = list()
 	var/list/history = list()
 
-/datum/metacoin_slot_panel/New(client/owner, mob/viewer)
-	src.owner = owner
-	reels = get_metacoin_controller().roll_reels()
+/datum/metacoinshop/panel/slot/New(client/owner, mob/viewer)
+	machine = get_metacoin_controller().slot
+	reels = machine.roll_reels()
 	last = list(
 		"bet" = METACOIN_SLOT_DEFAULT_BET,
 		"lineLength" = 0,
@@ -304,25 +257,16 @@
 		"resultState" = "idle",
 	)
 	history = list()
-	balance = get_metacoin_controller().fetch_balance(owner?.ckey)
+	balance = get_metacoins_controller().fetch_balance(owner?.ckey)
 	if(isnull(balance))
 		balance = 0
-	ui_interact(viewer)
+	..(owner, viewer)
 
-/datum/metacoin_slot_panel/ui_state()
-	return GLOB.always_state
-
-/datum/metacoin_slot_panel/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "MetaCoinSlot")
-		ui.open()
-
-/datum/metacoin_slot_panel/ui_static_data(mob/user)
+/datum/metacoinshop/panel/slot/ui_static_data(mob/user)
 	var/list/data = list()
 
 	data["icons"] = list()
-	var/list/icons = get_metacoin_controller().get_icons()
+	var/list/icons = machine.get_icons()
 	for(var/icon_name in icons)
 		var/list/icon_info = icons[icon_name]
 		data["icons"] += list(list(
@@ -343,28 +287,27 @@
 
 	return data
 
-/datum/metacoin_slot_panel/ui_data(mob/user)
+/datum/metacoinshop/panel/slot/ui_data(mob/user)
 	var/list/data = list()
-	var/datum/metacoin_shop_controller/shop = get_metacoin_controller()
 	var/client_ckey = owner?.ckey
 
 	if(!working)
-		var/live = shop.fetch_balance(client_ckey)
+		var/live = machine.shop.wallet.fetch_balance(client_ckey)
 		if(!isnull(live))
 			balance = live
 
-	data["isPregame"] = shop.is_open()
+	data["isPregame"] = machine.shop.is_open()
 	data["isObserver"] = isobserver(user)
 	data["working"] = working
 	data["balance"] = balance
 	data["state"] = reels
 	data["lastSpin"] = last
 	data["history"] = history.Copy()
-	data["cooldownLeftDs"] = shop.get_cd(client_ckey)
+	data["cooldownLeftDs"] = machine.get_cooldown(client_ckey)
 
 	return data
 
-/datum/metacoin_slot_panel/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+/datum/metacoinshop/panel/slot/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
@@ -376,28 +319,10 @@
 		working = TRUE
 		var/mob/user_mob = ui?.user
 
-		var/list/result = get_metacoin_controller().spin(owner?.ckey, user_mob, params?["bet"])
+		var/list/result = machine.spin(owner?.ckey, user_mob, params?["bet"])
 
 		if(!result["ok"])
-			if(user_mob)
-				switch(result["error"])
-					if("shop_closed")
-						to_chat(user_mob, span_warning("Metacoin slot machine is available only for ghosts and in pre-game lobby."))
-					if("invalid_bet")
-						to_chat(user_mob, span_warning("Invalid bet selected."))
-					if("not_enough")
-						to_chat(user_mob, span_warning("Not enough metacoins for a spin."))
-					if("cooldown")
-						to_chat(user_mob, span_warning("Spin cooldown active: [round((result["cooldownLeftDs"] || 0) / 10, 0.1)]s left."))
-					if("busy")
-						to_chat(user_mob, span_warning("Spin is already being processed."))
-					if("db_unavailable", "db_failed")
-						to_chat(user_mob, span_warning("Database error. Try again later."))
-					else
-						to_chat(user_mob, span_warning("Spin failed."))
-
-				user_mob.playsound_local(user_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
-
+			show_error(user_mob, result)
 			working = FALSE
 			return FALSE
 
@@ -411,14 +336,34 @@
 
 	return FALSE
 
-/datum/metacoin_slot_panel/proc/play_spin_sound(datum/weakref/user_ref, snd, volume)
+/datum/metacoinshop/panel/slot/proc/show_error(mob/user, list/result)
+	var/static/list/error_messages = list(
+		"shop_closed" = "Metacoin slot machine is available only for ghosts and in pre-game lobby.",
+		"invalid_bet" = "Invalid bet selected.",
+		"not_enough" = "Not enough metacoins for a spin.",
+		"busy" = "Spin is already being processed.",
+		"db_unavailable" = "Database error. Try again later.",
+		"db_failed" = "Database error. Try again later.",
+	)
+	if(!user)
+		return
+
+	var/error = result["error"]
+	var/message = error_messages[error] || "Spin failed."
+	if(error == "cooldown")
+		message = "Spin cooldown active: [round((result["cooldownLeftDs"] || 0) / 10, 0.1)]s left."
+
+	to_chat(user, span_warning(message))
+	user.playsound_local(user, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
+
+/datum/metacoinshop/panel/slot/proc/play_spin_sound(datum/weakref/user_ref, snd, volume)
 	var/mob/user_mob = user_ref?.resolve()
 	if(!user_mob)
 		return
 
 	user_mob.playsound_local(user_mob, snd, volume, TRUE, use_reverb = FALSE)
 
-/datum/metacoin_slot_panel/proc/finish_spin(list/result, datum/weakref/user_ref)
+/datum/metacoinshop/panel/slot/proc/finish_spin(list/result, datum/weakref/user_ref)
 	var/mob/user_mob = user_ref?.resolve() || owner?.mob
 
 	var/payout = result["payout"] || 0
@@ -454,7 +399,7 @@
 		history.Cut(6)
 
 	if(jackpot_hit || line >= 5)
-		get_metacoin_controller().announce_win(user_mob?.real_name || owner?.ckey || "Unknown", payout, line, jackpot_hit, user_mob)
+		machine.announce_win(user_mob?.real_name || owner?.ckey || "Unknown", payout, line, jackpot_hit, user_mob)
 
 	if(user_mob)
 		if(jackpot_hit)

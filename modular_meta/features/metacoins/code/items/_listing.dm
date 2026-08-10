@@ -122,9 +122,6 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 
 	return item_path
 
-/datum/metacoinshop/listing/preround
-	var/delivery_text = "delivered"
-
 /datum/metacoinshop/listing/preround/buy(datum/metacoin_shop_controller/shop, target_ckey, client/player_client, variant, role_id)
 	if(!shop.is_open())
 		return list("ok" = FALSE, "error" = "shop_closed")
@@ -144,7 +141,7 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	pending_items[id] = variant
 	var/mob/player_mob = player_client?.mob || get_mob_by_ckey(target_ckey)
 	on_bought(shop, target_ckey, player_mob, player_client, take["balance"])
-	notify_bought(player_mob, "Purchased [name] for [price] metacoins. It will be [delivery_text] on first roundstart spawn.")
+	notify_bought(player_mob, "Purchased [name] for [price] metacoins. It will be delivered on first roundstart spawn.")
 	return list("ok" = TRUE)
 
 /datum/metacoinshop/listing/preround/deliver(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, client/player_client)
@@ -159,6 +156,12 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 
 	if(!human_spawned.put_in_hands(new_item))
 		new_item.forceMove(get_turf(human_spawned))
+
+/datum/metacoinshop/listing/preround/other
+	listing_type = "other"
+
+/datum/metacoinshop/listing/preround/other/deliver(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, client/player_client)
+	bought_on_spawn(shop, target_ckey, human_spawned, null, player_client)
 
 /datum/metacoinshop/listing_variant
 	var/id

@@ -23,37 +23,29 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 	get_metacoin_controller()
 
 /datum/metacoins_controller
-	var/list/roundstart_ready_ckeys = list()
 	var/list/round_award_log_by_ckey = list()
 	var/list/awarded_sources_by_ckey = list()
 	var/round_awards_applied = FALSE
-	var/callbacks_registered = FALSE
 
 /datum/metacoins_controller/proc/register_round_callbacks()
-	if(callbacks_registered)
-		return
-
-	callbacks_registered = TRUE
-	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(capture_roundstart_ready_snapshot)))
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(on_round_start)))
 	SSticker.OnRoundend(CALLBACK(src, PROC_REF(grant_round_end_rewards)))
 
-/datum/metacoins_controller/proc/capture_roundstart_ready_snapshot()
+/datum/metacoins_controller/proc/on_round_start()
 	round_awards_applied = FALSE
 	round_award_log_by_ckey = list()
 	awarded_sources_by_ckey = list()
 
-	var/list/ready_ckey_set = list()
-	for(var/ready_ckey in GLOB.joined_player_list)
-		if(!ready_ckey)
-			continue
-		ready_ckey_set[ready_ckey] = TRUE
-
-	roundstart_ready_ckeys = ready_ckey_set
-
 	if(METACOIN_REWARD_ROUNDSTART_READY <= 0)
 		return
 
-	for(var/player_ckey in roundstart_ready_ckeys)
+	var/list/ready_ckeys = list()
+	for(var/ready_ckey in GLOB.joined_player_list)
+		if(!ready_ckey)
+			continue
+		ready_ckeys[ready_ckey] = TRUE
+
+	for(var/player_ckey in ready_ckeys)
 		award_metacoins(player_ckey, METACOIN_REWARD_ROUNDSTART_READY, "roundstart_ready", "Roundstart Ready")
 
 /datum/metacoins_controller/proc/grant_round_end_rewards()
@@ -121,7 +113,6 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 		var/sanitized_source = reward_entry["source"] || "unknown"
 		var/sanitized_reason = reward_entry["reason"] || "Reward"
 		if(!allow_repeat && source_awards[sanitized_source])
-			log_game("[src] metacoin payout skipped: ckey=[target_ckey], amount=[amount], source='[sanitized_source]', reason='[sanitized_reason]', cause='duplicate source'.")
 			continue
 
 		pay_rewards += list(list(
@@ -135,19 +126,12 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 	if(total_amount <= 0)
 		return FALSE
 
-	if(!SSdbcore.Connect())
-		log_game("[src] metacoin payout failed: ckey=[target_ckey], amount=[total_amount], cause='db unavailable', rewards=[json_encode(pay_rewards)].")
-		return FALSE
-
 	if(!add_metacoins(target_ckey, total_amount))
-		log_game("[src] metacoin payout failed: ckey=[target_ckey], amount=[total_amount], cause='update failed', rewards=[json_encode(pay_rewards)].")
 		return FALSE
 
 	if(!allow_repeat)
 		for(var/list/reward_entry as anything in pay_rewards)
 			source_awards[reward_entry["source"]] = TRUE
-
-	log_game("[src] metacoin payout: ckey=[target_ckey], amount=[total_amount], allow_repeat=[allow_repeat], rewards=[json_encode(pay_rewards)].")
 
 	for(var/list/reward_entry as anything in pay_rewards)
 		add_round_award_log_entry(target_ckey, reward_entry["amount"], reward_entry["source"], reward_entry["reason"])
@@ -192,11 +176,6 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 		reward = 50
 
 	return reward
-
-/datum/metacoins_controller/proc/is_roundstart_ready(target_ckey)
-	if(!target_ckey)
-		return FALSE
-	return !!roundstart_ready_ckeys[target_ckey]
 
 /datum/metacoins_controller/proc/get_round_bonus(target_ckey)
 	if(!target_ckey)
@@ -332,8 +311,31 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 		player_mob.playsound_local(player_mob, 'sound/effects/coin2.ogg', 40, TRUE, use_reverb = FALSE, pressure_affected = FALSE)
 	to_chat(player_mob, span_boldnicegreen("You received [total_reward] metacoins ([reasons_text])."))
 
+/datum/metacoins_controller/proc/fetch_balance(target_ckey)
+	if(!target_ckey)
+		return 0
+	if(!SSdbcore.Connect())
+		return null
+
+	var/table_player = format_table_name("player")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"SELECT metacoins FROM [table_player] WHERE ckey = :ckey",
+		list("ckey" = target_ckey),
+	)
+	if(!query.warn_execute(async = FALSE))
+		qdel(query)
+		return null
+
+	var/balance = 0
+	if(query.NextRow(async = FALSE))
+		balance = query.item[1] || 0
+	qdel(query)
+	return balance
+
 /datum/metacoins_controller/proc/add_metacoins(target_ckey, amount)
 	if(!target_ckey || amount <= 0)
+		return FALSE
+	if(!SSdbcore.Connect())
 		return FALSE
 
 	var/table_player = format_table_name("player")
@@ -350,23 +352,42 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 	qdel(update_query)
 	return success && affected > 0
 
-/datum/metacoins_panel
-	var/client/owner
+///Takes coins in one atomic query
+/datum/metacoins_controller/proc/take_metacoins(target_ckey, amount)
+	if(!target_ckey || !isnum(amount) || amount <= 0)
+		return list("ok" = FALSE, "error" = "invalid_request")
 
-/datum/metacoins_panel/New(client/owner, mob/viewer)
-	src.owner = owner
-	ui_interact(viewer)
+	var/current_balance = fetch_balance(target_ckey)
+	if(isnull(current_balance))
+		return list("ok" = FALSE, "error" = "db_unavailable")
+	if(current_balance < amount)
+		return list("ok" = FALSE, "error" = "not_enough")
 
-/datum/metacoins_panel/ui_state()
-	return GLOB.always_state
+	var/table_player = format_table_name("player")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"UPDATE [table_player] SET metacoins = metacoins - :amount WHERE ckey = :ckey AND metacoins >= :amount",
+		list(
+			"amount" = amount,
+			"ckey" = target_ckey,
+		),
+	)
+	if(!query.warn_execute(async = FALSE))
+		qdel(query)
+		return list("ok" = FALSE, "error" = "db_failed")
+	qdel(query)
 
-/datum/metacoins_panel/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "MetaCoins")
-		ui.open()
+	var/balance = fetch_balance(target_ckey)
+	if(isnull(balance))
+		return list("ok" = FALSE, "error" = "db_failed")
+	if(balance > current_balance - amount)
+		return list("ok" = FALSE, "error" = "not_enough")
 
-/datum/metacoins_panel/ui_data(mob/user)
+	return list("ok" = TRUE, "balance" = balance)
+
+/datum/metacoinshop/panel/wallet
+	interface_id = "MetaCoins"
+
+/datum/metacoinshop/panel/wallet/ui_data(mob/user)
 	var/list/data = list()
 	var/datum/metacoins_controller/controller = get_metacoins_controller()
 	var/client_ckey = owner?.ckey
@@ -378,53 +399,29 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 	data["roundAwardLog"] = client_ckey ? controller.get_round_award_log(client_ckey) : list()
 	data["canOpenShop"] = TRUE
 
-	var/balance = fetch_balance(client_ckey)
+	var/balance = controller.fetch_balance(client_ckey)
 	data["dbConnected"] = !isnull(balance)
 	data["balance"] = isnull(balance) ? 0 : balance
 
 	return data
 
-/datum/metacoins_panel/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+/datum/metacoinshop/panel/wallet/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 
 	if(action == "open_shop")
-		new /datum/metacoin_shop_panel(owner, ui.user)
+		new /datum/metacoinshop/panel/shop(owner, ui.user)
 		return TRUE
 
 	return FALSE
-
-/datum/metacoins_panel/proc/fetch_balance(target_ckey)
-	if(!target_ckey)
-		return 0
-
-	if(!SSdbcore.Connect())
-		return null
-
-	var/table_player = format_table_name("player")
-	var/datum/db_query/select_query = SSdbcore.NewQuery(
-		"SELECT metacoins FROM [table_player] WHERE ckey = :ckey",
-		list("ckey" = target_ckey),
-	)
-
-	if(!select_query.warn_execute(async = FALSE))
-		qdel(select_query)
-		return null
-
-	var/metacoin_balance = 0
-	if(select_query.NextRow(async = FALSE))
-		metacoin_balance = select_query.item[1] || 0
-
-	qdel(select_query)
-	return metacoin_balance
 
 /client/verb/view_metacoins()
 	set name = "View Metacoins"
 	set category = "OOC"
 	set desc = "View your metacoin balance and this round award log."
 
-	new /datum/metacoins_panel(src, usr)
+	new /datum/metacoinshop/panel/wallet(src, usr)
 
 #undef METACOIN_REWARD_ROUNDSTART_READY
 #undef METACOIN_REWARD_SURVIVE_EVAC

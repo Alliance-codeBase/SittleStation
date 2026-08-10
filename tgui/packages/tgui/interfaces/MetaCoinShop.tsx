@@ -21,7 +21,7 @@ type VariantOptions = Record<string, VariantOption[]>;
 
 type ShopItem = {
   id: string;
-  kind: 'item' | 'antag_token' | 'persistent';
+  kind: 'item' | 'other' | 'antag_token' | 'persistent';
   name: string;
   desc: string;
   price: number;

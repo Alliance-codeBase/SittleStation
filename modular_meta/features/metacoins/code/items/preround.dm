@@ -104,21 +104,17 @@ example usage of variants for persistent
 	. = ..()
 	. += span_notice("Items seem to be rather small on the inside.. however, taking anything from the box makes it impossible to put it back in..")
 
-/datum/metacoinshop/listing/preround/self_surgery
+/datum/metacoinshop/listing/preround/other/self_surgery
 	id = "surgery"
 	name = "4U70-P3R4710N skillchip"
 	desc = "A skillchip containing old Nanotrasen medical training protocols, which one could use to perform surgical operations on themselves. \
 	This one is new, I'd say, \"almost pristine condition.\" It will be already implanted in your brain upon purchause and your arrival."
 	price = 250
 	item_type = /obj/item/skillchip/self_surgery
-	delivery_text = "applied"
 
-/datum/metacoinshop/listing/preround/self_surgery/bought_on_spawn(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, obj/item/item, client/player_client)
+/datum/metacoinshop/listing/preround/other/self_surgery/bought_on_spawn(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, obj/item/item, client/player_client)
 	var/obj/item/skillchip/skillchip = new item_type()
 	human_spawned.implant_skillchip(skillchip)
 	skillchip.try_activate_skillchip()
 	playsound(human_spawned, 'sound/items/weapons/circsawhit.ogg', 100)
 	to_chat(human_spawned, span_notice("You've been implanted with [skillchip.name]"))
-
-/datum/metacoinshop/listing/preround/self_surgery/deliver(datum/metacoin_shop_controller/shop, target_ckey, mob/living/carbon/human/human_spawned, client/player_client)
-	bought_on_spawn(shop, target_ckey, human_spawned, null, player_client)

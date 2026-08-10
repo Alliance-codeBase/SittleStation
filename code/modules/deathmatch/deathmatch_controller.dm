@@ -36,11 +36,7 @@
 	entry_fee = min(max(round(text2num("[entry_fee]") || 0), 0), 1000)
 
 	if(entry_fee > 0)
-		var/datum/metacoin_shop_controller/shop = get_metacoin_controller()
-		if(!shop)
-			return list("ok" = FALSE, "error" = "shop_unavailable")
-
-		var/current_balance = shop.fetch_balance(host.ckey)
+		var/current_balance = get_metacoins_controller().fetch_balance(host.ckey)
 		if(isnull(current_balance))
 			return list("ok" = FALSE, "error" = "db_unavailable")
 		if(current_balance < entry_fee)
@@ -122,13 +118,11 @@
 			var/entry_fee = min(max(round(text2num(params["entry_fee"]) || 0), 0), 1000)
 			var/list/create_result = create_new_lobby(usr, entry_fee)
 			if(!create_result["ok"])
-				switch(create_result["error"])
-					if("not_enough")
-						tgui_alert(usr, "Not enough metacoins for selected entry fee.")
-					if("shop_unavailable", "db_unavailable")
-						tgui_alert(usr, "Metacoin subsystem is unavailable right now.")
-					else
-						tgui_alert(usr, "Failed to create lobby.")
+				var/static/list/error_messages = list(
+					"not_enough" = "Not enough metacoins for selected entry fee.",
+					"db_unavailable" = "Metacoin subsystem is unavailable right now.",
+				)
+				tgui_alert(usr, error_messages[create_result["error"]] || "Failed to create lobby.")
 				return
 
 			ui.close()

@@ -37,6 +37,9 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	var/list/catalog = alist()
 	for(var/listing_path in subtypesof(listing_type))
 		var/datum/metacoinshop/listing/listing = new listing_path
+		if(!listing.id)
+			qdel(listing)
+			continue
 		if(listing.item_type && !listing.icon)
 			var/obj/item/type_cast_item_path = listing.item_type
 			listing.icon = initial(type_cast_item_path.icon)
@@ -73,10 +76,11 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		sum_to_refund += listing.price
 
 	preround_pending_by_ckey -= target_ckey
-	wallet.add_metacoins(target_ckey, sum_to_refund)
-	to_chat(notify_mob, span_warning(failure_text))
-	notify_mob.playsound_local(notify_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
-	return TRUE
+	if(sum_to_refund > 0)
+		wallet.add_metacoins(target_ckey, sum_to_refund)
+		to_chat(notify_mob, span_warning(failure_text))
+		notify_mob.playsound_local(notify_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
+		return TRUE
 
 /datum/metacoin_shop_controller/proc/catalog_ui(target_ckey, balance, list/catalog, list/owned_items)
 	var/list/catalog_data = list()
