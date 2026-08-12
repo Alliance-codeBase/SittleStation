@@ -14,6 +14,7 @@ else
   rm -rf "$HOME/BYOND"
   mkdir -p "$HOME/BYOND"
   cd "$HOME/BYOND"
+<<<<<<< HEAD
   # MASSMETA CHANGE BEGIN (подягивает бульон из нашего "релиза")
   # curl -H "User-Agent: tgstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip
 
@@ -25,6 +26,18 @@ else
   }
 	# MASSMETA CHANGE END
 
+=======
+  curl -H "User-Agent: tgstation/1.0 CI Script" "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip
+  if [ $? -ne 0 ] || !(unzip -qt byond.zip); then
+    echo "Attempting fallback mirror..."
+    rm byond.zip
+    curl "https://byond-builds.dm-lang.org/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip -A "tgstation/1.0 CI Script"
+    if [ $? -ne 0 ] || !(unzip -qt byond.zip); then
+      echo "Failure!"
+      exit 1
+    fi
+  fi
+>>>>>>> upstream/master
   unzip byond.zip
   rm byond.zip
   cd byond
