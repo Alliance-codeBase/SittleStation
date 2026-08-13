@@ -556,8 +556,7 @@ Possible to do for anyone motivated enough:
 		hologram.icon = work_off.icon
 		hologram.icon_state = work_off.icon_state
 		hologram.copy_overlays(work_off, TRUE)
-<<<<<<< HEAD
-		hologram.makeHologram()
+		hologram.makeHologram(color_override = AI?.ai_holocolor)
 		//MASSMETA EDIT ADDITION START (ntts && tgtts)
 		// talking holograms
 		hologram.voice = user.voice
@@ -566,9 +565,6 @@ Possible to do for anyone motivated enough:
 		hologram.blip_number = user.blip_number
 		hologram.voice_filter = user.voice_filter
 		//MASSMETA EDIT ADDITION END (ntts && tgtts)
-=======
-		hologram.makeHologram(color_override = AI?.ai_holocolor)
->>>>>>> upstream/master
 
 		if(AI)
 			AI.eyeobj.setLoc(get_turf(src)) //ensure the AI camera moves to the holopad
