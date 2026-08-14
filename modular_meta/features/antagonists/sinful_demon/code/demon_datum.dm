@@ -177,7 +177,7 @@
 
 	var/datum/objective/survive/survive = new()
 	survive.owner = owner
-	survive.explanation_text = "Spread the sin of [demonsin] and survive until the end of the round."
+	survive.explanation_text = "Spread the sin of [demonsin] and survive until the end of the shift."
 	objectives += survive
 
 	var/datum/objective/demon_absorb_highrisk/highrisk = new()
