@@ -31,15 +31,15 @@ GLOBAL_LIST_EMPTY(demon_absorbed_highrisk_items)
 		return "SUCCESS: Absorbed the essence of the [target_name]!"
 	return "Hold the [target_name] in your hands. Progress: [round(time_held)]s / [required_hold_time]s"
 
-/datum/objective/demon_absorb_highrisk/proc/process_tick(datum/source, mob/living/carbon/human/H, seconds_per_tick)
+/datum/objective/demon_absorb_highrisk/proc/process_tick(datum/source, mob/living/carbon/human/human, seconds_per_tick)
 	SIGNAL_HANDLER
 	if(completed)
 		return
 
-	var/obj/item/held_item = H.get_active_held_item() || H.get_inactive_held_item()
+	var/obj/item/held_item = human.get_active_held_item() || human.get_inactive_held_item()
 	if(!held_item)
 		time_held = max(0, time_held - seconds_per_tick)
-		SStgui.update_uis(H)
+		SStgui.update_uis(human)
 		return
 
 	var/is_valid = FALSE
@@ -52,28 +52,28 @@ GLOBAL_LIST_EMPTY(demon_absorbed_highrisk_items)
 
 	if(!is_valid)
 		time_held = max(0, time_held - seconds_per_tick)
-		SStgui.update_uis(H)
+		SStgui.update_uis(human)
 		return
 
 	time_held += seconds_per_tick
-	SStgui.update_uis(H)
+	SStgui.update_uis(human)
 
 	if(time_held >= required_hold_time)
-		trigger_absorption(H, held_item)
+		trigger_absorption(human, held_item)
 
-datum/objective/demon_absorb_highrisk/proc/trigger_absorption(mob/living/carbon/human/H, obj/item/I)
+/datum/objective/demon_absorb_highrisk/proc/trigger_absorption(mob/living/carbon/human/human, obj/item/item)
 	completed = TRUE
-	to_chat(H, span_purple("You successfully absorb the essence of the [I.name]! It turns blood-red!"))
+	to_chat(human, span_purple("You successfully absorb the essence of the [item.name]! It turns blood-red!"))
 
-	I.color = "#ff0000"
-	GLOB.demon_absorbed_highrisk_items += I
+	item.color = "#ff0000"
+	GLOB.demon_absorbed_highrisk_items += item
 
-	var/datum/antagonist/sinfuldemon/demon = H.mind?.has_antag_datum(/datum/antagonist/sinfuldemon)
+	var/datum/antagonist/sinfuldemon/demon = human.mind?.has_antag_datum(/datum/antagonist/sinfuldemon)
 	if(demon)
 		SEND_SIGNAL(demon, "demon_give_points", 300)
 		demon.objectives -= src
 
-	var/turf/open/T = get_turf(I)
+	var/turf/open/T = get_turf(item)
 	if(T)
 		new /obj/effect/particle_effect/fluid/smoke(T)
 
@@ -86,16 +86,16 @@ datum/objective/demon_absorb_highrisk/proc/trigger_absorption(mob/living/carbon/
 		var/turf/new_loc = pick(turfs)
 		var/area/new_area = get_area(new_loc)
 
-		log_game("[key_name(H)] absorbed [I.name] ([I.type]). The item teleported to [new_area ? new_area.name : "Unknown Area"].")
+		log_game("[key_name(human)] absorbed [item.name] ([item.type]). The item teleported to [new_area ? new_area.name : "Unknown Area"].")
 
-		message_admins("[key_name_admin(H)] absorbed high-risk [I.name]. Teleported to: <b>[new_area ? new_area.name : "Unknown Area"]</b>.")
+		message_admins("[key_name_admin(human)] absorbed high-risk [item.name]. Teleported to: <b>[new_area ? new_area.name : "Unknown Area"]</b>.")
 
-		I.forceMove(new_loc)
+		item.forceMove(new_loc)
 		new /obj/effect/particle_effect/fluid/smoke(new_loc)
 	else
-		log_game("[key_name(H)] absorbed [I.name] ([I.type]). Item was hard-deleted (qdel) due to missing valid station turfs.")
-		message_admins("[key_name_admin(H)] absorbed high-risk [I.name]. Item was DELETED (qdel) because no valid station floors were found.")
-		qdel(I)
+		log_game("[key_name(human)] absorbed [item.name] ([item.type]). Item was hard-deleted (qdel) due to missing valid station turfs.")
+		message_admins("[key_name_admin(human)] absorbed high-risk [item.name]. Item was DELETED (qdel) because no valid station floors were found.")
+		qdel(item)
 
 	qdel(src)
 
