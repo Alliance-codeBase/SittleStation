@@ -73,14 +73,14 @@ GLOBAL_LIST_EMPTY(demon_absorbed_highrisk_items)
 		SEND_SIGNAL(demon, "demon_give_points", 300)
 		demon.objectives -= src
 
-	var/turf/open/T = get_turf(item)
-	if(T)
-		new /obj/effect/particle_effect/fluid/smoke(T)
+	var/turf/open/turf = get_turf(item)
+	if(turf)
+		new /obj/effect/particle_effect/fluid/smoke(turf)
 
 	var/list/turfs = list()
-	for(var/turf/open/floor/ST in world)
-		if(is_station_level(ST.z))
-			turfs += ST
+	for(var/turf/open/floor/station_floor in world)
+		if(is_station_level(station_floor.z))
+			turfs += station_floor
 
 	if(length(turfs))
 		var/turf/new_loc = pick(turfs)
@@ -112,12 +112,12 @@ GLOBAL_LIST_EMPTY(demon_absorbed_highrisk_items)
 
 /datum/objective/demon_corrupt_area/proc/pick_target_area()
 	var/list/valid_areas = list()
-	for(var/area/A in world)
-		if(!is_station_level(A.z) || !length(A.contents))
+	for(var/area/area in world)
+		if(!is_station_level(area.z) || !length(area.contents))
 			continue
-		if(istype(A, /area/station/hallway) || istype(A, /area/station/maintenance) || istype(A, /area/station/engineering/supermatter) || istype(A, /area/station/service/chapel) || istype(A, /area/station/ai) || istype(A, /area/space))
+		if(istype(area, /area/station/hallway) || istype(area, /area/station/maintenance) || istype(area, /area/station/engineering/supermatter) || istype(area, /area/station/service/chapel) || istype(area, /area/station/ai) || istype(area, /area/space))
 			continue
-		valid_areas += A
+		valid_areas += area
 	if(length(valid_areas))
 		target_area = pick(valid_areas)
 		explanation_text = "Lurk inside [target_area.name] for 2 minutes to completely corrupt its power and smash the lights. Reward is 250 Sin Points."
