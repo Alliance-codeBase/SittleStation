@@ -62,7 +62,7 @@
 	)
 	category = CAT_STRUCTURE
 
-//MASSMETA ADDITION START (re_traitorsecondary)
+//MASSMETA ADDITION START (progressive_traitor)
 /datum/crafting_recipe/syndicate_uplink_beacon
 	name = "Syndicate Uplink Beacon"
 	result = /obj/structure/syndicate_uplink_beacon
@@ -76,7 +76,7 @@
 	)
 	category = CAT_STRUCTURE
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_MUST_BE_LEARNED
-// MASSMETA ADDITION END (re_traitorsecondary)
+// MASSMETA ADDITION END (progressive_traitor)
 
 /datum/crafting_recipe/manucrate
 	name = "Manufacturing Storage Unit"
@@ -185,3 +185,18 @@
 		/datum/material/glass = SHEET_MATERIAL_AMOUNT,
 	)
 	crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ON_SOLID_GROUND
+
+/datum/crafting_recipe/tripwire_post
+	name = "Tripwire Post"
+	result = /obj/structure/tripwire/post
+	reqs = list(
+		/obj/item/stack/rods = 3,
+		/obj/item/stack/sheet/iron = 5,
+	)
+	tool_behaviors = list(TOOL_WRENCH, TOOL_WELDER)
+	time = 5 SECONDS
+	category = CAT_STRUCTURE
+	removed_mats = list(
+		/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3,
+	)
+	crafting_flags = CRAFT_ON_SOLID_GROUND

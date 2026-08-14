@@ -38,10 +38,10 @@
 	return FALSE
 
 /// You can't go to sleep in a coffin with a stake in you.
-/mob/living/proc/StakeCanKillMe()
+/mob/living/proc/StakeCanKillMe(mob/user)
 	if(IsSleeping())
 		return TRUE
-	if(stat >= UNCONSCIOUS)
+	if(IS_UNCONSCIOUS(user))
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_NODEATH))
 		return TRUE

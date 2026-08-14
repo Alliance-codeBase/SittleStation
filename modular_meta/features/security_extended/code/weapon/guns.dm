@@ -12,6 +12,7 @@
 /obj/item/ammo_box/magazine/recharge/station
 	w_class = WEIGHT_CLASS_SMALL
 	max_ammo = 16
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 3, /datum/material/silver = SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.2)
 
 /obj/item/ammo_box/magazine/recharge/station/emp_act(severity)
 	. = ..()
@@ -24,6 +25,7 @@
 	name = "stun type power pack"
 	desc = "A rechargeable, non-lethal, detachable battery that serves as a magazine for laser rifles."
 	ammo_type = /obj/item/ammo_casing/laser/stun
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT)
 
 /obj/item/ammo_casing/laser/stun
 	projectile_type = /obj/projectile/beam/disabler
@@ -34,6 +36,7 @@
 	name = "scatter type power pack"
 	ammo_type = /obj/item/ammo_casing/laser/scatter
 	max_ammo = 8
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 4, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/plastic = SMALL_MATERIAL_AMOUNT * 0.5)
 
 /obj/item/ammo_casing/laser/scatter
 	projectile_type = /obj/projectile/beam/scatter/ldmg

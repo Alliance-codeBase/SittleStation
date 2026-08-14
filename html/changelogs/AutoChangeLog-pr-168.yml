@@ -1,0 +1,5 @@
+author: "Bruh24"
+delete-after: True
+changes:
+  - code_imp: "Jukebox теперь использует shelleo() вместо shell()"
+  - code_imp: "Jukebox теперь корректно показывает вывод команд yt-dlp и ffmpeg"

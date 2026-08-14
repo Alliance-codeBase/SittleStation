@@ -18,7 +18,7 @@
     if(times_fired % 30 == 0 && times_fired > 0)
         if(ishuman(M) && !M.undergoing_cardiac_arrest() && M.can_heartattack())
             M.set_heartattack(TRUE)
-            if(M.stat == CONSCIOUS)
+            if(!IS_UNCONSCIOUS_OR_CRIT(M))
                 M.visible_message(span_userdanger("[M] clutches at [M.p_their()] chest as if [M.p_their()] heart stopped!"))
     if(SPT_PROB(10, seconds_per_tick))
         var/paralyzed_limb = pick_paralyzed_limb()

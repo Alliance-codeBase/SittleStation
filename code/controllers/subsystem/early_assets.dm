@@ -24,8 +24,25 @@ SUBSYSTEM_DEF(early_assets)
 		if (!initial(asset_type.early))
 			continue
 
+		// MASSMETA EDIT
+		var/pre_init = REALTIMEOFDAY
+		var/list/typepath_split = splittext("[asset_type]", "/")
+		var/typepath_readable = capitalize(replacetext(typepath_split[length(typepath_split)], "_", " "))
+
+		SStitle.add_init_text(asset_type, "> [typepath_readable]", "<font color='yellow'>CREATING...</font>")
+		if (load_asset_datum(asset_type))
+			var/time = (REALTIMEOFDAY - pre_init) / (1 SECONDS)
+			if(time <= 0.1)
+				SStitle.remove_init_text(asset_type)
+			else
+				SStitle.add_init_text(asset_type, "> [typepath_readable]", "<font color='green'>DONE</font>", time)
+		else
+		//MASSMETA EDIT END
+		/* ORIGINAL
 		if (!load_asset_datum(asset_type))
+		*/
 			stack_trace("Could not initialize early asset [asset_type]!")
+			SStitle.add_init_text(asset_type, "> [typepath_readable]", "<font color='red'>FAILED</font>") // MASSMETA ADDITION
 
 		CHECK_TICK
 

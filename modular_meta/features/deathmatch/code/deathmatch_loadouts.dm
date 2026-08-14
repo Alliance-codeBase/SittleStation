@@ -232,16 +232,16 @@
 /datum/outfit/deathmatch_loadout/syndicate/cybersun
 	name = "Deathmatch: Cybersun Troubleshooter"
 	display_name = "Cybersun Industries"
-	desc = "The loadout used by Cybersun's infamous Troubleshooter Division. Equipped with an S-120, and energy dagger, and emp flashlight."
-	uniform = /obj/item/clothing/under/syndicate/combat
-	suit = /obj/item/clothing/suit/jacket/oversized
+	desc = "The loadout used by Cybersun's infamous Troubleshooter Division. Equipped with an S-120 and energy dagger."
+	uniform = /obj/item/clothing/under/syndicate/cybersun
+	suit = /obj/item/clothing/suit/jacket/leather_trenchcoat
+	mask = /obj/item/clothing/mask/gas/syndicate/cybersun
 	glasses = /obj/item/clothing/glasses/sunglasses/oval
 	back = /obj/item/storage/backpack/messenger
 	belt = /obj/item/gun/energy/laser/cybersun/unrestricted
 	l_hand = null
 	l_pocket = /obj/item/pen/edagger
-	backpack_contents = list(/obj/item/flashlight/emp)
-
+	backpack_contents = null
 
 /datum/outfit/deathmatch_loadout/syndicate/donk
 	name = "Deathmatch: Donk Co. Employee"
@@ -275,9 +275,9 @@
 /datum/outfit/deathmatch_loadout/syndicate/waffle
 	name = "Deathmatch: Waffle Corporate Security"
 	display_name = "Waffle Corporation"
-	desc = "Standard equipment loadout for Waffle Corp's corporate security team. Equipped with an autorifle, spare ammo, and emergency gauze."
-	uniform = /obj/item/clothing/under/rank/security/officer/blueshirt
-	head = /obj/item/clothing/head/helmet/rus_helmet
+	desc = "Standard equipment loadout for Waffle Corp's corporate security team. Equipped with an autorifle and spare ammo."
+	uniform = /obj/item/clothing/under/syndicate/combat
+	head = /obj/item/clothing/head/helmet/blueshirt
 	suit = /obj/item/clothing/suit/armor/vest
 	glasses = /obj/item/clothing/glasses/welding/up
 	l_hand = null
@@ -289,6 +289,27 @@
 	name = "\improper C-570 Autorifle"
 	desc = "A lightweight, fully automatic carbine rifle based on a leaked Nanotrasen design. Uses 4.6x30mm rounds. It has 'Scarborough Arms' inscribed on its handle."
 
+/datum/outfit/deathmatch_loadout/syndicate/roroco
+	name = "Deathmatch: RoroCo Security Guard"
+	display_name = "RoroCo"
+	desc = "Used by Roroco Security Guards of Gloves Factory. Equipped with an nice tackler gloves and nunchaku."
+	uniform = /obj/item/clothing/under/costume/buttondown/slacks/roroco
+	suit = /obj/item/clothing/suit/jacket/fancy/roroco
+	mask =/obj/item/clothing/mask/gas/syndicate
+	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	back = /obj/item/storage/backpack/messenger
+	belt = /obj/item/melee/baton/nunchaku
+	id = /obj/item/card/id/away/roroco/deathmatch
+	l_hand = null
+	l_pocket = /obj/item/reagent_containers/hypospray/medipen/atropine
+	backpack_contents = null
+
+/obj/item/clothing/suit/jacket/fancy/roroco
+	greyscale_colors = "#FFCCCC#88242D"
+
+/obj/item/card/id/away/roroco/deathmatch
+	trim = /datum/id_trim/syndicom
+
 //icemoon
 
 /datum/outfit/deathmatch_loadout/miner
@@ -299,6 +320,7 @@
 	r_hand = /obj/item/gun/energy/recharge/kinetic_accelerator
 	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 	glasses = /obj/item/clothing/glasses/meson/night
+	gloves = /obj/item/clothing/gloves/color/black
 	suit = /obj/item/clothing/suit/hooded/explorer
 	shoes = /obj/item/clothing/shoes/workboots/mining
 	mask = /obj/item/clothing/mask/gas/explorer
@@ -320,6 +342,10 @@
 	l_pocket = /obj/item/flashlight
 	r_pocket = /obj/item/reagent_containers/cup/glass/waterbottle
 
+/datum/outfit/deathmatch_loadout/runner/pre_equip(mob/living/carbon/human/user, visuals_only)
+	. = ..()
+	ADD_TRAIT(user, TRAIT_SWIMMER, REF(src))
+
 /datum/outfit/deathmatch_loadout/slasher
 	name = "Deathmatch: Slasher"
 	display_name = "Slasher"
@@ -331,7 +357,6 @@
 	shoes = /obj/item/clothing/shoes/workboots/black
 	mask = /obj/item/clothing/mask/madness_mask
 	l_pocket = /obj/item/flashlight/flare/torch/red/on
-	r_pocket = /obj/item/reagent_containers/hypospray/medipen/stimulants
 
 /obj/item/clothing/suit/toggle/jacket/trenchcoat/slasher
 	color = "#ffa05a"

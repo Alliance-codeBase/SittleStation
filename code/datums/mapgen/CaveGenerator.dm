@@ -154,7 +154,7 @@
 		return generate_terrain_with_biomes(turfs, generate_in)
 
 	var/start_time = REALTIMEOFDAY
-
+	SStitle.add_init_text("[type]gen", "> [name]: Generation", "<font color='yellow'>LOADING</font>") // MASSMETA ADDITION
 	string_gen = generate_cave(generate_in)
 
 	for(var/turf/gen_turf as anything in turfs) //Go through all the turfs and generate them
@@ -168,10 +168,15 @@
 		if(gen_turf.turf_flags & NO_RUINS)
 			new_turf.turf_flags |= NO_RUINS
 
+	// MASSMETA EDIT
+	SStitle.add_init_text("[type]gen", "> [name]: Generation", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS))
+	log_world("[name] terrain generation finished in [(REALTIMEOFDAY - start_time)/10]s!")
+	// MASSMETA EDIT END
+	/* ORIGINAL
 	var/message = "[name] terrain generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 	log_world(message)
-
+	*/
 
 /**
  * This proc handles including biomes in the cave generation. This is slower than
@@ -206,6 +211,7 @@
 		humidity_seed = rand(0, 50000)
 		heat_seed = rand(0, 50000)
 
+	SStitle.add_init_text("[type]fill", "> [name]: Population", "<font color='yellow'>LOADING</font>") // MASSMETA ADDITION
 	var/start_time = REALTIMEOFDAY
 	string_gen = generate_cave(generate_in)
 
@@ -258,9 +264,15 @@
 			generated_turfs_per_area_biome[biome] = area_list
 		area_list[generate_in] = generated_turfs
 
+	// MASSMETA EDIT
+	SStitle.add_init_text("[type]fill", "> [name]: Population", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS))
+	log_world("[name] terrain population finished in [(REALTIMEOFDAY - start_time)/10]s!")
+	// MASSMETA EDIT END
+	/* ORIGINAL
 	var/message = "[name] terrain generation finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 	log_world(message)
+	*/
 
 /// Returns a biome datum that the turf was initialized with, or would be if it is present on our Z level and we use a consistent shared seed
 /// Not consistent between calls by itself due to using RNG in perlin zoom, needs a static coordinate-based formula
@@ -418,9 +430,15 @@
 
 		CHECK_TICK
 
+	// MASSMETA EDIT
+	SStitle.add_init_text("[type]fill", "> [name]: Population", "<font color='green'>DONE</font>", (REALTIMEOFDAY - start_time) / (1 SECONDS))
+	log_world("[name] terrain population finished in [(REALTIMEOFDAY - start_time)/10]s!")
+	// MASSMETA EDIT END
+	/* ORIGINAL
 	var/message = "[name] terrain population finished in [(REALTIMEOFDAY - start_time)/10]s!"
 	to_chat(world, span_boldannounce("[message]"), MESSAGE_TYPE_DEBUG)
 	log_world(message)
+	*/
 
 
 ///Generates the cave shape using Rust-G

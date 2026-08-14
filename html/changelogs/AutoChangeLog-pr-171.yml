@@ -1,0 +1,5 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - refactor: "Код Jukebox play internet sound сделан гораздо чище, теперь он использует встроенную логику от обычного Jukebox"
+  - refactor: "Теперь jukebox сохраняет в кэше звуковые файлы, удаляя их лишь по факту окончания раунда. Никаких перескачиваний уже скачанной музыки!"
