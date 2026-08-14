@@ -381,16 +381,16 @@
 	var/list/all_shop_types = subtypesof(/datum/demon_ability)
 	var/mob/living/living = owner?.current
 
-	for(var/A in all_shop_types)
+	for(var/ability in all_shop_types)
 		var/already_exists = FALSE
 		for(var/datum/demon_ability/existing in available_shop_abilities)
-			if(existing.type == A)
+			if(existing.type == ability)
 				already_exists = TRUE
 				break
 		if(already_exists)
 			continue
 
-		var/datum/demon_ability/ability_instance = new A()
+		var/datum/demon_ability/ability_instance = new ability()
 		var/should_add = FALSE
 
 		if(isnull(ability_instance.required_sin))
@@ -415,17 +415,17 @@
 	if(owner && owner.current)
 		SStgui.update_uis(owner.current)
 
-/datum/antagonist/sinfuldemon/proc/purchase_ability(mob/living/user, datum/demon_ability/A)
-	if(A.unlocked)
+/datum/antagonist/sinfuldemon/proc/purchase_ability(mob/living/user, datum/demon_ability/ability)
+	if(ability.unlocked)
 		to_chat(user, span_warning("You have already purchased this ability!"))
 		return FALSE
-	if(sin_points < A.cost)
-		to_chat(user, span_warning("Inadequate sin points! Required: [A.cost]"))
+	if(sin_points < ability.cost)
+		to_chat(user, span_warning("Inadequate sin points! Required: [ability.cost]"))
 		return FALSE
 
-	sin_points -= A.cost
-	A.unlocked = TRUE
-	A.on_purchase(user)
+	sin_points -= ability.cost
+	ability.unlocked = TRUE
+	ability.on_purchase(user)
 	return TRUE
 
 /datum/antagonist/sinfuldemon/ui_interact(mob/user, datum/tgui/ui)
@@ -464,13 +464,13 @@
 
 	var/list/abilities_list = list()
 	if(available_shop_abilities && length(available_shop_abilities))
-		for(var/datum/demon_ability/A in available_shop_abilities)
+		for(var/datum/demon_ability/ability in available_shop_abilities)
 			var/list/ab_data = list()
-			ab_data["name"] = A.name
-			ab_data["desc"] = A.desc
-			ab_data["cost"] = A.cost
-			ab_data["unlocked"] = A.unlocked
-			ab_data["ref"] = REF(A)
+			ab_data["name"] = ability.name
+			ab_data["desc"] = ability.desc
+			ab_data["cost"] = ability.cost
+			ab_data["unlocked"] = ability.unlocked
+			ab_data["ref"] = REF(ability)
 			abilities_list += list(ab_data)
 	data["abilities"] = abilities_list
 
@@ -483,9 +483,9 @@
 
 	switch(action)
 		if("buy_ability")
-			var/datum/demon_ability/A = locate(params["ref"]) in available_shop_abilities
-			if(A)
-				purchase_ability(ui.user, A)
+			var/datum/demon_ability/ability = locate(params["ref"]) in available_shop_abilities
+			if(ability)
+				purchase_ability(ui.user, ability)
 				return TRUE
 
 		if("reroll_sin")
@@ -579,8 +579,6 @@
 				source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time, beam_color = "#c784b0")
 	else
 		source.Beam(target_turf, "sendbeam", 'icons/effects/beam.dmi', time)
-
-
 
 #undef SIN_ENVY
 #undef SIN_GLUTTONY
