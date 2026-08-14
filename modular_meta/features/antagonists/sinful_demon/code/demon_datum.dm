@@ -17,8 +17,8 @@
 /datum/demon_ability/proc/on_purchase(mob/living/demon_mob)
 	if(!spell_path)
 		return FALSE
-	var/datum/action/cooldown/spell/S = new spell_path()
-	S.Grant(demon_mob)
+	var/datum/action/cooldown/spell/spell = new spell_path(demon_mob.mind || demon_mob)
+	spell.Grant(demon_mob)
 	to_chat(demon_mob, span_purple("You have unlocked the ability: [name]!"))
 	return TRUE
 
@@ -216,8 +216,8 @@
 
 	if(objectives && length(objectives))
 		to_chat(owner.current, span_notice("Your Current Objectives, they can change aftertime:"))
-		for(var/datum/objective/O in objectives)
-			to_chat(owner.current, " - [O.explanation_text]")
+		for(var/datum/objective/objective in objectives)
+			to_chat(owner.current, " - [objective.explanation_text]")
 
 	SEND_SOUND(owner.current, sound('sound/effects/magic/ethereal_exit.ogg'))
 
@@ -281,11 +281,11 @@
 	else
 		SStgui.update_uis(living)
 
-	for(var/datum/objective/O in objectives)
-		if(istype(O, /datum/objective/demon_corrupt_area))
-			SEND_SIGNAL(O, "corrupt_area_tick", living, seconds_per_tick)
-		if(istype(O, /datum/objective/demon_absorb_highrisk))
-			SEND_SIGNAL(O, "absorb_item_tick", living, seconds_per_tick)
+	for(var/datum/objective/objective in objectives)
+		if(istype(objective, /datum/objective/demon_corrupt_area))
+			SEND_SIGNAL(objective, "corrupt_area_tick", living, seconds_per_tick)
+		if(istype(objective, /datum/objective/demon_absorb_highrisk))
+			SEND_SIGNAL(objective, "absorb_item_tick", living, seconds_per_tick)
 
 	objective_refresh_timer += seconds_per_tick
 	if(objective_refresh_timer >= 600)
@@ -305,13 +305,13 @@
 		return
 
 	var/list/objectives_to_remove = list()
-	for(var/datum/objective/O in objectives)
-		if(istype(O, /datum/objective/demon_absorb_highrisk) || istype(O, /datum/objective/demon_corrupt_area))
-			objectives_to_remove += O
+	for(var/datum/objective/objective in objectives)
+		if(istype(objective, /datum/objective/demon_absorb_highrisk) || istype(objective, /datum/objective/demon_corrupt_area))
+			objectives_to_remove += objective
 
-	for(var/datum/objective/O in objectives_to_remove)
-		objectives -= O
-		qdel(O)
+	for(var/datum/objective/objective in objectives_to_remove)
+		objectives -= objective
+		qdel(objective)
 
 	var/datum/objective/demon_absorb_highrisk/new_absorb = new()
 	var/item_exists_on_station = FALSE
@@ -370,10 +370,10 @@
 
 	var/list/visible_objectives = list()
 	if(objectives && length(objectives))
-		for(var/datum/objective/O in objectives)
-			if(istype(O, /datum/objective/demon_absorb_highrisk) || istype(O, /datum/objective/demon_corrupt_area))
+		for(var/datum/objective/objective in objectives)
+			if(istype(objective, /datum/objective/demon_absorb_highrisk) || istype(objective, /datum/objective/demon_corrupt_area))
 				continue
-			visible_objectives += O
+			visible_objectives += objective
 	parts += printobjectives(visible_objectives)
 	return parts.Join("<br>")
 
@@ -434,9 +434,6 @@
 		ui = new(user, src, "AntagInfoSinfulDemon", "Infernal Legacy")
 		ui.open()
 
-/datum/antagonist/sinfuldemon/ui_status(mob/user, state)
-	return ..()
-
 /datum/antagonist/sinfuldemon/ui_data(mob/user)
 	var/list/data = list()
 	data["fluff"] = "You are a Sinful Demon!"
@@ -448,17 +445,17 @@
 
 	var/list/obj_list = list()
 	if(objectives && length(objectives))
-		for(var/datum/objective/O in objectives)
+		for(var/datum/objective/objective in objectives)
 			var/list/obj_data = list()
-			if(istype(O, /datum/objective/demon_corrupt_area))
-				var/datum/objective/demon_corrupt_area/CA = O
+			if(istype(objective, /datum/objective/demon_corrupt_area))
+				var/datum/objective/demon_corrupt_area/CA = objective
 				obj_data["explanation"] = CA.get_progress_text()
-			else if(istype(O, /datum/objective/demon_absorb_highrisk))
-				var/datum/objective/demon_absorb_highrisk/AH = O
+			else if(istype(objective, /datum/objective/demon_absorb_highrisk))
+				var/datum/objective/demon_absorb_highrisk/AH = objective
 				obj_data["explanation"] = AH.get_progress_text()
 			else
-				obj_data["explanation"] = O.explanation_text
-			obj_data["completed"] = O.completed
+				obj_data["explanation"] = objective.explanation_text
+			obj_data["completed"] = objective.completed
 			obj_list += list(obj_data)
 	data["objectives"] = obj_list
 
@@ -522,32 +519,32 @@
 			var/list/abilities_to_keep = list()
 			var/returned_points = 0
 
-			for(var/datum/demon_ability/BA in available_shop_abilities)
-				if(BA.unlocked)
-					if(istype(BA, /datum/demon_ability/shapeshift))
+			for(var/datum/demon_ability/buyable_ability in available_shop_abilities)
+				if(buyable_ability.unlocked)
+					if(istype(buyable_ability, /datum/demon_ability/shapeshift))
 						if(new_sin_has_form_alternative)
-							returned_points += BA.cost
-							qdel(BA)
+							returned_points += buyable_ability.cost
+							qdel(buyable_ability)
 							continue
 						else
-							abilities_to_keep += BA
+							abilities_to_keep += buyable_ability
 							continue
 
-					if(istype(BA, /datum/demon_ability/ethereal_jaunt))
+					if(istype(buyable_ability, /datum/demon_ability/ethereal_jaunt))
 						if(new_sin_has_jaunt_alternative)
-							returned_points += BA.cost
-							qdel(BA)
+							returned_points += buyable_ability.cost
+							qdel(buyable_ability)
 							continue
 						else
-							abilities_to_keep += BA
+							abilities_to_keep += buyable_ability
 							continue
 
-					abilities_to_keep += BA
+					abilities_to_keep += buyable_ability
 				else
-					if(BA.persistent)
-						abilities_to_keep += BA
+					if(buyable_ability.persistent)
+						abilities_to_keep += buyable_ability
 					else
-						qdel(BA)
+						qdel(buyable_ability)
 
 			if(returned_points > 0)
 				sin_points += returned_points

@@ -19,7 +19,7 @@
 	death_message = "wails in anger and fear as it collapses in defeat!"
 	minimum_survivable_temperature = 250 //Weak to cold
 	maximum_survivable_temperature = INFINITY
-	faction = list("hell")
+	faction = list(FACTION_HELL)
 	attack_verb_continuous = "wildly tears into"
 	attack_verb_simple = "wildly tears into"
 	maxHealth = 300
@@ -31,14 +31,18 @@
 	lighting_cutoff_red = 22
 	lighting_cutoff_green = 5
 	lighting_cutoff_blue = 5
-	butcher_results = list(/obj/effect/decal/cleanable/blood)
+	guaranteed_butcher_results = list(/obj/effect/decal/cleanable/blood)
 	basic_mob_flags = DEL_ON_DEATH
 
-/mob/living/basic/lesserdemon/attackby(obj/item/W, mob/living/caster, params)
+/mob/living/basic/lesserdemon/Initialize(mapload)
 	. = ..()
-	if(istype(W, /obj/item/nullrod))
+	AddElement(/datum/element/lifesteal, 2)
+
+/mob/living/basic/lesserdemon/attackby(obj/item/holy_item, mob/living/caster, params)
+	. = ..()
+	if(istype(holy_item, /obj/item/nullrod))
 		visible_message(span_warning("[src] screams in unholy pain from the blow!"), \
-						span_cult("As \the [W] hits you, you feel holy power blast through your form, tearing it apart!"))
+						span_cult("As \the [holy_item] hits you, you feel holy power blast through your form, tearing it apart!"))
 		adjust_brute_loss(22) //22 extra damage from the nullrod while in your true form. On average this means 40 damage is taken now.
 
 /mob/living/basic/lesserdemon/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)//10 hp healed from landing a hit.
@@ -57,7 +61,3 @@
 		if(src.stat != DEAD) //being dead, however, will save you
 			src.visible_message(span_warning("[src] begins to melt apart!"), span_danger("Your very soul melts from the holy room!"), "You hear sizzling.")
 			adjust_health(20) //20 damage every ~2 seconds. About 20 seconds for a full HP demon to melt apart in the chapel.
-
-/mob/living/basic/lesserdemon/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/lifesteal, 2)

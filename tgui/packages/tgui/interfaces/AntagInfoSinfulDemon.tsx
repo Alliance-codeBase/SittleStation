@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Box, Section, Stack, Tabs, Button, NoticeBox } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  NoticeBox,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
@@ -27,8 +34,18 @@ type Info = {
 
 export const AntagInfoSinfulDemon = (props) => {
   const { act, data } = useBackend<Info>();
-  const { fluff, objectives, points, demonsin, abilities, next_refresh_in, can_reroll_sin } = data;
-  const [activeTab, setActiveTab] = useState<'objectives' | 'shop'>('objectives');
+  const {
+    fluff,
+    objectives,
+    points,
+    demonsin,
+    abilities,
+    next_refresh_in,
+    can_reroll_sin,
+  } = data;
+  const [activeTab, setActiveTab] = useState<'objectives' | 'shop'>(
+    'objectives',
+  );
 
   const formatTime = (secs: number) => {
     const m = Math.floor(secs / 60);
@@ -45,9 +62,14 @@ export const AntagInfoSinfulDemon = (props) => {
           </Stack.Item>
           <Stack.Item grow>
             <Stack vertical fill>
-
               <Stack.Item>
-                <Tabs style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                <Tabs
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
                   <Tabs.Tab
                     selected={activeTab === 'objectives'}
                     onClick={() => setActiveTab('objectives')}
@@ -66,11 +88,11 @@ export const AntagInfoSinfulDemon = (props) => {
                   <Box style={{ marginRight: '5px', paddingBottom: '3px' }}>
                     <Button
                       icon="redo"
-                      color={can_reroll_sin ? "danger" : "default"}
+                      color={can_reroll_sin ? 'danger' : 'default'}
                       disabled={!can_reroll_sin || points < 666}
                       onClick={() => act('reroll_sin')}
                     >
-                      {can_reroll_sin ? "Reroll Sin (666 SP)" : "Rerolled"}
+                      {can_reroll_sin ? 'Reroll Sin (666 SP)' : 'Rerolled'}
                     </Button>
                   </Box>
                 </Tabs>
@@ -89,7 +111,11 @@ export const AntagInfoSinfulDemon = (props) => {
                     }
                   >
                     <Stack vertical fill>
-                      <Stack.Item textAlign="center" textColor="red" fontSize="20px">
+                      <Stack.Item
+                        textAlign="center"
+                        textColor="red"
+                        fontSize="20px"
+                      >
                         {fluff}
                       </Stack.Item>
                       <Stack.Item>
@@ -117,21 +143,28 @@ export const AntagInfoSinfulDemon = (props) => {
                     <Stack vertical>
                       <Stack.Item>
                         <NoticeBox color="red">
-                          Earn points passively by staying at full health on the station or completing goals.
+                          Earn points passively by staying at full health on the
+                          station or completing goals.
                         </NoticeBox>
                       </Stack.Item>
-                      {abilities && abilities.map((ability) => (
+                      {abilities?.map((ability) => (
                         <Stack.Item key={ability.ref}>
                           <Section
                             level={2}
                             title={ability.name}
                             buttons={
                               <Button
-                                disabled={ability.unlocked || points < ability.cost}
-                                color={ability.unlocked ? "green" : "red"}
-                                onClick={() => act('buy_ability', { ref: ability.ref })}
+                                disabled={
+                                  ability.unlocked || points < ability.cost
+                                }
+                                color={ability.unlocked ? 'green' : 'red'}
+                                onClick={() =>
+                                  act('buy_ability', { ref: ability.ref })
+                                }
                               >
-                                {ability.unlocked ? "Unlocked" : `${ability.cost} SP`}
+                                {ability.unlocked
+                                  ? 'Unlocked'
+                                  : `${ability.cost} SP`}
                               </Button>
                             }
                           >
