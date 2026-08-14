@@ -241,7 +241,8 @@
 	var/datum/hud/user_hud = he_drive.hud_used
 	if(!user_hud)
 		return
-	user_hud.add_screen_object(/atom/movable/screen/justice_charge_arrow, HUD_JUSTICE_CHARGE_ARROW, HUD_GROUP_INFO, charge_arrow.inactive_icon, around_player)
+	charge_arrow = user_hud.add_screen_object(/atom/movable/screen/justice_charge_arrow, HUD_JUSTICE_CHARGE_ARROW, HUD_GROUP_INFO, null, around_player, TRUE)
+	charge_arrow.icon_state = charge_arrow.inactive_icon
 
 /obj/vehicle/sealed/mecha/justice/mob_exit(mob/exiter, silent, randomstep, forced)
 	. = ..()
@@ -402,7 +403,7 @@
 	if(!iscarbon(target))
 		return
 	var/mob/living/carbon/carbon_target = target
-	if(carbon_target.stat >= UNCONSCIOUS)
+	if(IS_UNCONSCIOUS(carbon_target))
 		return
 	var/obj/effect/justice_engine/cooldown_engine = get_engine_by_state(JUSTICE_ENGINE_ONCOOLDOWN)
 	if(isnull(cooldown_engine))
@@ -557,7 +558,7 @@
 	if(!ishuman(target))
 		return FALSE
 	var/mob/living/carbon/human/live_or_dead = target
-	if(live_or_dead.stat < UNCONSCIOUS && live_or_dead.get_stamina_loss() < 100)
+	if(!IS_UNCONSCIOUS_OR_CRIT(live_or_dead) && live_or_dead.get_stamina_loss() < 100)
 		return FALSE
 	var/obj/item/bodypart/check_head = live_or_dead.get_bodypart(BODY_ZONE_HEAD)
 	if(!check_head)
@@ -623,7 +624,7 @@
 /obj/vehicle/sealed/mecha/justice/proc/attack_in_aoe(mob/living/pilot)
 	new /obj/effect/temp_visual/mech_attack_aoe_attack(get_turf(src))
 	for(var/mob/living/something_living in range(1, get_turf(src)))
-		if(something_living.stat >= UNCONSCIOUS \
+		if(IS_UNCONSCIOUS(something_living) \
 		|| something_living.get_stamina_loss() >= 100 \
 		|| something_living == pilot)
 			continue
@@ -665,7 +666,7 @@
 		if(locate(/obj/structure/window) in line_turf)
 			break
 		for(var/mob/living/something_living in line_turf.contents)
-			if(something_living.stat >= UNCONSCIOUS \
+			if(IS_UNCONSCIOUS(something_living) \
 			|| something_living.get_stamina_loss() >= 100 \
 			|| is_driver(something_living) \
 			|| is_occupant(something_living))
@@ -974,36 +975,42 @@
 /obj/item/mecha_parts/chassis/justice
 	name = "\improper Justice chassis"
 	construct_type = /datum/component/construction/unordered/mecha_chassis/justice
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 /obj/item/mecha_parts/part/justice_torso
 	name="\improper Justice torso"
 	desc="A Justice torso part."
 	icon_state = "justice_torso"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 50, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 5)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 /obj/item/mecha_parts/part/justice_left_arm
 	name="\improper Justice left arm"
 	desc="A Justice left arm."
 	icon_state = "justice_l_arm"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 /obj/item/mecha_parts/part/justice_right_arm
 	name="\improper Justice right arm"
 	desc="A Justice left arm."
 	icon_state = "justice_r_arm"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/silver = SHEET_MATERIAL_AMOUNT * 2)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 /obj/item/mecha_parts/part/justice_left_leg
 	name="\improper Justice left leg"
 	desc="A Justice left leg."
 	icon_state = "justice_l_leg"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 /obj/item/mecha_parts/part/justice_right_leg
 	name="\improper Justice right leg"
 	desc="A Justice left leg."
 	icon_state = "justice_r_leg"
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 5, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 2)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 
@@ -1011,6 +1018,7 @@
 	name="Justice armor"
 	desc="Justice armor plates."
 	icon_state = "justice_armor"
+	custom_materials = list(/datum/material/silver = SHEET_MATERIAL_AMOUNT * 10, /datum/material/titanium = SHEET_MATERIAL_AMOUNT * 10, /datum/material/plastic = SHEET_MATERIAL_AMOUNT * 5, /datum/material/diamond = SHEET_MATERIAL_AMOUNT)
 	icon = 'modular_meta/features/uplink_items/icons/mech_construct.dmi'
 
 //Justice wreckage

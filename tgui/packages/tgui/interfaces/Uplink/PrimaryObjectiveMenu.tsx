@@ -1,12 +1,11 @@
-
-//MASSMETA EDIT CHANGE BEGIN (re_traitorsecondary)
+//MASSMETA EDIT CHANGE BEGIN (progressive_traitor)
 /* ORIGINAL:
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 */
 import { Box, Button, Dimmer, Section, Stack } from 'tgui-core/components';
-//MASSMETA EDIT CHANGE END (re_traitorsecondary)
+//MASSMETA EDIT CHANGE END (progressive_traitor)
 import { useBackend } from '../../backend';
-//MASSMETA EDIT CHANGE BEGIN (re_traitorsecondary)
+//MASSMETA EDIT CHANGE BEGIN (progressive_traitor)
 /* ORIGINAL:
 import { ObjectiveElement } from './ObjectiveElement';
 */
@@ -14,22 +13,22 @@ import { ObjectiveElement } from './ObjectiveMenu';
 
 type PrimaryObjectiveMenuProps = {
   primary_objectives;
-  //MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+  //MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
   final_objective;
-  //MASSMETA EDIT ADDITION END (re_traitorsecondary)
+  //MASSMETA EDIT ADDITION END (progressive_traitor)
   can_renegotiate;
 };
 
 export const PrimaryObjectiveMenu = (props: PrimaryObjectiveMenuProps) => {
   const { act } = useBackend();
-  //MASSMETA EDIT CHANGE BEGIN (re_traitorsecondary)
+  //MASSMETA EDIT CHANGE BEGIN (progressive_traitor)
   /*
   ORIGINAL: const { primary_objectives, can_renegotiate } = props;
   */
   const { primary_objectives, final_objective, can_renegotiate } = props;
-  //MASSMETA EDIT CHANGE END (re_traitorsecondary)
-  //MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary) Нельзя писать комментарии там где нужно, значит - будет лежать здесь.
-   return (
+  //MASSMETA EDIT CHANGE END (progressive_traitor)
+  //MASSMETA EDIT ADDITION BEGIN (progressive_traitor) Нельзя писать комментарии там где нужно, значит - будет лежать здесь.
+  return (
     <Section fill scrollable align="center">
       <Box my={4} bold fontSize={1.2} color="green">
         WELCOME, AGENT.
@@ -70,13 +69,13 @@ export const PrimaryObjectiveMenu = (props: PrimaryObjectiveMenuProps) => {
           <Stack.Item key={index}>
             <ObjectiveElement
               key={prim_obj.id}
- //MASSMETA EDIT CHANGE END (re_traitorsecondary)
- //MASSMETA EDIT CHANGE BEGIN (re_traitorsecondary)
- /*
+              //MASSMETA EDIT CHANGE END (progressive_traitor)
+              //MASSMETA EDIT CHANGE BEGIN (progressive_traitor)
+              /*
               name={prim_obj.task_name}
               description={prim_obj.task_text}
  */
-//MASSMETA EDIT ADDITION BEGIN (re_traitorsecondary)
+              //MASSMETA EDIT ADDITION BEGIN (progressive_traitor)
               name={prim_obj['task_name']}
               description={prim_obj['task_text']}
               dangerLevel={{
@@ -95,7 +94,7 @@ export const PrimaryObjectiveMenu = (props: PrimaryObjectiveMenuProps) => {
               canAbort={false}
               grow={false}
               finalObjective={false}
-//MASSMETA EDIT ADDITION END (re_traitorsecondary)
+              //MASSMETA EDIT ADDITION END (progressive_traitor)
             />
           </Stack.Item>
         ))}

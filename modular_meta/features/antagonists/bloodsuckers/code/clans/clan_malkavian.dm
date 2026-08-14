@@ -46,10 +46,11 @@ GLOBAL_LIST_EMPTY(masquerade_breakers)
 
 /datum/bloodsucker_clan/malkavian/handle_clan_life(datum/antagonist/bloodsucker/source)
 	. = ..()
-	if(prob(85) || bloodsuckerdatum.owner.current.stat != CONSCIOUS || HAS_TRAIT(bloodsuckerdatum.owner.current, TRAIT_MASQUERADE))
+	var/mob/living/carbon/carbon_owner = bloodsuckerdatum.owner.current
+	if(prob(85) || IS_UNCONSCIOUS_OR_CRIT(carbon_owner) || HAS_TRAIT(carbon_owner, TRAIT_MASQUERADE))
 		return
 	var/message = pick(strings("malkavian_revelations.json", "revelations", "modular_meta/features/antagonists/bloodsuckers/strings"))
-	INVOKE_ASYNC(bloodsuckerdatum.owner.current, TYPE_PROC_REF(/atom/movable, say), message, , , , , , CLAN_MALKAVIAN)
+	INVOKE_ASYNC(carbon_owner, TYPE_PROC_REF(/atom/movable, say), message, , , , , , CLAN_MALKAVIAN)
 
 /datum/bloodsucker_clan/malkavian/on_favorite_vassal(datum/antagonist/bloodsucker/source, datum/antagonist/vassal/favorite/vassaldatum)
 	var/mob/living/carbon/carbonowner = vassaldatum.owner.current

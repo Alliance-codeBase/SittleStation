@@ -44,8 +44,6 @@ GLOBAL_REAL(Master, /datum/controller/master)
 	/// makes the mc main loop runtime
 	var/make_runtime = FALSE
 
-	var/initializations_finished_with_no_players_logged_in //I wonder what this could be?
-
 	/// The type of the last subsystem to be fire()'d.
 	var/last_type_processed
 
@@ -334,7 +332,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	init_stage_completed = 0
 	var/mc_started = FALSE
 
-	to_chat(world, span_boldannounce("Initializing subsystems..."), MESSAGE_TYPE_DEBUG)
+	//to_chat(world, span_boldannounce("Initializing subsystems..."), MESSAGE_TYPE_DEBUG) MASSMETA REMOVAL
 
 	var/list/stage_sorted_subsystems = new(INITSTAGE_MAX)
 	for (var/i in 1 to INITSTAGE_MAX)
@@ -452,6 +450,12 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 			// Loop.
 			Master.StartProcessing(0)
 
+	// MASSMETA EDIT
+	var/time = (REALTIMEOFDAY - start_timeofday) / 10
+	SStitle.total_init_time = time
+	log_world("Initializations complete within [time] second\s!")
+	// MASSMETA EDIT END
+	/* ORIGINAL
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
 
@@ -459,6 +463,8 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
 	to_chat(world, span_boldannounce("[msg]"), MESSAGE_TYPE_DEBUG)
 	log_world(msg)
+	*/
+	SSticker.timeLeft = SSticker.start_at
 
 
 	if(world.system_type == MS_WINDOWS && CONFIG_GET(flag/toast_notification_on_init) && !length(GLOB.clients))
@@ -466,7 +472,6 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	// Set world options.
 	world.change_fps(CONFIG_GET(number/fps))
-	var/initialized_tod = REALTIMEOFDAY
 
 	if(tgs_prime)
 		world.TgsInitializationComplete()
@@ -477,7 +482,6 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
-	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
 
 /**
  * Initialize a given subsystem and handle the results.
@@ -491,7 +495,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 		SS_INIT_NONE,
 		SS_INIT_SUCCESS,
 		SS_INIT_NO_NEED,
-		SS_INIT_NO_MESSAGE,
+		//SS_INIT_NO_MESSAGE, MASSMETA REMOVAL
 	)
 
 	if ((subsystem.ss_flags & SS_NO_INIT) || subsystem.initialized) //Don't init SSs with the corresponding flag or if they already are initialized
@@ -500,6 +504,10 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	current_initializing_subsystem = subsystem
 	rustg_time_reset(SS_INIT_TIMER_KEY)
+	// MASSMETA ADDITION
+	if(!(subsystem.ss_flags & SS_NO_INIT_MESSAGE))
+		SStitle.add_init_text(subsystem.type, "- [subsystem.name]", "<font color='yellow'>INITIALIZING...</font>")
+	// MASSMETA ADDITION END
 
 	var/result = subsystem.Initialize()
 
@@ -529,22 +537,46 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	// The rest of this proc is printing the world log and chat message.
 	var/message_prefix
+	// MASSMETA ADDITION
+	var/screen_display = ""
+	var/always_show = FALSE
+	// MASSMETA ADDITION END
 
 	// If true, print the chat message with boldwarning text.
-	var/chat_warning = FALSE
+	//var/chat_warning = FALSE MASSMETA REMOVAL
 
 	switch(result)
 		if(SS_INIT_FAILURE)
 			message_prefix = "Failed to initialize [subsystem.name] subsystem after"
+		// MASSMETA EDIT
+			screen_display = "<font color='red'>FAILED</font>"
+			always_show = TRUE
+		if(SS_INIT_SUCCESS)
+		// MASSMETA EDIT END
+		/* ORIGINAL
 			chat_warning = TRUE
 		if(SS_INIT_SUCCESS, SS_INIT_NO_MESSAGE)
+		*/
 			message_prefix = "Initialized [subsystem.name] subsystem within"
+			screen_display = "<font color='green'>DONE</font>" // MASSMETA ADDITION
 		if(SS_INIT_NO_NEED)
 			// This SS is disabled or is otherwise shy.
-			return
+			pass() // MASSMETA EDIT ORIGINAL: return
 		else
 			// SS_INIT_NONE or an invalid value.
 			message_prefix = "Initialized [subsystem.name] subsystem with errors within"
+	// MASSMETA EDIT
+			screen_display = "<font color='yellow'>ERRORED</font>"
+			always_show = TRUE
+
+	if(screen_display && (always_show || (seconds > 0.1 && !(subsystem.ss_flags & SS_NO_INIT_MESSAGE))))
+		SStitle.add_init_text(subsystem.type, "- [subsystem.name]", screen_display, seconds, major_update = TRUE)
+	else
+		SStitle.remove_init_text(subsystem.type)
+
+	log_world("[message_prefix] [seconds] second\s!")
+	// MASSMETA EDIT END
+	/*
 			chat_warning = TRUE
 
 	var/message = "[message_prefix] [seconds] second[seconds == 1 ? "" : "s"]!"
@@ -553,6 +585,7 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 	if(result != SS_INIT_NO_MESSAGE)
 		to_chat(world, chat_message, MESSAGE_TYPE_DEBUG)
 	log_world(message)
+	*/
 
 /datum/controller/master/proc/SetRunLevel(new_runlevel)
 	var/old_runlevel = current_runlevel

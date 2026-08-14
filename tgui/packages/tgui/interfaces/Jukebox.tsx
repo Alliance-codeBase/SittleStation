@@ -15,8 +15,10 @@ import { Window } from '../layouts';
 
 type Song = {
   name: string;
-  length: number;
+  length: number | string; //MASSMETA EDIT ORIGINAL: length: number;
   beat: number;
+  is_custom?: boolean; //MASSMETA ADDITION
+  url?: string; //MASSMETA ADDITION
 };
 
 type Data = {
@@ -25,11 +27,12 @@ type Data = {
   volume: number;
   track_selected: string | null;
   songs: Song[];
+  internet_sound_enabled: boolean; //MASSMETA ADDITION
 };
 
 export const Jukebox = () => {
   const { act, data } = useBackend<Data>();
-  const { active, looping, track_selected, volume, songs } = data;
+  const { active, looping, track_selected, volume, songs, internet_sound_enabled } = data;
 
   const songs_sorted: Song[] = sortBy(songs, [(song: Song) => song.name]);
   const song_selected: Song | undefined = songs.find(
@@ -37,7 +40,8 @@ export const Jukebox = () => {
   );
 
   return (
-    <Window width={370} height={313}>
+    <Window width={370} height={380} //MASSMETA EDIT ORIGINAL: Window width={370} height={313}
+    >
       <Window.Content>
         <Section
           title="Song Player"
@@ -77,8 +81,8 @@ export const Jukebox = () => {
               {song_selected?.length || 'No Track Selected'}
             </LabeledList.Item>
             <LabeledList.Item label="Track Beat">
-              {song_selected?.beat || 'No Track Selected'}
-              {song_selected?.beat === 1 ? ' beat' : ' beats'}
+              {song_selected?.is_custom ? 'N/A' : (song_selected?.beat || 'No Track Selected')}
+              {!song_selected?.is_custom && song_selected?.beat ? (song_selected.beat === 1 ? ' beat' : ' beats') : ''}
             </LabeledList.Item>
           </LabeledList>
         </Section>
@@ -144,6 +148,19 @@ export const Jukebox = () => {
             </LabeledControls.Item>
           </LabeledControls>
         </Section>
+        {//MASSMETA ADDITION
+        }
+        <Section title="Internet Song Player">
+          <Button
+            fluid
+            icon="globe"
+            disabled={!internet_sound_enabled}
+            content={internet_sound_enabled ? "Play Internet Song" : "Disabled by Host"}
+            onClick={() => act('request_internet_track')}
+          />
+        </Section>
+        {//MASSMETA ADDITION END
+        }
       </Window.Content>
     </Window>
   );

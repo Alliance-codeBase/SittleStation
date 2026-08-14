@@ -1,0 +1,6 @@
+author: "Bruh24"
+delete-after: True
+changes:
+  - code_imp: "Jukebox переведён на shell() c shelleo, так как shelleo() останавливает работу сервера вплоть до окончания команды"
+  - code_imp: "Логирование для shell() команд jukebox"
+  - code_imp: "Jukebox чистит все файлы кэша музыки по факту окончания раунда, а не лишь те, что были записаны в список."

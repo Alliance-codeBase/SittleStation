@@ -108,7 +108,7 @@
 /turf/open/misc/asteroid/snow/icemoon/do_not_chasm,
 /area/deathmatch)
 "F" = (
-/turf/closed/indestructible/rock/snow/ice/ore,
+/turf/closed/indestructible/rock/snow,
 /area/deathmatch)
 "G" = (
 /obj/item/stack/ore/gold,

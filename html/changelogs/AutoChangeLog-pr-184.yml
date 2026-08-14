@@ -1,0 +1,4 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - map: "Трам теперь более открытый"

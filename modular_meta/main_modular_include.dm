@@ -53,7 +53,10 @@
 #include "features\ntts-nd-tg-tts\includes.dm"
 #include "features\meta_redesign\includes.dm"
 #include "features\holidays\includes.dm"
+#include "features\jukeboxes_music\code\music.dm"
 #include "features\mentors\includes.dm"
+#include "features\arcades\includes.dm"
+#include "features\progressive_traitor\includes.dm"
 
 /* --- Reverts --- */
 
@@ -83,3 +86,5 @@
 #include "tweaks\tagline\includes.dm"
 #include "tweaks\simple_vote_by_default\includes.dm"
 #include "tweaks\runtimes_fix\includes.dm"
+#include "tweaks\metacoins_to_homepage\includes.dm"
+#include "tweaks\init_text\includes.dm"

@@ -13,7 +13,8 @@
 // We also make SURE to fail loud, IE: if something stops the message from reaching the recipient, the sender HAS to know
 // If you "refactor" this to make it "cleaner" I will send you to hell
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "Admin PM Mob", mob/target in world)
+ADMIN_VERB_ONLY_CONTEXT_MENU(cmd_admin_pm_context, R_NONE, "Admin PM Mob", /mob)
+	VERB_ARG_TYPED(target, VERB_ARG_TYPE_MOB, VERB_ARG_SOURCE_WORLD, /mob)
 	if(!ismob(target))
 		to_chat(
 			src,
@@ -409,8 +410,9 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 
 		if(!already_logged) //Reply to an existing ticket
 			SSblackbox.LogAhelp(recipient_ticket_id, "Reply", send_message, recip_ckey, our_ckey)
+			//MASSMETA EDIT START (bot topics)
 			get_ticket_info(send_message, recipient_ticket_id, our_ckey, admin = TRUE, new_ticket = FALSE, engager = "admin")
-
+			//MASSMETA EDIT END (bot topics)
 		//always play non-admin recipients the adminhelp sound
 		SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
 		return TRUE
@@ -429,10 +431,10 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 				confidential = TRUE)
 			return FALSE
 		ticket.MessageNoRecipient(send_message)
-		//MASSMETA EDIT START
+		//MASSMETA EDIT START (bot topics)
 		get_ticket_info(send_message, ticket_id, our_ckey, admin = FALSE, new_ticket = FALSE, engager = "player")
 		return TRUE
-		//MASSMETA EDIT END
+		//MASSMETA EDIT END (bot topics)
 
 	// Ok by this point the recipient has to be an admin, and this is either an admin on admin event, or a player replying to an admin
 
@@ -483,6 +485,9 @@ ADMIN_VERB(cmd_admin_pm_panel, R_NONE, "Admin PM", "Show a list of clients to PM
 				player_message = player_interaction_message)
 
 		SSblackbox.LogAhelp(ticket_id, "Reply", send_message, recip_ckey, our_ckey)
+		// MASSMETA EDIT START (bot topics)
+		get_ticket_info(send_message, ticket_id, our_ckey, admin = TRUE, new_ticket = FALSE, engager = "admin")
+		// MASSMETA EDIT END (bot topics)
 		return TRUE
 
 	// This is us (a player) trying to talk to the recipient (an admin)

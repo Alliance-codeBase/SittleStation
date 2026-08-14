@@ -1,13 +1,17 @@
-//MASSMETA REMOVAL BEGIN (re_traitor secondary)
+//MASSMETA EDIT REMOVAL BEGIN (progressive_traitor)
+
 /*
 GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
+MASSMETA EDIT REMOVAL END  (progressive_traitor)
+
 */
+
 
 /proc/add_item_to_steal(source, type)
 	GLOB.steal_item_handler.objectives_by_path[type] += source
 	return type
 
-//MASSMETA REMOVAL BEGIN (re_traitor secondary)
+//MASSMETA EDIT REMOVAL BEGIN (progressive_traitor)
 /*
 // Holds references to information about all of the items you might need to steal for objectives
 /datum/objective_item_handler
@@ -54,6 +58,8 @@ GLOBAL_DATUM_INIT(steal_item_handler, /datum/objective_item_handler, new())
 	SIGNAL_HANDLER
 	for(var/typepath in objectives_by_path)
 		objectives_by_path[typepath] -= source
+
+MASSMETA EDIT REMOVAL END
 
 */
 
