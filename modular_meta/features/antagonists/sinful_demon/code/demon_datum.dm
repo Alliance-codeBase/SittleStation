@@ -160,26 +160,6 @@
 	var/currently_corrupting = FALSE
 	var/list/corrupted_tiles = list()
 
-	var/static/list/demon_spells = typecacheof(list(
-		/datum/action/cooldown/spell/shapeshift/demon,
-		/datum/action/cooldown/spell/shapeshift/demon/gluttony,
-		/datum/action/cooldown/spell/shapeshift/demon/wrath,
-		/datum/action/cooldown/spell/shapeshift/demon/sloth,
-		/datum/action/cooldown/spell/forcewall/gluttony,
-		/datum/action/cooldown/spell/conjure/summon_greedslots,
-		/datum/action/cooldown/spell/pointed/ignite,
-		/datum/action/cooldown/spell/touch/envy,
-		/datum/action/cooldown/spell/conjure/summon_mirror,
-		/datum/action/cooldown/spell/touch/mend,
-		/datum/action/cooldown/spell/touch/torment,
-		/datum/action/cooldown/spell/conjure/cursed_item,
-		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin,
-		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/wrath,
-		/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/sloth,
-		/datum/action/cooldown/spell/touch/sleepy,
-		/datum/action/cooldown/spell/timestop/sloth,
-	))
-
 	var/static/list/sinfuldemon_traits = list(
 		TRAIT_GENELESS,
 		TRAIT_STABLEHEART,
@@ -242,7 +222,7 @@
 	SEND_SOUND(owner.current, sound('sound/effects/magic/ethereal_exit.ogg'))
 
 /datum/antagonist/sinfuldemon/on_gain()
-	owner.current.add_faction("hell")
+	owner.current.add_faction(FACTION_HELL)
 	for(var/all_traits in sinfuldemon_traits)
 		ADD_TRAIT(owner.current, all_traits, SINFULDEMON_TRAIT)
 	forge_objectives()
@@ -269,7 +249,7 @@
 	STOP_PROCESSING(SSprocessing, src)
 	if(owner && owner.current)
 		UnregisterSignal(src, "demon_give_points")
-		owner.current.remove_faction("hell")
+		owner.current.remove_faction(FACTION_HELL)
 		for(var/all_status_traits in owner.current._status_traits)
 			REMOVE_TRAIT(owner.current, all_status_traits, SINFULDEMON_TRAIT)
 		for(var/datum/action/cooldown/spell in owner.current.actions)
@@ -291,21 +271,21 @@
 /datum/antagonist/sinfuldemon/process(seconds_per_tick)
 	if(!owner || !owner.current)
 		return
-	var/mob/living/L = owner.current
-	if(L.stat == DEAD || !is_station_level(L.z))
+	var/mob/living/living = owner.current
+	if(living.stat == DEAD || !is_station_level(living.z))
 		return
 
-	if(L.health >= L.maxHealth)
+	if(living.health >= living.maxHealth)
 		var/final_points = (10 / 60) * seconds_per_tick
 		add_sin_points(final_points)
 	else
-		SStgui.update_uis(L)
+		SStgui.update_uis(living)
 
 	for(var/datum/objective/O in objectives)
 		if(istype(O, /datum/objective/demon_corrupt_area))
-			SEND_SIGNAL(O, "corrupt_area_tick", L, seconds_per_tick)
+			SEND_SIGNAL(O, "corrupt_area_tick", living, seconds_per_tick)
 		if(istype(O, /datum/objective/demon_absorb_highrisk))
-			SEND_SIGNAL(O, "absorb_item_tick", L, seconds_per_tick)
+			SEND_SIGNAL(O, "absorb_item_tick", living, seconds_per_tick)
 
 	objective_refresh_timer += seconds_per_tick
 	if(objective_refresh_timer >= 600)
@@ -315,13 +295,13 @@
 	ui_force_refresh_timer += seconds_per_tick
 	if(ui_force_refresh_timer >= 5)
 		ui_force_refresh_timer = 0
-		var/datum/tgui/ui = SStgui.get_open_ui(L, src)
+		var/datum/tgui/ui = SStgui.get_open_ui(living, src)
 		if(ui)
 			ui.send_full_update()
 
 /datum/antagonist/sinfuldemon/proc/refresh_objectives()
-	var/mob/living/L = owner?.current
-	if(!L || !owner)
+	var/mob/living/living = owner?.current
+	if(!living || !owner)
 		return
 
 	var/list/objectives_to_remove = list()
@@ -351,9 +331,9 @@
 	new_corrupt.owner = owner
 	objectives += new_corrupt
 
-	to_chat(L, span_purple("The shifting tides of hell have updated your dark objectives! Check your Infernal Legacy menu."))
+	to_chat(living, span_purple("The shifting tides of hell have updated your dark objectives! Check your Infernal Legacy menu."))
 
-	SStgui.update_uis(L)
+	SStgui.update_uis(living)
 
 /datum/antagonist/sinfuldemon/proc/sinfuldemon_life(mob/living/source, seconds_per_tick, times_fired)
 	var/mob/living/carbon/carbon_source = source
@@ -363,25 +343,25 @@
 		demon_burn()
 
 /datum/antagonist/sinfuldemon/proc/demon_burn()
-	var/mob/living/L = owner.current
-	if(!L)
+	var/mob/living/living = owner.current
+	if(!living)
 		return
-	if(L.stat != DEAD)
-		if(prob(50) && L.health >= 50)
-			switch(L.health)
+	if(living.stat != DEAD)
+		if(prob(50) && living.health >= 50)
+			switch(living.health)
 				if(85 to 100)
-					L.visible_message(span_warning("[L]'s skin begins to heat up and darken!"), span_danger("Your flesh begins to sear..."))
+					living.visible_message(span_warning("[living]'s skin begins to heat up and darken!"), span_danger("Your flesh begins to sear..."))
 				if(60 to 85)
-					L.visible_message(span_warning("[L]'s skin begins to melt apart!"), span_danger("Your skin is melting!"), "You hear sizzling.")
-			L.adjust_fire_loss(5)
-		else if(L.health < 60)
-			if(!L.on_fire)
-				L.visible_message(span_warning("[L] lights up in a holy blaze!"), span_danger("Your skin catches fire!"))
-				L.emote("scream")
+					living.visible_message(span_warning("[living]'s skin begins to melt apart!"), span_danger("Your skin is melting!"), "You hear sizzling.")
+			living.adjust_fire_loss(5)
+		else if(living.health < 60)
+			if(!living.on_fire)
+				living.visible_message(span_warning("[living] lights up in a holy blaze!"), span_danger("Your skin catches fire!"))
+				living.emote("scream")
 			else
-				L.visible_message(span_warning("[L] continues to burn!"), span_danger("You continue to burn!"))
-			L.adjust_fire_stacks(5)
-			L.ignite_mob()
+				living.visible_message(span_warning("[living] continues to burn!"), span_danger("You continue to burn!"))
+			living.adjust_fire_stacks(5)
+			living.ignite_mob()
 	return
 
 /datum/antagonist/sinfuldemon/roundend_report()
@@ -399,7 +379,7 @@
 
 /datum/antagonist/sinfuldemon/proc/InitializeShop()
 	var/list/all_shop_types = subtypesof(/datum/demon_ability)
-	var/mob/living/L = owner?.current
+	var/mob/living/living = owner?.current
 
 	for(var/A in all_shop_types)
 		var/already_exists = FALSE
@@ -424,9 +404,9 @@
 
 		if(should_add)
 			available_shop_abilities += ability_instance
-			if(ability_instance.cost == 0 && !ability_instance.unlocked && L)
+			if(ability_instance.cost == 0 && !ability_instance.unlocked && living)
 				ability_instance.unlocked = TRUE
-				ability_instance.on_purchase(L)
+				ability_instance.on_purchase(living)
 		else
 			qdel(ability_instance)
 
@@ -512,10 +492,10 @@
 			if(has_rerolled_sin)
 				return TRUE
 			if(sin_points < 666)
-				to_chat(ui.user, span_warning("Inadequate sin points! Required: 666"))
+				to_chat(ui.user, span_warning("Inadequate sin points! Required 666 of it"))
 				return TRUE
 
-			var/mob/living/L = ui.user
+			var/mob/living/living = ui.user
 			sin_points -= 666
 			has_rerolled_sin = TRUE
 
@@ -524,19 +504,19 @@
 			var/demon_old_sin = demonsin
 			demonsin = pick(demon_possible_sins)
 
-			to_chat(L, span_userdanger("Your essence shifts! You are no longer a demon of [demon_old_sin]. You have become a Demon of [uppertext(demonsin)]!"))
+			to_chat(living, span_userdanger("Your essence shifts! You are no longer a demon of [demon_old_sin]. You have become a Demon of [uppertext(demonsin)]!"))
 
 			var/new_sin_has_jaunt_alternative = (demonsin == SIN_WRATH || demon_old_sin == SIN_WRATH)
 
 			var/list/sins_with_custom_forms = list(SIN_WRATH, SIN_GLUTTONY, SIN_SLOTH)
 			var/new_sin_has_form_alternative = (sins_with_custom_forms.Find(demonsin) || sins_with_custom_forms.Find(demon_old_sin))
 
-			if(L && L.actions)
+			if(living && living.actions)
 				if(new_sin_has_form_alternative)
-					for(var/datum/action/cooldown/spell/shapeshift/old_form in L.actions)
+					for(var/datum/action/cooldown/spell/shapeshift/old_form in living.actions)
 						qdel(old_form)
 				if(new_sin_has_jaunt_alternative)
-					for(var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/old_jaunt in L.actions)
+					for(var/datum/action/cooldown/spell/jaunt/ethereal_jaunt/sin/old_jaunt in living.actions)
 						qdel(old_jaunt)
 
 			var/list/abilities_to_keep = list()
@@ -571,7 +551,7 @@
 
 			if(returned_points > 0)
 				sin_points += returned_points
-				to_chat(L, span_purple("The underworld refunds you [returned_points] Sin Points for your abandoned links!"))
+				to_chat(living, span_purple("The underworld refunds you [returned_points] Sin Points for your abandoned links!"))
 
 			available_shop_abilities = abilities_to_keep
 
