@@ -309,7 +309,7 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 	if(istype(antag_datum, /datum/antagonist/traitor)
 		var/datum/antagonist/traitor/traitor_datum = antag_datum
 		var/datum/uplink_handler/handler = traitor_datum.uplink_handler
-		if(handler.final_objective)
+		if(handler?.final_objective)
 			return TRUE
 
 	for(var/datum/objective/objective as anything in antag_datum.objectives)
