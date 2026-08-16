@@ -129,14 +129,15 @@ SUBSYSTEM_DEF(title)
 	maptext_holder.maptext = "<span class='maptext' style='font-size: 6px;'>"
 	maptext_holder.maptext += "<span class='big' style='font-size: 12px;'>"
 	if(SSticker?.current_state == GAME_STATE_PREGAME)
-		var/total_time_formatted = "[total_init_time]s"
-		switch(total_init_time)
+		var/total_init_text_time = (total_init_time == -1) ? (world.time / 10) : total_init_time
+		var/total_time_formatted = "[total_init_text_time]s"
+		switch(total_init_text_time)
 			if(0 to 60)
-				total_time_formatted = "<font color='green'>[total_init_time]s</font>"
+				total_time_formatted = "<font color='green'>[total_init_text_time]s</font>"
 			if(60 to 120)
-				total_time_formatted = "<font color='yellow'>[total_init_time]s</font>"
+				total_time_formatted = "<font color='yellow'>[total_init_text_time]s</font>"
 			if(120 to INFINITY)
-				total_time_formatted = "<font color='red'>[total_init_time]s</font>"
+				total_time_formatted = "<font color='red'>[total_init_text_time]s</font>"
 
 		maptext_holder.maptext += "Initialized (in [total_time_formatted])"
 	else

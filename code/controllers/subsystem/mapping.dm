@@ -945,7 +945,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	else
 		start_time = REALTIMEOFDAY
 		var/beginning_message = "Loading all away missions..."
-		to_chat(world, span_boldannounce(beginning_message), MESSAGE_TYPE_DEBUG)
+		//to_chat(world, span_boldannounce(beginning_message), MESSAGE_TYPE_DEBUG) // MASSMETA REMOVAL
 		log_world(beginning_message)
 		log_mapping(beginning_message)
 
@@ -963,7 +963,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(!isnull(start_time))
 		var/tracked_time = (REALTIMEOFDAY - start_time) / 10
 		var/finished_message = "Loaded [number_of_away_missions] away missions in [tracked_time] second[tracked_time == 1 ? "" : "s"]!"
-		to_chat(world, span_boldannounce(finished_message), MESSAGE_TYPE_DEBUG)
+		//to_chat(world, span_boldannounce(finished_message), MESSAGE_TYPE_DEBUG) // MASSMETA REMOVAL
 		log_world(finished_message)
 		log_mapping(finished_message)
 
