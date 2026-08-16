@@ -10,9 +10,9 @@ GLOBAL_LIST_INIT(potentialConfigRandomZlevels, generate_map_list_from_directory(
 		map = pick_n_take(GLOB.potentialRandomZlevels)
 	else
 		return to_chat(world, span_boldannounce("No valid away mission files, loading aborted."))
-	to_chat(world, span_boldannounce("Loading away mission..."))
+	//to_chat(world, span_boldannounce("Loading away mission...")) // MASSMETA REMOVAL
 	var/loaded = load_new_z_level(map, "Away Mission", config_gateway)
-	to_chat(world, span_boldannounce("Away mission [loaded ? "loaded" : "aborted due to errors"]."))
+	//to_chat(world, span_boldannounce("Away mission [loaded ? "loaded" : "aborted due to errors"].")) // MASSMETA REMOVAL
 	if(!loaded)
 		message_admins("Away mission [map] loading failed due to errors.")
 		log_admin("Away mission [map] loading failed due to errors.")
