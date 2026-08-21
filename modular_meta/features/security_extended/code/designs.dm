@@ -1,5 +1,4 @@
 /datum/design/powerpack
-	id = "powerpack"
 	name = "Power Pack (Lethal)"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
@@ -14,7 +13,6 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/powerpack/stun
-	id = "powerpackstun"
 	name = "Stun type Power Pack (Nonlethal)"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
@@ -28,7 +26,6 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/design/powerpack/scatter
-	id = "powerpackscatter"
 	name = "Scatter type Power Pack (Pretty Lethal)"
 	build_type = PROTOLATHE | AWAY_LATHE
 	category = list(
@@ -44,24 +41,22 @@
 	departmental_flags = DEPARTMENT_BITFLAG_SECURITY
 
 /datum/techweb_node/energy_rifle_tierone
-	id = TECHWEB_NODE_ENERGY_RIFLE_TIERONE
 	display_name = "Energy Rifle prentice: Tier 1"
 	description = "Guys where we gonna get ammo?"
-	prereq_ids = list(TECHWEB_NODE_RIOT_SUPRESSION, TECHWEB_NODE_PARTS_UPG)
-	design_ids = list(
-		"powerpack",
-		"powerpackstun",
+	prerequisite_nodes = list(/datum/techweb_node/riot_supression, /datum/techweb_node/parts_adv)
+	unlocked_designs = list(
+		/datum/design/powerpack,
+		/datum/design/powerpack/stun,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)
 
 /datum/techweb_node/energy_rifle_tiertwo
-	id = TECHWEB_NODE_ENERGY_RIFLE_TIETWO
 	display_name = "Energy Rifle enjoyer: Tier 2"
 	description = "Thats the stuff."
-	prereq_ids = list(TECHWEB_NODE_ENERGY_RIFLE_TIERONE, TECHWEB_NODE_PARTS_BLUESPACE)
-	design_ids = list(
-		"powerpackscatter",
+	prerequisite_nodes = list(/datum/techweb_node/energy_rifle_tierone, /datum/techweb_node/parts_bluespace)
+	unlocked_designs = list(
+		/datum/design/powerpack/scatter,
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)

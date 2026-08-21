@@ -434,11 +434,9 @@
 				if(!stored_research.researched_designs[design_path])
 					continue
 				// MASSMETA EDIT CHANGE START (uplink_items (justice_mecha))
-				// ORIGINAL: if(!(stored_research.researched_designs.Find(design_id))
-				if(!(stored_research.researched_designs.Find(design_id) || is_type_in_list(SSresearch.techweb_design_by_id(design_id), illegal_local_designs)))
-					continue
+				// ORIGINAL: var/datum/design/design = SSresearch.techweb_designs[design_path]
+				var/datum/design/design = SSresearch.techweb_designs[design_path] || is_type_in_list(SSresearch.techweb_designs[design_path], illegal_local_designs)
 				// MASSMETA EDIT CHANGE END
-				var/datum/design/design = SSresearch.techweb_designs[design_path]
 				if(!istype(design))
 					continue
 
