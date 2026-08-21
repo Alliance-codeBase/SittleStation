@@ -100,8 +100,8 @@
 	unlocked_designs = list(
 		/datum/design/justice_chassis,
 		/datum/design/justice_torso,
+		/datum/design/justice_left_arm,
 		/datum/design/justice_right_arm,
-		/datum/design/justice_left_leg,
 		/datum/design/justice_left_leg,
 		/datum/design/justice_right_leg,
 		/datum/design/justice_armor,
