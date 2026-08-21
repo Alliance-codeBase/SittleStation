@@ -24,31 +24,6 @@
 /datum/techweb_node/ai
 	display_name = "Artificial Intelligence"
 	description = "Exploration of AI systems, more intelligent than the entire crew put together."
-<<<<<<< HEAD
-	prereq_ids = list(TECHWEB_NODE_ROBOTICS)
-	design_ids = list(
-		"aicore",
-		"aifixer",
-		"airack_broadcaster",
-		"airack_normal",
-		"airack_small",
-		"asimov_module",
-		"borg_ai_control",
-		"corporate_module",
-		"default_module",
-		"drone_module",
-		"freeform_module",
-		"intellicard",
-		"mecha_tracking_ai_control",
-		"nutimov_module",
-		"oxygen_module",
-		"paladin_module",
-		"protectstation_module",
-		"quarantine_module",
-		"robocop_module",
-		"safeguard_module",
-		"ai_cyberbrain", // MASSMETA EDIT (ai_things): Добавляем ИИ мозг
-=======
 	prerequisite_nodes = list(/datum/techweb_node/robotics)
 	unlocked_designs = list(
 		/datum/design/board/aicore,
@@ -71,7 +46,7 @@
 		/datum/design/board/quarantine_module,
 		/datum/design/board/robocop_module,
 		/datum/design/board/safeguard_module,
->>>>>>> upstream/master
+		/datum/design/ai_brain, // MASSMETA EDIT (ai_things)
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
@@ -79,22 +54,13 @@
 /datum/techweb_node/ai/New()
 	. = ..()
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_HUMAN_AI))
-<<<<<<< HEAD
-		design_ids -= list(
-			"aicore",
-			"aifixer",
-			"borg_ai_control",
-			"intellicard",
-			"mecha_tracking_ai_control",
-			"ai_cyberbrain", // MASSMETA EDIT (ai_things): Добавляем ИИ мозг (ну в данном случае выпиливаем)
-=======
 		unlocked_designs -= list(
 			/datum/design/board/aicore,
 			/datum/design/board/aifixer,
 			/datum/design/boris_ai_controller,
 			/datum/design/intellicard,
 			/datum/design/mecha_tracking_ai_control,
->>>>>>> upstream/master
+			/datum/design/ai_brain, // MASSMETA EDIT (ai_things)
 		)
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI))
 		research_costs[TECHWEB_POINT_TYPE_GENERIC] *= 3

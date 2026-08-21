@@ -1,7 +1,6 @@
 /datum/design/board/woodgen
 	name = "Internal Combustion Generator Board"
 	desc = "The circuit board for a Internal Combustion Generator."
-	id = "woodgen"
 	build_path = /obj/item/circuitboard/machine/pacman/wood
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_ENGINEERING

@@ -46,18 +46,6 @@
 /datum/techweb_node/riot_supression
 	display_name = "Riot Supression"
 	description = "When you are on the opposing side of a revolutionary movement."
-<<<<<<< HEAD
-	prereq_ids = list(TECHWEB_NODE_SEC_EQUIP)
-	design_ids = list(
-		"clown_firing_pin",
-		"pin_testing",
-		"pin_loyalty",
-		"tele_shield",
-		"ballistic_shield",
-		"handcuffs_s",
-		"bola_energy",
-		"case_portable_recharger", // MASSMETA EDIT (more_cell_interactions)
-=======
 	prerequisite_nodes = list(/datum/techweb_node/sec_equip)
 	unlocked_designs = list(
 		/datum/design/clown_firing_pin,
@@ -67,7 +55,7 @@
 		/datum/design/ballistic_shield,
 		/datum/design/handcuffs/sec,
 		/datum/design/bola_energy,
->>>>>>> upstream/master
+		/datum/design/case_portable_recharger, // MASSMETA EDIT (more_cell_interactions)
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)

@@ -155,26 +155,6 @@
 /datum/techweb_node/energy_manipulation
 	display_name = "Energy Manipulation"
 	description = "Harnessing the raw power of lightning arcs through sophisticated energy control methods."
-<<<<<<< HEAD
-	prereq_ids = list(TECHWEB_NODE_CONSTRUCTION)
-	design_ids = list(
-		"apc_control",
-		"powermonitor",
-		"smes",
-		"portable_smes",
-		"power_connector",
-		"emitter",
-		"grounding_rod",
-		"tesla_coil",
-		"cell_charger",
-		"recharger",
-		"inducer",
-		"inducerengi",
-		"welding_goggles",
-		"tray_goggles",
-		"geigercounter",
-		"woodgen", // MASSMETA EDIT (woodgen)
-=======
 	prerequisite_nodes = list(/datum/techweb_node/construction)
 	unlocked_designs = list(
 		/datum/design/board/apc_control,
@@ -192,7 +172,7 @@
 		/datum/design/welding_goggles,
 		/datum/design/tray_goggles,
 		/datum/design/geiger,
->>>>>>> upstream/master
+		/datum/design/board/woodgen, // MASSMETA EDIT (woodgen)
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_ENGINEERING)

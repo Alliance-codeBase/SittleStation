@@ -70,25 +70,6 @@
 /datum/techweb_node/medbay_equip_adv
 	display_name = "Advanced Medbay Equipment"
 	description = "State-of-the-art medical gear for keeping the crew in one piece — mostly."
-<<<<<<< HEAD
-	prereq_ids = list(TECHWEB_NODE_CHEM_SYNTHESIS)
-	design_ids = list(
-		"chem_mass_spec",
-		"crewpinpointer",
-		"defibmount",
-		// MASSMETA EDIT BEGIN (not_enough_medical)
-		//"autodoc",
-		//"organdoc",
-		// MASSMETA EDIT END
-		"diode_disk_healing",
-		"diode_disk_sanity",
-		"healthanalyzer_advanced",
-		"medicalbed_emergency",
-		"mod_health_analyzer",
-		"piercesyringe",
-		"smoke_machine",
-		"vitals_monitor_advanced",
-=======
 	prerequisite_nodes = list(/datum/techweb_node/chem_synthesis)
 	unlocked_designs = list(
 		/datum/design/board/chem_mass_spec,
@@ -102,7 +83,6 @@
 		/datum/design/piercesyringe,
 		/datum/design/board/smoke_machine,
 		/datum/design/vitals_monitor/advanced,
->>>>>>> upstream/master
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	required_experiments = list(/datum/experiment/scanning/reagent/haloperidol)

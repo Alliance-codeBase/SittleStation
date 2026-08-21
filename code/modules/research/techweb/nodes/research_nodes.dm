@@ -52,22 +52,6 @@
 /datum/techweb_node/bluespace_travel
 	display_name = "Bluespace Travel"
 	description = "Facilitate teleportation methods based on bluespace principles to revolutionize logistical efficiency."
-<<<<<<< HEAD
-	prereq_ids = list(TECHWEB_NODE_APPLIED_BLUESPACE)
-	design_ids = list(
-		"teleconsole",
-		"tele_station",
-		"tele_hub",
-		"launchpad_console",
-		"quantumpad",
-		"launchpad",
-		"bluespace_pod",
-		"quantum_keycard",
-		"swapper",
-		"cargotele", // MASSMETA EDIT (cargo_teleporter)
-		"telesci_console", // MASSMETA EDIT (telescience)
-		"telepad", // MASSMETA EDIT (telescience)
-=======
 	prerequisite_nodes = list(/datum/techweb_node/applied_bluespace)
 	unlocked_designs = list(
 		/datum/design/board/teleconsole,
@@ -79,7 +63,9 @@
 		/datum/design/bluespace_pod,
 		/datum/design/quantum_keycard,
 		/datum/design/swapper,
->>>>>>> upstream/master
+		/datum/design/cargo_teleporter, // MASSMETA EDIT (cargo_teleporter)
+		/datum/design/board/telepad, // MASSMETA EDIT (cargo_teleporter)
+		/datum/design/board/telesci_console, // MASSMETA EDIT (cargo_teleporter)
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)

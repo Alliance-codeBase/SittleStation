@@ -80,7 +80,6 @@ GLOBAL_LIST_EMPTY(cargo_marks)
 /datum/design/cargo_teleporter
 	name = "Cargo teleporter"
 	desc = "A device that can place markers and teleport items to those markers."
-	id = "cargotele"
 	build_type = PROTOLATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT*5, /datum/material/plastic = SMALL_MATERIAL_AMOUNT*5, /datum/material/bluespace = SHEET_MATERIAL_AMOUNT*3)
 	build_path = /obj/item/cargo_teleporter

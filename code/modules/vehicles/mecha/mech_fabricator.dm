@@ -161,18 +161,12 @@
 	for(var/design_path in stored_research.researched_designs)
 		var/datum/design/design = SSresearch.techweb_designs[design_path]
 		if(design.build_type & MECHFAB)
-<<<<<<< HEAD
 			cached_designs |= design
-	// // MASSMETA EDIT ADDITION START (uplink_items (justice_mecha))
+	// MASSMETA EDIT ADDITION START (uplink_items (justice_mecha))
 	for(var/datum/design/illegal_disign in illegal_local_designs)
 		cached_designs |= illegal_disign
 	// MASSMETA EDIT ADDTION END (uplink_items (justice_mecha))
-	var/design_delta = cached_designs.len - previous_design_count
-=======
-			cached_designs |= design_path
-
 	var/design_delta = length(cached_designs) - previous_design_count
->>>>>>> upstream/master
 
 	if(design_delta > 0)
 		say("Received [design_delta] new design[design_delta == 1 ? "" : "s"].")
@@ -439,23 +433,16 @@
 				design_path = text2path(design_path)
 				if(!stored_research.researched_designs[design_path])
 					continue
-<<<<<<< HEAD
 				// MASSMETA EDIT CHANGE START (uplink_items (justice_mecha))
 				// ORIGINAL: if(!(stored_research.researched_designs.Find(design_id))
 				if(!(stored_research.researched_designs.Find(design_id) || is_type_in_list(SSresearch.techweb_design_by_id(design_id), illegal_local_designs)))
 					continue
 				// MASSMETA EDIT CHANGE END
-				var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
-
-				if(!(design.build_type & MECHFAB) || design.id != design_id)
-=======
-
 				var/datum/design/design = SSresearch.techweb_designs[design_path]
 				if(!istype(design))
 					continue
 
 				if(!(design.build_type & MECHFAB))
->>>>>>> upstream/master
 					continue
 
 				add_to_queue(design, ID_DATA(usr))

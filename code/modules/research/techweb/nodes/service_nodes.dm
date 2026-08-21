@@ -1,46 +1,6 @@
 /datum/techweb_node/office_equip
 	display_name = "Office Equipment"
 	description = "Nanotrasen's finest in ergonomic office tech, ensuring station admin stays productive and compliant with corporate policies — because even in space, paperwork never stops."
-<<<<<<< HEAD
-	design_ids = list(
-		"fax",
-		"sec_pen",
-		"handlabel",
-		"roll",
-		"universal_scanner",
-		"desttagger",
-		"packagewrap",
-		"sticky_tape",
-		"toner_large",
-		"toner",
-		"boxcutter",
-		"bounced_radio",
-		"radio_headset",
-		"earmuffs",
-		"recorder",
-		"tape",
-		"toy_balloon",
-		"pet_carrier",
-		"chisel",
-		"spraycan",
-		"camera_film",
-		"camera",
-		"razor",
-		"bucket",
-		"mop",
-		"wet_floor_sign",
-		"pushbroom",
-		"normtrash",
-		"wirebrush",
-		"flashlight",
-		"flare",
-		"water_balloon",
-		"ticket_machine",
-		"radio_entertainment",
-		"manual_cell_recharger", // MASSMETA EDIT (more_cell_interactions)
-		"rdd",
-		"photocopier",
-=======
 	node_flags = parent_type::node_flags | TECHWEB_NODE_STARTER
 	unlocked_designs = list(
 		/datum/design/board/fax,
@@ -79,7 +39,7 @@
 		/datum/design/entertainment_radio,
 		/datum/design/rdd,
 		/datum/design/board/photopcopier,
->>>>>>> upstream/master
+		/datum/design/manual_cell_recharger, // MASSMETA EDIT (more_cell_interactions)
 	)
 
 /datum/techweb_node/sanitation
