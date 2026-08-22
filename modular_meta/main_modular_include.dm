@@ -57,6 +57,7 @@
 #include "features\mentors\includes.dm"
 #include "features\arcades\includes.dm"
 #include "features\progressive_traitor\includes.dm"
+#include "features\unmanned_vechicle\includes.dm"
 
 /* --- Reverts --- */
 
