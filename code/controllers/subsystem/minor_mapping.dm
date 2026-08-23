@@ -23,14 +23,19 @@ SUBSYSTEM_DEF(minor_mapping)
 	return SS_INIT_NO_NEED
 #else
 	trigger_migration(CONFIG_GET(number/mice_roundstart))
+<<<<<<< HEAD
 	//MASSMETA EDIT (satchels_num_back)
 	//place_satchels(satchel_amount = 2)
 
 	place_satchels(satchel_amount = 10)
 	//MASSMETA EDIT
 	var/weakpoint_spawns = 3
+=======
+	place_satchels(satchel_amount = 2)
+	var/weakpoint_spawns = 5
+>>>>>>> upstream/master
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_SPAWN_WEAKPOINTS))
-		weakpoint_spawns = rand(4,8)
+		weakpoint_spawns = rand(6,12)
 
 	weakpoint_spawns += SSmapping.current_map.bonus_weakpoints //This will add 0 by default, or additional on large maps where it's included in the config.
 	place_weakpoints(weakpoint_spawns)
