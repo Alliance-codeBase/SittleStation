@@ -10,7 +10,6 @@
 /datum/design/board/cryptominer
 	name = "Cryptocurrency Miner"
 	desc = "The circuit board for a Cryptocurrency Miner."
-	id = "cryptominer"
 	build_path = /obj/item/circuitboard/machine/cryptominer
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO
@@ -20,7 +19,6 @@
 /datum/design/board/cryptominer/syndie
 	name = "Syndicate Cryptocurrency Miner"
 	desc = "The circuit board for a Syndicate Cryptocurrency Miner."
-	id = "cryptominersyndie"
 	build_path = /obj/item/circuitboard/machine/cryptominer/syndie
 	category = list(
 		RND_CATEGORY_MACHINE + RND_SUBCATEGORY_MACHINE_CARGO
