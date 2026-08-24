@@ -438,11 +438,6 @@
 				// ORIGINAL: var/datum/design/design = SSresearch.techweb_designs[design_path]
 				var/datum/design/design = SSresearch.techweb_designs[design_path] || is_type_in_list(SSresearch.techweb_designs[design_path], illegal_local_designs)
 				// MASSMETA EDIT CHANGE END
-				var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
-
-				if(!(design.build_type & MECHFAB) || design.id != design_id)
-
-				var/datum/design/design = SSresearch.techweb_designs[design_path]
 				if(!istype(design))
 					continue
 
