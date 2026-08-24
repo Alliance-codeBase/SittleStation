@@ -163,9 +163,10 @@
 		if(design.build_type & MECHFAB)
 			cached_designs |= design
 	// MASSMETA EDIT ADDITION START (uplink_items (justice_mecha))
-	for(var/datum/design/illegal_disign in illegal_local_designs)
-		cached_designs |= illegal_disign
+	for(var/datum/design/illegal_design in illegal_local_designs)
+		cached_designs |= illegal_design
 	// MASSMETA EDIT ADDTION END (uplink_items (justice_mecha))
+
 	var/design_delta = length(cached_designs) - previous_design_count
 
 	if(design_delta > 0)
@@ -437,6 +438,11 @@
 				// ORIGINAL: var/datum/design/design = SSresearch.techweb_designs[design_path]
 				var/datum/design/design = SSresearch.techweb_designs[design_path] || is_type_in_list(SSresearch.techweb_designs[design_path], illegal_local_designs)
 				// MASSMETA EDIT CHANGE END
+				var/datum/design/design = SSresearch.techweb_design_by_id(design_id)
+
+				if(!(design.build_type & MECHFAB) || design.id != design_id)
+
+				var/datum/design/design = SSresearch.techweb_designs[design_path]
 				if(!istype(design))
 					continue
 

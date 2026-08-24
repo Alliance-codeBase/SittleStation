@@ -23,11 +23,13 @@ SUBSYSTEM_DEF(minor_mapping)
 	return SS_INIT_NO_NEED
 #else
 	trigger_migration(CONFIG_GET(number/mice_roundstart))
+<<<<<<< HEAD
 	//MASSMETA EDIT (satchels_num_back)
 	//place_satchels(satchel_amount = 2)
 
 	place_satchels(satchel_amount = 10)
 	//MASSMETA EDIT
+
 	var/weakpoint_spawns = 5
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_SPAWN_WEAKPOINTS))
