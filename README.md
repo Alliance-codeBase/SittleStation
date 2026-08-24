@@ -17,30 +17,14 @@
 ![endingbadge](https://forthebadge.com/badges/built-with-swag.svg)
 
 <<<<<<< HEAD
-| Website                 | Link                                                                                             |
+| Website | Link |
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
-| MassMeta Code           | [https://github.com/Alliance-codeBase/PostMeta/](https://github.com/Alliance-codeBase/PostMeta/) |
-| Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md)                  |
-| Our Discord             | [https://discord.gg/qxWZWft7BC](https://discord.gg/qxWZWft7BC)                                   |
-| /TG/ Website            | [https://www.tgstation13.org](https://www.tgstation13.org)                                       |
-| /TG/ Codedocs           | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/)                           |
-| /TG/ Coderbus Discord   | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                         |
-=======
-| Website             | Link                                                  |
-| ------------------- | ----------------------------------------------------- |
-| Website             | https://tgstation13.org                               |
-| Code                | https://github.com/tgstation/tgstation                |
-| Server Config       | https://github.com/tgstation-operations/server-config |
-| Wiki                | https://tgstation13.org/wiki/Main_Page                |
-| Codedocs            | https://codedocs.tgstation13.org/                     |
-| /tg/station Discord | https://tgstation13.org/phpBB/viewforum.php?f=60      |
-| Coderbus Discord    | https://discord.gg/Vh8TJp9                            |
-| Contribution Guide  | https://github.com/tgstation/tgstation/blob/master/.github/CONTRIBUTING.md |
-| Getting Started With Development | https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide |
-| Maintainer-Approved Design Docs | https://hackmd.io/@tgstation |
-| Common Core Lore | https://github.com/tgstation/common_core |
-
->>>>>>> upstream/master
+| MassMeta Code | [https://github.com/Alliance-codeBase/PostMeta/](https://github.com/Alliance-codeBase/PostMeta/) |
+| Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md) |
+| Our Discord | [https://discord.gg/2VwaWtZcRh](https://discord.gg/2VwaWtZcRh) |
+| /TG/ Website | [https://www.tgstation13.org](https://www.tgstation13.org) |
+| /TG/ Codedocs | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/) |
+| /TG/ Coderbus Discord | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9) |
 
 This is MassMeta downstream fork of /tg/station SpaceStation 13.
 
@@ -70,7 +54,6 @@ This is MassMeta downstream fork of /tg/station SpaceStation 13.
 
 **[Компиляция в VScode и другие опции запуска (на аглийском)](tools/build/README.md).**
 
-<<<<<<< HEAD
 ## Ты нужен НАМ
 
 [Гайд по тому как принять участие в разработке (на английском)](.github/CONTRIBUTING.md)
@@ -79,8 +62,6 @@ This is MassMeta downstream fork of /tg/station SpaceStation 13.
 
 [/tg/station HACKMD account (BLOCKED in RU)](https://hackmd.io/@tgstation) - Design documentation here
 
-=======
->>>>>>> upstream/master
 ## LICENSE
 
 All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/12/31 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).
