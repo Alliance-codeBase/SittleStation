@@ -161,10 +161,10 @@
 	for(var/design_path in stored_research.researched_designs)
 		var/datum/design/design = SSresearch.techweb_designs[design_path]
 		if(design.build_type & MECHFAB)
-			cached_designs |= design
+			cached_designs |= design_path
 	// MASSMETA EDIT ADDITION START (uplink_items (justice_mecha))
 	for(var/datum/design/illegal_design in illegal_local_designs)
-		cached_designs |= illegal_design
+		cached_designs |= illegal_design.type
 	// MASSMETA EDIT ADDTION END (uplink_items (justice_mecha))
 
 	var/design_delta = length(cached_designs) - previous_design_count
