@@ -162,10 +162,13 @@
 		var/datum/design/design = SSresearch.techweb_designs[design_path]
 		if(design.build_type & MECHFAB)
 			cached_designs |= design_path
+<<<<<<< HEAD
 	// MASSMETA EDIT ADDITION START (uplink_items (justice_mecha))
 	for(var/datum/design/illegal_design in illegal_local_designs)
 		cached_designs |= illegal_design.type
 	// MASSMETA EDIT ADDTION END (uplink_items (justice_mecha))
+=======
+>>>>>>> upstream/master
 
 	var/design_delta = length(cached_designs) - previous_design_count
 
@@ -433,6 +436,7 @@
 			for(var/design_path in designs)
 				design_path = text2path(design_path)
 				if(!stored_research.researched_designs[design_path])
+<<<<<<< HEAD
 					continue
 				// MASSMETA EDIT CHANGE START (uplink_items (justice_mecha))
 				// ORIGINAL: var/datum/design/design = SSresearch.techweb_designs[design_path]
@@ -441,6 +445,14 @@
 				if(!istype(design))
 					continue
 
+=======
+					continue
+
+				var/datum/design/design = SSresearch.techweb_designs[design_path]
+				if(!istype(design))
+					continue
+
+>>>>>>> upstream/master
 				if(!(design.build_type & MECHFAB))
 					continue
 
