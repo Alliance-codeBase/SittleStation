@@ -6,4 +6,3 @@
 	worn_icon_state = "security"
 	content_overlays = FALSE
 	storage_type = /datum/storage/security_belt
-	AddComponent(/datum/component/martial_art_giver, /datum/martial_art/kaza_ruk)
