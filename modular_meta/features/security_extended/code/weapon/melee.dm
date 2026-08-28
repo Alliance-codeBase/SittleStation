@@ -105,7 +105,7 @@
 			// 4-5 hits on an unarmoured target
 			target.apply_damage(stamina_force, STAMINA, target_zone, armour_level)
 		else
-			// 5-6 hits on an unarmoured target
-			target.apply_damage(stamina_force*0.9, STAMINA, target_zone, armour_level)
+			// 6-no hits on an unarmoured target
+			target.apply_damage(stamina_force*0.6, STAMINA, target_zone, armour_level)
 
 	return ..()
