@@ -10,7 +10,7 @@
 	lefthand_file = 'modular_meta/features/security_extended/icons/inhands/lefthand.dmi'
 	righthand_file = 'modular_meta/features/security_extended/icons/inhands/righthand.dmi'
 	force = 11
-	wound_bonus = -25
+	wound_bonus = -5
 	throwforce = 7
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
@@ -91,7 +91,7 @@
 		log_combat(user, target, "attacked", src)
 
 		// If the target has a lot of stamina loss, knock them down
-		if (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG && target.get_stamina_loss() > 22)
+		if (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG && target.get_stamina_loss() > 30)
 			var/effectiveness = CLAMP01((target.get_stamina_loss() - 22) / 50)
 			log_combat(user, target, "knocked-down", src, "(additional effect)")
 			// Move the target back upon knockdown, to give them some time to recover
@@ -103,9 +103,9 @@
 			target.Move(target_shove_turf, shove_dir)
 		if (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG || user.zone_selected == BODY_ZONE_L_ARM || user.zone_selected == BODY_ZONE_R_ARM)
 			// 4-5 hits on an unarmoured target
-			target.apply_damage(stamina_force*0.6, STAMINA, target_zone, armour_level)
-		else
-			// 4-5 hits on an unarmoured target
 			target.apply_damage(stamina_force, STAMINA, target_zone, armour_level)
+		else
+			// 5-6 hits on an unarmoured target
+			target.apply_damage(stamina_force*0.9, STAMINA, target_zone, armour_level)
 
 	return ..()
