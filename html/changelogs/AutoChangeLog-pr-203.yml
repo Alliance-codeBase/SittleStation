@@ -1,0 +1,4 @@
+author: "MassMeta"
+delete-after: True
+changes:
+  - rscadd: "Upstream 2026-08-28"
