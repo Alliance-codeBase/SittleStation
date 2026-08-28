@@ -1,1 +1,1 @@
-#define  MARTIALART_CORPORATE_JUDO "corporate judo"
+#define JUDO_COMBO "GD"
