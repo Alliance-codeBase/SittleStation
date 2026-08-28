@@ -19,7 +19,7 @@
 	/// How much armor does our tonfa ignore? This operates as armour penetration, but only applies to the stun attack.
 	var/stun_armour_penetration = 15
 	/// Stamina damage dealt
-	var/stamina_force = 25
+	var/stamina_force = 30
 
 /obj/item/melee/tonfa/attack(mob/living/target, mob/living/user, mob/living/martial_artist)
 	var/target_zone = user.zone_selected == target
