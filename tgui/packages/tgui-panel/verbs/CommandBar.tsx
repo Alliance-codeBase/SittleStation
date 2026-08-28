@@ -183,7 +183,10 @@ export function CommandBar() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedVerb, setSelectedVerb] = useState<Verb | null>(null);
   const [filledArgs, setFilledArgs] = useState<string[]>([]);
+<<<<<<< HEAD
   const [lastTypepathRequest, setLastTypepathRequest] = useState('');
+=======
+>>>>>>> upstream/master
   const [mode, setMode] = useState<Mode>('Say');
   const inputRef = useRef<HTMLInputElement>(null);
   const historyRef = useRef<string[]>([]);
@@ -555,7 +558,10 @@ export function CommandBar() {
         }
       }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
   };
 
   const placeholder = selectedVerb
