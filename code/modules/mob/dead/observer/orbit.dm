@@ -214,18 +214,6 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 	var/list/serialized = list()
 
 	serialized["health"] = FLOOR((player.health / player.maxHealth * 100), 1)
-<<<<<<< HEAD
-	if(issilicon(player))
-		serialized["job"] = player.job
-		serialized["icon"] = DEFAULT_HUDS_DMI
-		serialized["icon_state"] = "borg"
-		return serialized
-
-	var/obj/item/card/id/id_card = player.get_idcard(hand_first = FALSE)
-	serialized["job"] = id_card?.get_trim_assignment()
-	serialized["icon"] = id_card?.get_trim_sechud_icon()
-	serialized["icon_state"] = id_card?.get_trim_sechud_icon_state()
-=======
 
 	var/obj/item/card/id/id_card = player.get_idcard(hand_first = FALSE)
 	serialized["job"] = id_card?.get_trim_assignment() || player.job
@@ -234,7 +222,6 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 		serialized["icon_state"] = "borg"
 	else
 		serialized["icon_state"] = id_card?.get_trim_sechud_icon_state()
->>>>>>> upstream/master
 
 	var/datum/job/job = player.mind?.assigned_role
 	if (isnull(job))

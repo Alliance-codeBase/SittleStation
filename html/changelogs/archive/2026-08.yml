@@ -662,8 +662,6 @@
   - qol: Chat Highlights won't trigger on self-actions or radio channel names.
   levels0:
   - rscadd: certain cursed mirrors might now talk
-<<<<<<< HEAD
-=======
 2026-08-24:
   SmArtKar:
   - admin: Improved OverFlayer previews by allowing to edit preview plane/backdrop
@@ -722,4 +720,3 @@
   - bugfix: Crew manifests should no longer break when adding new entries.
   PapaMichael:
   - bugfix: Face decals (like pie) now appear on monkeys' faces instead of above it
->>>>>>> upstream/master

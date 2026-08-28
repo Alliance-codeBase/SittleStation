@@ -98,27 +98,6 @@
 /// The voicebox is currently turned off.
 #define VOICEBOX_DISABLED (1<<6)
 /// Prevents knock-off from things like hat-throwing.
-<<<<<<< HEAD
-#define SNUG_FIT (1<<8)
-/// Hats with negative effects when worn (i.e the tinfoil hat).
-#define ANTI_TINFOIL_MANEUVER (1<<9)
-/// Clothes that use large icons, for applying the proper overlays like blood
-#define LARGE_WORN_ICON (1<<10)
-/// prevents from placing on plasmaman helmet or modsuit hat holder
-#define STACKABLE_HELMET_EXEMPT (1<<11)
-/// Prevents plasmamen from igniting when wearing this
-#define PLASMAMAN_PREVENT_IGNITION (1<<12)
-///Moths can't eat the clothing that has this flag.
-#define INEDIBLE_CLOTHING (1<<13)
-/// Headgear/helmet allows internals
-#define HEADINTERNALS (1<<14)
-/// Prevents masks from getting adjusted from enabling internals
-#define INTERNALS_ADJUST_EXEMPT (1<<15)
-/// Indicates that the piece of clothing contributes towards Sleeping Carp's style factor, which determines evasion probabilities. See /datums/martial/sleeping_carp/carp_style_check().
-#define CARP_STYLE_FACTOR (1<<16)
-/// Prevents clothing from losing bodyparts coverage when shredded
-#define NO_ZONE_DISABLING (1<<17)
-=======
 #define SNUG_FIT (1<<7)
 /// Clothes that use large icons, for applying the proper overlays like blood
 #define LARGE_WORN_ICON (1<<8)
@@ -134,7 +113,6 @@
 #define CARP_STYLE_FACTOR (1<<13)
 /// Prevents clothing from losing bodyparts coverage when shredded
 #define NO_ZONE_DISABLING (1<<14)
->>>>>>> upstream/master
 
 /// Integrity defines for clothing (not flags but close enough)
 #define CLOTHING_PRISTINE 0 // We have no damage on the clothing
