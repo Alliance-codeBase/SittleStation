@@ -102,8 +102,9 @@
 				target.Knockdown(effectiveness * 4 SECONDS * (100-armour_level)/100)
 			target.Move(target_shove_turf, shove_dir)
 		if (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG || user.zone_selected == BODY_ZONE_L_ARM || user.zone_selected == BODY_ZONE_R_ARM)
-			// 5-6 hits on an unarmoured target, 17.5 stam
-			target.apply_damage(stamina_force*0.7, STAMINA, target_zone, armour_level)
+			// 5-6 hits on an unarmoured target, 15 stam
+			target.apply_damage(stamina_force*0.6, STAMINA, target_zone, armour_level)
+			target.Jitter(1 SECONDS)
 		else
 			// 4-5 hits on an unarmoured target
 			target.apply_damage(stamina_force, STAMINA, target_zone, armour_level)
