@@ -16,15 +16,14 @@
 ![Goodge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)
 ![endingbadge](https://forthebadge.com/badges/built-with-swag.svg)
 
-<<<<<<< HEAD
-| Website | Link |
+| Website                 | Link                                                                                             |
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
-| MassMeta Code | [https://github.com/Alliance-codeBase/PostMeta/](https://github.com/Alliance-codeBase/PostMeta/) |
-| Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md) |
-| Our Discord | [https://discord.gg/2VwaWtZcRh](https://discord.gg/2VwaWtZcRh) |
-| /TG/ Website | [https://www.tgstation13.org](https://www.tgstation13.org) |
-| /TG/ Codedocs | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/) |
-| /TG/ Coderbus Discord | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9) |
+| MassMeta Code           | [https://github.com/Alliance-codeBase/PostMeta/](https://github.com/Alliance-codeBase/PostMeta/) |
+| Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md)                  |
+| Our Discord             | [https://discord.gg/2VwaWtZcRh](https://discord.gg/2VwaWtZcRh)                                   |
+| /TG/ Website            | [https://www.tgstation13.org](https://www.tgstation13.org)                                       |
+| /TG/ Codedocs           | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/)                           |
+| /TG/ Coderbus Discord   | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                         |
 
 This is MassMeta downstream fork of /tg/station SpaceStation 13.
 

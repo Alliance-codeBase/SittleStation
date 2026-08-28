@@ -28,7 +28,6 @@ SUBSYSTEM_DEF(minor_mapping)
 
 	place_satchels(satchel_amount = 10)
 	//MASSMETA EDIT
-
 	var/weakpoint_spawns = 5
 
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_SPAWN_WEAKPOINTS))
