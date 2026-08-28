@@ -55,7 +55,10 @@
 		/datum/design/ballistic_shield,
 		/datum/design/handcuffs/sec,
 		/datum/design/bola_energy,
+<<<<<<< HEAD
 		/datum/design/case_portable_recharger, // MASSMETA EDIT (more_cell_interactions)
+=======
+>>>>>>> upstream/master
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SECURITY)

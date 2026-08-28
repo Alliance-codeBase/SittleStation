@@ -23,6 +23,7 @@ SUBSYSTEM_DEF(minor_mapping)
 	return SS_INIT_NO_NEED
 #else
 	trigger_migration(CONFIG_GET(number/mice_roundstart))
+<<<<<<< HEAD
 	//MASSMETA EDIT (satchels_num_back)
 	//place_satchels(satchel_amount = 2)
 
@@ -31,6 +32,10 @@ SUBSYSTEM_DEF(minor_mapping)
 
 	var/weakpoint_spawns = 5
 
+=======
+	place_satchels(satchel_amount = 2)
+	var/weakpoint_spawns = 5
+>>>>>>> upstream/master
 	if(HAS_TRAIT(SSstation, STATION_TRAIT_SPAWN_WEAKPOINTS))
 		weakpoint_spawns = rand(6,12)
 

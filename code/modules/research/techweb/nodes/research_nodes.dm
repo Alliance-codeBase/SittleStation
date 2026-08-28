@@ -63,9 +63,12 @@
 		/datum/design/bluespace_pod,
 		/datum/design/quantum_keycard,
 		/datum/design/swapper,
+<<<<<<< HEAD
 		/datum/design/cargo_teleporter, // MASSMETA EDIT (cargo_teleporter)
 		/datum/design/board/telepad, // MASSMETA EDIT (cargo_teleporter)
 		/datum/design/board/telesci_console, // MASSMETA EDIT (cargo_teleporter)
+=======
+>>>>>>> upstream/master
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)

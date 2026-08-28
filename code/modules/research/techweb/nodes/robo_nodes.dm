@@ -46,7 +46,10 @@
 		/datum/design/board/quarantine_module,
 		/datum/design/board/robocop_module,
 		/datum/design/board/safeguard_module,
+<<<<<<< HEAD
 		/datum/design/ai_brain, // MASSMETA EDIT (ai_things)
+=======
+>>>>>>> upstream/master
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE)
@@ -60,7 +63,10 @@
 			/datum/design/boris_ai_controller,
 			/datum/design/intellicard,
 			/datum/design/mecha_tracking_ai_control,
+<<<<<<< HEAD
 			/datum/design/ai_brain, // MASSMETA EDIT (ai_things)
+=======
+>>>>>>> upstream/master
 		)
 	else if(HAS_TRAIT(SSstation, STATION_TRAIT_UNIQUE_AI))
 		research_costs[TECHWEB_POINT_TYPE_GENERIC] *= 3
