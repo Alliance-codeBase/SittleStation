@@ -19,7 +19,7 @@
 	/// How much armor does our tonfa ignore? This operates as armour penetration, but only applies to the stun attack.
 	var/stun_armour_penetration = 15
 	/// Stamina damage dealt
-	var/stamina_force = 30
+	var/stamina_force = 25
 
 /obj/item/melee/tonfa/attack(mob/living/target, mob/living/user, mob/living/martial_artist)
 	var/target_zone = user.zone_selected == target
@@ -91,7 +91,7 @@
 		log_combat(user, target, "attacked", src)
 
 		// If the target has a lot of stamina loss, knock them down
-		if (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG && target.get_stamina_loss() > 30)
+		if (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG && target.get_stamina_loss() > 26)//so smarties dont click head then leg for near instant knock
 			var/effectiveness = CLAMP01((target.get_stamina_loss() - 22) / 50)
 			log_combat(user, target, "knocked-down", src, "(additional effect)")
 			// Move the target back upon knockdown, to give them some time to recover
@@ -102,8 +102,8 @@
 				target.Knockdown(effectiveness * 4 SECONDS * (100-armour_level)/100)
 			target.Move(target_shove_turf, shove_dir)
 		if (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG || user.zone_selected == BODY_ZONE_L_ARM || user.zone_selected == BODY_ZONE_R_ARM)
-			// 4-5 hits on an unarmoured target
-			target.apply_damage(stamina_force*0.6, STAMINA, target_zone, armour_level)
+			// 5-6 hits on an unarmoured target, 17.5 stam
+			target.apply_damage(stamina_force*0.7, STAMINA, target_zone, armour_level)
 		else
 			// 4-5 hits on an unarmoured target
 			target.apply_damage(stamina_force, STAMINA, target_zone, armour_level)
