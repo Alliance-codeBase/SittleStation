@@ -555,7 +555,6 @@ export function CommandBar() {
         }
       }
     }
-
   };
 
   const placeholder = selectedVerb
