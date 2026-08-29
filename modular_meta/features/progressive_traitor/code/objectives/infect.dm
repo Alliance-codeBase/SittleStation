@@ -168,7 +168,7 @@
 		balloon_alert(user, "no exposed skin!")
 		return
 
-	if(!do_after(user, 1.5 SECONDS, hidden = TRUE))
+	if(!do_after(user, 1.5 SECONDS))
 		balloon_alert(user, "interrupted!")
 		return
 
