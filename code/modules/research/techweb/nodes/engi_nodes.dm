@@ -155,7 +155,6 @@
 /datum/techweb_node/energy_manipulation
 	display_name = "Energy Manipulation"
 	description = "Harnessing the raw power of lightning arcs through sophisticated energy control methods."
-
 	prerequisite_nodes = list(/datum/techweb_node/construction)
 	unlocked_designs = list(
 		/datum/design/board/apc_control,
