@@ -7,6 +7,7 @@
 	invocation_type = INVOCATION_SHOUT
 	sparks_amt = 3
 	spell_max_level = 3
+	var/charging = FALSE
 	//sound =
 	//icon = ''
 	//icon_state = ""
@@ -18,7 +19,7 @@
 		return FALSE
 
 	var/mob/living/carbon/carbon_target = cast_on
-	var/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
 	var/are_we_dead_ass = carbon_target.stat == DEAD
 	var/harsey = carbon_target.dna?.check_mutation(/datum/mutation/headless) == /datum/mutation/headless
 
@@ -40,19 +41,45 @@
 
 /datum/action/cooldown/spell/pointed/headburst/before_cast(atom/cast_on)
 	. = ..()
+	charging = TRUE
 	var/beam_time = 10 SECONDS
 	var/datum/beam/beam = owner.Beam(cast_on, "r_beam", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
+	while(charging)
+		sleep(1.5 SECONDS)
+		playsound(owner, 'sound/effects/magic/charge.ogg', 50, TRUE, vary = TRUE)
+		if(!charging)
+			break
+
 	if(!do_after(owner, beam_time, cast_on, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(range_check), owner, cast_on), hidden = TRUE))
 		qdel(beam)
-		owner.balloon_alert(owner, "Out of range!")
-		return SPELL_NO_IMMEDIATE_COOLDOWN
+		owner.balloon_alert(owner, "too far away!")
+		charging = FALSE
+		return . | SPELL_NO_IMMEDIATE_COOLDOWN
 
-/datum/action/cooldown/spell/pointed/headburst/proc/range_check(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/action/cooldown/spell/pointed/headburst/proc/range_check(mob/living/carbon/human/user, mob/living/carbon/human/target, bar_override = owner)
 	var/caster_loc = user.loc
 	var/target_loc = target.loc
 	var/max_cast_range = round((spell_level + 1) ** 2.3)
-	if(get_dist(caster_loc, target_loc) >= max_cast_range)
+	if(get_dist(caster_loc, target_loc) >= cast_range)
+		charging = FALSE
 		return FALSE
-
+	charging = FALSE
 	return TRUE
 
+/datum/action/cooldown/spell/pointed/headburst/cast(atom/cast_on)
+	. = ..()
+	var/mob/living/carbon/carbon_target = cast_on
+	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
+	head.forced_removal(FALSE, FALSE, TRUE)
+	playsound(carbon_target, 'sound/effects/wounds/crackandbleed.ogg', 100)
+	playsound(carbon_target, 'sound/effects/splat.ogg', 50, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE)
+	animate(carbon_target, transform = carbon_target.transform * 1.5, color = COLOR_RED, time = 1 SECONDS)
+	carbon_target.Stun(3 SECONDS)
+
+	carbon_target.spawn_gibs()
+
+	for(var/turf/bloody_turf in view(4, carbon_target))
+		var/obj/effect/decal/cleanable/blood/blood_spot = new(bloody_turf)
+		blood_spot.add_blood_DNA(carbon_target.dna)
+
+	charging = FALSE
