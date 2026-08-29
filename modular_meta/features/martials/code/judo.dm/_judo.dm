@@ -33,20 +33,10 @@
 	to_chat(holder, span_warning("Your hands are rejecting the [equipped_item.declent_ru(NOMINATIVE)] against your will!"))
 	holder.dropItemToGround(equipped_item)
 
-// Регистрация харм интента 
-/datum/martial_art/judo/harm_act(mob/living/carbon/human/attacker, mob/living/carbon/human/defender)
-	var/picked_hit_type = GLOB.ru_attack_verbs[pick("chops", "slices", "strikes")]
-	attacker.do_attack_animation(defender, ATTACK_EFFECT_PUNCH)
-	if(check_one_click_combo(attacker, defender))
-		return MARTIAL_ATTACK_SUCCESS
-	add_to_streak("H", defender)
-	if(check_streak(attacker, defender))
-		return MARTIAL_ATTACK_SUCCESS
-	defender.apply_damage(6, BRUTE)
-	playsound(get_turf(defender), 'sound/effects/hit_punch.ogg', 50, TRUE)
-	defender.visible_message(
-		span_danger("[attacker.declent_ru(NOMINATIVE)] [picked_hit_type] [defender.declent_ru(ACCUSATIVE)]!"),
-		span_userdanger("[attacker.declent_ru(NOMINATIVE)] [picked_hit_type] вас!")
-	)
-	log_combat(attacker, defender, "melee attack ([src])")
-	return MARTIAL_ATTACK_SUCCESS
+// Регистрация харм интента в комбо-статус
+/datum/martial_art/judo/harm_act(mob/living/attacker, mob/living/defender)
+        if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
+                return MARTIAL_ATTACK_FAIL
+
+        add_to_streak("H", defender)
+        return check_streak(attacker, defender) ? MARTIAL_ATTACK_SUCCESS : MARTIAL_ATTACK_INVALID
