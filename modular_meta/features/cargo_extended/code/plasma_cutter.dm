@@ -8,15 +8,15 @@
 
 /obj/item/ammo_casing/energy/plasma/adv/slash
   projectile_type = /obj/projectile/plasma/adv/slash
-  delay = 100
+  delay = 300
   e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE)
 
 /obj/item/ammo_casing/energy/plasma/adv/cut
   projectile_type = /obj/projectile/plasma/adv/cut
-  delay = 8
+  delay = 16
   pellets = 3
   variance = 20
-  e_cost = LASER_SHOTS(30, STANDARD_CELL_CHARGE)
+  e_cost = LASER_SHOTS(10, STANDARD_CELL_CHARGE)
 
 /obj/effect/projectile/tracer/plasma/adv/slash
   name = "slash"
@@ -34,7 +34,7 @@
   speed = 1.6
   tracer_type = /obj/effect/projectile/tracer/plasma/adv/slash
   damage_type = BRUTE
-  dismemberment = 40
+  dismemberment = 0
 
 /obj/projectile/plasma/adv/cut
   damage = 4
@@ -44,4 +44,4 @@
   speed = 0.8
   tracer_type = /obj/effect/projectile/tracer/plasma/adv/cut
   damage_type = BURN
-  dismemberment = 10
+  dismemberment = 15
