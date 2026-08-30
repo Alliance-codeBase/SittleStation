@@ -8,7 +8,7 @@
 
 /obj/item/ammo_casing/energy/plasma/adv/slash
   projectile_type = /obj/projectile/plasma/adv/slash
-  delay = 20
+  delay = 100
   e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE)
 
 /obj/item/ammo_casing/energy/plasma/adv/cut
@@ -29,7 +29,7 @@
 /obj/projectile/plasma/adv/slash
   damage = 10
   range = 30
-  mine_range = 10
+  mine_range = 30
   wound_bonus = 60
   speed = 1.6
   tracer_type = /obj/effect/projectile/tracer/plasma/adv/slash
