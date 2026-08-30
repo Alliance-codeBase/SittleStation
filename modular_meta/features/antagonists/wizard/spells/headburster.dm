@@ -81,28 +81,23 @@
 	. = ..()
 	var/mob/living/carbon/carbon_target = cast_on
 	carbon_target.Stun(3 SECONDS)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, headburst), cast_on), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(headburst), cast_on), 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.2 SECONDS)
 	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
-	carbon_target.inflate_head(carbon_target)
+
+	inflate(cast_on)
 	charging = FALSE
 
-/mob/living/carbon/proc/headburst(atom/cast_on)
+/datum/action/cooldown/spell/pointed/headburst/proc/headburst(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
 	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
 	var/list/blood_dna = carbon_target.get_blood_dna_list()
-	var/obj/item/organ/brain = carbon_target?.get_organ_slot(ORGAN_SLOT_BRAIN) // some people are brainless, or may lose their brain while we cast, that's why we use ?.
 
 	playsound(carbon_target, 'sound/effects/wounds/crackandbleed.ogg', 100)
 	playsound(carbon_target, 'sound/effects/splat.ogg', 50, TRUE)
 	playsound(carbon_target, 'modular_meta/features/antagonists/sound/blood_spray.ogg', 35)
 	carbon_target.spawn_gibs()
 	head.drop_limb(FALSE, TRUE, TRUE)
-	brain.Remove(carbon_target)
-	brain.add_mob_blood(carbon_target)
-
-	brain.forceMove(carbon_target.drop_location())
-
 	qdel(head)
 	for(var/turf/bloody_turf in view(1, carbon_target))
 		var/obj/effect/decal/cleanable/blood/blood_spot = new(bloody_turf)
@@ -121,7 +116,7 @@
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_MOB_LAYER
 
-/mob/living/carbon/proc/inflate_head(atom/cast_on)
+/datum/action/cooldown/spell/pointed/headburst/proc/inflate(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
 	var/obj/item/bodypart/head/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
 	var/list/head_overlays = head.get_limb_icon(FALSE)
@@ -148,7 +143,7 @@
 		)
 	our_head.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
 	animate(our_head, transform = matrix().Scale(1.5), time = 3 SECONDS, color = COLOR_RED)
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/action/cooldown/spell/pointed/headburst, clean_debris), our_head), 3.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(clean_debris), our_head), 3.2 SECONDS)
 
 /datum/action/cooldown/spell/pointed/headburst/proc/clean_debris(fake_head)
 	qdel(fake_head)
