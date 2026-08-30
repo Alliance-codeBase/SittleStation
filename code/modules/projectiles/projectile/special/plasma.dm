@@ -28,9 +28,9 @@
 
 /obj/projectile/plasma/adv
 	damage = 7
-	range = 15
+	range = 10
 	dismemberment = 25
-	mine_range = -5
+	mine_range = 0
 
 /obj/projectile/plasma/adv/mech
 	damage = 10
