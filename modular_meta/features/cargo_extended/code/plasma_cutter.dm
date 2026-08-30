@@ -31,7 +31,7 @@
   range = 30
   mine_range = 10
   wound_bonus = 60
-  speed = 3
+  speed = 1.6
   tracer_type = /obj/effect/projectile/tracer/plasma/adv/slash
   damage_type = BRUTE
   dismemberment = 40
