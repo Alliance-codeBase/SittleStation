@@ -1,6 +1,6 @@
 /obj/item/gun/energy/plasmacutter/adv/i_cutter
   name = "I.C. Tool"
-  description = "Isaac's Cutting Tool, or IC Tool, has 2 modes: slashing and cutting, slashing uses a lot of energy but heavily wounds your foe, while cutting shoots 3 weak lasers that REALLY good at dismembering target, cutting has low range but great mining ability, while slashing is a organ-spilling blast."
+  description = "Isaac's Cutting Tool, or IC Tool, has 2 modes: slashing and cutting, slashing uses a lot of energy but heavily wounds your foe, while cutting shoots 3 weak lasers that REALLY good at dismembering target, cutting has low range but great mining ability, while slashing is an organ-spilling blast."
   icon_state = "adv_plasmacutter"
   inhand_icon_state = "adv_plasmacutter"
   wound_bonus = 15
