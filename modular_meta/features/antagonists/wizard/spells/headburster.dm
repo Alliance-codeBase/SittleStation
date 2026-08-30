@@ -81,16 +81,16 @@
 	. = ..()
 	var/mob/living/carbon/carbon_target = cast_on
 	carbon_target.Stun(3 SECONDS)
-	addtimer(CALLBACK(cast_on, TYPE_PROC_REF(/mob/living/carbon, headburst), cast_on), 3 SECONDS)
-	addtimer(CALLBACK(cast_on, PROC_REF(drop_body), cast_on), 4.2 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, headburst), cast_on), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.2 SECONDS)
 	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
 	carbon_target.inflate_head(carbon_target)
 	charging = FALSE
 
 /mob/living/carbon/proc/headburst(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
-	var/obj/item/bodypart/head = carbon_target?.get_bodypart(BODY_ZONE_HEAD)
-	var/list/blood_dna = carbon_target?.get_blood_dna_list()
+	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
+	var/list/blood_dna = carbon_target.get_blood_dna_list()
 	var/obj/item/organ/brain = carbon_target?.get_organ_slot(ORGAN_SLOT_BRAIN) // some people are brainless, or may lose their brain while we cast, that's why we use ?.
 
 	playsound(carbon_target, 'sound/effects/wounds/crackandbleed.ogg', 100)
@@ -148,7 +148,7 @@
 		)
 	our_head.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
 	animate(our_head, transform = matrix().Scale(1.5), time = 3 SECONDS, color = COLOR_RED)
-	addtimer(CALLBACK(cast_on, TYPE_PROC_REF(/datum/action/cooldown/spell/pointed/headburst, clean_debris), our_head), 3.2 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/action/cooldown/spell/pointed/headburst, clean_debris), our_head), 3.2 SECONDS)
 
 /datum/action/cooldown/spell/pointed/headburst/proc/clean_debris(fake_head)
 	qdel(fake_head)
