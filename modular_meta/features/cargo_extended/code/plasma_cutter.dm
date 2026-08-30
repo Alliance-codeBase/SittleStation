@@ -1,6 +1,6 @@
 /obj/item/gun/energy/plasmacutter/adv/i_cutter
 	name = "I.C. Tool"
-	description = "Isaac's Cutting Tool, or IC Tool, has 2 modes: slashing and cutting, slashing uses a lot of energy but heavily wounds your foe, while cutting shoots 3 weak lasers that REALLY good at dismembering target, cutting has low range but great mining ability, while slashing is an organ-spilling blast."
+	description = "Isaac's Cutting Tool, or IC Tool, has 2 modes: slashing and cutting, slashing uses a lot of energy but can make tunnels fast, while cutting shoots 3 weak lasers that REALLY good at dismembering target, cutting has low range but great mining ability, while slashing is a rock crushing blast."
 	icon_state = "adv_plasmacutter"
 	inhand_icon_state = "adv_plasmacutter"
 	wound_bonus = 15
@@ -8,8 +8,8 @@
 
 /obj/item/ammo_casing/energy/plasma/adv/slash
 	projectile_type = /obj/projectile/plasma/adv/slash
-	delay = 300
-	e_cost = LASER_SHOTS(1, STANDARD_CELL_CHARGE)
+	delay = 50
+	e_cost = LASER_SHOTS(4, STANDARD_CELL_CHARGE)
 
 /obj/item/ammo_casing/energy/plasma/adv/cut
 	projectile_type = /obj/projectile/plasma/adv/cut
@@ -27,17 +27,17 @@
 	icon_state = "xray"
 
 /obj/projectile/plasma/adv/slash
-	damage = 10
-	range = 30
-	mine_range = 30
-	wound_bonus = 60
+	damage = 5
+	range = 20
+	mine_range = 20
+	wound_bonus = 0
 	speed = 1.6
 	tracer_type = /obj/effect/projectile/tracer/plasma/adv/slash
 	damage_type = BRUTE
 	dismemberment = 0
 
 /obj/projectile/plasma/adv/cut
-	damage = 4
+	damage = 5
 	range = 8
 	mine_range = 10
 	wound_bonus = 6
