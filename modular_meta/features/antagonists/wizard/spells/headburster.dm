@@ -1,6 +1,6 @@
 /datum/action/cooldown/spell/pointed/headburst
 	name = "Headburster"
-	desc = "After a brief wait sends a deadly beam capable of bursting your target's head"
+	desc = "This spell after a brief wait sends a deadly beam capable of bursting your target's head"
 	cooldown_time = 20 SECONDS
 	cast_range = 5
 	invocation = "H'D BR'ST!!"
@@ -15,6 +15,9 @@
 
 /datum/action/cooldown/spell/pointed/headburst/is_valid_target(atom/cast_on)
 	. = ..()
+
+	if(!ishuman(cast_on))
+		return FALSE
 
 	if(!.)
 		return FALSE
@@ -36,9 +39,6 @@
 		return FALSE
 
 	if(!cast_on) // liminal spaces
-		return FALSE
-
-	if(!istype(cast_on, /mob/living/carbon/human))
 		return FALSE
 
 	return TRUE
@@ -98,16 +98,20 @@
 	playsound(carbon_target, 'modular_meta/features/antagonists/sound/blood_spray.ogg', 35)
 	carbon_target.spawn_gibs()
 	head.drop_limb(FALSE, TRUE, TRUE)
-	qdel(real_head)
+	qdel(head)
 	for(var/turf/bloody_turf in view(1, carbon_target))
 		var/obj/effect/decal/cleanable/blood/blood_spot = new(bloody_turf)
 		blood_spot.add_blood_DNA(blood_dna)
 
-	var/obj/effect/temp_visual/dir_setting/bloodsplatter/blood_shower = new(
-		get_turf(carbon_target),
-		NORTH,
-		carbon_target.get_bloodtype().get_color()
+	var/obj/effect/decal/cleanable/blood/hitsplatter/blood_shower = new(
+			get_turf(carbon_target),
+			null,
+			blood_dna,
 		)
+	blood_shower.setDir(NORTH)
+	blood_shower.pixel_z = 10
+	blood_shower.layer = ABOVE_ALL_MOB_LAYER
+	QDEL_IN(blood_shower, 1 SECONDS)
 
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_MOB_LAYER
@@ -120,8 +124,15 @@
 	head_overlays += head.get_eye_overlays()
 	head_overlays += head.get_hair_overlays()
 
+	//why can't we get a normal way to get overlays for item slots?
+	head_overlays += carbon_target.overlays_standing[HEAD_LAYER]
+	head_overlays += carbon_target.overlays_standing[GLASSES_LAYER]
+	head_overlays += carbon_target.overlays_standing[FACEMASK_LAYER]
+	head_overlays += carbon_target.overlays_standing[EARS_LAYER]
+
+
 	var/mutable_appearance/fake_head = mutable_appearance(
-		layer = ABOVE_ALL_MOB_LAYER,
+		layer = ABOVE_MOB_LAYER,
 		appearance_flags = KEEP_TOGETHER
 		)
 
@@ -132,9 +143,9 @@
 		)
 	our_head.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
 	animate(our_head, transform = matrix().Scale(1.5), time = 3 SECONDS, color = COLOR_RED)
-	addtimer(CALLBACK(src, PROC_REF(clean_debris), head, our_head), 3.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(clean_debris), our_head), 3.2 SECONDS)
 
-/datum/action/cooldown/spell/pointed/headburst/proc/clean_debris(real_head, fake_head)
+/datum/action/cooldown/spell/pointed/headburst/proc/clean_debris(fake_head)
 	qdel(fake_head)
 
 /datum/action/cooldown/spell/pointed/headburst/proc/drop_body(mob/living/carbon/target)
