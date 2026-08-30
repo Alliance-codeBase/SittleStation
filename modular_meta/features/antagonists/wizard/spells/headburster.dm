@@ -49,6 +49,7 @@
 
 /datum/action/cooldown/spell/pointed/headburst/before_cast(atom/cast_on)
 	. = ..()
+	var/mob/living/carbon/carbon_target = cast_on
 	var/datum/beam/beam = owner.Beam(cast_on, "r_beam", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(play_charging_sound))
@@ -65,6 +66,10 @@
 		charging = FALSE
 		return
 
+	carbon_target.visible_message(
+		span_danger("[owner] is concentrating dark enegry into a beam, preparing to strike! [cast_on]"),
+		span_userdanger("You feel naseous as [owner] points a deadly beam at your head!")
+	)
 /datum/action/cooldown/spell/pointed/headburst/proc/play_charging_sound()
 	while(charging)
 		playsound(owner, 'sound/effects/magic/charge.ogg', 15, TRUE, vary = TRUE)
@@ -86,7 +91,7 @@
 	var/mob/living/carbon/carbon_target = cast_on
 	carbon_target.Stun(3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(headburst), cast_on), 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.6 SECONDS)
 	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
 	inflate(cast_on)
 	charging = FALSE
@@ -97,32 +102,41 @@
 	var/list/blood_dna = carbon_target?.get_blood_dna_list()
 	var/obj/item/organ/brain = carbon_target?.get_organ_slot(ORGAN_SLOT_BRAIN)
 	var/blood_color = get_color_from_blood_list(blood_dna)
+	var/bloody_turfs = view(1, carbon_target)
+
 
 	playsound(carbon_target, 'sound/effects/wounds/crackandbleed.ogg', 100)
 	playsound(carbon_target, 'sound/effects/splat.ogg', 50, TRUE)
 	playsound(carbon_target, 'modular_meta/features/antagonists/sound/blood_spray.ogg', 35)
-	carbon_target?.adjust_organ_loss(ORGAN_SLOT_BRAIN, 95)
+	carbon_target?.adjust_organ_loss(ORGAN_SLOT_BRAIN, 190)
 	carbon_target.spawn_gibs()
 	brain.Remove(carbon_target)
 	head?.receive_damage(95)
 	head?.drop_limb(FALSE, TRUE, TRUE)
+	head.throw_at(pick(view(3, carbon_target)))
 	head.AddElement(/datum/element/decal/blood, _color = blood_color)
 	brain.AddElement(/datum/element/decal/blood, _color = blood_color)
 	brain.forceMove(carbon_target.drop_location())
 
-	for(var/turf/bloody_turf in view(1, carbon_target))
+	var/count = rand(1, length(bloody_turfs))
+
+	for(var/i in 3 to count)
+		var/turf/bloody_turf = pick_n_take(bloody_turfs)
 		var/obj/effect/decal/cleanable/blood/blood_spot = new(bloody_turf)
 		blood_spot.add_blood_DNA(blood_dna)
 
 	var/obj/effect/decal/cleanable/blood/hitsplatter/blood_shower = new(
-			get_turf(carbon_target),
+			null,
 			null,
 			blood_dna,
 		)
+
 	blood_shower.setDir(NORTH)
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_ALL_MOB_LAYER
-	QDEL_IN(blood_shower, 1.3 SECONDS)
+	blood_shower.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+	carbon_target.vis_contents += blood_shower
+	QDEL_IN(blood_shower, 3 SECONDS)
 
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_MOB_LAYER
