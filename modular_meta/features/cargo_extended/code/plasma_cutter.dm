@@ -41,7 +41,7 @@
 	range = 8
 	mine_range = 10
 	wound_bonus = 6
-	speed = 0.8
+	speed = 1.2
 	tracer_type = /obj/effect/projectile/tracer/plasma/adv/cut
 	damage_type = BURN
 	dismemberment = 15
