@@ -1,7 +1,7 @@
 /datum/action/cooldown/spell/pointed/headburst
 	name = "Headburster"
 	desc = "This spell after a brief wait sends a deadly beam capable of bursting your target's head"
-	cooldown_time = 20 SECONDS
+	cooldown_time = 30 SECONDS
 	cast_range = 5
 	invocation = "H'D BR'ST!!"
 	invocation_type = INVOCATION_SHOUT
@@ -15,6 +15,10 @@
 
 /datum/action/cooldown/spell/pointed/headburst/is_valid_target(atom/cast_on)
 	. = ..()
+
+	if(charging)
+		owner.balloon_alert(owner, "one target at the time!")
+		return
 
 	if(!ishuman(cast_on))
 		return FALSE
@@ -82,23 +86,30 @@
 	var/mob/living/carbon/carbon_target = cast_on
 	carbon_target.Stun(3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(headburst), cast_on), 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.4 SECONDS)
 	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
-
 	inflate(cast_on)
 	charging = FALSE
 
 /datum/action/cooldown/spell/pointed/headburst/proc/headburst(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
-	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
-	var/list/blood_dna = carbon_target.get_blood_dna_list()
+	var/obj/item/bodypart/head = carbon_target?.get_bodypart(BODY_ZONE_HEAD)
+	var/list/blood_dna = carbon_target?.get_blood_dna_list()
+	var/obj/item/organ/brain = carbon_target?.get_organ_slot(ORGAN_SLOT_BRAIN)
+	var/blood_color = get_color_from_blood_list(blood_dna)
 
 	playsound(carbon_target, 'sound/effects/wounds/crackandbleed.ogg', 100)
 	playsound(carbon_target, 'sound/effects/splat.ogg', 50, TRUE)
 	playsound(carbon_target, 'modular_meta/features/antagonists/sound/blood_spray.ogg', 35)
+	carbon_target?.adjust_organ_loss(ORGAN_SLOT_BRAIN, 95)
 	carbon_target.spawn_gibs()
-	head.drop_limb(FALSE, TRUE, TRUE)
-	qdel(head)
+	brain.Remove(carbon_target)
+	head?.receive_damage(95)
+	head?.drop_limb(FALSE, TRUE, TRUE)
+	head.AddElement(/datum/element/decal/blood, _color = blood_color)
+	brain.AddElement(/datum/element/decal/blood, _color = blood_color)
+	brain.forceMove(carbon_target.drop_location())
+
 	for(var/turf/bloody_turf in view(1, carbon_target))
 		var/obj/effect/decal/cleanable/blood/blood_spot = new(bloody_turf)
 		blood_spot.add_blood_DNA(blood_dna)
@@ -111,7 +122,7 @@
 	blood_shower.setDir(NORTH)
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_ALL_MOB_LAYER
-	QDEL_IN(blood_shower, 1 SECONDS)
+	QDEL_IN(blood_shower, 1.3 SECONDS)
 
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_MOB_LAYER
@@ -142,8 +153,16 @@
 			3 SECONDS
 		)
 	our_head.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+	our_head.pixel_z = -1
+
 	animate(our_head, transform = matrix().Scale(1.5), time = 3 SECONDS, color = COLOR_RED)
 	addtimer(CALLBACK(src, PROC_REF(clean_debris), our_head), 3.2 SECONDS)
+
+	carbon_target.visible_message(
+		span_danger("You can see [carbon_target]'s head inflates"),
+		span_userdanger("You can feel your head inflating suddenly..."),
+		span_danger("You can hear someone's head bursting like a balloon")
+	)
 
 /datum/action/cooldown/spell/pointed/headburst/proc/clean_debris(fake_head)
 	qdel(fake_head)
