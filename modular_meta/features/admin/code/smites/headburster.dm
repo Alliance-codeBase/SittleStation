@@ -15,10 +15,4 @@
 		to_chat(user, span_warning("Target must be alive."), confidential = TRUE)
 		return
 
-	carbon_target.visible_message(
-		span_danger("You can see [carbon_target]'s head inflates"),
-		span_userdanger("You can feel your head inflating suddenly..."),
-		span_danger("You can hear someone's head bursting like a balloon")
-	)
-
 	spell.cast(target)
