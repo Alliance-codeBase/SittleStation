@@ -2,12 +2,13 @@
 	name = "Headburster"
 	desc = "After a brief wait sends a deadly beam capable of bursting your target's head"
 	cooldown_time = 20 SECONDS
-	cast_range = 10
+	cast_range = 5
 	invocation = "H'D BR'ST!!"
 	invocation_type = INVOCATION_SHOUT
 	sparks_amt = 3
 	spell_max_level = 3
 	var/charging = FALSE
+	var/beam_time = 10 SECONDS
 	//sound =
 	//icon = ''
 	//icon_state = ""
@@ -24,62 +25,117 @@
 	var/harsey = carbon_target.dna?.check_mutation(/datum/mutation/headless) == /datum/mutation/headless
 
 	if(are_we_dead_ass)
-		owner.balloon_alert(owner, "They're dead!")
+		owner.balloon_alert(owner, "they're dead!")
 		return FALSE
 
 	if(isnull(head) || harsey)
 		if(prob(5))
-			owner.balloon_alert(owner, "No head, rip :(")
+			owner.balloon_alert(owner, "no head, rip :(")
 		else
-			owner.balloon_alert(owner, "No head!")
+			owner.balloon_alert(owner, "no head!")
 		return FALSE
 
-	if(!target) // liminal spaces
+	if(!cast_on) // liminal spaces
+		return FALSE
+
+	if(!istype(cast_on, /mob/living/carbon/human))
 		return FALSE
 
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/headburst/before_cast(atom/cast_on)
 	. = ..()
-	charging = TRUE
-	var/beam_time = 10 SECONDS
 	var/datum/beam/beam = owner.Beam(cast_on, "r_beam", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
-	while(charging)
-		sleep(1.5 SECONDS)
-		playsound(owner, 'sound/effects/magic/charge.ogg', 50, TRUE, vary = TRUE)
-		if(!charging)
-			break
+	charging = TRUE
+	INVOKE_ASYNC(src, PROC_REF(play_charging_sound))
+	var/head_popped = do_after(owner, beam_time, cast_on, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(range_check), owner, cast_on))
 
-	if(!do_after(owner, beam_time, cast_on, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(range_check), owner, cast_on), hidden = TRUE))
-		qdel(beam)
+	if(!head_popped)
 		owner.balloon_alert(owner, "too far away!")
 		charging = FALSE
-		return . | SPELL_NO_IMMEDIATE_COOLDOWN
+		qdel(beam)
+		return SPELL_CANCEL_CAST
+
+	if(head_popped)
+		qdel(beam)
+		charging = FALSE
+		return
+
+/datum/action/cooldown/spell/pointed/headburst/proc/play_charging_sound()
+	while(charging)
+		playsound(owner, 'sound/effects/magic/charge.ogg', 15, TRUE, vary = TRUE)
+		sleep(1 SECONDS)
 
 /datum/action/cooldown/spell/pointed/headburst/proc/range_check(mob/living/carbon/human/user, mob/living/carbon/human/target, bar_override = owner)
 	var/caster_loc = user.loc
 	var/target_loc = target.loc
-	var/max_cast_range = round((spell_level + 1) ** 2.3)
-	if(get_dist(caster_loc, target_loc) >= cast_range)
-		charging = FALSE
+
+	if(QDELETED(user) || QDELETED(target))
+		return
+
+	if(get_dist(caster_loc, target_loc) > cast_range)
 		return FALSE
-	charging = FALSE
 	return TRUE
 
 /datum/action/cooldown/spell/pointed/headburst/cast(atom/cast_on)
 	. = ..()
 	var/mob/living/carbon/carbon_target = cast_on
-	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
-	head.forced_removal(FALSE, FALSE, TRUE)
-	playsound(carbon_target, 'sound/effects/wounds/crackandbleed.ogg', 100)
-	playsound(carbon_target, 'sound/effects/splat.ogg', 50, TRUE, extrarange = SILENCED_SOUND_EXTRARANGE)
-	animate(carbon_target, transform = carbon_target.transform * 1.5, color = COLOR_RED, time = 1 SECONDS)
 	carbon_target.Stun(3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(headburst), cast_on), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.2 SECONDS)
+	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
 
-	carbon_target.spawn_gibs()
-
-	for(var/turf/bloody_turf in view(4, carbon_target))
-		var/obj/effect/decal/cleanable/blood/blood_spot = new(bloody_turf)
-		blood_spot.add_blood_DNA(carbon_target.dna)
-
+	inflate(cast_on)
 	charging = FALSE
+
+/datum/action/cooldown/spell/pointed/headburst/proc/headburst(atom/cast_on)
+	var/mob/living/carbon/carbon_target = cast_on
+	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
+	var/list/blood_dna = carbon_target.get_blood_dna_list()
+
+	playsound(carbon_target, 'sound/effects/wounds/crackandbleed.ogg', 100)
+	playsound(carbon_target, 'sound/effects/splat.ogg', 50, TRUE)
+	playsound(carbon_target, 'modular_meta/features/antagonists/sound/blood_spray.ogg', 35)
+	carbon_target.spawn_gibs()
+	head.drop_limb(FALSE, TRUE, TRUE)
+	qdel(real_head)
+	for(var/turf/bloody_turf in view(1, carbon_target))
+		var/obj/effect/decal/cleanable/blood/blood_spot = new(bloody_turf)
+		blood_spot.add_blood_DNA(blood_dna)
+
+	var/obj/effect/temp_visual/dir_setting/bloodsplatter/blood_shower = new(
+		get_turf(carbon_target),
+		NORTH,
+		carbon_target.get_bloodtype().get_color()
+		)
+
+	blood_shower.pixel_z = 10
+	blood_shower.layer = ABOVE_MOB_LAYER
+
+/datum/action/cooldown/spell/pointed/headburst/proc/inflate(atom/cast_on)
+	var/mob/living/carbon/carbon_target = cast_on
+	var/obj/item/bodypart/head/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
+	var/list/head_overlays = head.get_limb_icon(FALSE)
+
+	head_overlays += head.get_eye_overlays()
+	head_overlays += head.get_hair_overlays()
+
+	var/mutable_appearance/fake_head = mutable_appearance(
+		layer = ABOVE_ALL_MOB_LAYER,
+		appearance_flags = KEEP_TOGETHER
+		)
+
+	fake_head.overlays += head_overlays
+	var/atom/movable/flick_visual/our_head = cast_on.flick_overlay_view(
+			fake_head,
+			3 SECONDS
+		)
+	our_head.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+	animate(our_head, transform = matrix().Scale(1.5), time = 3 SECONDS, color = COLOR_RED)
+	addtimer(CALLBACK(src, PROC_REF(clean_debris), head, our_head), 3.2 SECONDS)
+
+/datum/action/cooldown/spell/pointed/headburst/proc/clean_debris(real_head, fake_head)
+	qdel(fake_head)
+
+/datum/action/cooldown/spell/pointed/headburst/proc/drop_body(mob/living/carbon/target)
+	REMOVE_TRAIT(target, TRAIT_FORCED_STANDING, REF(src))
