@@ -8,10 +8,18 @@
 	sparks_amt = 3
 	spell_max_level = 3
 	var/charging = FALSE
-	var/beam_time = 10 SECONDS
+	var/base_beam_time = 10 SECONDS
+	var/base_aftercast_jumps = 3
+	var/base_aftercast_range = 2
+
+	var/range_per_level = 1
+	var/beam_time_per_level = 1.5 SECONDS
+
 	//sound =
 	//icon = ''
 	//icon_state = ""
+
+
 
 /datum/action/cooldown/spell/pointed/headburst/is_valid_target(atom/cast_on)
 	. = ..()
@@ -49,11 +57,13 @@
 
 /datum/action/cooldown/spell/pointed/headburst/before_cast(atom/cast_on)
 	. = ..()
+	var/beam_time = base_beam_time - ((spell_level -1) * beam_time_per_level)
 	var/mob/living/carbon/carbon_target = cast_on
-	var/datum/beam/beam = owner.Beam(cast_on, "r_beam", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(play_charging_sound))
+	var/datum/beam/beam = owner.Beam(cast_on, "blood", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
 	var/head_popped = do_after(owner, beam_time, cast_on, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(range_check), owner, cast_on))
+
 
 	if(!head_popped)
 		owner.balloon_alert(owner, "too far away!")
@@ -61,15 +71,16 @@
 		qdel(beam)
 		return SPELL_CANCEL_CAST
 
+	carbon_target.visible_message(
+		span_danger("[owner] is concentrating dark enegry into a beam, preparing to strike! [cast_on]"),
+		span_userdanger("You feel naseous as [owner] points a deadly beam at your head!")
+	)
+
 	if(head_popped)
 		qdel(beam)
 		charging = FALSE
 		return
 
-	carbon_target.visible_message(
-		span_danger("[owner] is concentrating dark enegry into a beam, preparing to strike! [cast_on]"),
-		span_userdanger("You feel naseous as [owner] points a deadly beam at your head!")
-	)
 /datum/action/cooldown/spell/pointed/headburst/proc/play_charging_sound()
 	while(charging)
 		playsound(owner, 'sound/effects/magic/charge.ogg', 15, TRUE, vary = TRUE)
@@ -91,10 +102,11 @@
 	var/mob/living/carbon/carbon_target = cast_on
 	carbon_target.Stun(3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(headburst), cast_on), 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.6 SECONDS) // fall body time randomized pls do
 	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
 	inflate(cast_on)
 	charging = FALSE
+	to_chat(carbon_target, span_userdanger("You feel exhausted as the pain in your head overhwhelms you"))
 
 /datum/action/cooldown/spell/pointed/headburst/proc/headburst(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
@@ -134,12 +146,30 @@
 	blood_shower.setDir(NORTH)
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_ALL_MOB_LAYER
-	blood_shower.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+	blood_shower.vis_flags = VIS_INHERIT_PLANE
 	carbon_target.vis_contents += blood_shower
 	QDEL_IN(blood_shower, 3 SECONDS)
 
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_MOB_LAYER
+
+/datum/action/cooldown/spell/pointed/headburst/after_cast(atom/cast_on)
+	. = ..()
+	var/mob/living/carbon/initial_target = cast_on
+	var/beam_time = base_beam_time - ((spell_level -1) * beam_time_per_level)
+	var/aftercast_range = base_aftercast_range + ((spell_level -1) * range_per_level)
+
+	for(var/mob/living/carbon/current_target in view(aftercast_range, initial_target))
+		if(initial_target == current_target)
+			continue
+
+		if(!is_valid_target(current_target))
+			continue
+
+		var/datum/beam/beam = initial_target.Beam(current_target, "blood", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
+		cast(current_target)
+		QDEL_IN(beam, 1.5 SECONDS)
+		initial_target = current_target
 
 /datum/action/cooldown/spell/pointed/headburst/proc/inflate(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
