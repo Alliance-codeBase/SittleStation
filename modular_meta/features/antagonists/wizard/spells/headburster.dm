@@ -200,16 +200,13 @@
 	our_head.pixel_z = -1
 
 	animate(our_head, transform = matrix().Scale(1.5), time = 3 SECONDS, color = COLOR_RED)
-	addtimer(CALLBACK(src, PROC_REF(clean_debris), our_head), 3.2 SECONDS)
+	QDEL_IN(our_head, 3.2 SECONDS)
 
 	carbon_target.visible_message(
 		span_danger("You can see [carbon_target]'s head inflates"),
 		span_userdanger("You can feel your head inflating suddenly..."),
 		span_danger("You can hear someone's head bursting like a balloon")
 	)
-
-/datum/action/cooldown/spell/pointed/headburst/proc/clean_debris(fake_head)
-	qdel(fake_head)
 
 /datum/action/cooldown/spell/pointed/headburst/proc/drop_body(mob/living/carbon/target)
 	REMOVE_TRAIT(target, TRAIT_FORCED_STANDING, REF(src))
