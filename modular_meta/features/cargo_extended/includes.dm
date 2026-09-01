@@ -1,7 +1,6 @@
 #include "code\bluespaceminers.dm"
 #include "code\cargo_teleporter.dm"
 #include "code\cryptominers.dm"
-#include "code\plasma_cutter.dm"
 
 /datum/modpack/cargo_extended
 	id = "cargo_extended"
