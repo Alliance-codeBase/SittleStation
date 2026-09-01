@@ -28,8 +28,9 @@
 
 /obj/projectile/plasma/adv
 	damage = 7
-	range = 4
-	mine_range = 6
+	range = 8
+	mine_range = 2
+	speed = 1.6
 
 /obj/projectile/plasma/adv/mech
 	damage = 10
