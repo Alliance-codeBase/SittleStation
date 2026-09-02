@@ -1,3 +1,7 @@
+#define FAKE_EFFECTS_LIFETIME 3 SECONDS
+#define BASE_AFTERCAST_JUMP_INTERVAL 1 SECONDS
+#define AFTERCAST_JUMP_INTERVAL 1.2 SECONDS
+
 /datum/action/cooldown/spell/pointed/headburst
 	name = "Headburster"
 	desc = "This spell after a brief wait sends a deadly beam capable of bursting your target's head"
@@ -7,26 +11,23 @@
 	invocation_type = INVOCATION_SHOUT
 	sparks_amt = 3
 	spell_max_level = 3
+	antimagic_flags = MAGIC_RESISTANCE
 	var/charging = FALSE
 	var/base_beam_time = 10 SECONDS
 	var/base_aftercast_jumps = 3
 	var/base_aftercast_range = 2
 
+
 	var/range_per_level = 1
 	var/beam_time_per_level = 1.5 SECONDS
-
-	//sound =
-	//icon = ''
-	//icon_state = ""
-
-
+	button_icon_state = "headburster"
 
 /datum/action/cooldown/spell/pointed/headburst/is_valid_target(atom/cast_on)
 	. = ..()
 
 	if(charging)
 		owner.balloon_alert(owner, "one target at the time!")
-		return
+		return FALSE
 
 	if(!ishuman(cast_on))
 		return FALSE
@@ -35,7 +36,7 @@
 		return FALSE
 
 	var/mob/living/carbon/carbon_target = cast_on
-	var/obj/item/bodypart/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
+	var/obj/item/bodypart/head = carbon_target?.get_bodypart(BODY_ZONE_HEAD)
 	var/are_we_dead_ass = carbon_target.stat == DEAD
 	var/harsey = carbon_target.dna?.check_mutation(/datum/mutation/headless) == /datum/mutation/headless
 
@@ -61,20 +62,20 @@
 	var/mob/living/carbon/carbon_target = cast_on
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(play_charging_sound))
+
+	carbon_target.visible_message(
+		span_danger("[owner] is concentrating dark enegry into a beam, preparing to strike [cast_on]!"),
+		span_userdanger("You feel naseous as [owner] points a deadly beam at your head!")
+	)
+
 	var/datum/beam/beam = owner.Beam(cast_on, "blood", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
 	var/head_popped = do_after(owner, beam_time, cast_on, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE | IGNORE_HELD_ITEM | IGNORE_SLOWDOWNS, extra_checks = CALLBACK(src, PROC_REF(range_check), owner, cast_on))
-
 
 	if(!head_popped)
 		owner.balloon_alert(owner, "too far away!")
 		charging = FALSE
 		qdel(beam)
 		return SPELL_CANCEL_CAST
-
-	carbon_target.visible_message(
-		span_danger("[owner] is concentrating dark enegry into a beam, preparing to strike! [cast_on]"),
-		span_userdanger("You feel naseous as [owner] points a deadly beam at your head!")
-	)
 
 	if(head_popped)
 		qdel(beam)
@@ -100,9 +101,19 @@
 /datum/action/cooldown/spell/pointed/headburst/cast(atom/cast_on)
 	. = ..()
 	var/mob/living/carbon/carbon_target = cast_on
+	var/head_explosion_time = 3 SECONDS
+	var/time_till_body_falls = rand(4.6 SECONDS, 7 SECONDS)
+
+	if(carbon_target.can_block_magic(antimagic_flags))
+		carbon_target.visible_message(
+			span_warning("[carbon_target] absorbs the spell, remaining unharmed!"),
+			span_userdanger("You absorb the spell, remaining unharmed!"),
+		)
+		return FALSE
+
 	carbon_target.Stun(3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(headburst), cast_on), 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), 4.6 SECONDS) // fall body time randomized pls do
+	addtimer(CALLBACK(src, PROC_REF(headburst), cast_on), head_explosion_time)
+	addtimer(CALLBACK(src, PROC_REF(drop_body), cast_on), time_till_body_falls)
 	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
 	inflate(cast_on)
 	charging = FALSE
@@ -148,7 +159,7 @@
 	blood_shower.layer = ABOVE_ALL_MOB_LAYER
 	blood_shower.vis_flags = VIS_INHERIT_PLANE
 	carbon_target.vis_contents += blood_shower
-	QDEL_IN(blood_shower, 3 SECONDS)
+	QDEL_IN(blood_shower, FAKE_EFFECTS_LIFETIME)
 
 	blood_shower.pixel_z = 10
 	blood_shower.layer = ABOVE_MOB_LAYER
@@ -156,8 +167,8 @@
 /datum/action/cooldown/spell/pointed/headburst/after_cast(atom/cast_on)
 	. = ..()
 	var/mob/living/carbon/initial_target = cast_on
-	var/beam_time = base_beam_time - ((spell_level -1) * beam_time_per_level)
 	var/aftercast_range = base_aftercast_range + ((spell_level -1) * range_per_level)
+	var/delay = BASE_AFTERCAST_JUMP_INTERVAL
 
 	for(var/mob/living/carbon/current_target in view(aftercast_range, initial_target))
 		if(initial_target == current_target)
@@ -166,15 +177,20 @@
 		if(!is_valid_target(current_target))
 			continue
 
-		var/datum/beam/beam = initial_target.Beam(current_target, "blood", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
-		cast(current_target)
-		QDEL_IN(beam, 1.5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(chainburst), initial_target, current_target), delay)
+		delay += AFTERCAST_JUMP_INTERVAL
 		initial_target = current_target
 
 /datum/action/cooldown/spell/pointed/headburst/proc/inflate(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
 	var/obj/item/bodypart/head/head = carbon_target.get_bodypart(BODY_ZONE_HEAD)
 	var/list/head_overlays = head.get_limb_icon(FALSE)
+
+	carbon_target.visible_message(
+		span_bolddanger("You can see how [carbon_target]'s head inflates"),
+		span_userdanger("You can feel your head inflating suddenly..."),
+		span_bolddanger("You can hear someone's head bursting like a balloon")
+	)
 
 	head_overlays += head.get_eye_overlays()
 	head_overlays += head.get_hair_overlays()
@@ -194,19 +210,39 @@
 	fake_head.overlays += head_overlays
 	var/atom/movable/flick_visual/our_head = cast_on.flick_overlay_view(
 			fake_head,
-			3 SECONDS
+			duration = FAKE_EFFECTS_LIFETIME
 		)
 	our_head.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE
 	our_head.pixel_z = -1
 
-	animate(our_head, transform = matrix().Scale(1.5), time = 3 SECONDS, color = COLOR_RED)
-	QDEL_IN(our_head, 3.2 SECONDS)
-
-	carbon_target.visible_message(
-		span_danger("You can see [carbon_target]'s head inflates"),
-		span_userdanger("You can feel your head inflating suddenly..."),
-		span_danger("You can hear someone's head bursting like a balloon")
-	)
+	animate(our_head, transform = matrix().Scale(1.5), time = FAKE_EFFECTS_LIFETIME, color = COLOR_RED)
+	QDEL_IN(our_head, FAKE_EFFECTS_LIFETIME)
 
 /datum/action/cooldown/spell/pointed/headburst/proc/drop_body(mob/living/carbon/target)
 	REMOVE_TRAIT(target, TRAIT_FORCED_STANDING, REF(src))
+
+/datum/action/cooldown/spell/pointed/headburst/proc/chainburst(mob/living/carbon/prev_target, mob/living/carbon/current_target)
+	var/aftercast_range = base_aftercast_range + ((spell_level -1) * range_per_level)
+	var/beam_time = base_beam_time - ((spell_level -1) * beam_time_per_level)
+
+	if(QDELETED(prev_target) || QDELETED(current_target))
+		return
+
+	if(get_dist(prev_target, current_target) > aftercast_range)
+		return
+
+	if(!is_valid_target(current_target))
+		return
+
+	playsound(prev_target, 'sound/effects/magic/blink.ogg', 15, TRUE, vary = TRUE)
+
+	prev_target.visible_message(
+		span_bolddanger("Deadly beam suddenly jumps from [prev_target] to [current_target]!")
+		)
+
+	prev_target.Beam(current_target, "blood", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
+	cast(current_target)
+
+#undef FAKE_EFFECTS_LIFETIME
+#undef BASE_AFTERCAST_JUMP_INTERVAL
+#undef AFTERCAST_JUMP_INTERVAL
