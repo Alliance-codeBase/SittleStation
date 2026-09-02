@@ -78,7 +78,9 @@
 #include "sinful_demon\code\demon_datum.dm"
 #include "sinful_demon\code\demon_objectives.dm"
 #include "sinful_demon\rulesets.dm"
+
 #include "wizard\spells\headburster.dm"
+#include "wizard\spellbook\offensive.dm"
 
 /datum/modpack/antagonists
 	id = "antagonists"

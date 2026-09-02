@@ -3,8 +3,8 @@
 #define AFTERCAST_JUMP_INTERVAL 1.2 SECONDS
 
 /datum/action/cooldown/spell/pointed/headburst
-	name = "Headburster"
-	desc = "This spell after a brief wait sends a deadly beam capable of bursting your target's head"
+	name = "Head burster"
+	desc = "Focuses a deadly beam that leaps through nearby targets swelling nd' exploding their heads in a bloody shower on touch!"
 	cooldown_time = 30 SECONDS
 	cast_range = 5
 	invocation = "H'D BR'ST!!"
@@ -12,12 +12,11 @@
 	sparks_amt = 3
 	spell_max_level = 3
 	antimagic_flags = MAGIC_RESISTANCE
+	school = SCHOOL_SANGUINE
 	var/charging = FALSE
 	var/base_beam_time = 10 SECONDS
 	var/base_aftercast_jumps = 3
 	var/base_aftercast_range = 2
-
-
 	var/range_per_level = 1
 	var/beam_time_per_level = 1.5 SECONDS
 	button_icon_state = "headburster"
