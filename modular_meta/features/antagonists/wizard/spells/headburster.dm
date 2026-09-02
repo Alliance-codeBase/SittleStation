@@ -233,7 +233,7 @@
 	if(!is_valid_target(current_target))
 		return
 
-	playsound(prev_target, 'sound/effects/magic/blink.ogg', 15, TRUE, vary = TRUE)
+	playsound(prev_target, 'sound/effects/magic/blind.ogg', 15, TRUE, vary = TRUE)
 
 	prev_target.visible_message(
 		span_bolddanger("Deadly beam suddenly jumps from [prev_target] to [current_target]!")
