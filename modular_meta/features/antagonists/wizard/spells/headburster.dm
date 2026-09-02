@@ -15,10 +15,9 @@
 	school = SCHOOL_SANGUINE
 	var/charging = FALSE
 	var/base_beam_time = 10 SECONDS
-	var/base_aftercast_jumps = 3
 	var/base_aftercast_range = 2
 	var/range_per_level = 1
-	var/beam_time_per_level = 1.5 SECONDS
+	var/beam_time_per_level = 1.7 SECONDS
 	button_icon_state = "headburster"
 
 /datum/action/cooldown/spell/pointed/headburst/is_valid_target(atom/cast_on)
@@ -62,9 +61,20 @@
 	charging = TRUE
 	INVOKE_ASYNC(src, PROC_REF(play_charging_sound))
 
+	var/mutable_appearance/mutable_appearance = mutable_appearance(
+		icon = 'icons/mob/effects/genetics.dmi',
+		icon_state = "telekinesishead",
+		layer = -MUTATIONS_LAYER,
+	)
+	// adds a glowy effect on target's head
+	var/atom/movable/flick_visual/glowy_head = carbon_target.flick_overlay_view(mutable_appearance, FAKE_EFFECTS_LIFETIME)
+
+	glowy_head.color = "#c75751"
+	glowy_head.alpha = 255
+
 	carbon_target.visible_message(
-		span_danger("[owner] is concentrating dark enegry into a beam, preparing to strike [cast_on]!"),
-		span_userdanger("You feel naseous as [owner] points a deadly beam at your head!")
+		span_danger("[owner] is concentrating dark energy into a beam, preparing to strike [cast_on]!"),
+		span_userdanger("You feel nauseous as [owner] points a deadly beam at your head!")
 	)
 
 	var/datum/beam/beam = owner.Beam(cast_on, "blood", 'icons/effects/beam.dmi', beam_time, layer = ABOVE_ALL_MOB_LAYER)
@@ -108,6 +118,7 @@
 			span_warning("[carbon_target] absorbs the spell, remaining unharmed!"),
 			span_userdanger("You absorb the spell, remaining unharmed!"),
 		)
+		charging = FALSE
 		return FALSE
 
 	carbon_target.Stun(3 SECONDS)
@@ -116,7 +127,7 @@
 	ADD_TRAIT(carbon_target, TRAIT_FORCED_STANDING, REF(src))
 	inflate(cast_on)
 	charging = FALSE
-	to_chat(carbon_target, span_userdanger("You feel exhausted as the pain in your head overhwhelms you"))
+	to_chat(carbon_target, span_userdanger("You feel exhausted as the pain in your head overwhelms you"))
 
 /datum/action/cooldown/spell/pointed/headburst/proc/headburst(atom/cast_on)
 	var/mob/living/carbon/carbon_target = cast_on
@@ -186,8 +197,8 @@
 	var/list/head_overlays = head.get_limb_icon(FALSE)
 
 	carbon_target.visible_message(
-		span_bolddanger("You can see how [carbon_target]'s head inflates"),
-		span_userdanger("You can feel your head inflating suddenly..."),
+		span_bolddanger("You watch as [carbon_target]'s head begin to inflate"),
+		pick(span_userdanger("You feel your head suddenly begin to swell."), span_userdanger("You feel a crushing pressure building inside your skull")),
 		span_bolddanger("You can hear someone's head bursting like a balloon")
 	)
 
@@ -207,7 +218,9 @@
 		)
 
 	fake_head.overlays += head_overlays
-	var/atom/movable/flick_visual/our_head = cast_on.flick_overlay_view(
+
+	// attaches our fake head to a layer
+	var/atom/movable/flick_visual/our_head = carbon_target.flick_overlay_view(
 			fake_head,
 			duration = FAKE_EFFECTS_LIFETIME
 		)
@@ -215,7 +228,7 @@
 	our_head.pixel_z = -1
 
 	animate(our_head, transform = matrix().Scale(1.5), time = FAKE_EFFECTS_LIFETIME, color = COLOR_RED)
-	QDEL_IN(our_head, FAKE_EFFECTS_LIFETIME)
+
 
 /datum/action/cooldown/spell/pointed/headburst/proc/drop_body(mob/living/carbon/target)
 	REMOVE_TRAIT(target, TRAIT_FORCED_STANDING, REF(src))
