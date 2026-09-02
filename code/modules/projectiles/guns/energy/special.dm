@@ -196,6 +196,7 @@
 	icon_state = "adv_plasmacutter"
 	inhand_icon_state = "adv_plasmacutter"
 	force = 15
+	wound_bonus = 15
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
 	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/plasma = SHEET_MATERIAL_AMOUNT, /datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT)
 
