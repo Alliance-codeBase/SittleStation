@@ -10,6 +10,7 @@
 	check_flags = AB_CHECK_CONSCIOUS|AB_CHECK_HANDS_BLOCKED //blockin hands cuz deez shitty pants demon bouta run from bloody cuffs
 
 	invocation = "COWER, MORTALS!!"
+	invocation_type = INVOCATION_SHOUT
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC
 
 	possible_shapes = list(/mob/living/basic/lesserdemon)
-	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC

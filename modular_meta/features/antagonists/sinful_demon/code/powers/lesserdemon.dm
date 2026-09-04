@@ -13,32 +13,36 @@
 	icon_state = "lesserdaemon"
 	icon_living = "lesserdaemon"
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	speed = 1
+	speed = 0.75
 	attack_sound = 'sound/effects/magic/demon_attack1.ogg'
 	death_sound = 'sound/effects/magic/demon_dies.ogg'
 	death_message = "wails in anger and fear as it collapses in defeat!"
 	minimum_survivable_temperature = 250 //Weak to cold
 	maximum_survivable_temperature = INFINITY
-	faction = list("hell")
+	faction = list(FACTION_HELL)
 	attack_verb_continuous = "wildly tears into"
 	attack_verb_simple = "wildly tears into"
-	maxHealth = 150
-	health = 150
-	obj_damage = 40
+	maxHealth = 300
+	health = 300
+	obj_damage = 45
 	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_upper = 18
 	wound_bonus = -15
 	lighting_cutoff_red = 22
 	lighting_cutoff_green = 5
 	lighting_cutoff_blue = 5
-	butcher_results = list(/obj/effect/decal/cleanable/blood)
+	guaranteed_butcher_results = list(/obj/effect/decal/cleanable/blood)
 	basic_mob_flags = DEL_ON_DEATH
 
-/mob/living/basic/lesserdemon/attackby(obj/item/W, mob/living/caster, params)
+/mob/living/basic/lesserdemon/Initialize(mapload)
 	. = ..()
-	if(istype(W, /obj/item/nullrod))
+	AddElement(/datum/element/lifesteal, 2)
+
+/mob/living/basic/lesserdemon/attackby(obj/item/holy_item, mob/living/caster, params)
+	. = ..()
+	if(istype(holy_item, /obj/item/nullrod))
 		visible_message(span_warning("[src] screams in unholy pain from the blow!"), \
-						span_cult("As \the [W] hits you, you feel holy power blast through your form, tearing it apart!"))
+						span_cult("As \the [holy_item] hits you, you feel holy power blast through your form, tearing it apart!"))
 		adjust_brute_loss(22) //22 extra damage from the nullrod while in your true form. On average this means 40 damage is taken now.
 
 /mob/living/basic/lesserdemon/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)//10 hp healed from landing a hit.

@@ -8,11 +8,11 @@
 	desc = "A large, menacing creature covered in armored red scales, and red one sleeping cap."
 	icon_state = "lesserdaemon_sloth"
 	icon_living = "lesserdaemon_sloth"
-	speed = 1.5
-	maxHealth = 200
-	health = 200
+	speed = 1.25
+	maxHealth = 400
+	health = 400
 	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_upper = 22
 	melee_damage_type = OXY
 
 /datum/action/cooldown/spell/touch/sleepy

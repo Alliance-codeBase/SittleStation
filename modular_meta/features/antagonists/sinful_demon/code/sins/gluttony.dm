@@ -57,6 +57,11 @@
 	if(timeleft)
 		QDEL_IN(src, timeleft)
 
+/obj/effect/gluttony/timed/CanAllowThrough(atom/movable/mover, border_dir)
+	. = ..()
+	if(istype(mover, /mob/living/basic/lesserdemon/gluttony))
+		return TRUE
+
 /datum/movespeed_modifier/fatty //fat prevent user to walking fast or even fly and swim
 	multiplicative_slowdown = 4
 	movetypes = ALL
