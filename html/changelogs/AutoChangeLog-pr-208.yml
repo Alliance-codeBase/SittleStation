@@ -1,0 +1,5 @@
+author: "Bruh-24"
+delete-after: True
+changes:
+  - bugfix: "Большинство целей предателя использующих do_after()"
+  - bugfix: "Код вампиров использовавший do_after() починен"

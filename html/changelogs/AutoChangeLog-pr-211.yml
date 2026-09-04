@@ -1,0 +1,6 @@
+author: "Bruh-24"
+delete-after: True
+changes:
+  - rscadd: "Добавлена способность магу: Headburster - отправляет страшный луч, увеличивающий голову цели, а затем лопая её прямо как праздничный шарик. Прыгает между ближайшими целями, взрывая и их головы. Bloodsplatters included"
+  - sound: "blood_spray.ogg"
+  - admin: "Inflate Head smite"

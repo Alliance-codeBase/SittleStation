@@ -3,7 +3,7 @@
 	desc = "Is it party time already?"
 /obj/item/choice_beacon/jukebox/examine()
 	. = ..()
-	.+= span_warning("Chosen item will be bolted with floor upon an arrival. Please, be careful \
+	.+= span_warning("Chosen item will be bolted with floor upon arrival. Please, be careful \
 with your pleased location")
 
 /obj/item/choice_beacon/jukebox/generate_display_names()

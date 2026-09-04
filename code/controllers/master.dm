@@ -452,8 +452,8 @@ ADMIN_VERB(cmd_controller_view_ui, R_SERVER|R_DEBUG, "Controller Overview", "Vie
 
 	// MASSMETA EDIT
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
-	SStitle.total_init_time = time
-	log_world("Initializations complete within [time] second\s!")
+	SStitle.total_init_time = max(0, round(time, 0.1))
+	log_world("Initializations complete within [SStitle.total_init_time] second\s!")
 	// MASSMETA EDIT END
 	/* ORIGINAL
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10

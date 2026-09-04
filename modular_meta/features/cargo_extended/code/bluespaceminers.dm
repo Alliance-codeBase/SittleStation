@@ -15,20 +15,18 @@
 
 // Ветка в РнД
 /datum/techweb_node/automining
-	id = TECHWEB_NODE_AUTOMINERS
 	display_name = "Automatic Miners"
 	description = "Automatic miners that extract money and ore in exchange require a colossal amount of energy."
-	prereq_ids = list(TECHWEB_NODE_BLUESPACE_TRAVEL, TECHWEB_NODE_PROGRAMMED_SERVER, TECHWEB_NODE_TELECOMS)
-	design_ids = list("bluemine", "cryptominer")
+	prerequisite_nodes = list(/datum/techweb_node/bluespace_travel, /datum/techweb_node/programmed_server, /datum/techweb_node/telecomms)
+	unlocked_designs = list(/datum/design/bluemine, /datum/design/board/cryptominer)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 
 /datum/techweb_node/syndie_mining
-	id = TECHWEB_NODE_SYNDIE_MINERS
 	display_name = "Unstable Cryptominer"
 	description = "Miner banned by Nanotrasen due to greater instability than the first version."
-	prereq_ids = list(TECHWEB_NODE_AUTOMINERS, TECHWEB_NODE_SYNDICATE_BASIC)
-	design_ids = list("cryptominersyndie")
+	prerequisite_nodes = list(/datum/techweb_node/automining, /datum/techweb_node/syndicate_basic)
+	unlocked_designs = list(/datum/design/board/cryptominer/syndie)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SUPPLY)
 
@@ -36,7 +34,6 @@
 /datum/design/bluemine
 	name = "Bluespace miner"
 	desc = "A machine that uses Bluespace tech to slowly create materials and add them to a linked ore silo."
-	id = "bluemine"
 	materials = list(/datum/material/glass = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/silver = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/bluespace = HALF_SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/circuitboard/machine/bluespace_miner
 	category = list(

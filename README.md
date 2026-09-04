@@ -1,8 +1,8 @@
 ## PostMeta (/tg/station Downstream)
 
-[![Build Status](https://github.com/Lambda-13/massmeta/workflows/CI%20Suite/badge.svg)](https://github.com/Huz2e/massmeta/actions?query=workflow%3A%22CI+Suite%22)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/Lambda-13/massmeta.svg)](http://isitmaintained.com/project/Lambda-13/massmeta "Percentage of issues still open")
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Lambda-13/massmeta.svg)](http://isitmaintained.com/project/Lambda-13/massmeta "Average time to resolve an issue")
+[![Build Status](https://github.com/Alliance-codeBase/PostMeta/workflows/CI%20Suite/badge.svg)](https://github.com/Alliance-codeBase/PostMeta/actions?query=workflow%3A%22CI+Suite%22)
+[![Percentage of issues still open](https://isitmaintained.com/badge/open/Alliance-codeBase/PostMeta.svg)](https://isitmaintained.com/project/Alliance-codeBase/PostMeta)
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/Alliance-codeBase/PostMeta.svg)](https://isitmaintained.com/project/Alliance-codeBase/PostMeta)
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png)
 [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png)
@@ -10,17 +10,17 @@
 [![massmetagit](.github/images/badges/massmeta-github.png)](https://youtu.be/rAaBNT-7oS4?si=YiR8JtsMs7e1VApV)
 ![B.A.D.G.E.](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)
 ![badGe](https://forthebadge.com/images/badges/powered-by-coffee.svg)
-![BADge](https://forthebadge.com/images/badges/approved-by-my-mom.svg)
-![badGE](https://forthebadge.com/images/badges/it-works-dont-ask-me.svg)
+![BADge](https://forthebadge.com/badges/powered-by-black-magic.svg)
+![badGE](https://forthebadge.com/badges/works-on-my-machine.svg)
 ![Blyatbadge](https://forthebadge.com/images/badges/0-percent-optimized.svg)
 ![Goodge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)
-![endingbadge](https://forthebadge.com/images/badges/works-on-my-machine-1.svg)
+![endingbadge](https://forthebadge.com/badges/built-with-swag.svg)
 
 | Website                 | Link                                                                                             |
 | ----------------------- | ------------------------------------------------------------------------------------------------ |
 | MassMeta Code           | [https://github.com/Alliance-codeBase/PostMeta/](https://github.com/Alliance-codeBase/PostMeta/) |
 | Guide to Modularization | [./modular_meta/modularization_guide_ru.md](./massmeta/modularization_guide.md)                  |
-| Our Discord             | [https://discord.gg/qxWZWft7BC](https://discord.gg/qxWZWft7BC)                                   |
+| Our Discord             | [https://discord.gg/2VwaWtZcRh](https://discord.gg/2VwaWtZcRh)                                   |
 | /TG/ Website            | [https://www.tgstation13.org](https://www.tgstation13.org)                                       |
 | /TG/ Codedocs           | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/)                           |
 | /TG/ Coderbus Discord   | [https://discord.gg/Vh8TJp9](https://discord.gg/Vh8TJp9)                                         |

@@ -206,7 +206,6 @@
 /datum/design/case_portable_recharger
 	name = "Portable Recharger Case"
 	desc = "A metal suitcase that has a special port for charging energy weapons. Due to its compact design, it does not have access to internal components."
-	id = "case_portable_recharger"
 	build_type = PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = HALF_SHEET_MATERIAL_AMOUNT * 10, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT * 5)
 	build_path = /obj/item/case_portable_recharger
