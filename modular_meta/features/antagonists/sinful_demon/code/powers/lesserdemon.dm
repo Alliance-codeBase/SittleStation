@@ -50,7 +50,7 @@
 		return ..()
 	var/mob/living/living_target = attack_target
 	if(living_target.stat != DEAD && !living_target.can_block_magic(MAGIC_RESISTANCE_HOLY|MAGIC_RESISTANCE_MIND)) //demons do not gain succor from the dead or holy
-		adjust_health(-maxHealth * 0.05)
+		adjust_brute_loss(-maxHealth * 0.05)
 	return ..()
 
 /mob/living/basic/lesserdemon/Life(seconds_per_tick = SSMOBS_DT, times_fired)
@@ -60,4 +60,8 @@
 	if(istype(get_area(src.loc), /area/station/service/chapel)) //being a non-carbon will not save you!
 		if(src.stat != DEAD) //being dead, however, will save you
 			src.visible_message(span_warning("[src] begins to melt apart!"), span_danger("Your very soul melts from the holy room!"), "You hear sizzling.")
-			adjust_health(20) //20 damage every ~2 seconds. About 20 seconds for a full HP demon to melt apart in the chapel.
+			adjust_brute_loss(20) //20 damage every ~2 seconds. About 20 seconds for a full HP demon to melt apart in the chapel.
+
+/mob/living/basic/lesserdemon/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/lifesteal, 2)
