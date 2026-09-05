@@ -11,7 +11,6 @@
 #include "code\shoes.dm"
 #include "code\suit_costumes.dm"
 #include "code\under_costumes.dm"
-#include "code\judo_belt.dm"
 
 /datum/modpack/reskins
 	id = "RESKINS"

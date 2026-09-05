@@ -8,11 +8,11 @@
 	name = "corporate judo belt"
 	desc = "disciplined path of shitcurity"
 	icon_state = "security"
-	inhand_icon_state = "security"//Could likely use a better one.
+	inhand_icon_state = "security" //Could likely use a better one.
 	worn_icon_state = "security"
 	content_overlays = FALSE
 	storage_type = /datum/storage/security_belt/judo
 
-/obj/item/storage/belt/security/judo
+/obj/item/storage/belt/security/judo/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/martial_art_giver, /datum/martial_art/judo)

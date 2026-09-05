@@ -1,7 +1,7 @@
 /datum/martial_art/judo
 	name = "corporate judo"
 	id = "corporate judo"
-	help_verb = /mob/living/proc/judo_verb()
+	help_verb = "Remember the basics of judo"
 	smashes_tables = FALSE
 	display_combos = TRUE
 	max_streak_length = 12
@@ -31,17 +31,20 @@
 	if(slot != ITEM_SLOT_HANDS)
 		return
 
-	to_chat(holder, span_warning("Your hands are rejecting the [equipped_item.declent_ru(NOMINATIVE)] against your will!"))
+	to_chat(holder, span_warning("Your hands are rejecting the [equipped_item] against your will!"))
 	holder.dropItemToGround(equipped_item)
 
 // Регистрация интентов в комбо-статус
 /datum/martial_art/judo/harm_act(mob/living/attacker, mob/living/defender)
-    if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
-        return MARTIAL_ATTACK_FAIL
+	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
+		return MARTIAL_ATTACK_FAIL
 
-        add_to_streak("H", defender)
-        return check_streak(attacker, defender) ? MARTIAL_ATTACK_SUCCESS : MARTIAL_ATTACK_INVALID
-	to_chat()
+
+	add_to_streak("H", defender)
+	to_chat(attacker, "calling harm_act")
+	return /* check_streak(attacker, defender) ? */ MARTIAL_ATTACK_SUCCESS /*: MARTIAL_ATTACK_INVALID */
+
+
 
 /datum/martial_art/cqc/disarm_act(mob/living/attacker, mob/living/defender)
 	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
@@ -58,3 +61,22 @@
 		return MARTIAL_ATTACK_FAIL
 
 	add_to_streak("G", defender)
+
+
+/datum/martial_art/judo/proc/check_streak(mob/living/attacker, mob/living/defender)
+	if(findtext(streak, "some_combo1"))
+		reset_streak()
+		return //Slam(attacker, defender)
+	if(findtext(streak, "some_combo2"))
+		reset_streak()
+		return //Kick(attacker, defender)
+	if(findtext(streak, "some_combo3"))
+		reset_streak()
+		return //Restrain(attacker, defender)
+	if(findtext(streak, "some_combo4"))
+		reset_streak()
+		return //Pressure(attacker, defender)
+	if(findtext(streak, "some_combo5"))
+		reset_streak()
+		return //Consecutive(attacker, defender)
+	return FALSE
