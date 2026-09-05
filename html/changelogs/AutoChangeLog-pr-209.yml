@@ -1,0 +1,4 @@
+author: "Bruh-24"
+delete-after: True
+changes:
+  - bugfix: "Improvised shells можно заряжать в pipegun"
