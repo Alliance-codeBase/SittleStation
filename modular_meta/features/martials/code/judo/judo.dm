@@ -22,6 +22,7 @@
 	to_chat(remove_from, span_userdanger("You are forgetting the mastery of corporate judo..."))
 	return ..()
 
+// конфликт батона и дзюдо
 /datum/martial_art/judo/proc/check_baton(datum/source, obj/item/equipped_item, slot)
 	SIGNAL_HANDLER
 	if(!istype(equipped_item, /obj/item/melee/baton))
@@ -33,10 +34,27 @@
 	to_chat(holder, span_warning("Your hands are rejecting the [equipped_item.declent_ru(NOMINATIVE)] against your will!"))
 	holder.dropItemToGround(equipped_item)
 
-// Регистрация харм интента в комбо-статус
+// Регистрация интентов в комбо-статус
 /datum/martial_art/judo/harm_act(mob/living/attacker, mob/living/defender)
-        if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
-                return MARTIAL_ATTACK_FAIL
+    if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
+        return MARTIAL_ATTACK_FAIL
 
         add_to_streak("H", defender)
         return check_streak(attacker, defender) ? MARTIAL_ATTACK_SUCCESS : MARTIAL_ATTACK_INVALID
+	to_chat()
+
+/datum/martial_art/cqc/disarm_act(mob/living/attacker, mob/living/defender)
+	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
+		return MARTIAL_ATTACK_FAIL
+
+	add_to_streak("D", defender)
+	if(check_streak(attacker, defender))
+		return MARTIAL_ATTACK_SUCCESS
+
+/datum/martial_art/cqc/grab_act(mob/living/attacker, mob/living/defender)
+	if(attacker == defender)
+		return MARTIAL_ATTACK_INVALID
+	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
+		return MARTIAL_ATTACK_FAIL
+
+	add_to_streak("G", defender)

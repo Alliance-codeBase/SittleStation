@@ -4,6 +4,7 @@
 #include "code\supply\security_pack.dm"
 #include "code\weapon\guns.dm"
 #include "code\weapon\melee.dm"
+#include "code\clothing\belt_sec.dm"
 
 /datum/modpack/security_extended
 	id = "security_extended"
