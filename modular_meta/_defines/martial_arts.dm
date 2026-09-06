@@ -1,1 +1,1 @@
-#define JUDO_COMBO "GD"
+#define THROW_COMBO "HH"

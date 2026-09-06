@@ -34,49 +34,104 @@
 	to_chat(holder, span_warning("Your hands are rejecting the [equipped_item] against your will!"))
 	holder.dropItemToGround(equipped_item)
 
-// Регистрация интентов в комбо-статус
+// интенты
 /datum/martial_art/judo/harm_act(mob/living/attacker, mob/living/defender)
 	if(defender.check_block(attacker, 10, attacker.name, UNARMED_ATTACK))
 		return MARTIAL_ATTACK_FAIL
 
-
 	add_to_streak("H", defender)
-	to_chat(attacker, "calling harm_act")
-	return /* check_streak(attacker, defender) ? */ MARTIAL_ATTACK_SUCCESS /*: MARTIAL_ATTACK_INVALID */
+	to_chat(attacker, "har(a)m halal") //тест
+	if(check_streak(attacker, defender))
+		return MARTIAL_ATTACK_SUCCESS
+
+	attacker.do_attack_animation(defender)
+	var/picked_hit_type = pick("robust", "strike", "punch")
+	var/bonus_damage = 9
+	defender.apply_damage(bonus_damage, BRUTE)
+	playsound(get_turf(defender), 'sound/effects/hit_punch.ogg', 50, TRUE)
+
+	/*defender.visible_message(
+		span_danger("[attacker] [picked_hit_type]ed [defender]!"),
+		span_userdanger("You're [picked_hit_type]ed by [attacker]!"),
+		span_hear("You hear a sickening sound of flesh hitting flesh!"),
+		COMBAT_MESSAGE_RANGE,
+		attacker,
+	)*/
 
 
 
-/datum/martial_art/cqc/disarm_act(mob/living/attacker, mob/living/defender)
+/datum/martial_art/judo/disarm_act(mob/living/attacker, mob/living/defender)
 	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
 		return MARTIAL_ATTACK_FAIL
 
 	add_to_streak("D", defender)
+	to_chat(attacker, "DiZZarm") //тест
 	if(check_streak(attacker, defender))
 		return MARTIAL_ATTACK_SUCCESS
 
-/datum/martial_art/cqc/grab_act(mob/living/attacker, mob/living/defender)
+	if(attacker == defender)
+		return MARTIAL_ATTACK_FAIL
+
+	return MARTIAL_ATTACK_INVALID
+
+
+/datum/martial_art/judo/grab_act(mob/living/attacker, mob/living/defender)
 	if(attacker == defender)
 		return MARTIAL_ATTACK_INVALID
+
 	if(defender.check_block(attacker, 0, attacker.name, UNARMED_ATTACK))
 		return MARTIAL_ATTACK_FAIL
 
-	add_to_streak("G", defender)
+	if(attacker.body_position == LYING_DOWN)
+		return MARTIAL_ATTACK_INVALID
 
+	add_to_streak("G", defender)
+	to_chat(attacker, "Grab robit") //тест
+
+	if(check_streak(attacker, defender))
+		return MARTIAL_ATTACK_SUCCESS
+
+
+
+/datum/martial_art/judo/reset_streak(mob/living/new_target)
+	if(!IS_WEAKREF_OF(new_target, restraining_mob))
+		restraining_mob = null
+	return ..()
 
 /datum/martial_art/judo/proc/check_streak(mob/living/attacker, mob/living/defender)
-	if(findtext(streak, "some_combo1"))
+	if(findtext(streak, "THROW_COMBO"))
 		reset_streak()
-		return //Slam(attacker, defender)
-	if(findtext(streak, "some_combo2"))
+		return Throw(attacker, defender)
+	/*if(findtext(streak, "some_combo2"))
 		reset_streak()
-		return //Kick(attacker, defender)
+		return Kick(attacker, defender)
 	if(findtext(streak, "some_combo3"))
 		reset_streak()
-		return //Restrain(attacker, defender)
+		return Restrain(attacker, defender)
 	if(findtext(streak, "some_combo4"))
 		reset_streak()
 		return //Pressure(attacker, defender)
 	if(findtext(streak, "some_combo5"))
 		reset_streak()
-		return //Consecutive(attacker, defender)
+		return Consecutive(attacker, defender) */
 	return FALSE
+
+
+
+/datum/martial_art/judo/proc/Throw(mob/living/attacker, mob/living/defender)
+	if(defender.body_position != STANDING_UP)
+		return FALSE
+
+	attacker.do_attack_animation(defender)
+	defender.visible_message(
+		span_danger("[attacker] slams [defender] into the ground!"),
+		span_userdanger("You're slammed into the ground by [attacker]!"),
+		span_hear("You hear a sound of flesh hitting ground!"),
+		null,
+		attacker,
+	)
+	to_chat(attacker, span_danger("You slam [defender] into the ground!"))
+	playsound(attacker, 'sound/items/weapons/slam.ogg', 50, TRUE, -1)
+	defender.Paralyze(7 SECONDS)
+	log_combat(attacker, defender, "slammed (Judo)")
+	return TRUE
