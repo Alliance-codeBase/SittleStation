@@ -54,6 +54,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	signals_registered = TRUE
 	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(on_spawn))
+	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_LATEJOIN_SPAWN, PROC_REF(on_latejoin))
 	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(on_round_start)))
 	SSticker.OnRoundend(CALLBACK(src, PROC_REF(on_round_end)))
 
@@ -70,7 +71,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 /datum/metacoin_shop_controller/proc/is_open()
 	if(!SSticker)
 		return FALSE
-	return SSticker.current_state == GAME_STATE_PREGAME
+	return SSticker.current_state == GAME_STATE_PREGAME // todo make this configurable
 
 /datum/metacoin_shop_controller/proc/get_token_listing()
 	return preround_catalog["antag_token"]
@@ -101,7 +102,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		JOB_SECURITY_OFFICER_SUPPLY,
 		JOB_PRISONER,
 		JOB_CARGO_GORILLA,
-	) //i've spawned as a heretic captain, that's why it exists
+	) //i've spawned as a heretic captain, that's why it exists. // todo: make this configurable
 
 	return antag_token_restricted_jobs
 
@@ -212,7 +213,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		var/ruleset_tag = role.ruleset_tag
 		var/list/ruleset_config = SSdynamic.get_config()?[ruleset_tag]
 
-		if(!isnull(ruleset_config?["weight"]) && !has_weight(ruleset_config["weight"]))
+		if(isnull(ruleset_config?["weight"]) || !has_weight(ruleset_config["weight"]))
 			return list("code" = "disabled_by_config")
 
 		if(!isnull(ruleset_config?["min_pop"]))
@@ -274,6 +275,29 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		))
 
 	return roles_ui_data
+
+// so the thing is, I wanted it to be a one general proc to refund both preround items and refunds
+// sadly, I'm too lazy to rethink everything from scratch
+/datum/metacoin_shop_controller/proc/refund_items(target_ckey, failure_text, mob/notify_mob)
+	var/list/items_to_refund = preround_pending_by_ckey[target_ckey]
+
+	if(!length(items_to_refund))
+		return FALSE
+
+	var/sum_to_refund = 0
+
+	for(var/item in items_to_refund)
+		var/datum/metacoinshop/listing/listing = preround_catalog[item]
+		sum_to_refund += listing.price
+
+	preround_pending_by_ckey -= target_ckey
+
+	if(sum_to_refund > 0)
+		var/message = failure_text
+		add_metacoins(target_ckey, sum_to_refund)
+		to_chat(notify_mob, span_warning(message))
+		notify_mob.playsound_local(notify_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
+		return TRUE
 
 /datum/metacoin_shop_controller/proc/refund_token(target_ckey, failure_text, mob/notify_mob)
 	if(!target_ckey)
@@ -363,6 +387,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 			"fallbackIcon" = default_listing_fallback_icon,
 			"owned" = is_owned,
 			"canAfford" = !isnull(balance) && (balance >= listing.price),
+			"variantOptions" = serialize_variant_options(listing.variant_options),
 		)
 
 		if(is_antag_token)
@@ -373,6 +398,19 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		catalog_data += list(listing_payload)
 
 	return catalog_data
+
+/// Returns ID's of owned persistent items as list
+/// params:
+/// - target_ckey - ckey of your player, for which you want to get owned items for.
+/datum/metacoin_shop_controller/proc/get_owned_rewards(target_ckey)
+	var/list/owned_listings = list()
+	if(!target_ckey)
+		return list()
+
+	for(var/reward in persistent_catalog)
+		if(owns_persistent(target_ckey, reward))
+			owned_listings += reward
+	return owned_listings
 
 /datum/metacoin_shop_controller/proc/owned_persistent(target_ckey)
 	target_ckey = ckey(target_ckey)
@@ -429,8 +467,57 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(select_query)
 	return is_owned
 
+/// Returns reward id's of currently enabled persistent rewards
+/// - target_ckey - ckey of your player,
+/datum/metacoin_shop_controller/proc/get_enabled_rewards(target_ckey)
+	target_ckey = ckey(target_ckey)
+	var/list/which_enabled = list()
+	var/datum/metacoinshop/listing/reward
+
+	if(!target_ckey)
+		return list()
+	if(!SSdbcore.Connect())
+		return list()
+
+	for(reward as anything in persistent_catalog)
+		if(check_reward_preference(target_ckey, reward.id))
+			which_enabled += reward.id
+	return which_enabled
+
+// Using database as it's way easier to implement than with preferences
+/// Returns TRUE/FALSE of a one individual reward. Note: If you want to get a list of enabled rewards you might want to use
+/// params:
+/// - target_ckey - ckey of your player, for which you want to check preference for
+/// - listing_id - id of your datum/metacoinshop/listing
+/datum/metacoin_shop_controller/proc/check_reward_preference(target_ckey, listing_id)
+	target_ckey = ckey(target_ckey)
+
+	if(!target_ckey || !listing_id)
+		return FALSE
+	if(!SSdbcore.Connect())
+		return null
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"SELECT enabled FROM [table_purchases] WHERE ckey = :ckey AND listing = :listing LIMIT 1",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+		),
+	)
+	if(!query.warn_execute(async = FALSE))
+		qdel(query)
+		return null
+
+	var/is_enabled = FALSE
+
+	if(query.NextRow(async = FALSE))
+		is_enabled = query.item[1] > 0
+	qdel(query)
+	return is_enabled
+
 /// You may use this to manually set any listing_id to TRUE or FALSE. upsert queries add new lines in a table, so there "shall" be no issues with it
-/datum/metacoin_shop_controller/proc/set_persistent(target_ckey, listing_id, owned = TRUE)
+/datum/metacoin_shop_controller/proc/set_persistent_owned(target_ckey, listing_id, owned = TRUE)
 	target_ckey = ckey(target_ckey)
 	if(!target_ckey || !listing_id)
 		return FALSE
@@ -455,6 +542,121 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(upsert_query)
 	return TRUE
 
+/datum/metacoin_shop_controller/proc/set_persistent_enabled(target_ckey, listing_id, enabled = TRUE)
+	target_ckey = ckey(target_ckey)
+	if(!target_ckey || !listing_id)
+		return FALSE
+
+	if(!SSdbcore.Connect())
+		return FALSE
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/upsert_query = SSdbcore.NewQuery(
+		"INSERT INTO [table_purchases] (ckey, listing, enabled) VALUES (:ckey, :listing, :enabled) ON DUPLICATE KEY UPDATE enabled = VALUES(enabled)",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+			"enabled" = enabled ? TRUE : FALSE,
+		),
+	)
+
+	if(!upsert_query.warn_execute(async = FALSE))
+		qdel(upsert_query)
+		return FALSE
+
+	qdel(upsert_query)
+	return TRUE
+
+/// Returns the stored variant JSON string of a persistent reward for a player. Null if not owned/not set.
+/datum/metacoin_shop_controller/proc/get_persistent_variant(target_ckey, listing_id)
+	target_ckey = ckey(target_ckey)
+	if(!target_ckey || !listing_id)
+		return null
+
+	if(!SSdbcore.Connect())
+		return null
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/query = SSdbcore.NewQuery(
+		"SELECT variant FROM [table_purchases] WHERE ckey = :ckey AND listing = :listing LIMIT 1",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+		),
+	)
+	if(!query.warn_execute(async = FALSE))
+		qdel(query)
+		return null
+
+	var/variant
+	if(query.NextRow(async = FALSE))
+		variant = query.item[1]
+
+	qdel(query)
+	return variant
+
+/// Returns the item type to spawn for this player
+/// Override for custom logic
+/datum/metacoinshop/listing/proc/get_chosen_typepath(target_ckey)
+	if(!length(variant_options))
+		return item_type
+
+	var/option_name = variant_options[1]
+	var/saved_variant = get_metacoin_controller().get_pending_variant(target_ckey, src.id)
+	var/selected_id = parse_choice(saved_variant, option_name)
+
+	var/datum/metacoinshop/listing_variant/variant_type = get_variant_datum(option_name, selected_id)
+	if(!variant_type)
+		return item_type
+
+	var/item_path = initial(variant_type.item_type)
+	if(!item_path)
+		return item_type
+
+	return item_path
+
+/datum/metacoin_shop_controller/proc/serialize_variant_options(variant_options)
+	if(!islist(variant_options))
+		return null
+
+	var/list/serialized = list()
+	for(var/option_name in variant_options)
+		var/list/values = list()
+		for(var/variant_path in variant_options[option_name])
+			var/datum/metacoinshop/listing_variant/variant_type = variant_path
+			values += list(list(
+				"id" = initial(variant_type.id),
+				"name" = initial(variant_type.name),
+			))
+		serialized[option_name] = values
+	return serialized
+
+/// Stores the selected variant JSON string of a persistent reward for a player.
+/datum/metacoin_shop_controller/proc/set_persistent_variant(target_ckey, listing_id, variant = null)
+	target_ckey = ckey(target_ckey)
+	if(!target_ckey || !listing_id)
+		return FALSE
+
+	if(!SSdbcore.Connect())
+		return FALSE
+
+	var/table_purchases = format_table_name("metacoin_purchases")
+	var/datum/db_query/upsert_query = SSdbcore.NewQuery(
+		"INSERT INTO [table_purchases] (ckey, listing, variant) VALUES (:ckey, :listing, :variant) ON DUPLICATE KEY UPDATE variant = VALUES(variant)",
+		list(
+			"ckey" = target_ckey,
+			"listing" = listing_id,
+			"variant" = variant,
+		),
+	)
+
+	if(!upsert_query.warn_execute(async = FALSE))
+		qdel(upsert_query)
+		return FALSE
+
+	qdel(upsert_query)
+	return TRUE
+
 /datum/metacoin_shop_controller/proc/grant_persistents(target_ckey, mob/living/spawned, client/player_client)
 	target_ckey = ckey(target_ckey)
 	if(!target_ckey)
@@ -467,6 +669,8 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	for(var/listing_id in owned_items)
 		var/datum/metacoinshop/listing/listing = persistent_catalog[listing_id]
 		if(!listing)
+			continue
+		if(!check_reward_preference(target_ckey, listing_id))
 			continue
 
 		listing.persistent_grant(src, target_ckey, spawned, player_client)
@@ -482,6 +686,16 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		return list()
 
 	return pending_items.Copy()
+
+/datum/metacoin_shop_controller/proc/get_pending_variant(target_ckey, item_id)
+	if(!target_ckey || !item_id)
+		return null
+
+	var/list/pending_items = preround_pending_by_ckey[target_ckey]
+	if(!islist(pending_items))
+		return null
+
+	return pending_items[item_id]
 
 /datum/metacoin_shop_controller/proc/fetch_balance(target_ckey)
 	if(!target_ckey)
@@ -507,8 +721,8 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	qdel(select_query)
 	return metacoin_balance
 
-/datum/metacoin_shop_controller/proc/add_metacoins(target_ckey, delta_amount)
-	if(!target_ckey || !isnum(delta_amount) || delta_amount <= 0)
+/datum/metacoin_shop_controller/proc/add_metacoins(target_ckey, amount)
+	if(!target_ckey || !isnum(amount) || amount <= 0)
 		return FALSE
 
 	if(!SSdbcore.Connect())
@@ -518,7 +732,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	var/datum/db_query/update_query = SSdbcore.NewQuery(
 		"UPDATE [table_player] SET metacoins = metacoins + :delta WHERE ckey = :ckey",
 		list(
-			"delta" = delta_amount,
+			"delta" = amount,
 			"ckey" = target_ckey,
 		),
 	)
@@ -531,8 +745,8 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	return TRUE
 
 ///Takes coins in one atomic query
-/datum/metacoin_shop_controller/proc/take_metacoins(target_ckey, delta_amount)
-	if(!target_ckey || !isnum(delta_amount) || delta_amount <= 0)
+/datum/metacoin_shop_controller/proc/take_metacoins(target_ckey, amount)
+	if(!target_ckey || !isnum(amount) || amount <= 0)
 		return list("ok" = FALSE, "error" = "invalid_request")
 
 	if(!SSdbcore.Connect())
@@ -542,14 +756,14 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	if(isnull(current_balance))
 		return list("ok" = FALSE, "error" = "db_unavailable")
 
-	if(current_balance < delta_amount)
+	if(current_balance < amount)
 		return list("ok" = FALSE, "error" = "not_enough")
 
 	var/table_player = format_table_name("player")
 	var/datum/db_query/take_query = SSdbcore.NewQuery(
 		"UPDATE [table_player] SET metacoins = metacoins - :delta WHERE ckey = :ckey AND metacoins >= :delta",
 		list(
-			"delta" = delta_amount,
+			"delta" = amount,
 			"ckey" = target_ckey,
 		),
 	)
@@ -563,7 +777,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	if(isnull(new_balance))
 		return list("ok" = FALSE, "error" = "db_failed")
 
-	if(new_balance > (current_balance - delta_amount))
+	if(new_balance > (current_balance - amount))
 		return list("ok" = FALSE, "error" = "not_enough")
 
 	return list(
@@ -571,7 +785,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		"balance" = new_balance,
 	)
 
-/datum/metacoin_shop_controller/proc/buy(target_ckey, item_id, role_id = null, client/player_client = null)
+/datum/metacoin_shop_controller/proc/buy(target_ckey, item_id, role_id = null, client/player_client = null, variant = null)
 	target_ckey = ckey(target_ckey || player_client?.ckey)
 	if(!target_ckey || !item_id)
 		return list("ok" = FALSE, "error" = "invalid_request")
@@ -598,7 +812,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(!take["ok"])
 			return take
 
-		if(!set_persistent(target_ckey, item_id, TRUE))
+		if(!set_persistent_owned(target_ckey, item_id, TRUE))
 			if(!add_metacoins(target_ckey, listing.price))
 				log_game("[src] persistent purchase refund failed: ckey=[target_ckey], listing=[item_id], price=[listing.price].")
 			return list("ok" = FALSE, "error" = "db_failed")
@@ -628,7 +842,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(!take["ok"])
 			return take
 
-		pending_items += item_id
+		pending_items[item_id] = variant
 
 		listing.on_bought(src, target_ckey, player_mob, player_client, take["balance"])
 
@@ -820,8 +1034,12 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 
 	grant_token_on_spawn(target_ckey, spawned, player_client)
 	grant_persistents(target_ckey, spawned, player_client)
+	deliver_items(target_ckey, spawned, player_client)
 
+/datum/metacoin_shop_controller/proc/deliver_items(target_ckey, mob/living/spawned, client/player_client)
 	if(!ishuman(spawned))
+		refund_items(target_ckey, "We were unable to deliver your preround items", spawned)
+		log_game("[src] refunding items of [player_client.ckey], Reason: joined round as non-human") // borgos and cargorillas don't need items
 		return
 
 	if(preround_delivered_by_ckey[target_ckey])
@@ -845,7 +1063,9 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(listing.listing_type != "item" || !listing.item_type)
 			continue
 
-		var/obj/item/new_item = new listing.item_type(human_spawned)
+		var/item_path = listing.get_chosen_typepath(target_ckey)
+		var/obj/item/new_item = new item_path(human_spawned)
+
 		listing.bought_on_spawn(src, target_ckey, human_spawned, new_item, player_client)
 		if(human_spawned.back?.atom_storage?.attempt_insert(new_item, human_spawned, override = TRUE))
 			continue
@@ -860,6 +1080,28 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 	to_chat(human_spawned, span_boldnicegreen("Your preround purchases were delivered."))
 
 	human_spawned.playsound_local(human_spawned, 'sound/misc/server-ready.ogg', 25, TRUE, use_reverb = FALSE)
+
+/datum/metacoin_shop_controller/proc/on_latejoin(datum/source, datum/job/job, mob/living/spawned)
+	SIGNAL_HANDLER
+
+	var/target_ckey = spawned.ckey
+
+	grant_persistents(target_ckey, spawned, spawned.client)
+	deliver_items(target_ckey, spawned, spawned.client)
+	addtimer(CALLBACK(src, PROC_REF(latejoin_token_grant), target_ckey, spawned), 2 SECONDS)
+
+/datum/metacoin_shop_controller/proc/latejoin_token_grant(target_ckey, mob/living/spawned)
+	var/datum/mind/mind = spawned.mind
+	if(mind.has_antag_datum(/datum/antagonist, TRUE))
+		refund_token(target_ckey, "Antag token grant failed: Dynamic has assigened you a role, \
+		note, if you still wish to play a certain role, please, contact your local admin.")
+		return
+	if(!CONFIG_GET(flag/allow_latejoin_antagonists))
+		refund_token(target_ckey, "Antag token grant failed: Server configuration has opted-out \
+		to disable latejoin antagonists")
+		return
+
+	grant_token_on_spawn(spawned.ckey, spawned, spawned.client)
 
 /datum/metacoin_shop_panel
 	var/client/owner
@@ -901,6 +1143,10 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		new /datum/metacoin_slot_panel(owner, ui.user)
 		return TRUE
 
+	if(action == "open_settings")
+		new /datum/metacoinshop/settings_panel(owner, ui.user)
+		return TRUE
+
 	if(action == "open_antag_token")
 		new /datum/metacoin_antag_token_panel(owner, ui.user)
 		return TRUE
@@ -910,7 +1156,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		if(!target_item)
 			return FALSE
 
-		var/result = get_metacoin_controller().buy(owner?.ckey, target_item, null, owner)
+		var/result = get_metacoin_controller().buy(owner?.ckey, target_item, null, owner, params["variant"])
 		if(!result["ok"])
 			var/mob/user_mob = ui?.user
 			if(user_mob)
@@ -948,7 +1194,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 			if(user_mob)
 				switch(result["error"])
 					if("already_owned")
-						to_chat(user_mob, span_warning("You already own this persistent reward."))
+						to_chat(user_mob, span_warning("You already own this reward."))
 						user_mob.playsound_local(user_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
 					if("not_enough")
 						to_chat(user_mob, span_warning("Not enough metacoins."))

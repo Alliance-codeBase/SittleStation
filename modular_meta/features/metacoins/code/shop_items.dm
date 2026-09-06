@@ -7,6 +7,7 @@
 	var/listing_type = "item"
 	var/icon
 	var/icon_state
+	var/list/variant_options = list()
 
 /// Is called after a successful purchase.
 /datum/metacoinshop/listing/proc/on_bought(datum/metacoin_shop_controller/shop, target_ckey, mob/player_mob, client/player_client, balance_after, role_id = null)
@@ -24,7 +25,29 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 // it's persistenly repeated code on each round if the SSdb returns true whether something's been bought, use it for any effects on demand
 // later on we'll add a preference flag to disable bought items on demand
 
+/// Returns datum of chosen variant of
+/datum/metacoinshop/listing/proc/get_variant_datum(option_name, option_id)
+	for(var/variant_path in variant_options?[option_name])
+		var/datum/metacoinshop/listing_variant/variant_type = variant_path
+		if(initial(variant_type.id) == option_id)
+			return variant_type
+	return null
+
+/// Returns the id of the variant the player chose for the option group. Defaults to the group's first variant when nothing was chosen.
+/// - variant - your string from db e.g "coolish"
+/// - group - the option group key from variant_options
+/datum/metacoinshop/listing/proc/parse_choice(variant, group)
+	var/datum/metacoinshop/listing_variant/first_variant = variant_options[group][1]
+	var/list/chosen = json_decode(variant)
+	if(islist(chosen))
+		var/chosen_id = chosen[group]
+		if(chosen_id)
+			return chosen_id
+	return initial(first_variant.id)
+
 /datum/metacoinshop/listing/preround
+
+
 
 /*
 /datum/metacoinshop/listing/preround/donut_box/on_bought(datum/metacoin_shop_controller/shop, target_ckey, mob/player_mob, client/player_client, balance_after, role_id = null)
@@ -37,7 +60,37 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	sleep(10)
 	human_spawned.gib()// DIE!
 
+
+example usage of variants for prerounds:
+
+/datum/metacoinshop/listing/preround/backpack
+	id = "backpack"
+	name = "Backpack"
+	desc = "A backpack of your chosen style!"
+	price = 200
+	item_type = /obj/item/storage/backpack
+	variant_options = list("style" = list(
+		/datum/metacoinshop/listing_variant/backpack/miner,
+		/datum/metacoinshop/listing_variant/backpack/security,
+	))
+
+example usage of variants for persistent
+
+/datum/metacoinshop/listing/persistent/_blessing/persistent_grant(datum/metacoin_shop_controller/shop, target_ckey, mob/living/spawned, client/player_client)
+	var/saved_variant = shop.get_persistent_variant(target_ckey, src.id)
+	var/selected_id = parse_choice(saved_variant, "blessing")
+	var/datum/metacoinshop/listing_variant/variant_type = get_variant_datum("blessing", selected_id)
+	switch(variant_type.id)
+		if("health")
+			spawned.heal_overall_damage(25)
+		if("wealth")
+			spawned.put_in_hands(new /obj/item/stack/spacecash/c1000(spawned))
+
 */
+
+
+
+
 /datum/metacoinshop/listing/preround/donut_box
 	id = "donut_box"
 	name = "Donut Box"
@@ -86,7 +139,6 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	gas.assert_gas(jpack.gas_type)
 	// quadruple it and give it to the next jetpack
 	gas.set_gas(/datum/gas/oxygen, ((24 * ONE_ATMOSPHERE) * jpack.volume / (R_IDEAL_GAS_EQUATION * T20C)))
-	jpack.desc += span_notice(" \n Though it definetly seems to have enlarged in proportions when I took it from the box..")
 	new /obj/item/clothing/suit/space(src)
 	new /obj/item/clothing/head/helmet/space(src)
 	new /obj/item/tank/internals/oxygen(src)
@@ -97,6 +149,15 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	new /obj/item/manual_cell_recharger(src)
 	new /obj/item/stock_parts/servo/pico(src)
 	new /obj/item/flashlight/seclite(src)
+
+/obj/item/storage/box/eva_kit/examine(mob/user)
+	. = ..()
+	. += span_notice("It has a small label taped to it that says, \"Bluespace compressed!\" ")
+
+/obj/item/storage/box/eva_kit/examine_more(mob/user)
+	. = ..()
+	. += span_notice("Items seem to be rather small on the inside.. however, taking anything from the box makes it impossible to put it back in..")
+
 
 /datum/metacoinshop/listing/preround/self_surgery
 	id = "surgery"
@@ -111,6 +172,8 @@ then have it variable edit'ed like so item.force = 25, potentially escaping any 
 	var/obj/item/skillchip/skillchip = new item_type()
 	human_spawned.implant_skillchip(skillchip)
 	skillchip.try_activate_skillchip()
+	playsound(human_spawned, 'sound/items/weapons/circsawhit.ogg', 100)
+	to_chat(human_spawned, span_notice("You've been implanted with [skillchip.name]"))
 
 /datum/metacoinshop/listing/preround/antag_token
 	id = "antag_token"

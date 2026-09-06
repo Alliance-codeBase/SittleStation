@@ -29,6 +29,12 @@ To check if a reward is bought
 	skillchip.try_activate_skillchip()
 
 // DO NOT CHANGE ID'S, DOING SO WILL RESULT A DUPLICATE IN DB
+
+/datum/metacoinshop/listing_variant
+	var/id
+	var/name
+	var/item_type
+
 /datum/metacoinshop/listing/persistent/wycc_soul
 	id = "wycc_soul"
 	name = "Unusual Cursed Strange Genuine Unique Vintage Collector's Decorated Community Self-made massmeta Wycc's own Soul"
@@ -37,3 +43,16 @@ To check if a reward is bought
 	price = 220**2.20
 	icon = 'icons/mob/human/species/ghost.dmi'
 	icon_state = "ghost_base"
+	variant_options = list("color" = list(/datum/metacoinshop/listing_variant/wycc_soul/strange, /datum/metacoinshop/listing_variant/wycc_soul/unusual))
+
+// Okay, so these "listing_variants" are like options for people to use, like, \
+imagine you've set up an persistent reward of a crayon. Then you add these listing variants \
+for a user to choose from, for an example, they may choose to get an green craoyon instead of a blue one
+/datum/metacoinshop/listing_variant/wycc_soul/unusual
+	id = "unusual"
+	name = "Neobuchniy"
+
+/datum/metacoinshop/listing_variant/wycc_soul/strange
+	id = "strange"
+	name = "Stranniy"
+

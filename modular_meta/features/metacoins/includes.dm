@@ -5,6 +5,8 @@
 #include "code\metacoin.dm"
 #include "code\metacoin_shop.dm"
 #include "code\metacoin_gambling.dm"
+#include "code\preferences.dm"
+#include "code\verb.dm"
 
 /datum/modpack/metacoins
 	id = "metacoins"
