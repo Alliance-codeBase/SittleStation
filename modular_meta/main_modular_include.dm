@@ -58,6 +58,8 @@
 #include "features\arcades\includes.dm"
 #include "features\progressive_traitor\includes.dm"
 #include "features\unmanned_vechicle\includes.dm"
+#include "features\title_screenz\includes.dm"
+#include "features\_code_helpers\includes.dm"
 
 /* --- Reverts --- */
 
