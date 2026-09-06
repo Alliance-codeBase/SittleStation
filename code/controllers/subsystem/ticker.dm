@@ -108,6 +108,21 @@ SUBSYSTEM_DEF(ticker)
 			continue
 		music -= S
 
+	// MASSMETA EDIT ADDITION START (music_n_screenz)
+	var/list/file_exts = list("jpg", "png", "gif", "dmi", "ogg", "wav")
+	var/title_name_no_ext = strip_filepath_extension(SStitle.file_path, file_exts)
+	var/title_name = strip_filepath_path(title_name_no_ext)
+
+	var/music_directory = "[global.config.directory]/title_music/sounds/"
+	var/music_file = title_name
+
+	var/any_paired_music_question_mark = (music_file in provisional_title_music) ? TRUE : FALSE
+
+	if(any_paired_music_question_mark)
+		set_lobby_music("[music_directory][music_file]")
+
+	// MASSMETA EDIT ADDITION END (music_n_screenz)
+
 	if(!length(music))
 		music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
 		if(length(music) > 1)
