@@ -3,7 +3,7 @@
 #define METACOIN_REWARD_SURVIVE_EVAC 25
 #define METACOIN_REWARD_IMPORTANT_JOBS 50
 #define METACOIN_REWARD_ANTAG_GREENTEXT 50
-#define METACOIN_IMPORTANT_JOBS list(JOB_SHAFT_MINER, JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_SECURITY_OFFICER_SUPPLY, JOB_SECURITY_OFFICER_SCIENCE, JOB_SECURITY_OFFICER_ENGINEERING, JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_CHIEF_MEDICAL_OFFICER, JOB_DETECTIVE, JOB_CHIEF_ENGINEER ) // THIS SHALL BE IN CONFIG, BUT I'M VERY LAZY, OKAY?
+#define METACOIN_IMPORTANT_JOBS list(JOB_CAPTAIN, JOB_HEAD_OF_PERSONNEL, JOB_HEAD_OF_SECURITY, JOB_RESEARCH_DIRECTOR, JOB_SECURITY_OFFICER_SUPPLY, JOB_SECURITY_OFFICER_SCIENCE, JOB_SECURITY_OFFICER_ENGINEERING, JOB_WARDEN, JOB_SECURITY_OFFICER, JOB_CHIEF_MEDICAL_OFFICER, JOB_DETECTIVE, JOB_CHIEF_ENGINEER ) // THIS SHALL BE IN CONFIG, BUT I'M VERY LAZY, OKAY?
 #define METACOIN_ICON_PATH "icons/obj/economy.dmi"
 #define METACOIN_ICON_STATE "coin_tails" // someone get us a nice lil' carp_coin sprite, or "masscoin"
 
@@ -305,6 +305,12 @@ GLOBAL_DATUM(metacoins_controller, /datum/metacoins_controller)
 
 	if(!length(antag_datum.objectives))
 		return TRUE
+
+	if(istype(antag_datum, /datum/antagonist/traitor))
+		var/datum/antagonist/traitor/traitor_datum = antag_datum
+		var/datum/uplink_handler/handler = traitor_datum.uplink_handler
+		if(handler?.final_objective)
+			return TRUE
 
 	for(var/datum/objective/objective as anything in antag_datum.objectives)
 		if(!objective.check_completion())

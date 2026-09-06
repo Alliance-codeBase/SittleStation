@@ -802,7 +802,8 @@ GLOBAL_DATUM_INIT(admin_help_ui_handler, /datum/admin_help_ui_handler, new)
 	get_ticket_info(message, user_client.current_ticket.id, user_client.ckey, admin = FALSE, new_ticket = TRUE, engager = "player")
 	// MASSMETA EDIT END (bot_topics)
 
-GAME_VERB_HIDDEN(/client, no_tgui_adminhelp, "NoTguiAdminhelp", message as message)
+GAME_VERB_HIDDEN(/client, no_tgui_adminhelp, "NoTguiAdminhelp")
+	VERB_ARG(message, VERB_ARG_TYPE_MESSAGE, VERB_ARG_SOURCE_INPUT)
 	if(adminhelptimerid)
 		return
 

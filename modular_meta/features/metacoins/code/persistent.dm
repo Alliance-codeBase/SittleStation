@@ -14,6 +14,20 @@ To check if a reward is bought
 		// you can lock anything behind it, unique reskins? job titles? jobs? like be able to spawn as an NT official? anything whatsoever!
 */
 
+/datum/metacoinshop/listing/persistent/perm_surg
+		id = "perm_surg"
+		name = "4U70-P3R4710N skillchip"
+		desc = "Self-surgery skillchip, for your daily self-cutting needs!"
+		price = 8704
+		listing_type = "persistent"
+		item_type = /obj/item/skillchip/self_surgery
+
+/datum/metacoinshop/listing/persistent/perm_surg/persistent_grant(datum/metacoin_shop_controller/shop, target_ckey, mob/living/spawned, client/player_client)
+	var/obj/item/skillchip/skillchip = new item_type()
+	var/mob/living/carbon/human/patient = spawned
+	patient.implant_skillchip(skillchip)
+	skillchip.try_activate_skillchip()
+
 // DO NOT CHANGE ID'S, DOING SO WILL RESULT A DUPLICATE IN DB
 
 /datum/metacoinshop/listing_variant

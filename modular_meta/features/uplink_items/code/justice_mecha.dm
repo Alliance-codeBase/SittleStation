@@ -3,7 +3,6 @@
 // R&D Designs
 /datum/design/justice_chassis
 	name = "Exosuit Chassis (\"Justice\")"
-	id = "justice_chassis"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/chassis/justice
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 20)
@@ -14,7 +13,6 @@
 
 /datum/design/justice_torso
 	name = "Exosuit Torso (\"Justice\")"
-	id = "justice_torso"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_torso
 	materials = list(
@@ -28,7 +26,6 @@
 
 /datum/design/justice_left_arm
 	name = "Exosuit Left Arm (\"Justice\")"
-	id = "justice_left_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_left_arm
 	materials = list(
@@ -42,7 +39,6 @@
 
 /datum/design/justice_right_arm
 	name = "Exosuit Right Arm (\"Justice\")"
-	id = "justice_right_arm"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_right_arm
 	materials = list(
@@ -56,7 +52,6 @@
 
 /datum/design/justice_left_leg
 	name = "Exosuit Left Leg (\"Justice\")"
-	id = "justice_left_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_left_leg
 	materials = list(
@@ -70,7 +65,6 @@
 
 /datum/design/justice_right_leg
 	name = "Exosuit Right Leg (\"Justice\")"
-	id = "justice_right_leg"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_right_leg
 	materials = list(
@@ -84,7 +78,6 @@
 
 /datum/design/justice_armor
 	name = "Exosuit Armor (\"Justice\")"
-	id = "justice_armor"
 	build_type = MECHFAB
 	build_path = /obj/item/mecha_parts/part/justice_armor
 	materials = list(
@@ -101,20 +94,19 @@
 //Tech nodes
 
 /datum/techweb_node/justice
-	id = "mecha_justice"
 	display_name = "EXOSUIT: Justice"
 	description = "Justice exosuit designs"
-	design_ids = list(
-		"justice_armor",
-		"justice_chassis",
-		"justice_left_arm",
-		"justice_left_leg",
-		"justice_right_arm",
-		"justice_right_leg",
-		"justice_torso",
+	node_flags = parent_type::node_flags | TECHWEB_NODE_HIDDEN
+	unlocked_designs = list(
+		/datum/design/justice_chassis,
+		/datum/design/justice_torso,
+		/datum/design/justice_left_arm,
+		/datum/design/justice_right_arm,
+		/datum/design/justice_left_leg,
+		/datum/design/justice_right_leg,
+		/datum/design/justice_armor,
 	)
-	hidden = TRUE
-	illegal_mech_node = TRUE
+	var/illegal_mech_node = TRUE
 
 // Mecha itself
 #define DISMEMBER_CHANCE_HIGH 50
@@ -403,7 +395,7 @@
 	if(!iscarbon(target))
 		return
 	var/mob/living/carbon/carbon_target = target
-	if(carbon_target.stat >= UNCONSCIOUS)
+	if(IS_UNCONSCIOUS(carbon_target))
 		return
 	var/obj/effect/justice_engine/cooldown_engine = get_engine_by_state(JUSTICE_ENGINE_ONCOOLDOWN)
 	if(isnull(cooldown_engine))
@@ -558,7 +550,7 @@
 	if(!ishuman(target))
 		return FALSE
 	var/mob/living/carbon/human/live_or_dead = target
-	if(live_or_dead.stat < UNCONSCIOUS && live_or_dead.get_stamina_loss() < 100)
+	if(!IS_UNCONSCIOUS_OR_CRIT(live_or_dead) && live_or_dead.get_stamina_loss() < 100)
 		return FALSE
 	var/obj/item/bodypart/check_head = live_or_dead.get_bodypart(BODY_ZONE_HEAD)
 	if(!check_head)
@@ -624,7 +616,7 @@
 /obj/vehicle/sealed/mecha/justice/proc/attack_in_aoe(mob/living/pilot)
 	new /obj/effect/temp_visual/mech_attack_aoe_attack(get_turf(src))
 	for(var/mob/living/something_living in range(1, get_turf(src)))
-		if(something_living.stat >= UNCONSCIOUS \
+		if(IS_UNCONSCIOUS(something_living) \
 		|| something_living.get_stamina_loss() >= 100 \
 		|| something_living == pilot)
 			continue
@@ -666,7 +658,7 @@
 		if(locate(/obj/structure/window) in line_turf)
 			break
 		for(var/mob/living/something_living in line_turf.contents)
-			if(something_living.stat >= UNCONSCIOUS \
+			if(IS_UNCONSCIOUS(something_living) \
 			|| something_living.get_stamina_loss() >= 100 \
 			|| is_driver(something_living) \
 			|| is_occupant(something_living))
@@ -898,11 +890,11 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	for(var/found_illegal_mech_nods in SSresearch.techweb_nodes)
-		var/datum/techweb_node/illegal_mech_node = SSresearch.techweb_nodes[found_illegal_mech_nods]
+		var/datum/techweb_node/justice/illegal_mech_node = SSresearch.techweb_nodes[found_illegal_mech_nods]
 		if(!illegal_mech_node?.illegal_mech_node)
 			continue
-		for(var/id in illegal_mech_node.design_ids)
-			var/datum/design/illegal_mech_design = SSresearch.techweb_design_by_id(id)
+		for(var/design_path in illegal_mech_node.unlocked_designs)
+			var/datum/design/illegal_mech_design = SSresearch.techweb_designs[design_path]
 			illegal_local_designs |= illegal_mech_design
 			cached_designs |= illegal_mech_design
 	say("R$c!i&ed ERROR de#i$ns. C@n%ec$%ng to ~NULL~ se%ve$s.")
@@ -919,11 +911,11 @@
 		return FALSE
 	obj_flags |= EMAGGED
 	for(var/found_illegal_mech_nods in SSresearch.techweb_nodes)
-		var/datum/techweb_node/illegal_mech_node = SSresearch.techweb_nodes[found_illegal_mech_nods]
+		var/datum/techweb_node/justice/illegal_mech_node = SSresearch.techweb_nodes[found_illegal_mech_nods]
 		if(!illegal_mech_node?.illegal_mech_node)
 			continue
-		for(var/id in illegal_mech_node.design_ids)
-			var/datum/design/illegal_mech_design = SSresearch.techweb_design_by_id(id)
+		for(var/design_path in illegal_mech_node.unlocked_designs)
+			var/datum/design/illegal_mech_design = SSresearch.techweb_designs[design_path]
 			illegal_local_designs |= illegal_mech_design
 			cached_designs |= illegal_mech_design
 	say("R$c!i&ed ERROR de#i$ns. C@n%ec$%ng to ~NULL~ se%ve$s.")

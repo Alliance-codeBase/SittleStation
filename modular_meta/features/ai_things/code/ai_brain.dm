@@ -6,7 +6,6 @@
 /datum/design/ai_brain
 	name = "AI-uplink brain"
 	desc = "A specially designed brain that allows AI to connect to a fully augmented body."
-	id = "ai_cyberbrain"
 	build_type = MECHFAB
 	materials = list(
 		/datum/material/iron = SHEET_MATERIAL_AMOUNT*1.7,

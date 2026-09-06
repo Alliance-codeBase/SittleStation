@@ -12,7 +12,7 @@
 	// This is my Lair
 	claimed_coffin = claimed
 	bloodsucker_lair_area = current_area
-	if(!(/datum/crafting_recipe/candelabrum in owner?.learned_recipes))
+	if(!(/datum/crafting_recipe/candelabrum in owner?.learned_crafting_recipes))
 		owner.teach_crafting_recipe(/datum/crafting_recipe/candelabrum)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/brazier)
 		owner.teach_crafting_recipe(/datum/crafting_recipe/bloodthrone)

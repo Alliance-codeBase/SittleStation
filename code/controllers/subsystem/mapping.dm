@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(mapping)
 	preloadTemplates()
 	var/start_time // MASSMETA ADDITION
 
-#ifndef LOWMEMORYMODE
+#ifndef SKIP_SPACE_LEVELS
 	// MASSMETA ADDITION
 	start_time = REALTIMEOFDAY
 	SStitle.add_init_text("Empty Space", "> Space", "<font color='yellow'>LOADING...</font>")
@@ -503,7 +503,7 @@ Used by the AI doomsday and the self-destruct nuke.
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
-#ifndef LOWMEMORYMODE
+#ifndef SKIP_LAVALAND
 
 	if(current_map.minetype == MINETYPE_LAVALAND)
 		LoadGroup(FailedZs, "Lavaland", "map_files/Mining", "Lavaland.dmm", default_traits = ZTRAITS_LAVALAND)
@@ -794,6 +794,9 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(contain_turfs)
 		build_area_turfs(z_value, filled_with_space)
 
+	if(SSweather.initialized)
+		SSweather.generate_holders(z_value, z_value)
+
 /datum/controller/subsystem/mapping/proc/build_area_turfs(z_level, space_guaranteed)
 	// If we know this is filled with default tiles, we can use the default area
 	// Faster
@@ -945,7 +948,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	else
 		start_time = REALTIMEOFDAY
 		var/beginning_message = "Loading all away missions..."
-		to_chat(world, span_boldannounce(beginning_message), MESSAGE_TYPE_DEBUG)
+		//to_chat(world, span_boldannounce(beginning_message), MESSAGE_TYPE_DEBUG) // MASSMETA REMOVAL
 		log_world(beginning_message)
 		log_mapping(beginning_message)
 
@@ -963,7 +966,7 @@ ADMIN_VERB(load_away_mission, R_FUN, "Load Away Mission", "Load a specific away 
 	if(!isnull(start_time))
 		var/tracked_time = (REALTIMEOFDAY - start_time) / 10
 		var/finished_message = "Loaded [number_of_away_missions] away missions in [tracked_time] second[tracked_time == 1 ? "" : "s"]!"
-		to_chat(world, span_boldannounce(finished_message), MESSAGE_TYPE_DEBUG)
+		//to_chat(world, span_boldannounce(finished_message), MESSAGE_TYPE_DEBUG) // MASSMETA REMOVAL
 		log_world(finished_message)
 		log_mapping(finished_message)
 

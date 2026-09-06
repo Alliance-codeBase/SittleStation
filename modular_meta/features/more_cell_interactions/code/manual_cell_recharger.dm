@@ -107,7 +107,6 @@
 // Wyсс сосал
 /datum/design/manual_cell_recharger
 	name = "Manual cell recharger"
-	id = "manual_cell_recharger"
 	build_type = AUTOLATHE | PROTOLATHE | AWAY_LATHE
 	materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2, /datum/material/glass = SHEET_MATERIAL_AMOUNT)
 	build_path = /obj/item/manual_cell_recharger

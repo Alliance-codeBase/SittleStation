@@ -59,4 +59,4 @@ jobs:
           delete-branch: true
           base: master
           title: "Upstream ${{ steps.date_step.outputs.time }}"
-          body: "🆑 MassMeta\n add: Upstream ${{ steps.date_step.outputs.time }}\n /:cl:\n conflicts: ${{ steps.fetch_upstream.outputs.conflicts }}"
+          body: ":cl: MassMeta\n add: Upstream ${{ steps.date_step.outputs.time }}\n /:cl:\n conflicts: ${{ steps.fetch_upstream.outputs.conflicts }}"
