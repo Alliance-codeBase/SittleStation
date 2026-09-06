@@ -9,3 +9,4 @@
 #include "mc.dm"
 #include "mentors.dm"
 #include "signals_traitor.dm"
+#include "martial_arts.dm"
