@@ -213,7 +213,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 		var/ruleset_tag = role.ruleset_tag
 		var/list/ruleset_config = SSdynamic.get_config()?[ruleset_tag]
 
-		if(!isnull(ruleset_config?["weight"]) && !has_weight(ruleset_config["weight"]))
+		if(isnull(ruleset_config?["weight"]) || !has_weight(ruleset_config["weight"]))
 			return list("code" = "disabled_by_config")
 
 		if(!isnull(ruleset_config?["min_pop"]))
@@ -1194,7 +1194,7 @@ GLOBAL_DATUM(metacoin_shop_controller, /datum/metacoin_shop_controller)
 			if(user_mob)
 				switch(result["error"])
 					if("already_owned")
-						to_chat(user_mob, span_warning("You already own this persistent reward."))
+						to_chat(user_mob, span_warning("You already own this reward."))
 						user_mob.playsound_local(user_mob, 'sound/machines/compiler/compiler-failure.ogg', 40, TRUE, use_reverb = FALSE)
 					if("not_enough")
 						to_chat(user_mob, span_warning("Not enough metacoins."))
